@@ -1083,26 +1083,4 @@ body {
 
 
 /* =========================================================
-   VERY SMALL MOBILE
-========================================================= */
-
-@media (max-width: 360px) {
-
-    .brand-side {
-        min-height: 270px;
-
-        padding: 24px 18px;
-    }
-
-    .form-side {
-        padding: 25px 18px;
-    }
-
-    .brand-content h1 {
-        font-size: 31px;
-    }
-
-    .form-title {
-        font-size: 23px;
-    }
-}
+   
