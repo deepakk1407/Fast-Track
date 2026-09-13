@@ -7,11 +7,25 @@ const loginBox = document.getElementById("loginBox");
 const registerBox = document.getElementById("registerBox");
 
 registerTab.addEventListener("click", () => {
-    loginBox.style.display = "none";
-    registerBox.style.display = "block";
+
+    // Change white selection
+    loginTab.classList.remove("active");
+    registerTab.classList.add("active");
+
+    // Change form
+    loginBox.classList.remove("active");
+    registerBox.classList.add("active");
+
 });
 
 loginTab.addEventListener("click", () => {
-    registerBox.style.display = "none";
-    loginBox.style.display = "block";
+
+    // Change white selection
+    registerTab.classList.remove("active");
+    loginTab.classList.add("active");
+
+    // Change form
+    registerBox.classList.remove("active");
+    loginBox.classList.add("active");
+
 });
