@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,955 +8,1517 @@
 <title>FAST-TRACK | Skills</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-body{
-    min-height:100vh;
-    font-family:Arial,Helvetica,sans-serif;
-    background:#f5f7fb;
-    color:#0f172a;
+html {
+    scroll-behavior: smooth;
 }
 
-/* ================= APP ================= */
-
-.app{
-    display:flex;
-    min-height:100vh;
+body {
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f7fb;
+    color: #0f172a;
 }
 
-/* ================= SIDEBAR ================= */
 
-.sidebar{
-    width:250px;
-    min-height:100vh;
-    background:linear-gradient(180deg,#0f172a,#172554,#1e1b4b);
-    color:white;
-    padding:25px 16px;
-    position:fixed;
-    left:0;
-    top:0;
-    bottom:0;
-    display:flex;
-    flex-direction:column;
-    z-index:1000;
-    transition:.3s;
+/* =========================================================
+   APP
+========================================================= */
+
+.app {
+    min-height: 100vh;
 }
 
-.brand{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    padding:0 10px;
-    margin-bottom:35px;
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.sidebar {
+
+    position: fixed;
+
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    width: 250px;
+
+    padding: 25px 16px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #0f172a 0%,
+            #172554 55%,
+            #1e1b4b 100%
+        );
+
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+
+    z-index: 1000;
+
+    overflow-y: auto;
 }
 
-.brand img{
-    width:42px;
-    height:42px;
-    object-fit:contain;
-    border-radius:10px;
+
+/* BRAND */
+
+.brand {
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 0 10px;
+
+    margin-bottom: 35px;
 }
 
-.brand-text h2{
-    font-size:18px;
-    letter-spacing:1px;
+.brand img {
+
+    width: 42px;
+    height: 42px;
+
+    object-fit: contain;
+
+    border-radius: 10px;
 }
 
-.brand-text span{
-    display:block;
-    margin-top:3px;
-    font-size:9px;
-    color:#93c5fd;
-    letter-spacing:1px;
+.brand-text h2 {
+
+    font-size: 18px;
+
+    letter-spacing: 1px;
 }
 
-.nav-title{
-    padding:0 12px;
-    margin-bottom:10px;
-    font-size:10px;
-    color:#94a3b8;
-    letter-spacing:1.5px;
-    font-weight:700;
+.brand-text span {
+
+    display: block;
+
+    margin-top: 3px;
+
+    font-size: 9px;
+
+    color: #93c5fd;
+
+    letter-spacing: 1px;
 }
 
-.nav{
-    display:flex;
-    flex-direction:column;
-    gap:6px;
+
+/* NAV TITLE */
+
+.nav-title {
+
+    padding: 0 12px;
+
+    margin-bottom: 10px;
+
+    font-size: 10px;
+
+    color: #94a3b8;
+
+    letter-spacing: 1.5px;
+
+    font-weight: 700;
 }
 
-.nav-item{
-    width:100%;
-    display:flex;
-    align-items:center;
-    gap:13px;
-    padding:12px 14px;
-    border-radius:10px;
-    color:#cbd5e1;
-    text-decoration:none;
-    font-size:14px;
-    transition:.25s;
+
+/* NAV */
+
+.nav {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
 }
 
-.nav-item:hover{
-    background:rgba(255,255,255,.08);
-    color:white;
+.nav-item {
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 12px 14px;
+
+    border-radius: 10px;
+
+    color: #cbd5e1;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    transition: 0.25s;
 }
 
-.nav-item.active{
-    background:rgba(96,165,250,.18);
-    color:white;
-    box-shadow:inset 3px 0 0 #60a5fa;
+.nav-item:hover {
+
+    background: rgba(255,255,255,0.08);
+
+    color: white;
 }
 
-.nav-icon{
-    width:22px;
-    text-align:center;
-    font-size:17px;
+.nav-item.active {
+
+    background: rgba(96,165,250,0.18);
+
+    color: white;
+
+    box-shadow:
+        inset 3px 0 0 #60a5fa;
 }
 
-.sidebar-bottom{
-    margin-top:auto;
+.nav-icon {
+
+    width: 22px;
+
+    text-align: center;
+
+    font-size: 17px;
 }
 
-.career-mini{
-    padding:16px;
-    margin:10px 4px 18px;
-    border-radius:14px;
-    background:rgba(255,255,255,.07);
-    border:1px solid rgba(255,255,255,.08);
+
+/* =========================================================
+   SIDEBAR BOTTOM
+========================================================= */
+
+.sidebar-bottom {
+
+    margin-top: auto;
+
+    padding-top: 20px;
 }
 
-.career-mini p{
-    font-size:11px;
-    color:#94a3b8;
-    margin-bottom:8px;
+.career-mini {
+
+    padding: 16px;
+
+    margin: 10px 4px 18px;
+
+    border-radius: 14px;
+
+    background: rgba(255,255,255,0.07);
+
+    border:
+        1px solid rgba(255,255,255,0.08);
 }
 
-.career-mini strong{
-    font-size:13px;
+.career-mini p {
+
+    font-size: 11px;
+
+    color: #94a3b8;
+
+    margin-bottom: 8px;
 }
 
-.logout-btn{
-    width:100%;
-    border:none;
-    padding:12px;
-    border-radius:10px;
-    background:rgba(239,68,68,.1);
-    color:#fca5a5;
-    font-size:14px;
-    font-weight:700;
-    cursor:pointer;
+.career-mini strong {
+
+    font-size: 13px;
 }
 
-.logout-btn:hover{
-    background:#ef4444;
-    color:white;
+
+/* LOGOUT */
+
+.logout-btn {
+
+    width: 100%;
+
+    border: none;
+
+    padding: 12px;
+
+    border-radius: 10px;
+
+    background: rgba(239,68,68,0.1);
+
+    color: #fca5a5;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.25s;
 }
 
-/* ================= MOBILE HEADER ================= */
+.logout-btn:hover {
 
-.mobile-header{
-    display:none;
-    align-items:center;
-    justify-content:space-between;
-    background:white;
-    padding:13px 16px;
-    border-bottom:1px solid #e2e8f0;
-    position:sticky;
-    top:0;
-    z-index:900;
+    background: #ef4444;
+
+    color: white;
 }
 
-.menu-btn{
-    border:none;
-    background:#eff6ff;
-    color:#1d4ed8;
-    width:42px;
-    height:42px;
-    border-radius:10px;
-    font-size:22px;
-    cursor:pointer;
+
+/* =========================================================
+   MOBILE HEADER
+========================================================= */
+
+.mobile-header {
+
+    display: none;
+
+    height: 62px;
+
+    padding: 10px 15px;
+
+    background: white;
+
+    border-bottom:
+        1px solid #e2e8f0;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 900;
 }
 
-.mobile-logo{
-    font-size:17px;
-    font-weight:800;
-    letter-spacing:1px;
+.menu-btn {
+
+    width: 42px;
+    height: 42px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    font-size: 22px;
+
+    cursor: pointer;
 }
 
-/* ================= OVERLAY ================= */
+.mobile-brand {
 
-.overlay{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.45);
-    z-index:950;
+    font-size: 17px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
 }
 
-.overlay.show{
-    display:block;
+
+/* =========================================================
+   OVERLAY
+========================================================= */
+
+.overlay {
+
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0,0,0,0.45);
+
+    z-index: 950;
 }
 
-/* ================= MAIN ================= */
+.overlay.show {
 
-.main{
-    width:calc(100% - 250px);
-    margin-left:250px;
-    min-height:100vh;
-    padding:25px 35px;
+    display: block;
 }
 
-.topbar{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    margin-bottom:28px;
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.main {
+
+    width: calc(100% - 250px);
+
+    margin-left: 250px;
+
+    min-height: 100vh;
+
+    padding: 25px 35px;
 }
 
-.page-title h1{
-    font-size:28px;
-    margin-bottom:6px;
+
+/* =========================================================
+   TOP BAR
+========================================================= */
+
+.topbar {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 28px;
 }
 
-.page-title p{
-    color:#64748b;
-    font-size:14px;
+.page-title h1 {
+
+    font-size: 28px;
+
+    margin-bottom: 6px;
 }
 
-.profile-mini{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    padding:8px 13px;
-    background:white;
-    border:1px solid #e2e8f0;
-    border-radius:12px;
+.page-title p {
+
+    color: #64748b;
+
+    font-size: 14px;
 }
 
-.profile-avatar{
-    width:38px;
-    height:38px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:50%;
-    background:#dbeafe;
-    color:#2563eb;
-    font-weight:800;
+
+/* PROFILE */
+
+.profile-mini {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 8px 13px;
+
+    background: white;
+
+    border:
+        1px solid #e2e8f0;
+
+    border-radius: 12px;
 }
 
-.profile-mini strong{
-    display:block;
-    font-size:13px;
+.profile-avatar {
+
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #dbeafe;
+
+    color: #2563eb;
+
+    font-weight: 800;
 }
 
-.profile-mini span{
-    display:block;
-    margin-top:2px;
-    font-size:10px;
-    color:#64748b;
+.profile-mini strong {
+
+    display: block;
+
+    font-size: 13px;
 }
 
-/* ================= HERO ================= */
+.profile-mini span {
 
-.skills-hero{
-    position:relative;
-    overflow:hidden;
-    padding:30px;
-    border-radius:22px;
-    background:linear-gradient(120deg,#0f172a,#1d4ed8,#312e81);
-    color:white;
-    margin-bottom:25px;
-    box-shadow:0 18px 45px rgba(30,64,175,.16);
+    display: block;
+
+    margin-top: 2px;
+
+    font-size: 10px;
+
+    color: #64748b;
 }
 
-.skills-hero::after{
-    content:"";
-    position:absolute;
-    width:230px;
-    height:230px;
-    right:-80px;
-    top:-90px;
-    border-radius:50%;
-    background:rgba(255,255,255,.07);
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.skills-hero {
+
+    position: relative;
+
+    overflow: hidden;
+
+    padding: 30px;
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            120deg,
+            #0f172a,
+            #1d4ed8,
+            #312e81
+        );
+
+    color: white;
+
+    margin-bottom: 25px;
+
+    box-shadow:
+        0 18px 45px
+        rgba(30,64,175,0.16);
 }
 
-.hero-badge{
-    display:inline-block;
-    padding:7px 12px;
-    border-radius:30px;
-    background:rgba(255,255,255,.12);
-    font-size:10px;
-    letter-spacing:1px;
-    margin-bottom:14px;
+.skills-hero::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 230px;
+    height: 230px;
+
+    right: -80px;
+    top: -90px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,0.07);
 }
 
-.skills-hero h2{
-    position:relative;
-    z-index:2;
-    font-size:27px;
-    margin-bottom:8px;
+.hero-badge {
+
+    display: inline-block;
+
+    padding: 7px 12px;
+
+    border-radius: 30px;
+
+    background:
+        rgba(255,255,255,0.12);
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 14px;
 }
 
-.skills-hero p{
-    position:relative;
-    z-index:2;
-    color:#dbeafe;
-    max-width:650px;
-    font-size:14px;
-    line-height:1.6;
+.skills-hero h2 {
+
+    position: relative;
+
+    z-index: 2;
+
+    font-size: 27px;
+
+    margin-bottom: 8px;
 }
 
-/* ================= TOOLBAR ================= */
+.skills-hero p {
 
-.toolbar{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:15px;
-    margin-bottom:22px;
+    position: relative;
+
+    z-index: 2;
+
+    color: #dbeafe;
+
+    max-width: 650px;
+
+    font-size: 14px;
+
+    line-height: 1.6;
 }
 
-.search-box{
-    flex:1;
-    position:relative;
+
+/* =========================================================
+   TOOLBAR
+========================================================= */
+
+.toolbar {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 22px;
 }
 
-.search-box input{
-    width:100%;
-    padding:14px 18px 14px 45px;
-    border:1px solid #e2e8f0;
-    border-radius:12px;
-    outline:none;
-    background:white;
-    font-size:14px;
+.search-box {
+
+    flex: 1;
+
+    position: relative;
 }
 
-.search-box input:focus{
-    border-color:#60a5fa;
+.search-box input {
+
+    width: 100%;
+
+    padding:
+        14px
+        18px
+        14px
+        45px;
+
+    border:
+        1px solid #e2e8f0;
+
+    border-radius: 12px;
+
+    outline: none;
+
+    background: white;
+
+    font-size: 14px;
 }
 
-.search-icon{
-    position:absolute;
-    left:17px;
-    top:50%;
-    transform:translateY(-50%);
+.search-box input:focus {
+
+    border-color: #60a5fa;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(96,165,250,0.12);
 }
 
-.add-btn{
-    border:none;
-    padding:14px 20px;
-    border-radius:12px;
-    background:#2563eb;
-    color:white;
-    font-size:13px;
-    font-weight:700;
-    cursor:pointer;
+.search-icon {
+
+    position: absolute;
+
+    left: 17px;
+
+    top: 50%;
+
+    transform:
+        translateY(-50%);
+
+    font-size: 17px;
 }
 
-.add-btn:hover{
-    background:#1d4ed8;
+.add-btn {
+
+    border: none;
+
+    padding: 14px 20px;
+
+    border-radius: 12px;
+
+    background: #2563eb;
+
+    color: white;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s;
 }
 
-/* ================= SECTION ================= */
+.add-btn:hover {
 
-.section-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:15px;
+    background: #1d4ed8;
+
+    transform:
+        translateY(-1px);
 }
 
-.section-header h2{
-    font-size:18px;
+
+/* =========================================================
+   SECTION HEADER
+========================================================= */
+
+.section-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 15px;
 }
 
-.section-header span{
-    color:#64748b;
-    font-size:12px;
+.section-header h2 {
+
+    font-size: 18px;
 }
 
-/* ================= SKILLS ================= */
+.section-header span {
 
-.skills-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:16px;
+    color: #64748b;
+
+    font-size: 12px;
 }
 
-.skill-card{
-    background:white;
-    border:1px solid #e2e8f0;
-    border-radius:16px;
-    padding:20px;
-    transition:.25s;
+
+/* =========================================================
+   SKILLS GRID
+========================================================= */
+
+.skills-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap: 16px;
 }
 
-.skill-card:hover{
-    transform:translateY(-3px);
-    border-color:#bfdbfe;
-    box-shadow:0 12px 30px rgba(15,23,42,.07);
+
+/* =========================================================
+   SKILL CARD
+========================================================= */
+
+.skill-card {
+
+    background: white;
+
+    border:
+        1px solid #e2e8f0;
+
+    border-radius: 16px;
+
+    padding: 20px;
+
+    transition: 0.25s;
 }
 
-.skill-top{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    margin-bottom:14px;
+.skill-card:hover {
+
+    transform:
+        translateY(-3px);
+
+    border-color:
+        #bfdbfe;
+
+    box-shadow:
+        0 12px 30px
+        rgba(15,23,42,0.07);
 }
 
-.skill-icon{
-    width:43px;
-    height:43px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:11px;
-    background:#eff6ff;
-    font-size:20px;
+.skill-top {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 14px;
 }
 
-.skill-level{
-    font-size:11px;
-    color:#2563eb;
-    font-weight:700;
-    background:#eff6ff;
-    padding:5px 8px;
-    border-radius:20px;
+.skill-icon {
+
+    width: 43px;
+    height: 43px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 11px;
+
+    background: #eff6ff;
+
+    font-size: 20px;
 }
 
-.skill-card h3{
-    font-size:15px;
-    margin-bottom:6px;
+.skill-level {
+
+    font-size: 11px;
+
+    color: #2563eb;
+
+    font-weight: 700;
+
+    background: #eff6ff;
+
+    padding: 5px 8px;
+
+    border-radius: 20px;
 }
 
-.skill-card p{
-    font-size:11px;
-    color:#64748b;
-    margin-bottom:14px;
+.skill-card h3 {
+
+    font-size: 15px;
+
+    margin-bottom: 6px;
 }
 
-.progress-info{
-    display:flex;
-    justify-content:space-between;
-    font-size:10px;
-    color:#64748b;
-    margin-bottom:6px;
+.skill-card p {
+
+    font-size: 11px;
+
+    color: #64748b;
+
+    margin-bottom: 14px;
 }
 
-.progress-bar{
-    width:100%;
-    height:7px;
-    background:#e2e8f0;
-    border-radius:20px;
-    overflow:hidden;
+.progress-info {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    font-size: 10px;
+
+    color: #64748b;
+
+    margin-bottom: 6px;
 }
 
-.progress{
-    height:100%;
-    border-radius:20px;
-    background:linear-gradient(90deg,#2563eb,#60a5fa);
+.progress-bar {
+
+    width: 100%;
+
+    height: 7px;
+
+    background: #e2e8f0;
+
+    border-radius: 20px;
+
+    overflow: hidden;
 }
 
-.no-result{
-    display:none;
-    text-align:center;
-    padding:40px;
-    background:white;
-    border:1px solid #e2e8f0;
-    border-radius:16px;
-    color:#64748b;
+.progress {
+
+    height: 100%;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #2563eb,
+            #60a5fa
+        );
 }
 
-/* ================= TABLET ================= */
 
-@media(max-width:1000px){
+/* =========================================================
+   NO RESULT
+========================================================= */
 
-    .skills-grid{
-        grid-template-columns:repeat(2,1fr);
+.no-result {
+
+    display: none;
+
+    text-align: center;
+
+    padding: 40px;
+
+    background: white;
+
+    border:
+        1px solid #e2e8f0;
+
+    border-radius: 16px;
+
+    color: #64748b;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media(max-width:1100px) {
+
+    .skills-grid {
+
+        grid-template-columns:
+            repeat(2,1fr);
     }
 
-    .main{
-        padding:22px;
+    .main {
+
+        padding:
+            22px;
     }
 }
 
-/* ================= MOBILE ================= */
 
-@media(max-width:750px){
+/* =========================================================
+   MOBILE
+========================================================= */
 
-    .mobile-header{
-        display:flex;
+@media(max-width:750px) {
+
+    /* Mobile top bar */
+
+    .mobile-header {
+
+        display: flex;
     }
 
-    .sidebar{
-        display:flex;
-        width:250px;
-        transform:translateX(-100%);
-        transition:.3s ease;
-        box-shadow:10px 0 30px rgba(0,0,0,.2);
+
+    /* Sidebar starts hidden */
+
+    .sidebar {
+
+        width: 250px;
+
+        transform:
+            translateX(-100%);
+
+        transition:
+            transform 0.3s ease;
+
+        box-shadow:
+            10px 0 30px
+            rgba(0,0,0,0.2);
     }
 
-    .sidebar.open{
-        transform:translateX(0);
+
+    /* Open sidebar */
+
+    .sidebar.open {
+
+        transform:
+            translateX(0);
     }
 
-    .main{
-        width:100%;
-        margin-left:0;
-        padding:18px;
+
+    /* Main */
+
+    .main {
+
+        width: 100%;
+
+        margin-left: 0;
+
+        padding: 18px;
     }
 
-    .topbar{
-        margin-bottom:20px;
+
+    /* Top */
+
+    .topbar {
+
+        margin-bottom: 20px;
     }
 
-    .page-title h1{
-        font-size:24px;
+    .page-title h1 {
+
+        font-size: 24px;
     }
 
-    .profile-mini{
-        display:none;
+
+    /* Hide desktop profile */
+
+    .profile-mini {
+
+        display: none;
     }
 
-    .skills-hero{
-        padding:24px 20px;
+
+    /* Hero */
+
+    .skills-hero {
+
+        padding:
+            24px 20px;
+
+        border-radius: 18px;
     }
 
-    .skills-hero h2{
-        font-size:23px;
+    .skills-hero h2 {
+
+        font-size: 23px;
     }
 
-    .toolbar{
-        flex-direction:column;
-        align-items:stretch;
+    .skills-hero p {
+
+        font-size: 13px;
     }
 
-    .add-btn{
-        width:100%;
+
+    /* Toolbar */
+
+    .toolbar {
+
+        flex-direction: column;
+
+        align-items: stretch;
     }
 
-    .skills-grid{
-        grid-template-columns:1fr;
+    .add-btn {
+
+        width: 100%;
+    }
+
+
+    /* Cards */
+
+    .skills-grid {
+
+        grid-template-columns: 1fr;
+
+        gap: 13px;
     }
 }
 
-/* ================= SMALL MOBILE ================= */
 
-@media(max-width:400px){
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
 
-    .main{
-        padding:14px;
+@media(max-width:400px) {
+
+    .main {
+
+        padding: 14px;
     }
 
-    .skills-hero h2{
-        font-size:21px;
+    .mobile-header {
+
+        padding:
+            10px 12px;
     }
 
-    .skills-hero p{
-        font-size:13px;
+    .skills-hero {
+
+        padding: 20px 16px;
     }
 
-    .section-header h2{
-        font-size:16px;
+    .skills-hero h2 {
+
+        font-size: 21px;
+    }
+
+    .skill-card {
+
+        padding: 17px;
     }
 }
+
 </style>
 </head>
 
+
 <body>
+
 
 <div class="app">
 
-    <!-- MOBILE HEADER -->
-    <header class="mobile-header">
-        <button class="menu-btn" id="menuBtn">☰</button>
-        <div class="mobile-logo">FAST-TRACK</div>
-        <div>🎯</div>
-    </header>
 
-    <!-- OVERLAY -->
-    <div class="overlay" id="overlay"></div>
+<!-- =====================================================
+     MOBILE HEADER
+===================================================== -->
 
-    <!-- SIDEBAR -->
-    <aside class="sidebar" id="sidebar">
+<header class="mobile-header">
 
-        <div class="brand">
-            <img src="fast-track-logo.png" alt="FAST-TRACK Logo">
+    <button
+        class="menu-btn"
+        id="menuBtn">
 
-            <div class="brand-text">
-                <h2>FAST-TRACK</h2>
-                <span>SMART CAREER PLATFORM</span>
-            </div>
-        </div>
+        ☰
 
-        <div class="nav-title">MAIN MENU</div>
+    </button>
 
-        <nav class="nav">
+    <div class="mobile-brand">
 
-            <a href="dashboard.html" class="nav-item">
-                <span class="nav-icon">🏠</span>
-                <span>Dashboard</span>
-            </a>
+        FAST-TRACK
 
-            <a href="jobs.html" class="nav-item">
-                <span class="nav-icon">💼</span>
-                <span>Jobs</span>
-            </a>
+    </div>
 
-            <a href="skills.html" class="nav-item active">
-                <span class="nav-icon">🎯</span>
-                <span>Skills</span>
-            </a>
+    <div>
 
-            <a href="#" class="nav-item">
-                <span class="nav-icon">📚</span>
-                <span>Courses</span>
-            </a>
+        🎯
 
-            <a href="#" class="nav-item">
-                <span class="nav-icon">📄</span>
-                <span>Resume Builder</span>
-            </a>
+    </div>
 
-            <a href="#" class="nav-item">
-                <span class="nav-icon">📈</span>
-                <span>Career Progress</span>
-            </a>
+</header>
 
-            <a href="#" class="nav-item">
-                <span class="nav-icon">👤</span>
-                <span>My Profile</span>
-            </a>
 
-        </nav>
+<!-- =====================================================
+     OVERLAY
+===================================================== -->
 
-        <div class="sidebar-bottom">
-
-            <div class="career-mini">
-                <p>YOUR CAREER JOURNEY</p>
-                <strong>Keep moving forward 🚀</strong>
-            </div>
-
-            <button class="logout-btn" id="logoutBtn">
-                🚪 Logout
-            </button>
-
-        </div>
-
-    </aside>
-
-
-    <!-- MAIN -->
-    <main class="main">
-
-        <header class="topbar">
-
-            <div class="page-title">
-                <h1>Skills</h1>
-                <p>Build the skills that move your career forward.</p>
-            </div>
-
-            <div class="profile-mini">
-
-                <div class="profile-avatar" id="profileAvatar">
-                    U
-                </div>
-
-                <div>
-                    <strong id="topUserName">User</strong>
-                    <span>Career Explorer</span>
-                </div>
-
-            </div>
-
-        </header>
-
-
-        <!-- HERO -->
-        <section class="skills-hero">
-
-            <div class="hero-badge">
-                SKILL DEVELOPMENT
-            </div>
-
-            <h2>
-                Upgrade Your Skills 🚀
-            </h2>
-
-            <p>
-                Track your technical and professional skills,
-                identify areas for improvement and prepare
-                yourself for your dream career.
-            </p>
-
-        </section>
-
-
-        <!-- SEARCH -->
-        <div class="toolbar">
-
-            <div class="search-box">
-
-                <span class="search-icon">🔍</span>
-
-                <input
-                    type="text"
-                    id="skillSearch"
-                    placeholder="Search skills..."
-                >
-
-            </div>
-
-            <button class="add-btn" id="addSkillBtn">
-                + Add Skill
-            </button>
-
-        </div>
-
-
-        <!-- TECHNICAL -->
-        <div class="section-header">
-
-            <h2>Technical Skills</h2>
-
-            <span>Keep improving</span>
-
-        </div>
-
-
-        <section class="skills-grid" id="skillsGrid">
-
-            <div class="skill-card" data-skill="Python">
-
-                <div class="skill-top">
-                    <div class="skill-icon">🐍</div>
-                    <div class="skill-level">Intermediate</div>
-                </div>
-
-                <h3>Python</h3>
-                <p>Programming & Development</p>
-
-                <div class="progress-info">
-                    <span>Progress</span>
-                    <span>70%</span>
-                </div>
-
-                <div class="progress-bar">
-                    <div class="progress" style="width:70%"></div>
-                </div>
-
-            </div>
-
-
-            <div class="skill-card" data-skill="Machine Learning">
-
-                <div class="skill-top">
-                    <div class="skill-icon">🤖</div>
-                    <div class="skill-level">Beginner</div>
-                </div>
-
-                <h3>Machine Learning</h3>
-                <p>AI & Data Science</p>
-
-                <div class="progress-info">
-                    <span>Progress</span>
-                    <span>45%</span>
-                </div>
-
-                <div class="progress-bar">
-                    <div class="progress" style="width:45%"></div>
-                </div>
-
-            </div>
-
-
-            <div class="skill-card" data-skill="SQL">
-
-                <div class="skill-top">
-                    <div class="skill-icon">🗄️</div>
-                    <div class="skill-level">Intermediate</div>
-                </div>
-
-                <h3>SQL</h3>
-                <p>Database Management</p>
-
-                <div class="progress-info">
-                    <span>Progress</span>
-                    <span>60%</span>
-                </div>
-
-                <div class="progress-bar">
-                    <div class="progress" style="width:60%"></div>
-                </div>
-
-            </div>
-
-
-            <div class="skill-card" data-skill="HTML CSS">
-
-                <div class="skill-top">
-                    <div class="skill-icon">🌐</div>
-                    <div class="skill-level">Intermediate</div>
-                </div>
-
-                <h3>HTML & CSS</h3>
-                <p>Web Development</p>
-
-                <div class="progress-info">
-                    <span>Progress</span>
-                    <span>65%</span>
-                </div>
-
-                <div class="progress-bar">
-                    <div class="progress" style="width:65%"></div>
-                </div>
-
-            </div>
-
-
-            <div class="skill-card" data-skill="JavaScript">
-
-                <div class="skill-top">
-                    <div class="skill-icon">⚡</div>
-                    <div class="skill-level">Beginner</div>
-                </div>
-
-                <h3>JavaScript</h3>
-                <p>Frontend Development</p>
-
-                <div class="progress-info">
-                    <span>Progress</span>
-                    <span>40%</span>
-                </div>
-
-                <div class="progress-bar">
-                    <div class="progress" style="width:40%"></div>
-                </div>
-
-            </div>
-
-
-            <div class="skill-card" data-skill="Data Science">
-
-                <div class="skill-top">
-                    <div class="skill-icon">📊</div>
-                    <div class="skill-level">Beginner</div>
-                </div>
-
-                <h3>Data Science</h3>
-                <p>Analytics & AI</p>
-
-                <div class="progress-info">
-                    <span>Progress</span>
-                    <span>50%</span>
-                </div>
-
-                <div class="progress-bar">
-                    <div class="progress" style="width:50%"></div>
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <div class="no-result" id="noResult">
-            🔍 No skills found.
-        </div>
-
-
-        <!-- PROFESSIONAL -->
-        <div class="section-header" style="margin-top:30px;">
-
-            <h2>Professional Skills</h2>
-
-            <span>Career essentials</span>
-
-        </div>
-
-
-        <section class="skills-grid">
-
-            <div class="skill-card" data-skill="Teamwork">
-
-                <div class="skill-top">
-                    <div class="skill-icon">🤝</div>
-                    <div class="skill-level">Strong</div>
-                </div>
-
-                <h3>Teamwork</h3>
-                <p>Collaboration</p>
-
-                <div class="progress-info">
-                    <span>Progress</span>
-                    <span>80%</span>
-                </div>
-
-                <div class="progress-bar">
-                    <div class="progress" style="width:80%"></div>
-                </div>
-
-            </div>
-
-
-            <div class="skill-card" data-skill="Communication">
-
-                <div class="skill-top">
-                    <div class="skill-icon">💬</div>
-                    <div class="skill-level">Improving</div>
-                </div>
-
-                <h3>Communication</h3>
-                <p>Professional Communication</p>
-
-                <div class="progress-info">
-                    <span>Progress</span>
-                    <span>65%</span>
-                </div>
-
-                <div class="progress-bar">
-                    <div class="progress" style="width:65%"></div>
-                </div>
-
-            </div>
-
-
-            <div class="skill-card" data-skill="Time Management">
-
-                <div class="skill-top">
-                    <div class="skill-icon">⏱️</div>
-                    <div class="skill-level">Strong</div>
-                </div>
-
-                <h3>Time Management</h3>
-                <p>Productivity</p>
-
-                <div class="progress-info">
-                    <span>Progress</span>
-                    <span>75%</span>
-                </div>
-
-                <div class="progress-bar">
-                    <div class="progress" style="width:75%"></div>
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
-
+<div
+    class="overlay"
+    id="overlay">
 </div>
 
 
-<script type="module" src="./skills.js"></script>
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
 
-</body>
-                                      </html>
+<aside
+    class="sidebar"
+    id="sidebar">
+
+
+    <div class="brand">
+
+        <img
+            src="fast-track-logo.png"
+            alt="FAST-TRACK Logo">
+
+        <div class="brand-text">
+
+            <h2>FAST-TRACK</h2>
+
+            <span>
+                SMART CAREER PLATFORM
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="nav-title">
+
+        MAIN MENU
+
+    </div>
+
+
+    <nav class="nav">
+
+
+        <a
+            href="dashboard.html"
+            class="nav-item">
+
+            <span class="nav-icon">
+                🏠
+            </span>
+
+            <span>
+                Dashboard
+            </span>
+
+        </a>
+
+
+        <a
+            href="jobs.html"
+            class="nav-item">
+
+            <span class="nav-icon">
+                💼
+            </span>
+
+            <span>
+                Jobs
+            </span>
+
+        </a>
+
+
+        <a
+            href="skills.html"
+            class="nav-item active">
+
+            <span class="nav-icon">
+                🎯
+            </span>
+
+            <span>
+                Skills
+            </span>
+
+        </a>
+
+
+        <a
+            href="#"
+            class="nav-item">
+
+            <span class="nav-icon">
+                📚
+            </span>
+
+            <span>
+                Courses
+            </span>
+
+        </a>
+
+
+        <a
+            href="#"
+            class="nav-item">
+
+            <span class="nav-icon">
+                📄
+            </span>
+
+            <span>
+                Resume Builder
+            </span>
+
+        </a>
+
+
+        <a
+            href="#"
+            class="nav-item">
+
+            <span class="nav-icon">
+                📈
+            </span>
+
+            <span>
+                Career Progress
+            </span>
+
+        </a>
+
+
+        <a
+            href="#"
+            class="nav-item">
+
+            <span class="nav-icon">
+                👤
+            </span>
+
+            <span>
+                My Profile
+            </span>
+
+        </a>
+
+
+    </nav>
+
+
+    <div class="sidebar-bottom">
+
+
+        <div class="career-mini">
+
+            <p>
+                YOUR CAREER JOURNEY
+            </p>
+
+            <strong>
+                Keep moving forward 🚀
+            </strong>
+
+        </div>
+
+
+        <button
+            class="logout-btn"
+            id="logoutBtn">
+
+            🚪 Logout
+
+        </button>
+
+
+    </div>
+
+
+</aside>
+
+
+<!-- =====================================================
+     MAIN CONTENT
+===================================================== -->
+
+<main class="main">
+
+
+    <header class="topbar">
+
+
+        <div class="page-title">
+
+            <h1>
+                Skills
+            </h1>
+
+            <p>
+                Build the skills that move your career forward.
+            </p>
+
+        </div>
+
+
+        <div class="profile-mini">
+
+
+            <div
+                class="profile-avatar"
+                id="profileAvatar">
+
+                U
+
+            </div>
+
+
+            <div>
+
+                <strong id="topUserName">
+                    User
+                </strong>
+
+                <span>
+                    Career Explorer
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+    </header>
+
+
+    <!-- HERO -->
+
+    <section class="skills-hero">
+
+
+        <div class="hero-badge">
+
+            SKILL DEVELOPMENT
+
+        </div>
+
+
+        <h2>
+
+            Upgrade Your Skills 🚀
+
+        </h2>
+
+
+        <p>
+
+            Track your technical and professional skills,
+            identify areas for improvement and prepare
+            yourself for your dream career.
+
+        </p>
+
+
+    </section>
+
+
+    <!-- SEARCH -->
+
+    <div class="toolbar">
+
+
+        <div class="search-box">
+
+
+            <span class="search-icon">
+
+                🔍
+
+            </span>
+
+
+            <input
+                type="text"
+                id="skillSearch"
+                placeholder="Search skills...">
+
+
+        </div>
+
+
+        <button
+            class="add-btn"
+            id="addSkillBtn">
+
+            + Add Skill
+
+        </button>
+
+
+    </div>
+
+
+    <!-- TECHNICAL SKILLS -->
+
+    <div class="section-header">
+
+        <h2>
+            Technical Skills
+        </h2>
+
+        <span>
+            Keep improving
+        </span>
+
+    </div>
+
+
+    <section
+        class="skills-grid"
+        id="skillsGrid">
+
+
+        <!-- PYTHON -->
+
+        <div
+            class="skill-card"
+            data-skill="Python">
+
+            <div class="skill-top">
+
+                <div class="skill-icon">
+                    🐍
+                </div>
+
+                <div class="skill-level">
+                    Intermediate
+                </div>
+
+            </div>
+
+            <h3>
+                Python
+            </h3>
+
+            <p>
+                Programming & Development
+            </p>
+
+            <div class="progress-info">
+
+                <span>
+                    Progress
+                </span>
+
+                <span>
+                    70%
+                </span>
+
+            </div>
+
+            <div class="progress-bar">
+
+                <div
+                    class="progress"
+                    style="width:70%">
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- MACHINE LEARNING -->
+
+        <div
+            class="skill-card"
+            data-skill="Machine Learning">
+
+            <div class="skill-top">
+
+                <div class="skill-icon">
+                    🤖
+                </div>
+
+                <div class="skill-level">
+                    Beginner
+                </div>
+
+            </div>
+
+            <h3>
+                Machine Learning
+            </h3>
+
+            <p>
+                AI & Data Science
+            </p>
+
+            <div class="progress-info">
+
+                <span>
+                    Progress
+                </span>
+
+                <span>
+                    45%
+                </span>
+
+            </div>
+
+            <div class="progress-bar">
+
+                <div
+                    class="progress"
+                    style="width:45%">
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- SQL -->
+
+        <div
+            class="skill-card"
+            data-skill="SQL">
+
+            <div class="skill-top">
+
+                <div class="skill-icon">
+                    🗄️
+                </div>
+
+                <div class="skill-level">
+                    Intermediate
+                </div>
+
+            </div>
+
+            <h3>
+                SQL
+            </h3>
+
+            <p>
+                Database Management
+            </p>
+
+            <div class="progress-info">
+
+                <span>
+                    Progress
+                </span>
+
+                <span>
+                   
