@@ -2,7 +2,9 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/fireba
 
 import {
     getAuth,
-    createUserWithEmailAndPassword
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 import {
@@ -100,8 +102,6 @@ registerForm.addEventListener("submit", async (event) => {
         document.getElementById("confirmPassword").value;
 
 
-    /* PASSWORD CHECK */
-
     if (password !== confirmPassword) {
 
         alert("Passwords do not match!");
@@ -109,8 +109,6 @@ registerForm.addEventListener("submit", async (event) => {
         return;
     }
 
-
-    /* ROLE CHECK */
 
     if (!role) {
 
@@ -122,8 +120,6 @@ registerForm.addEventListener("submit", async (event) => {
 
     try {
 
-        /* CREATE AUTH ACCOUNT */
-
         const userCredential =
             await createUserWithEmailAndPassword(
                 auth,
@@ -134,8 +130,6 @@ registerForm.addEventListener("submit", async (event) => {
 
         const user = userCredential.user;
 
-
-        /* SAVE USER DATA TO FIRESTORE */
 
         await setDoc(
             doc(db, "users", user.uid),
@@ -153,19 +147,13 @@ registerForm.addEventListener("submit", async (event) => {
         alert("🎉 Account created successfully!");
 
 
-        /* RESET FORM */
-
         registerForm.reset();
 
 
-        /* GO TO LOGIN */
-
         registerTab.classList.remove("active");
-
         loginTab.classList.add("active");
 
         registerBox.classList.remove("active");
-
         loginBox.classList.add("active");
 
 
@@ -197,6 +185,100 @@ registerForm.addEventListener("submit", async (event) => {
             alert("Registration failed. Please try again.");
 
         }
+
+    }
+
+});
+
+
+/* ===============================
+   LOGIN
+================================ */
+
+const loginForm = document.getElementById("loginForm");
+
+
+loginForm.addEventListener("submit", async (event) => {
+
+    event.preventDefault();
+
+
+    const email =
+        document.getElementById("loginEmail").value.trim();
+
+    const password =
+        document.getElementById("loginPassword").value;
+
+
+    try {
+
+        const userCredential =
+            await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+
+        const user = userCredential.user;
+
+        console.log("Login successful:", user.uid);
+
+        alert("✅ Login successful!");
+
+
+        /*
+           TEMPORARY:
+           Dashboard will be connected
+           in the next step.
+        */
+
+
+    } catch (error) {
+
+        console.error(error);
+
+
+        if (
+            error.code === "auth/invalid-credential" ||
+            error.code === "auth/wrong-password" ||
+            error.code === "auth/user-not-found"
+        ) {
+
+            alert("❌ Invalid email or password.");
+
+        }
+
+        else if (error.code === "auth/invalid-email") {
+
+            alert("Please enter a valid email.");
+
+        }
+
+        else {
+
+            alert("Login failed. Please try again.");
+
+        }
+
+    }
+
+});
+
+
+/* ===============================
+   AUTH SESSION CHECK
+================================ */
+
+onAuthStateChanged(auth, (user) => {
+
+    if (user) {
+
+        console.log("User is logged in:", user.email);
+
+    } else {
+
+        console.log("No user is logged in.");
 
     }
 
