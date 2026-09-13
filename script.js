@@ -321,6 +321,8 @@ loginForm.addEventListener("submit", async (event) => {
 
     const password =
         document.getElementById("loginPassword").value;
+    const rememberMe =
+    document.getElementById("rememberMe");
 
 
     try {
