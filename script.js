@@ -226,6 +226,8 @@ loginForm.addEventListener("submit", async (event) => {
 
         alert("✅ Login successful!");
 
+window.location.href = "dashboard.html";
+
 
         /*
            TEMPORARY:
