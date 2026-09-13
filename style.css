@@ -1109,17 +1109,3 @@ body {
         font-size: 23px;
     }
 }
-/* AUTH BOX TEST FIX */
-
-#loginBox,
-#registerBox {
-    width: 100%;
-}
-
-#loginBox {
-    display: block;
-}
-
-#registerBox {
-    display: none;
-}
