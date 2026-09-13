@@ -968,44 +968,41 @@ body {
    RESPONSIVE — TABLET
 ========================================================= */
 
-@media (max-width: 850px) {
+@media (max-width: 520px) {
 
     body {
-        padding: 12px;
+        padding: 0;
+        background: white;
     }
 
     .auth-container {
-        grid-template-columns: 1fr;
-
-        max-width: 600px;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        min-height: 100vh;
+        border-radius: 0;
+        box-shadow: none;
     }
 
     .brand-side {
-        min-height: 330px;
-
-        padding: 35px;
-    }
-
-    .brand-badge {
-        margin-top: 35px;
-    }
-
-    .brand-content h1 {
-        font-size: 42px;
-    }
-
-    .brand-bottom {
-        margin-top: 35px;
+        width: 100%;
+        min-height: 290px;
+        padding: 28px 24px;
     }
 
     .form-side {
-        padding: 35px;
+        width: 100%;
+        padding: 30px 22px;
+    }
+
+    .brand-bottom {
+        display: none;
+    }
+
+    .role-selector {
+        grid-template-columns: 1fr;
     }
 }
-
-
-/* =========================================================
-   RESPONSIVE — MOBILE
 ========================================================= */
 
 @media (max-width: 520px) {
