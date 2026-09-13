@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FAST-TRACK | Jobs</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7fb;
+            color: #0f172a;
+        }
+
+        .app {
+            min-height: 100vh;
+            display: flex;
+        }
+
+        /* =========================
+           SIDEBAR
+        ========================== */
+
+        .sidebar {
+            width: 250px;
+            min-height: 100vh;
+
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+
+            padding: 25px 16px;
+
+            background: linear-gradient(
+                180deg,
+                #0f172a,
+                #172554,
+                #1e1b4b
+            );
+
+            color: white;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            padding: 0 10px;
+            margin-bottom: 35px;
+        }
+
+        .brand img {
+            width: 42px;
+            height: 42px;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        .brand h2 {
+            font-size: 18px;
+            letter-spacing: 1px;
+        }
+
+        .brand span {
+            display: block;
+            margin-top: 3px;
+
+            font-size: 9px;
+            color: #93c5fd;
+            letter-spacing: 1px;
+        }
+
+        .nav-title {
+            padding: 0 12px;
+            margin-bottom: 10px;
+
+            font-size: 10px;
+            color: #94a3b8;
+            letter-spacing: 1.5px;
+            font-weight: 700;
+        }
+
+        .nav {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+
+            padding: 12px 14px;
+
+            border-radius: 10px;
+
+            color: #cbd5e1;
+            text-decoration: none;
+
+            font-size: 14px;
+
+            transition: 0.25s;
+        }
+
+        .nav-item:hover {
+            background: rgba(255,255,255,0.08);
+            color: white;
+        }
+
+        .nav-item.active {
+            background: rgba(96,165,250,0.18);
+            color: white;
+
+            box-shadow:
+                inset 3px 0 0 #60a5fa;
+        }
+
+        .nav-icon {
+            width: 22px;
+            text-align: center;
+            font-size: 17px;
+        }
+
+        .sidebar-bottom {
+            position: absolute;
+            left: 16px;
+            right: 16px;
+            bottom: 25px;
+        }
+
+        .logout-btn {
+            width: 100%;
+
+            border: none;
+
+            padding: 12px;
+
+            border-radius: 10px;
+
+            background: rgba(239,68,68,0.1);
+
+            color: #fca5a5;
+
+            font-size: 14px;
+            font-weight: 700;
+
+            cursor: pointer;
+        }
+
+        .logout-btn:hover {
+            background: #ef4444;
+            color: white;
+        }
+
+        /* =========================
+           MAIN
+        ========================== */
+
+        .main {
+            width: calc(100% - 250px);
+            margin-left: 250px;
+
+            min-height: 100vh;
+
+            padding: 30px 35px;
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin-bottom: 30px;
+        }
+
+        .title h1 {
+            font-size: 30px;
+            margin-bottom: 7px;
+        }
+
+        .title p {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .back-btn {
+            padding: 10px 16px;
+
+            background: white;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 10px;
+
+            color: #2563eb;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            font-weight: 700;
+        }
+
+        /* =========================
+           SEARCH
+        ========================== */
+
+        .search-box {
+            display: grid;
+
+            grid-template-columns:
+                1.5fr 1fr auto;
+
+            gap: 12px;
+
+            padding: 18px;
+
+            background: white;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 16px;
+
+            margin-bottom: 28px;
+        }
+
+        .input-box {
+            display: flex;
+            align-items: center;
+
+            gap: 10px;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 10px;
+
+            padding: 0 14px;
+        }
+
+        .input-box span {
+            font-size: 17px;
+        }
+
+        .input-box input {
+            width: 100%;
+
+            border: none;
+            outline: none;
+
+            padding: 13px 0;
+
+            font-size: 13px;
+        }
+
+        .search-btn {
+            border: none;
+
+            padding: 0 25px;
+
+            border-radius: 10px;
+
+            background: #2563eb;
+
+            color: white;
+
+            font-weight: 700;
+
+            cursor: pointer;
+        }
+
+        .search-btn:hover {
+            background: #1d4ed8;
+        }
+
+        /* =========================
+           JOB HEADER
+        ========================== */
+
+        .jobs-header {
+            display: flex;
+
+            align-items: center;
+            justify-content: space-between;
+
+            margin-bottom: 15px;
+        }
+
+        .jobs-header h2 {
+            font-size: 18px;
+        }
+
+        .jobs-header span {
+            color: #64748b;
+            font-size: 12px;
+        }
+
+        /* =========================
+           JOB CARDS
+        ========================== */
+
+        .jobs {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 18px;
+        }
+
+        .job-card {
+            background: white;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 17px;
+
+            padding: 22px;
+
+            transition: 0.25s;
+        }
+
+        .job-card:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 15px 35px rgba(15,23,42,0.08);
+
+            border-color: #bfdbfe;
+        }
+
+        .job-top {
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            margin-bottom: 17px;
+        }
+
+        .company-logo {
+            width: 45px;
+            height: 45px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 12px;
+
+            background: #eff6ff;
+
+            font-size: 21px;
+        }
+
+        .save {
+            width: 34px;
+            height: 34px;
+
+            border-radius: 9px;
+
+            border: 1px solid #e2e8f0;
+
+            background: white;
+
+            cursor: pointer;
+
+            font-size: 16px;
+        }
+
+        .job-card h3 {
+            font-size: 17px;
+            margin-bottom: 6px;
+        }
+
+        .company {
+            color: #475569;
+            font-size: 12px;
+        }
+
+        .tags {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 7px;
+
+            margin: 16px 0;
+        }
+
+        .tag {
+            padding: 6px 9px;
+
+            background: #f1f5f9;
+
+            color: #475569;
+
+            border-radius: 7px;
+
+            font-size: 10px;
+
+            font-weight: 700;
+        }
+
+        .job-info {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 15px;
+
+            padding-bottom: 17px;
+
+            border-bottom: 1px solid #eef2f7;
+
+            color: #64748b;
+
+            font-size: 11px;
+        }
+
+        .job-bottom {
+            display: flex;
+
+            align-items: center;
+            justify-content: space-between;
+
+            margin-top: 17px;
+        }
+
+        .salary {
+            font-size: 12px;
+
+            color: #0f172a;
+
+            font-weight: 800;
+        }
+
+        .apply-btn {
+            padding: 9px 15px;
+
+            border-radius: 9px;
+
+            background: #2563eb;
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 11px;
+
+            font-weight: 700;
+        }
+
+        .apply-btn:hover {
+            background: #1d4ed8;
+        }
+
+        /* =========================
+           MOBILE
+        ========================== */
+
+        .mobile-header {
+            display: none;
+        }
+
+        @media (max-width: 900px) {
+
+            .sidebar {
+                width: 220px;
+            }
+
+            .main {
+                width: calc(100% - 220px);
+                margin-left: 220px;
+
+                padding: 25px;
+            }
+
+            .jobs {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 700px) {
+
+            .sidebar {
+                display: none;
+            }
+
+            .main {
+                width: 100%;
+                margin-left: 0;
+
+                padding: 20px 16px;
+            }
+
+            .mobile-header {
+                display: flex;
+
+                align-items: center;
+
+                margin-bottom: 20px;
+            }
+
+            .mobile-header img {
+                width: 35px;
+                height: 35px;
+
+                object-fit: contain;
+            }
+
+            .mobile-header strong {
+                margin-left: 8px;
+            }
+
+            .topbar {
+                margin-bottom: 20px;
+            }
+
+            .title h1 {
+                font-size: 25px;
+            }
+
+            .back-btn {
+                display: none;
+            }
+
+            .search-box {
+                grid-template-columns: 1fr;
+            }
+
+            .search-btn {
+                padding: 13px;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+<div class="app">
+
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <img
+                src="fast-track-logo.png"
+                alt="FAST-TRACK">
+
+            <div>
+
+                <h2>FAST-TRACK</h2>
+
+                <span>
+                    SMART CAREER PLATFORM
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="nav-title">
+            MAIN MENU
+        </div>
+
+
+        <nav class="nav">
+
+            <a
+                href="dashboard.html"
+                class="nav-item">
+
+                <span class="nav-icon">🏠</span>
+
+                Dashboard
+
+            </a>
+
+
+            <a
+                href="jobs.html"
+                class="nav-item active">
+
+                <span class="nav-icon">💼</span>
+
+                Jobs
+
+            </a>
+
+
+            <a
+                href="#"
+                class="nav-item">
+
+                <span class="nav-icon">🎯</span>
+
+                Skills
+
+            </a>
+
+
+            <a
+                href="#"
+                class="nav-item">
+
+                <span class="nav-icon">📚</span>
+
+                Courses
+
+            </a>
+
+
+            <a
+                href="#"
+                class="nav-item">
+
+                <span class="nav-icon">📄</span>
+
+                Resume Builder
+
+            </a>
+
+
+            <a
+                href="#"
+                class="nav-item">
+
+                <span class="nav-icon">📈</span>
+
+                Career Progress
+
+            </a>
+
+
+            <a
+                href="#"
+                class="nav-item">
+
+                <span class="nav-icon">👤</span>
+
+                My Profile
+
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <button
+                class="logout-btn"
+                id="logoutBtn">
+
+                🚪 Logout
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =========================
+         MAIN
+    ========================== -->
+
+    <main class="main">
+
+
+        <div class="mobile-header">
+
+            <img
+                src="fast-track-logo.png"
+                alt="FAST-TRACK">
+
+            <strong>
+                FAST-TRACK
+            </strong>
+
+        </div>
+
+
+        <header class="topbar">
+
+            <div class="title">
+
+                <h1>
+                    Find Your Next Opportunity 🚀
+                </h1>
+
+                <p>
+                    Discover jobs that match your skills
+                    and career goals.
+                </p>
+
+            </div>
+
+
+            <a
+                href="dashboard.html"
+                class="back-btn">
+
+                ← Dashboard
+
+            </a>
+
+        </header>
+
+
+
+        <!-- SEARCH -->
+
+        <section class="search-box">
+
+            <div class="input-box">
+
+                <span>🔎</span>
+
+                <input
+                    type="text"
+                    id="jobSearch"
+                    placeholder="Job title, skills or company">
+
+            </div>
+
+
+            <div class="input-box">
+
+                <span>📍</span>
+
+                <input
+                    type="text"
+                    id="locationSearch"
+                    placeholder="Location">
+
+            </div>
+
+
+            <button
+                class="search-btn"
+                id="searchBtn">
+
+                Search Jobs
+
+            </button>
+
+        </section>
+
+
+
+        <!-- JOBS HEADER -->
+
+        <div class="jobs-header">
+
+            <h2>
+                Recommended Jobs
+            </h2>
+
+            <span id="jobCount">
+                6 opportunities
+            </span>
+
+        </div>
+
+
+
+        <!-- JOB LIST -->
+
+        <section class="jobs" id="jobsList">
+
+
+            <!-- JOB 1 -->
+
+            <article
+                class="job-card"
+                data-search="data scientist python machine learning chennai">
+
+                <div class="job-top">
+
+                    <div class="company-logo">
+                        🤖
+                    </div>
+
+                    <button class="save">
+                        ♡
+                    </button>
+
+                </div>
+
+
+                <h3>
+                    Data Scientist
+                </h3>
+
+                <div class="company">
+                    AI Solutions Pvt. Ltd.
+                </div>
+
+
+                <div class="tags">
+
+                    <span class="tag">
+                        Python
+                    </span>
+
+                    <span class="tag">
+                        Machine Learning
+                    </span>
+
+                    <span class="tag">
+                        SQL
+                    </span>
+
+                </div>
+
+
+                <div class="job-info">
+
+                    <span>
+                        📍 Chennai
+                    </span>
+
+                    <span>
+                        💼 Full-time
+                    </span>
+
+                    <span>
+                        🟢 Entry Level
+                    </span>
+
+                </div>
+
+
+                <div class="job-bottom">
+
+                    <span class="salary">
+                        ₹6–10 LPA
+                    </span>
+
+                    <a
+                        href="#"
+                        class="apply-btn">
+
+                        Apply Now
+
+                    </a>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- JOB 2 -->
+
+            <article
+                class="job-card"
+                data-search="python developer software developer bangalore">
+
+                <div class="job-top">
+
+                    <div class="company-logo">
+                        💻
+                    </div>
+
+                    <button class="save">
+                        ♡
+                    </button>
+
+                </div>
+
+
+                <h3>
+                    Python Developer
+                </h3>
+
+                <div class="company">
+                    TechNova Systems
+                </div>
+
+
+                <div class="tags">
+
+                    <span class="tag">
+                        Python
+                    </span>
+
+                    <span class="tag">
+                        Django
+                    </span>
+
+                    <span class="tag">
+                        APIs
+                    </span>
+
+                </div>
+
+
+                <div class="job-info">
+
+                    <span>
+                        📍 Bangalore
+                    </span>
+
+                    <span>
+                        💼 Full-time
+                    </span>
+
+                    <span>
+                        🟢 Fresher
+                    </span>
+
+                </div>
+
+
+                <div class="job-bottom">
+
+                    <span class="salary">
+                        ₹4–7 LPA
+                    </span>
+
+                    <a
+                        href="#"
+                        class="apply-btn">
+
+                        Apply Now
+
+                    </a>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- JOB 3 -->
+
+            <article
+                class="job-card"
+                data-search="machine learning engineer ai hyderabad">
+
+                <div class="job-top">
+
+                    <div class="company-logo">
+                        🧠
+                    </div>
+
+                    <button class="save">
+                        ♡
+                    </button>
+
+                </div>
+
+
+                <h3>
+                    Machine Learning Engineer
+                </h3>
+
+                <div class="company">
+                    NeuralTech Labs
+                </div>
+
+
+                <div class="tags">
+
+                    <span class="tag">
+                        ML
+                    </span>
+
+                    <span class="tag">
+                        TensorFlow
+                    </span>
+
+                    <span class="tag">
+                        Python
+                    </span>
+
+                </div>
+
+
+                <div class="job-info">
+
+                    <span>
+                        📍 Hyderabad
+                    </span>
+
+                    <span>
+                        💼 Full-time
+                    </span>
+
+                    <span>
+                        🟢 Entry Level
+                    </span>
+
+                </div>
+
+
+                <div class="job-bottom">
+
+                    <span class="salary">
+                        ₹7–12 LPA
+                    </span>
+
+                    <a
+                        href="#"
+                        class="apply-btn">
+
+                        Apply Now
+
+                    </a>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- JOB 4 -->
+
+            <article
+                class="job-card"
+                data-search="data analyst sql excel chennai">
+
+                <div class="job-top">
+
+                    <div class="company-logo">
+                        📊
+                    </div>
+
+                    <button class="save">
+                        ♡
+                    </button>
+
+                </div>
+
+
+                <h3>
+                    Data Analyst
+                </h3>
+
+                <div class="company">
+                    Insight Analytics
+                </div>
+
+
+                <div class="tags">
+
+                    <span class="tag">
+                        SQL
+                    </span>
+
+                    <span class="tag">
+                        Excel
+                    </span>
+
+                    <span class="tag">
+                        Power BI
+                    </span>
+
+                </div>
+
+
+                <div class="job-info">
+
+                    <span>
+                        📍 Chennai
+                    </span>
+
+                    <span>
+                        💼 Full-time
+                    </span>
+
+                    <span>
+                    
