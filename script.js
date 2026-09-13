@@ -189,7 +189,31 @@ registerForm.addEventListener("submit", async (event) => {
     }
 
 });
+/* ===============================
+   PASSWORD SHOW / HIDE
+================================ */
 
+const loginPassword = document.getElementById("loginPassword");
+const loginEye = document.getElementById("loginEye");
+
+loginEye.addEventListener("click", () => {
+
+    if (loginPassword.type === "password") {
+        loginPassword.type = "text";
+        loginEye.textContent = "🙈";
+    } else {
+        loginPassword.type = "password";
+        loginEye.textContent = "👁️";
+    }
+
+});
+
+
+/* ===============================
+   LOGIN
+================================ */
+
+const loginForm = document.getElementById("loginForm");
 
 /* ===============================
    LOGIN
