@@ -1,1041 +1,1095 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>  <html lang="en">  <head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>FAST-TRACK | Dashboard</title>  
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>  
+    * {  
+        margin: 0;  
+        padding: 0;  
+        box-sizing: border-box;  
+    }  
 
-    <title>FAST-TRACK | Dashboard</title>
+    body {  
+        min-height: 100vh;  
+        font-family: Arial, Helvetica, sans-serif;  
+        background: #f5f7fb;  
+        color: #0f172a;  
+    }  
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    /* =========================  
+       LAYOUT  
+    ========================== */  
 
-        body {
-            min-height: 100vh;
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f5f7fb;
-            color: #0f172a;
-        }
+    .app {  
+        display: flex;  
+        min-height: 100vh;  
+    }  
 
-        button,
-        a {
-            -webkit-tap-highlight-color: transparent;
-        }
+    /* =========================  
+       SIDEBAR  
+    ========================== */  
 
-        /* =====================================================
-           APP
-        ===================================================== */
+    .sidebar {  
+        width: 250px;  
+        min-height: 100vh;  
 
-        .app {
-            min-height: 100vh;
-        }
+        background:  
+            linear-gradient(  
+                180deg,  
+                #0f172a 0%,  
+                #172554 55%,  
+                #1e1b4b 100%  
+            );  
 
-        /* =====================================================
-           SIDEBAR
-        ===================================================== */
+        color: white;  
 
-        .sidebar {
-            width: 250px;
-            min-height: 100vh;
+        padding: 25px 16px;  
 
-            position: fixed;
-            left: 0;
-            top: 0;
-            bottom: 0;
+        position: fixed;  
+        left: 0;  
+        top: 0;  
+        bottom: 0;  
 
-            padding: 25px 16px;
+        display: flex;  
+        flex-direction: column;  
 
-            display: flex;
-            flex-direction: column;
+        z-index: 100;  
+    }  
 
-            color: white;
+    .brand {  
+        display: flex;  
+        align-items: center;  
+        gap: 12px;  
 
-            background:
-                linear-gradient(
-                    180deg,
-                    #0f172a 0%,
-                    #172554 55%,
-                    #1e1b4b 100%
-                );
+        padding: 0 10px;  
+        margin-bottom: 35px;  
+    }  
 
-            z-index: 1000;
+    .brand img {  
+        width: 42px;  
+        height: 42px;  
 
-            transition: transform 0.3s ease;
-        }
+        object-fit: contain;  
 
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
+        border-radius: 10px;  
+    }  
 
-            padding: 0 10px;
-            margin-bottom: 35px;
-        }
+    .brand-text h2 {  
+        font-size: 18px;  
+        letter-spacing: 1px;  
+    }  
 
-        .brand img {
-            width: 42px;
-            height: 42px;
+    .brand-text span {  
+        display: block;  
 
-            object-fit: contain;
-            border-radius: 10px;
-        }
+        margin-top: 3px;  
 
-        .brand-text h2 {
-            font-size: 18px;
-            letter-spacing: 1px;
-        }
+        font-size: 9px;  
+        color: #93c5fd;  
 
-        .brand-text span {
-            display: block;
+        letter-spacing: 1px;  
+    }  
 
-            margin-top: 3px;
+    /* =========================  
+       NAVIGATION  
+    ========================== */  
 
-            font-size: 9px;
-            color: #93c5fd;
+    .nav-title {  
+        padding: 0 12px;  
 
-            letter-spacing: 1px;
-        }
+        margin-bottom: 10px;  
 
-        /* =====================================================
-           NAVIGATION
-        ===================================================== */
+        font-size: 10px;  
 
-        .nav-title {
-            padding: 0 12px;
-            margin-bottom: 10px;
+        color: #94a3b8;  
 
-            color: #94a3b8;
+        letter-spacing: 1.5px;  
 
-            font-size: 10px;
-            font-weight: 700;
+        font-weight: 700;  
+    }  
 
-            letter-spacing: 1.5px;
-        }
+    .nav {  
+        display: flex;  
+        flex-direction: column;  
+        gap: 6px;  
+    }  
 
-        .nav {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
+    .nav-item {  
+        width: 100%;  
 
-        .nav-item {
-            width: 100%;
+        display: flex;  
+        align-items: center;  
 
-            display: flex;
-            align-items: center;
+        gap: 13px;  
 
-            gap: 13px;
+        padding: 12px 14px;  
 
-            padding: 12px 14px;
+        border-radius: 10px;  
 
-            border-radius: 10px;
+        color: #cbd5e1;  
 
-            color: #cbd5e1;
+        text-decoration: none;  
 
-            text-decoration: none;
+        font-size: 14px;  
 
-            font-size: 14px;
+        transition: 0.25s;  
+    }  
 
-            transition: 0.25s ease;
-        }
+    .nav-item:hover {  
+        background: rgba(255, 255, 255, 0.08);  
+        color: white;  
+    }  
 
-        .nav-item:hover {
-            color: white;
-            background: rgba(255, 255, 255, 0.08);
-        }
+    .nav-item.active {  
+        background: rgba(96, 165, 250, 0.18);  
+        color: white;  
 
-        .nav-item.active {
-            color: white;
+        box-shadow:  
+            inset 3px 0 0 #60a5fa;  
+    }  
 
-            background: rgba(96, 165, 250, 0.18);
+    .nav-icon {  
+        width: 22px;  
 
-            box-shadow:
-                inset 3px 0 0 #60a5fa;
-        }
+        text-align: center;  
 
-        .nav-icon {
-            width: 22px;
+        font-size: 17px;  
+    }  
 
-            text-align: center;
+    /* =========================  
+       SIDEBAR BOTTOM  
+    ========================== */  
 
-            font-size: 17px;
-        }
+    .sidebar-bottom {  
+        margin-top: auto;  
+    }  
 
-        /* =====================================================
-           SIDEBAR BOTTOM
-        ===================================================== */
+    .career-mini {  
+        padding: 16px;  
 
-        .sidebar-bottom {
-            margin-top: auto;
-        }
+        margin: 10px 4px 18px;  
 
-        .career-mini {
-            padding: 16px;
+        border-radius: 14px;  
 
-            margin: 10px 4px 18px;
+        background: rgba(255,255,255,0.07);  
 
-            border-radius: 14px;
+        border: 1px solid rgba(255,255,255,0.08);  
+    }  
 
-            background: rgba(255, 255, 255, 0.07);
+    .career-mini p {  
+        font-size: 11px;  
 
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
+        color: #94a3b8;  
 
-        .career-mini p {
-            margin-bottom: 8px;
+        margin-bottom: 8px;  
+    }  
 
-            color: #94a3b8;
+    .career-mini strong {  
+        font-size: 13px;  
+    }  
 
-            font-size: 11px;
-        }
+    .logout-btn {  
+        width: 100%;  
 
-        .career-mini strong {
-            font-size: 13px;
-        }
+        border: none;  
 
-        .logout-btn {
-            width: 100%;
+        padding: 12px;  
 
-            border: none;
+        border-radius: 10px;  
 
-            padding: 12px;
+        background: rgba(239, 68, 68, 0.1);  
 
-            border-radius: 10px;
+        color: #fca5a5;  
 
-            background: rgba(239, 68, 68, 0.1);
+        font-size: 14px;  
 
-            color: #fca5a5;
+        font-weight: 700;  
 
-            font-size: 14px;
-            font-weight: 700;
+        cursor: pointer;  
 
-            cursor: pointer;
+        transition: 0.25s;  
+    }  
 
-            transition: 0.25s ease;
-        }
+    .logout-btn:hover {  
+        background: #ef4444;  
+        color: white;  
+    }  
 
-        .logout-btn:hover {
-            color: white;
-            background: #ef4444;
-        }
+    /* =========================  
+       MAIN CONTENT  
+    ========================== */  
 
-        /* =====================================================
-           MOBILE HEADER
-        ===================================================== */
+    .main {  
+        width: calc(100% - 250px);  
 
-        .mobile-header {
-            display: none;
-        }
+        margin-left: 250px;  
 
-        .menu-btn {
-            width: 42px;
-            height: 42px;
+        min-height: 100vh;  
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        padding: 25px 35px;  
+    }  
 
-            border: 1px solid #e2e8f0;
+    /* =========================  
+       TOPBAR  
+    ========================== */  
 
-            border-radius: 11px;
+    .topbar {  
+        display: flex;  
 
-            background: white;
+        align-items: center;  
 
-            color: #0f172a;
+        justify-content: space-between;  
 
-            font-size: 22px;
+        margin-bottom: 30px;  
+    }  
 
-            cursor: pointer;
-        }
+    .page-title h1 {  
+        font-size: 28px;  
 
-        .mobile-brand {
-            display: flex;
-            align-items: center;
+        margin-bottom: 6px;  
+    }  
 
-            gap: 9px;
-        }
+    .page-title p {  
+        color: #64748b;  
 
-        .mobile-brand img {
-            width: 35px;
-            height: 35px;
+        font-size: 14px;  
+    }  
 
-            object-fit: contain;
-        }
+    .profile-mini {  
+        display: flex;  
 
-        .mobile-brand strong {
-            font-size: 16px;
-        }
+        align-items: center;  
 
-        /* =====================================================
-           SIDEBAR OVERLAY
-        ===================================================== */
+        gap: 12px;  
 
-        .sidebar-overlay {
-            display: none;
+        padding: 8px 13px;  
 
-            position: fixed;
-            inset: 0;
+        background: white;  
 
-            background: rgba(15, 23, 42, 0.55);
+        border: 1px solid #e2e8f0;  
 
-            backdrop-filter: blur(3px);
+        border-radius: 12px;  
+    }  
 
-            z-index: 900;
-        }
+    .profile-avatar {  
+        width: 38px;  
+        height: 38px;  
 
-        /* =====================================================
-           MAIN
-        ===================================================== */
+        display: flex;  
 
-        .main {
-            width: calc(100% - 250px);
+        align-items: center;  
+        justify-content: center;  
 
-            margin-left: 250px;
+        border-radius: 50%;  
 
-            min-height: 100vh;
+        background: #dbeafe;  
 
-            padding: 25px 35px;
-        }
+        color: #2563eb;  
 
-        /* =====================================================
-           TOPBAR
-        ===================================================== */
+        font-weight: 800;  
+    }  
 
-        .topbar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+    .profile-mini strong {  
+        display: block;  
 
-            margin-bottom: 30px;
-        }
+        font-size: 13px;  
+    }  
 
-        .page-title h1 {
-            margin-bottom: 6px;
+    .profile-mini span {  
+        display: block;  
 
-            font-size: 28px;
-        }
+        margin-top: 2px;  
 
-        .page-title p {
-            color: #64748b;
-            font-size: 14px;
-        }
+        font-size: 10px;  
 
-        .profile-mini {
-            display: flex;
-            align-items: center;
+        color: #64748b;  
+    }  
 
-            gap: 12px;
+    /* =========================  
+       WELCOME CARD  
+    ========================== */  
 
-            padding: 8px 13px;
+    .welcome-card {  
+        position: relative;  
 
-            background: white;
+        overflow: hidden;  
 
-            border: 1px solid #e2e8f0;
+        padding: 32px;  
 
-            border-radius: 12px;
-        }
+        border-radius: 22px;  
 
-        .profile-avatar {
-            width: 38px;
-            height: 38px;
+        background:  
+            linear-gradient(  
+                120deg,  
+                #0f172a,  
+                #1d4ed8,  
+                #312e81  
+            );  
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        color: white;  
 
-            border-radius: 50%;
+        box-shadow:  
+            0 18px 45px rgba(30, 64, 175, 0.18);  
 
-            background: #dbeafe;
+        margin-bottom: 25px;  
+    }  
 
-            color: #2563eb;
+    .welcome-card::after {  
+        content: "";  
 
-            font-weight: 800;
-        }
+        position: absolute;  
 
-        .profile-mini strong {
-            display: block;
+        width: 220px;  
+        height: 220px;  
 
-            font-size: 13px;
-        }
+        border-radius: 50%;  
 
-        .profile-mini span {
-            display: block;
+        background: rgba(255,255,255,0.06);  
 
-            margin-top: 2px;
+        right: -70px;  
+        top: -80px;  
+    }  
 
-            color: #64748b;
+    .welcome-badge {  
+        display: inline-block;  
 
-            font-size: 10px;
-        }
+        padding: 7px 12px;  
 
-        /* =====================================================
-           WELCOME CARD
-        ===================================================== */
+        border-radius: 30px;  
 
-        .welcome-card {
-            position: relative;
+        background: rgba(255,255,255,0.12);  
 
-            overflow: hidden;
+        font-size: 10px;  
 
-            padding: 32px;
+        letter-spacing: 1px;  
 
-            margin-bottom: 25px;
+        margin-bottom: 15px;  
+    }  
 
-            border-radius: 22px;
+    .welcome-card h2 {  
+        position: relative;  
 
-            color: white;
+        z-index: 2;  
 
-            background:
-                linear-gradient(
-                    120deg,
-                    #0f172a,
-                    #1d4ed8,
-                    #312e81
-                );
+        font-size: 30px;  
 
-            box-shadow:
-                0 18px 45px rgba(30, 64, 175, 0.18);
-        }
+        margin-bottom: 8px;  
+    }  
 
-        .welcome-card::after {
-            content: "";
+    .welcome-card h2 span {  
+        color: #93c5fd;  
+    }  
 
-            position: absolute;
+    .welcome-card p {  
+        position: relative;  
 
-            width: 220px;
-            height: 220px;
+        z-index: 2;  
 
-            right: -70px;
-            top: -80px;
+        max-width: 650px;  
 
-            border-radius: 50%;
+        color: #dbeafe;  
 
-            background: rgba(255, 255, 255, 0.06);
-        }
+        font-size: 14px;  
 
-        .welcome-badge {
-            position: relative;
-            z-index: 2;
+        line-height: 1.7;  
+    }  
 
-            display: inline-block;
+    /* =========================  
+       STAT CARDS  
+    ========================== */  
 
-            padding: 7px 12px;
+    .stats {  
+        display: grid;  
 
-            margin-bottom: 15px;
+        grid-template-columns:  
+            repeat(3, 1fr);  
 
-            border-radius: 30px;
+        gap: 18px;  
 
-            background: rgba(255, 255, 255, 0.12);
+        margin-bottom: 25px;  
+    }  
 
-            font-size: 10px;
+    .stat-card {  
+        background: white;  
 
-            letter-spacing: 1px;
-        }
+        border: 1px solid #e2e8f0;  
 
-        .welcome-card h2 {
-            position: relative;
-            z-index: 2;
+        border-radius: 16px;  
 
-            margin-bottom: 8px;
+        padding: 22px;  
 
-            font-size: 30px;
-        }
+        transition: 0.25s;  
+    }  
 
-        .welcome-card h2 span {
-            color: #93c5fd;
-        }
+    .stat-card:hover {  
+        transform: translateY(-3px);  
 
-        .welcome-card p {
-            position: relative;
-            z-index: 2;
+        box-shadow:  
+            0 12px 30px rgba(15,23,42,0.07);  
+    }  
 
-            max-width: 700px;
+    .stat-top {  
+        display: flex;  
 
-            color: #dbeafe;
+        align-items: center;  
 
-            font-size: 14px;
+        justify-content: space-between;  
 
-            line-height: 1.7;
-        }
+        margin-bottom: 18px;  
+    }  
 
-        /* =====================================================
-           STATS
-        ===================================================== */
+    .stat-icon {  
+        width: 42px;  
+        height: 42px;  
 
-        .stats {
-            display: grid;
+        display: flex;  
 
-            grid-template-columns:
-                repeat(3, 1fr);
+        align-items: center;  
+        justify-content: center;  
 
-            gap: 18px;
+        border-radius: 11px;  
 
-            margin-bottom: 25px;
-        }
+        background: #eff6ff;  
 
-        .stat-card {
-            padding: 22px;
+        font-size: 19px;  
+    }  
 
-            background: white;
+    .stat-card small {  
+        color: #64748b;  
 
-            border: 1px solid #e2e8f0;
+        font-size: 11px;  
 
-            border-radius: 16px;
+        font-weight: 700;  
 
-            transition: 0.25s ease;
-        }
+        text-transform: uppercase;  
 
-        .stat-card:hover {
-            transform: translateY(-3px);
+        letter-spacing: 0.5px;  
+    }  
 
-            box-shadow:
-                0 12px 30px rgba(15, 23, 42, 0.07);
-        }
+    .stat-card h3 {  
+        font-size: 25px;  
 
-        .stat-top {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+        margin-top: 5px;  
+    }  
 
-            margin-bottom: 18px;
-        }
+    /* =========================  
+       CONTENT GRID  
+    ========================== */  
 
-        .stat-icon {
-            width: 42px;
-            height: 42px;
+    .content-grid {  
+        display: grid;  
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        grid-template-columns:  
+            1.5fr 1fr;  
 
-            border-radius: 11px;
+        gap: 20px;  
+    }  
 
-            background: #eff6ff;
+    .panel {  
+        background: white;  
 
-            font-size: 19px;
-        }
+        border: 1px solid #e2e8f0;  
 
-        .stat-card small {
-            color: #64748b;
+        border-radius: 18px;  
 
-            font-size: 11px;
+        padding: 24px;  
+    }  
 
-            font-weight: 700;
+    .panel-header {  
+        display: flex;  
 
-            text-transform: uppercase;
+        justify-content: space-between;  
 
-            letter-spacing: 0.5px;
-        }
+        align-items: center;  
 
-        .stat-card h3 {
-            margin-top: 5px;
+        margin-bottom: 20px;  
+    }  
 
-            font-size: 25px;
-        }
+    .panel-header h2 {  
+        font-size: 17px;  
+    }  
 
-        /* =====================================================
-           CONTENT GRID
-        ===================================================== */
+    .panel-header span {  
+        font-size: 11px;  
 
-        .content-grid {
-            display: grid;
+        color: #2563eb;  
 
-            grid-template-columns:
-                1.5fr 1fr;
+        font-weight: 700;  
+    }  
 
-            gap: 20px;
-        }
+    /* =========================  
+       FEATURE ITEMS  
+    ========================== */  
 
-        .panel {
-            padding: 24px;
+    .feature-list {  
+        display: grid;  
 
-            background: white;
+        grid-template-columns:  
+            repeat(2, 1fr);  
 
-            border: 1px solid #e2e8f0;
+        gap: 12px;  
+    }  
 
-            border-radius: 18px;
-        }
+    .feature {  
+        padding: 18px;  
 
-        .panel-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+        border: 1px solid #e2e8f0;  
 
-            margin-bottom: 20px;
-        }
+        border-radius: 13px;  
 
-        .panel-header h2 {
-            font-size: 17px;
-        }
+        cursor: pointer;  
 
-        .panel-header span {
-            color: #2563eb;
+        transition: 0.25s;  
+    }  
 
-            font-size: 11px;
+    .feature:hover {  
+        border-color: #93c5fd;  
 
-            font-weight: 700;
-        }
+        background: #f8fbff;  
 
-        /* =====================================================
-           FEATURES
-        ===================================================== */
+        transform: translateY(-2px);  
+    }  
 
-        .feature-list {
-            display: grid;
+    .feature-icon {  
+        font-size: 23px;  
 
-            grid-template-columns:
-                repeat(2, 1fr);
+        margin-bottom: 10px;  
+    }  
 
-            gap: 12px;
-        }
+    .feature h3 {  
+        font-size: 14px;  
 
-        .feature {
-            display: block;
+        margin-bottom: 5px;  
+    }  
 
-            padding: 18px;
+    .feature p {  
+        color: #64748b;  
 
-            border: 1px solid #e2e8f0;
+        font-size: 11px;  
 
-            border-radius: 13px;
+        line-height: 1.5;  
+    }  
 
-            color: inherit;
+    /* =========================  
+       PROFILE INFO  
+    ========================== */  
 
-            text-decoration: none;
+    .profile-info {  
+        display: flex;  
 
-            cursor: pointer;
+        flex-direction: column;  
 
-            transition: 0.25s ease;
-        }
+        gap: 14px;  
+    }  
 
-        .feature:hover {
-            border-color: #93c5fd;
+    .info-row {  
+        padding: 13px;  
 
-            background: #f8fbff;
+        border-radius: 10px;  
 
-            transform: translateY(-2px);
-        }
+        background: #f8fafc;  
 
-        .feature-icon {
-            margin-bottom: 10px;
+        border: 1px solid #eef2f7;  
+    }  
 
-            font-size: 23px;
-        }
+    .info-row small {  
+        display: block;  
 
-        .feature h3 {
-            margin-bottom: 5px;
+        color: #64748b;  
 
-            font-size: 14px;
-        }
+        font-size: 10px;  
 
-        .feature p {
-            color: #64748b;
+        margin-bottom: 5px;  
 
-            font-size: 11px;
+        text-transform: uppercase;  
 
-            line-height: 1.5;
-        }
+        font-weight: 700;  
+    }  
 
-        /* =====================================================
-           PROFILE INFO
-        ===================================================== */
+    .info-row strong {  
+        display: block;  
 
-        .profile-info {
-            display: flex;
-            flex-direction: column;
+        font-size: 13px;  
 
-            gap: 14px;
-        }
+        word-break: break-word;  
+    }  
 
-        .info-row {
-            padding: 13px;
+    /* =========================  
+       MOBILE HEADER  
+    ========================== */  
 
-            border-radius: 10px;
+    .mobile-header {  
+        display: none;  
+    }  
 
-            background: #f8fafc;
+    /* =========================  
+       RESPONSIVE  
+    ========================== */  
 
-            border: 1px solid #eef2f7;
-        }
+    @media (max-width: 950px) {  
 
-        .info-row small {
-            display: block;
+        .sidebar {  
+            width: 220px;  
+        }  
 
-            margin-bottom: 5px;
+        .main {  
+            width: calc(100% - 220px);  
 
-            color: #64748b;
+            margin-left: 220px;  
 
-            font-size: 10px;
+            padding: 25px;  
+        }  
 
-            font-weight: 700;
+        .stats {  
+            grid-template-columns:  
+                repeat(2, 1fr);  
+        }  
 
-            text-transform: uppercase;
-        }
+        .content-grid {  
+            grid-template-columns: 1fr;  
+        }  
+    }  
 
-        .info-row strong {
-            display: block;
+    @media (max-width: 700px) {  
 
-            font-size: 13px;
+        .sidebar {  
+            display: none;  
+        }  
 
-            word-break: break-word;
-        }
+        .main {  
+            width: 100%;  
 
-        /* =====================================================
-           TABLET
-        ===================================================== */
+            margin-left: 0;  
 
-        @media (max-width: 950px) {
+            padding: 18px;  
+        }  
 
-            .sidebar {
-                width: 220px;
-            }
+        .mobile-header {  
+            display: flex;  
 
-            .main {
-                width: calc(100% - 220px);
+            align-items: center;  
 
-                margin-left: 220px;
+            justify-content: space-between;  
 
-                padding: 25px;
-            }
+            margin-bottom: 20px;  
+        }  
 
-            .stats {
-                grid-template-columns:
-                    repeat(2, 1fr);
-            }
+        .mobile-brand {  
+            display: flex;  
 
-            .content-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+            align-items: center;  
 
-        /* =====================================================
-           MOBILE
-        ===================================================== */
+            gap: 8px;  
+        }  
 
-        @media (max-width: 700px) {
+        .mobile-brand img {  
+            width: 35px;  
+            height: 35px;  
 
-            body {
-                background: #f5f7fb;
-            }
+            object-fit: contain;  
+        }  
 
-            .sidebar {
-                width: 280px;
+        .mobile-brand strong {  
+            font-size: 16px;  
+        }  
 
-                transform: translateX(-100%);
+        .topbar {  
+            margin-bottom: 20px;  
+        }  
 
-                box-shadow:
-                    10px 0 35px rgba(15, 23, 42, 0.2);
-            }
+        .profile-mini {  
+            display: none;  
+        }  
 
-            .sidebar.open {
-                transform: translateX(0);
-            }
+        .page-title h1 {  
+            font-size: 24px;  
+        }  
 
-            .sidebar-overlay.active {
-                display: block;
-            }
+        .welcome-card {  
+            padding: 25px 20px;  
+        }  
 
-            .main {
-                width: 100%;
+        .welcome-card h2 {  
+            font-size: 25px;  
+        }  
 
-                margin-left: 0;
+        .stats {  
+            grid-template-columns: 1fr;  
+        }  
 
-                padding: 16px;
-            }
+        .feature-list {  
+            grid-template-columns: 1fr;  
+        }  
+    }  
+</style>
 
-            .mobile-header {
-                display: flex;
+</head>  <body>  <div class="app">  <!-- =========================  
+     SIDEBAR  
+========================== -->  
 
-                align-items: center;
-                justify-content: space-between;
+<aside class="sidebar">  
 
-                margin-bottom: 20px;
-            }
+    <div class="brand">  
 
-            .topbar {
-                margin-bottom: 20px;
-            }
+        <img  
+            src="fast-track-logo.png"  
+            alt="FAST-TRACK Logo">  
 
-            .profile-mini {
-                display: none;
-            }
+        <div class="brand-text">  
 
-            .page-title h1 {
-                font-size: 24px;
-            }
+            <h2>FAST-TRACK</h2>  
 
-            .page-title p {
-                font-size: 12px;
-            }
+            <span>SMART CAREER PLATFORM</span>  
 
-            .welcome-card {
-                padding: 25px 20px;
+        </div>  
 
-                border-radius: 18px;
-            }
+    </div>  
 
-            .welcome-card h2 {
-                font-size: 25px;
-            }
 
-            .welcome-card p {
-                font-size: 13px;
-            }
+    <div class="nav-title">  
+        MAIN MENU  
+    </div>  
 
-            .stats {
-                grid-template-columns: 1fr;
-            }
 
-            .content-grid {
-                grid-template-columns: 1fr;
-            }
+    <nav class="nav">  
 
-            .feature-list {
-                grid-template-columns: 1fr;
-            }
+        <a  
+            href="dashboard.html"  
+            class="nav-item active">  
 
-            .panel {
-                padding: 20px;
-            }
-        }
+            <span class="nav-icon">🏠</span>  
 
-        /* =====================================================
-           SMALL MOBILE
-        ===================================================== */
+            <span>Dashboard</span>  
 
-        @media (max-width: 400px) {
+        </a>  
 
-            .main {
-                padding: 12px;
-            }
 
-            .sidebar {
-                width: 270px;
-            }
+        <a  
+            href="jobs.html"  
+            class="nav-item">  
 
-            .mobile-brand strong {
-                font-size: 15px;
-            }
+            <span class="nav-icon">💼</span>  
 
-            .welcome-card {
-                padding: 22px 17px;
-            }
+            <span>Jobs</span>  
 
-            .welcome-card h2 {
-                font-size: 23px;
-            }
+        </a>  
 
-            .welcome-card p {
-                font-size: 12px;
-            }
 
-            .panel {
-                padding: 17px;
-            }
-        }
-    </style>
-</head>
+        <a  
+            href="skills.html"  
+            class="nav-item">  
 
+            <span class="nav-icon">🎯</span>  
 
-<body>
+            <span>Skills</span>  
 
-<div class="app">
+        </a>  
 
 
-    <!-- =====================================================
-         SIDEBAR OVERLAY
-    ====================================================== -->
+        <a  
+            href="course.html"  
+            class="nav-item">  
 
-    <div
-        class="sidebar-overlay"
-        id="sidebarOverlay">
-    </div>
+            <span class="nav-icon">📚</span>  
 
+            <span>Courses</span>  
 
-    <!-- =====================================================
-         SIDEBAR
-    ====================================================== -->
+        </a>  
 
-    <aside
-        class="sidebar"
-        id="sidebar">
 
-        <div class="brand">
+        <a  
+            href="resume builder.html"  
+            class="nav-item">  
 
-            <img
-                src="fast-track-logo.png"
-                alt="FAST-TRACK Logo">
+            <span class="nav-icon">📄</span>  
 
-            <div class="brand-text">
+            <span>Resume Builder</span>  
 
-                <h2>FAST-TRACK</h2>
+        </a>  
 
-                <span>
-                    SMART CAREER PLATFORM
-                </span>
 
-            </div>
+        <a  
+            href="career progress.html"  
+            class="nav-item">  
 
-        </div>
+            <span class="nav-icon">📈</span>  
 
+            <span>Career Progress</span>  
 
-        <div class="nav-title">
-            MAIN MENU
-        </div>
+        </a>  
 
 
-        <nav class="nav">
+        <a  
+            href="my profile.html"  
+            class="nav-item">  
 
-            <a
-                href="dashboard.html"
-                class="nav-item active">
+            <span class="nav-icon">👤</span>  
 
-                <span class="nav-icon">🏠</span>
+            <span>My Profile</span>  
 
-                <span>Dashboard</span>
+        </a>  
 
-            </a>
+    </nav>  
 
 
-            <a
-                href="jobs.html"
-                class="nav-item">
+    <div class="sidebar-bottom">  
 
-                <span class="nav-icon">💼</span>
+        <div class="career-mini">  
 
-                <span>Jobs</span>
+            <p>YOUR CAREER JOURNEY</p>  
 
-            </a>
+            <strong>  
+                Keep moving forward 🚀  
+            </strong>  
 
+        </div>  
 
-            <a
-                href="skills.html"
-                class="nav-item">
 
-                <span class="nav-icon">🎯</span>
+        <button  
+            class="logout-btn"  
+            id="logoutBtn">  
 
-                <span>Skills</span>
+            🚪 Logout  
 
-            </a>
+        </button>  
 
+    </div>  
 
-            <a
-                href="course.html"
-                class="nav-item">
+</aside>  
 
-                <span class="nav-icon">📚</span>
 
-                <span>Courses</span>
 
-            </a>
+<!-- =========================  
+     MAIN CONTENT  
+========================== -->  
 
+<main class="main">  
 
-            <a
-                href="resume builder.html"
-                class="nav-item">
 
-                <span class="nav-icon">📄</span>
+    <!-- MOBILE HEADER -->  
 
-                <span>Resume Builder</span>
+    <div class="mobile-header">  
 
-            </a>
+        <div class="mobile-brand">  
 
+            <img  
+                src="fast-track-logo.png"  
+                alt="FAST-TRACK">  
 
-            <a
-                href="career progress.html"
-                class="nav-item">
+            <strong>  
+                FAST-TRACK  
+            </strong>  
 
-                <span class="nav-icon">📈</span>
+        </div>  
 
-                <span>Career Progress</span>
+    </div>  
 
-            </a>
 
+    <!-- TOP BAR -->  
 
-            <a
-                href="my profile.html"
-                class="nav-item">
+    <header class="topbar">  
 
-                <span class="nav-icon">👤</span>
+        <div class="page-title">  
 
-                <span>My Profile</span>
+            <h1>  
+                Dashboard  
+            </h1>  
 
-            </a>
+            <p>  
+                Manage your career journey from one place.  
+            </p>  
 
-        </nav>
+        </div>  
 
 
-        <div class="sidebar-bottom">
+        <div class="profile-mini">  
 
-            <div class="career-mini">
+            <div  
+                class="profile-avatar"  
+                id="profileAvatar">  
 
-                <p>
-                    YOUR CAREER JOURNEY
-                </p>
+                U  
 
-                <strong>
-                    Keep moving forward 🚀
-                </strong>
+            </div>  
 
-            </div>
 
+            <div>  
 
-            <button
-                class="logout-btn"
-                id="logoutBtn">
+                <strong id="topUserName">  
+                    User  
+                </strong>  
 
-                🚪 Logout
+                <span>  
+                    Career Explorer  
+                </span>  
 
-            </button>
+            </div>  
 
-        </div>
+        </div>  
 
-    </aside>
+    </header>  
 
 
-    <!-- =====================================================
-         MAIN CONTENT
-    ====================================================== -->
 
-    <main class="main">
+    <!-- WELCOME -->  
 
+    <section class="welcome-card">  
 
-        <!-- MOBILE HEADER -->
+        <div class="welcome-badge">  
+            SMART CAREER PLATFORM  
+        </div>  
 
-        <div class="mobile-header">
 
-            <div class="mobile-brand">
+        <h2>  
+            Welcome,  
+            <span id="userName">  
+                User  
+            </span> 👋  
+        </h2>  
 
-                <img
-                    src="fast-track-logo.png"
-                    alt="FAST-TRACK Logo">
 
-                <strong>
-                    FAST-TRACK
-                </strong>
+        <p>  
+            Your FAST-TRACK career journey starts here.  
+            Explore opportunities, develop your skills,  
+            build your resume and move closer to your  
+            dream career.  
+        </p>  
 
-            </div>
+    </section>  
 
 
-            <button
-                class="menu-btn"
-                id="menuBtn"
-                aria-label="Open menu">
 
-                ☰
+    <!-- STAT CARDS -->  
 
-            </button>
+    <section class="stats">  
 
-        </div>
 
+        <div class="stat-card">  
 
-        <!-- TOP BAR -->
+            <div class="stat-top">  
 
-        <header class="topbar">
+                <div class="stat-icon">  
+                    💼  
+                </div>  
 
-            <div class="page-title">
-                <script type="module" src="./dashboard.js"></script>
+                <small>  
+                    Opportunities  
+                </small>  
 
-             
+            </div>  
+
+            <h3>  
+                Explore  
+            </h3>  
+
+        </div>  
+
+
+        <div class="stat-card">  
+
+            <div class="stat-top">  
+
+                <div class="stat-icon">  
+                    🎯  
+                </div>  
+
+                <small>  
+                    Skills  
+                </small>  
+
+            </div>  
+
+            <h3>  
+                Build  
+            </h3>  
+
+        </div>  
+
+
+        <div class="stat-card">  
+
+            <div class="stat-top">  
+
+                <div class="stat-icon">  
+                    📄  
+                </div>  
+
+                <small>  
+                    Resume  
+                </small>  
+
+            </div>  
+
+            <h3>  
+                Create  
+            </h3>  
+
+        </div>  
+
+
+    </section>  
+
+
+
+    <!-- CONTENT -->  
+
+    <section class="content-grid">  
+
+
+        <!-- QUICK ACTIONS -->  
+
+        <div class="panel">  
+
+            <div class="panel-header">  
+
+                <h2>  
+                    Quick Actions  
+                </h2>  
+
+                <span>  
+                    FAST-TRACK  
+                </span>  
+
+            </div>  
+
+
+            <div class="feature-list">  
+
+
+                <div class="feature">  
+
+                    <div class="feature-icon">  
+                        💼  
+                    </div>  
+
+                    <h3>  
+                        Find Jobs  
+                    </h3>  
+
+                    <p>  
+                        Discover career opportunities  
+                        matching your skills.  
+                    </p>  
+
+                </div>  
+
+
+                <div class="feature">  
+
+                    <div class="feature-icon">  
+                        🧠  
+                    </div>  
+
+                    <h3>  
+                        Improve Skills  
+                    </h3>  
+
+                    <p>  
+                        Identify and develop the skills  
+                        needed for your dream career.  
+                    </p>  
+
+                </div>  
+
+
+                <div class="feature">
