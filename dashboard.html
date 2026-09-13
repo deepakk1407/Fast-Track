@@ -21,22 +21,38 @@
             color: #0f172a;
         }
 
-        /* =========================
-           LAYOUT
-        ========================== */
+        button,
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* =====================================================
+           APP
+        ===================================================== */
 
         .app {
-            display: flex;
             min-height: 100vh;
         }
 
-        /* =========================
+        /* =====================================================
            SIDEBAR
-        ========================== */
+        ===================================================== */
 
         .sidebar {
             width: 250px;
             min-height: 100vh;
+
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+
+            padding: 25px 16px;
+
+            display: flex;
+            flex-direction: column;
+
+            color: white;
 
             background:
                 linear-gradient(
@@ -46,19 +62,9 @@
                     #1e1b4b 100%
                 );
 
-            color: white;
+            z-index: 1000;
 
-            padding: 25px 16px;
-
-            position: fixed;
-            left: 0;
-            top: 0;
-            bottom: 0;
-
-            display: flex;
-            flex-direction: column;
-
-            z-index: 100;
+            transition: transform 0.3s ease;
         }
 
         .brand {
@@ -75,7 +81,6 @@
             height: 42px;
 
             object-fit: contain;
-
             border-radius: 10px;
         }
 
@@ -95,22 +100,20 @@
             letter-spacing: 1px;
         }
 
-        /* =========================
+        /* =====================================================
            NAVIGATION
-        ========================== */
+        ===================================================== */
 
         .nav-title {
             padding: 0 12px;
-
             margin-bottom: 10px;
-
-            font-size: 10px;
 
             color: #94a3b8;
 
-            letter-spacing: 1.5px;
-
+            font-size: 10px;
             font-weight: 700;
+
+            letter-spacing: 1.5px;
         }
 
         .nav {
@@ -137,17 +140,18 @@
 
             font-size: 14px;
 
-            transition: 0.25s;
+            transition: 0.25s ease;
         }
 
         .nav-item:hover {
-            background: rgba(255, 255, 255, 0.08);
             color: white;
+            background: rgba(255, 255, 255, 0.08);
         }
 
         .nav-item.active {
-            background: rgba(96, 165, 250, 0.18);
             color: white;
+
+            background: rgba(96, 165, 250, 0.18);
 
             box-shadow:
                 inset 3px 0 0 #60a5fa;
@@ -161,9 +165,9 @@
             font-size: 17px;
         }
 
-        /* =========================
+        /* =====================================================
            SIDEBAR BOTTOM
-        ========================== */
+        ===================================================== */
 
         .sidebar-bottom {
             margin-top: auto;
@@ -176,17 +180,17 @@
 
             border-radius: 14px;
 
-            background: rgba(255,255,255,0.07);
+            background: rgba(255, 255, 255, 0.07);
 
-            border: 1px solid rgba(255,255,255,0.08);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .career-mini p {
-            font-size: 11px;
+            margin-bottom: 8px;
 
             color: #94a3b8;
 
-            margin-bottom: 8px;
+            font-size: 11px;
         }
 
         .career-mini strong {
@@ -207,22 +211,85 @@
             color: #fca5a5;
 
             font-size: 14px;
-
             font-weight: 700;
 
             cursor: pointer;
 
-            transition: 0.25s;
+            transition: 0.25s ease;
         }
 
         .logout-btn:hover {
-            background: #ef4444;
             color: white;
+            background: #ef4444;
         }
 
-        /* =========================
-           MAIN CONTENT
-        ========================== */
+        /* =====================================================
+           MOBILE HEADER
+        ===================================================== */
+
+        .mobile-header {
+            display: none;
+        }
+
+        .menu-btn {
+            width: 42px;
+            height: 42px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 11px;
+
+            background: white;
+
+            color: #0f172a;
+
+            font-size: 22px;
+
+            cursor: pointer;
+        }
+
+        .mobile-brand {
+            display: flex;
+            align-items: center;
+
+            gap: 9px;
+        }
+
+        .mobile-brand img {
+            width: 35px;
+            height: 35px;
+
+            object-fit: contain;
+        }
+
+        .mobile-brand strong {
+            font-size: 16px;
+        }
+
+        /* =====================================================
+           SIDEBAR OVERLAY
+        ===================================================== */
+
+        .sidebar-overlay {
+            display: none;
+
+            position: fixed;
+            inset: 0;
+
+            background: rgba(15, 23, 42, 0.55);
+
+            backdrop-filter: blur(3px);
+
+            z-index: 900;
+        }
+
+        /* =====================================================
+           MAIN
+        ===================================================== */
 
         .main {
             width: calc(100% - 250px);
@@ -234,35 +301,31 @@
             padding: 25px 35px;
         }
 
-        /* =========================
+        /* =====================================================
            TOPBAR
-        ========================== */
+        ===================================================== */
 
         .topbar {
             display: flex;
-
             align-items: center;
-
             justify-content: space-between;
 
             margin-bottom: 30px;
         }
 
         .page-title h1 {
-            font-size: 28px;
-
             margin-bottom: 6px;
+
+            font-size: 28px;
         }
 
         .page-title p {
             color: #64748b;
-
             font-size: 14px;
         }
 
         .profile-mini {
             display: flex;
-
             align-items: center;
 
             gap: 12px;
@@ -281,7 +344,6 @@
             height: 38px;
 
             display: flex;
-
             align-items: center;
             justify-content: center;
 
@@ -305,14 +367,14 @@
 
             margin-top: 2px;
 
-            font-size: 10px;
-
             color: #64748b;
+
+            font-size: 10px;
         }
 
-        /* =========================
+        /* =====================================================
            WELCOME CARD
-        ========================== */
+        ===================================================== */
 
         .welcome-card {
             position: relative;
@@ -321,7 +383,11 @@
 
             padding: 32px;
 
+            margin-bottom: 25px;
+
             border-radius: 22px;
+
+            color: white;
 
             background:
                 linear-gradient(
@@ -331,12 +397,8 @@
                     #312e81
                 );
 
-            color: white;
-
             box-shadow:
                 0 18px 45px rgba(30, 64, 175, 0.18);
-
-            margin-bottom: 25px;
         }
 
         .welcome-card::after {
@@ -347,38 +409,40 @@
             width: 220px;
             height: 220px;
 
-            border-radius: 50%;
-
-            background: rgba(255,255,255,0.06);
-
             right: -70px;
             top: -80px;
+
+            border-radius: 50%;
+
+            background: rgba(255, 255, 255, 0.06);
         }
 
         .welcome-badge {
+            position: relative;
+            z-index: 2;
+
             display: inline-block;
 
             padding: 7px 12px;
 
+            margin-bottom: 15px;
+
             border-radius: 30px;
 
-            background: rgba(255,255,255,0.12);
+            background: rgba(255, 255, 255, 0.12);
 
             font-size: 10px;
 
             letter-spacing: 1px;
-
-            margin-bottom: 15px;
         }
 
         .welcome-card h2 {
             position: relative;
-
             z-index: 2;
 
-            font-size: 30px;
-
             margin-bottom: 8px;
+
+            font-size: 30px;
         }
 
         .welcome-card h2 span {
@@ -387,10 +451,9 @@
 
         .welcome-card p {
             position: relative;
-
             z-index: 2;
 
-            max-width: 650px;
+            max-width: 700px;
 
             color: #dbeafe;
 
@@ -399,9 +462,9 @@
             line-height: 1.7;
         }
 
-        /* =========================
-           STAT CARDS
-        ========================== */
+        /* =====================================================
+           STATS
+        ===================================================== */
 
         .stats {
             display: grid;
@@ -415,29 +478,27 @@
         }
 
         .stat-card {
+            padding: 22px;
+
             background: white;
 
             border: 1px solid #e2e8f0;
 
             border-radius: 16px;
 
-            padding: 22px;
-
-            transition: 0.25s;
+            transition: 0.25s ease;
         }
 
         .stat-card:hover {
             transform: translateY(-3px);
 
             box-shadow:
-                0 12px 30px rgba(15,23,42,0.07);
+                0 12px 30px rgba(15, 23, 42, 0.07);
         }
 
         .stat-top {
             display: flex;
-
             align-items: center;
-
             justify-content: space-between;
 
             margin-bottom: 18px;
@@ -448,7 +509,6 @@
             height: 42px;
 
             display: flex;
-
             align-items: center;
             justify-content: center;
 
@@ -472,14 +532,14 @@
         }
 
         .stat-card h3 {
-            font-size: 25px;
-
             margin-top: 5px;
+
+            font-size: 25px;
         }
 
-        /* =========================
+        /* =====================================================
            CONTENT GRID
-        ========================== */
+        ===================================================== */
 
         .content-grid {
             display: grid;
@@ -491,21 +551,19 @@
         }
 
         .panel {
+            padding: 24px;
+
             background: white;
 
             border: 1px solid #e2e8f0;
 
             border-radius: 18px;
-
-            padding: 24px;
         }
 
         .panel-header {
             display: flex;
-
-            justify-content: space-between;
-
             align-items: center;
+            justify-content: space-between;
 
             margin-bottom: 20px;
         }
@@ -515,16 +573,16 @@
         }
 
         .panel-header span {
-            font-size: 11px;
-
             color: #2563eb;
+
+            font-size: 11px;
 
             font-weight: 700;
         }
 
-        /* =========================
-           FEATURE ITEMS
-        ========================== */
+        /* =====================================================
+           FEATURES
+        ===================================================== */
 
         .feature-list {
             display: grid;
@@ -536,15 +594,21 @@
         }
 
         .feature {
+            display: block;
+
             padding: 18px;
 
             border: 1px solid #e2e8f0;
 
             border-radius: 13px;
 
+            color: inherit;
+
+            text-decoration: none;
+
             cursor: pointer;
 
-            transition: 0.25s;
+            transition: 0.25s ease;
         }
 
         .feature:hover {
@@ -556,15 +620,15 @@
         }
 
         .feature-icon {
-            font-size: 23px;
-
             margin-bottom: 10px;
+
+            font-size: 23px;
         }
 
         .feature h3 {
-            font-size: 14px;
-
             margin-bottom: 5px;
+
+            font-size: 14px;
         }
 
         .feature p {
@@ -575,13 +639,12 @@
             line-height: 1.5;
         }
 
-        /* =========================
+        /* =====================================================
            PROFILE INFO
-        ========================== */
+        ===================================================== */
 
         .profile-info {
             display: flex;
-
             flex-direction: column;
 
             gap: 14px;
@@ -600,15 +663,15 @@
         .info-row small {
             display: block;
 
+            margin-bottom: 5px;
+
             color: #64748b;
 
             font-size: 10px;
 
-            margin-bottom: 5px;
+            font-weight: 700;
 
             text-transform: uppercase;
-
-            font-weight: 700;
         }
 
         .info-row strong {
@@ -619,17 +682,9 @@
             word-break: break-word;
         }
 
-        /* =========================
-           MOBILE HEADER
-        ========================== */
-
-        .mobile-header {
-            display: none;
-        }
-
-        /* =========================
-           RESPONSIVE
-        ========================== */
+        /* =====================================================
+           TABLET
+        ===================================================== */
 
         @media (max-width: 950px) {
 
@@ -655,10 +710,31 @@
             }
         }
 
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
         @media (max-width: 700px) {
 
+            body {
+                background: #f5f7fb;
+            }
+
             .sidebar {
-                display: none;
+                width: 280px;
+
+                transform: translateX(-100%);
+
+                box-shadow:
+                    10px 0 35px rgba(15, 23, 42, 0.2);
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .sidebar-overlay.active {
+                display: block;
             }
 
             .main {
@@ -666,36 +742,16 @@
 
                 margin-left: 0;
 
-                padding: 18px;
+                padding: 16px;
             }
 
             .mobile-header {
                 display: flex;
 
                 align-items: center;
-
                 justify-content: space-between;
 
                 margin-bottom: 20px;
-            }
-
-            .mobile-brand {
-                display: flex;
-
-                align-items: center;
-
-                gap: 8px;
-            }
-
-            .mobile-brand img {
-                width: 35px;
-                height: 35px;
-
-                object-fit: contain;
-            }
-
-            .mobile-brand strong {
-                font-size: 16px;
             }
 
             .topbar {
@@ -710,20 +766,73 @@
                 font-size: 24px;
             }
 
+            .page-title p {
+                font-size: 12px;
+            }
+
             .welcome-card {
                 padding: 25px 20px;
+
+                border-radius: 18px;
             }
 
             .welcome-card h2 {
                 font-size: 25px;
             }
 
+            .welcome-card p {
+                font-size: 13px;
+            }
+
             .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .content-grid {
                 grid-template-columns: 1fr;
             }
 
             .feature-list {
                 grid-template-columns: 1fr;
+            }
+
+            .panel {
+                padding: 20px;
+            }
+        }
+
+        /* =====================================================
+           SMALL MOBILE
+        ===================================================== */
+
+        @media (max-width: 400px) {
+
+            .main {
+                padding: 12px;
+            }
+
+            .sidebar {
+                width: 270px;
+            }
+
+            .mobile-brand strong {
+                font-size: 15px;
+            }
+
+            .welcome-card {
+                padding: 22px 17px;
+            }
+
+            .welcome-card h2 {
+                font-size: 23px;
+            }
+
+            .welcome-card p {
+                font-size: 12px;
+            }
+
+            .panel {
+                padding: 17px;
             }
         }
     </style>
@@ -735,11 +844,23 @@
 <div class="app">
 
 
-    <!-- =========================
-         SIDEBAR
-    ========================== -->
+    <!-- =====================================================
+         SIDEBAR OVERLAY
+    ====================================================== -->
 
-    <aside class="sidebar">
+    <div
+        class="sidebar-overlay"
+        id="sidebarOverlay">
+    </div>
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside
+        class="sidebar"
+        id="sidebar">
 
         <div class="brand">
 
@@ -751,7 +872,9 @@
 
                 <h2>FAST-TRACK</h2>
 
-                <span>SMART CAREER PLATFORM</span>
+                <span>
+                    SMART CAREER PLATFORM
+                </span>
 
             </div>
 
@@ -848,7 +971,9 @@
 
             <div class="career-mini">
 
-                <p>YOUR CAREER JOURNEY</p>
+                <p>
+                    YOUR CAREER JOURNEY
+                </p>
 
                 <strong>
                     Keep moving forward 🚀
@@ -870,10 +995,9 @@
     </aside>
 
 
-
-    <!-- =========================
+    <!-- =====================================================
          MAIN CONTENT
-    ========================== -->
+    ====================================================== -->
 
     <main class="main">
 
@@ -886,13 +1010,23 @@
 
                 <img
                     src="fast-track-logo.png"
-                    alt="FAST-TRACK">
+                    alt="FAST-TRACK Logo">
 
                 <strong>
                     FAST-TRACK
                 </strong>
 
             </div>
+
+
+            <button
+                class="menu-btn"
+                id="menuBtn"
+                aria-label="Open menu">
+
+                ☰
+
+            </button>
 
         </div>
 
@@ -903,211 +1037,4 @@
 
             <div class="page-title">
 
-                <h1>
-                    Dashboard
-                </h1>
-
-                <p>
-                    Manage your career journey from one place.
-                </p>
-
-            </div>
-
-
-            <div class="profile-mini">
-
-                <div
-                    class="profile-avatar"
-                    id="profileAvatar">
-
-                    U
-
-                </div>
-
-
-                <div>
-
-                    <strong id="topUserName">
-                        User
-                    </strong>
-
-                    <span>
-                        Career Explorer
-                    </span>
-
-                </div>
-
-            </div>
-
-        </header>
-
-
-
-        <!-- WELCOME -->
-
-        <section class="welcome-card">
-
-            <div class="welcome-badge">
-                SMART CAREER PLATFORM
-            </div>
-
-
-            <h2>
-                Welcome,
-                <span id="userName">
-                    User
-                </span> 👋
-            </h2>
-
-
-            <p>
-                Your FAST-TRACK career journey starts here.
-                Explore opportunities, develop your skills,
-                build your resume and move closer to your
-                dream career.
-            </p>
-
-        </section>
-
-
-
-        <!-- STAT CARDS -->
-
-        <section class="stats">
-
-
-            <div class="stat-card">
-
-                <div class="stat-top">
-
-                    <div class="stat-icon">
-                        💼
-                    </div>
-
-                    <small>
-                        Opportunities
-                    </small>
-
-                </div>
-
-                <h3>
-                    Explore
-                </h3>
-
-            </div>
-
-
-            <div class="stat-card">
-
-                <div class="stat-top">
-
-                    <div class="stat-icon">
-                        🎯
-                    </div>
-
-                    <small>
-                        Skills
-                    </small>
-
-                </div>
-
-                <h3>
-                    Build
-                </h3>
-
-            </div>
-
-
-            <div class="stat-card">
-
-                <div class="stat-top">
-
-                    <div class="stat-icon">
-                        📄
-                    </div>
-
-                    <small>
-                        Resume
-                    </small>
-
-                </div>
-
-                <h3>
-                    Create
-                </h3>
-
-            </div>
-
-
-        </section>
-
-
-
-        <!-- CONTENT -->
-
-        <section class="content-grid">
-
-
-            <!-- QUICK ACTIONS -->
-
-            <div class="panel">
-
-                <div class="panel-header">
-
-                    <h2>
-                        Quick Actions
-                    </h2>
-
-                    <span>
-                        FAST-TRACK
-                    </span>
-
-                </div>
-
-
-                <div class="feature-list">
-
-
-                    <div class="feature">
-
-                        <div class="feature-icon">
-                            💼
-                        </div>
-
-                        <h3>
-                            Find Jobs
-                        </h3>
-
-                        <p>
-                            Discover career opportunities
-                            matching your skills.
-                        </p>
-
-                    </div>
-
-
-                    <div class="feature">
-
-                        <div class="feature-icon">
-                            🧠
-                        </div>
-
-                        <h3>
-                            Improve Skills
-                        </h3>
-
-                        <p>
-                            Identify and develop the skills
-                            needed for your dream career.
-                        </p>
-
-                    </div>
-
-
-                    <div class="feature">
-
-                        <div class="feature-icon">
-                            📚
-                        </div>
-
-                        
+             
