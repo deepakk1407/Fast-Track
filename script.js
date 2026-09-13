@@ -4,7 +4,17 @@
 ========================================================= */
 
 /* ================= FIREBASE IMPORTS ================= */
+console.log("🔥 SCRIPT STARTED");
 
+alert("SCRIPT.JS IS WORKING");
+
+document.getElementById("registerTab").addEventListener("click", function () {
+    alert("REGISTER BUTTON WORKING");
+});
+
+document.getElementById("loginTab").addEventListener("click", function () {
+    alert("LOGIN BUTTON WORKING");
+});
 import { initializeApp } from
     "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 
