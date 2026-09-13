@@ -16,7 +16,7 @@ import {
 
 
 /* ===============================
-   FIREBASE CONFIG
+   FIREBASE
 ================================ */
 
 const firebaseConfig = {
@@ -29,10 +29,6 @@ const firebaseConfig = {
     measurementId: "G-9TFBXV2PQM"
 };
 
-
-/* ===============================
-   INITIALIZE FIREBASE
-================================ */
 
 const app = initializeApp(firebaseConfig);
 
@@ -75,10 +71,101 @@ loginTab.addEventListener("click", () => {
 
 
 /* ===============================
+   PASSWORD SHOW / HIDE
+================================ */
+
+const loginPassword = document.getElementById("loginPassword");
+const loginEye = document.getElementById("loginEye");
+
+if (loginEye && loginPassword) {
+
+    loginEye.addEventListener("click", () => {
+
+        if (loginPassword.type === "password") {
+
+            loginPassword.type = "text";
+            loginEye.textContent = "🙈";
+
+        } else {
+
+            loginPassword.type = "password";
+            loginEye.textContent = "👁️";
+
+        }
+
+    });
+
+}
+
+
+/* ===============================
+   REGISTER PASSWORD SHOW / HIDE
+================================ */
+
+const registerPassword =
+    document.getElementById("registerPassword");
+
+const registerEye =
+    document.getElementById("registerEye");
+
+if (registerEye && registerPassword) {
+
+    registerEye.addEventListener("click", () => {
+
+        if (registerPassword.type === "password") {
+
+            registerPassword.type = "text";
+            registerEye.textContent = "🙈";
+
+        } else {
+
+            registerPassword.type = "password";
+            registerEye.textContent = "👁️";
+
+        }
+
+    });
+
+}
+
+
+/* ===============================
+   CONFIRM PASSWORD SHOW / HIDE
+================================ */
+
+const confirmPassword =
+    document.getElementById("confirmPassword");
+
+const confirmEye =
+    document.getElementById("confirmEye");
+
+if (confirmEye && confirmPassword) {
+
+    confirmEye.addEventListener("click", () => {
+
+        if (confirmPassword.type === "password") {
+
+            confirmPassword.type = "text";
+            confirmEye.textContent = "🙈";
+
+        } else {
+
+            confirmPassword.type = "password";
+            confirmEye.textContent = "👁️";
+
+        }
+
+    });
+
+}
+
+
+/* ===============================
    REGISTER
 ================================ */
 
-const registerForm = document.getElementById("registerForm");
+const registerForm =
+    document.getElementById("registerForm");
 
 
 registerForm.addEventListener("submit", async (event) => {
@@ -93,16 +180,18 @@ registerForm.addEventListener("submit", async (event) => {
         document.getElementById("registerEmail").value.trim();
 
     const role =
-        document.querySelector('input[name="role"]:checked')?.value;
+        document.querySelector(
+            'input[name="role"]:checked'
+        )?.value;
 
     const password =
         document.getElementById("registerPassword").value;
 
-    const confirmPassword =
+    const confirmPasswordValue =
         document.getElementById("confirmPassword").value;
 
 
-    if (password !== confirmPassword) {
+    if (password !== confirmPasswordValue) {
 
         alert("Passwords do not match!");
 
@@ -142,7 +231,11 @@ registerForm.addEventListener("submit", async (event) => {
         );
 
 
-        console.log("User created:", user.uid);
+        console.log(
+            "User created:",
+            user.uid
+        );
+
 
         alert("🎉 Account created successfully!");
 
@@ -151,9 +244,11 @@ registerForm.addEventListener("submit", async (event) => {
 
 
         registerTab.classList.remove("active");
+
         loginTab.classList.add("active");
 
         registerBox.classList.remove("active");
+
         loginBox.classList.add("active");
 
 
@@ -162,27 +257,44 @@ registerForm.addEventListener("submit", async (event) => {
         console.error(error);
 
 
-        if (error.code === "auth/email-already-in-use") {
+        if (
+            error.code ===
+            "auth/email-already-in-use"
+        ) {
 
-            alert("This email is already registered.");
+            alert(
+                "This email is already registered."
+            );
 
         }
 
-        else if (error.code === "auth/invalid-email") {
+        else if (
+            error.code ===
+            "auth/invalid-email"
+        ) {
 
-            alert("Please enter a valid email.");
+            alert(
+                "Please enter a valid email."
+            );
 
         }
 
-        else if (error.code === "auth/weak-password") {
+        else if (
+            error.code ===
+            "auth/weak-password"
+        ) {
 
-            alert("Password should be at least 6 characters.");
+            alert(
+                "Password should be at least 6 characters."
+            );
 
         }
 
         else {
 
-            alert("Registration failed. Please try again.");
+            alert(
+                "Registration failed. Please try again."
+            );
 
         }
 
@@ -195,13 +307,8 @@ registerForm.addEventListener("submit", async (event) => {
    LOGIN
 ================================ */
 
-const loginForm = document.getElementById("loginForm");
-
-/* ===============================
-   LOGIN
-================================ */
-
-const loginForm = document.getElementById("loginForm");
+const loginForm =
+    document.getElementById("loginForm");
 
 
 loginForm.addEventListener("submit", async (event) => {
@@ -228,18 +335,18 @@ loginForm.addEventListener("submit", async (event) => {
 
         const user = userCredential.user;
 
-        console.log("Login successful:", user.uid);
+
+        console.log(
+            "Login successful:",
+            user.uid
+        );
+
 
         alert("✅ Login successful!");
 
-window.location.href = "dashboard.html";
 
-
-        /*
-           TEMPORARY:
-           Dashboard will be connected
-           in the next step.
-        */
+        window.location.href =
+            "dashboard.html";
 
 
     } catch (error) {
@@ -248,24 +355,38 @@ window.location.href = "dashboard.html";
 
 
         if (
-            error.code === "auth/invalid-credential" ||
-            error.code === "auth/wrong-password" ||
-            error.code === "auth/user-not-found"
+            error.code ===
+                "auth/invalid-credential" ||
+
+            error.code ===
+                "auth/wrong-password" ||
+
+            error.code ===
+                "auth/user-not-found"
         ) {
 
-            alert("❌ Invalid email or password.");
+            alert(
+                "❌ Invalid email or password."
+            );
 
         }
 
-        else if (error.code === "auth/invalid-email") {
+        else if (
+            error.code ===
+            "auth/invalid-email"
+        ) {
 
-            alert("Please enter a valid email.");
+            alert(
+                "Please enter a valid email."
+            );
 
         }
 
         else {
 
-            alert("Login failed. Please try again.");
+            alert(
+                "Login failed. Please try again."
+            );
 
         }
 
@@ -282,11 +403,16 @@ onAuthStateChanged(auth, (user) => {
 
     if (user) {
 
-        console.log("User is logged in:", user.email);
+        console.log(
+            "User is logged in:",
+            user.email
+        );
 
     } else {
 
-        console.log("No user is logged in.");
+        console.log(
+            "No user is logged in."
+        );
 
     }
 
