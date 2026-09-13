@@ -1,7 +1,63 @@
 /* =====================================================
-   FAST-TRACK JAVASCRIPT
-   Neocities Compatible
+   FAST-TRACK | FIREBASE JAVASCRIPT
+   Firebase Authentication + Firestore
 ===================================================== */
+
+/* ================= FIREBASE IMPORTS ================= */
+
+import { initializeApp } from
+    "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+import {
+    getAuth,
+    GoogleAuthProvider,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    signInWithPopup,
+    signInWithRedirect,
+    getRedirectResult,
+    sendPasswordResetEmail,
+    updateProfile,
+    setPersistence,
+    browserLocalPersistence,
+    browserSessionPersistence,
+    onAuthStateChanged,
+    signOut,
+    getAdditionalUserInfo
+} from
+    "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+import {
+    getFirestore,
+    doc,
+    setDoc,
+    serverTimestamp
+} from
+    "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+
+/* ================= FIREBASE CONFIG ================= */
+
+const firebaseConfig = {
+    apiKey: "AIzaSyDJ84_tSgau334V60r17bqHHubaf5Lecto",
+    authDomain: "fast-track-6d262.firebaseapp.com",
+    projectId: "fast-track-6d262",
+    storageBucket: "fast-track-6d262.firebasestorage.app",
+    messagingSenderId: "338934873510",
+    appId: "1:338934873510:web:16b3211577dd2ce683a367",
+    measurementId: "G-9TFBXV2PQM"
+};
+
+
+/* ================= INITIALIZE FIREBASE ================= */
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+const db = getFirestore(app);
+
+const googleProvider = new GoogleAuthProvider();
 
 
 /* ================= GET ELEMENTS ================= */
@@ -21,7 +77,7 @@ const registerBox =
 
 /* ================= SWITCH FORMS ================= */
 
-function showLogin(){
+function showLogin() {
 
     loginBox.classList.add("active");
 
@@ -30,11 +86,10 @@ function showLogin(){
     loginTab.classList.add("active");
 
     registerTab.classList.remove("active");
-
 }
 
 
-function showRegister(){
+function showRegister() {
 
     registerBox.classList.add("active");
 
@@ -43,7 +98,6 @@ function showRegister(){
     registerTab.classList.add("active");
 
     loginTab.classList.remove("active");
-
 }
 
 
@@ -53,7 +107,6 @@ loginTab.addEventListener(
     "click",
     showLogin
 );
-
 
 registerTab.addEventListener(
     "click",
@@ -79,15 +132,11 @@ document
     );
 
 
-
 /* =====================================================
    PASSWORD SHOW / HIDE
 ===================================================== */
 
-function passwordToggle(
-    inputId,
-    eyeId
-){
+function passwordToggle(inputId, eyeId) {
 
     const input =
         document.getElementById(inputId);
@@ -96,31 +145,29 @@ function passwordToggle(
         document.getElementById(eyeId);
 
 
-    if(input.type === "password"){
+    if (input.type === "password") {
 
         input.type = "text";
 
         eye.textContent = "🙈";
 
-    }
-    else{
+    } else {
 
         input.type = "password";
 
         eye.textContent = "👁";
 
     }
-
 }
 
 
-/* LOGIN PASSWORD */
+/* ================= LOGIN PASSWORD ================= */
 
 document
     .getElementById("loginEye")
     .addEventListener(
         "click",
-        function(){
+        function () {
 
             passwordToggle(
                 "loginPassword",
@@ -131,13 +178,13 @@ document
     );
 
 
-/* REGISTER PASSWORD */
+/* ================= REGISTER PASSWORD ================= */
 
 document
     .getElementById("registerEye")
     .addEventListener(
         "click",
-        function(){
+        function () {
 
             passwordToggle(
                 "registerPassword",
@@ -148,13 +195,13 @@ document
     );
 
 
-/* CONFIRM PASSWORD */
+/* ================= CONFIRM PASSWORD ================= */
 
 document
     .getElementById("confirmEye")
     .addEventListener(
         "click",
-        function(){
+        function () {
 
             passwordToggle(
                 "confirmPassword",
@@ -165,7 +212,6 @@ document
     );
 
 
-
 /* =====================================================
    PASSWORD STRENGTH
 ===================================================== */
@@ -174,7 +220,7 @@ document
     .getElementById("registerPassword")
     .addEventListener(
         "input",
-        function(){
+        function () {
 
             const password =
                 this.value;
@@ -193,27 +239,24 @@ document
             let strength = 0;
 
 
-            if(password.length >= 6){
+            if (password.length >= 6) {
+                strength++;
+            }
+
+            if (/[A-Z]/.test(password)) {
+                strength++;
+            }
+
+            if (/[0-9]/.test(password)) {
+                strength++;
+            }
+
+            if (/[^A-Za-z0-9]/.test(password)) {
                 strength++;
             }
 
 
-            if(/[A-Z]/.test(password)){
-                strength++;
-            }
-
-
-            if(/[0-9]/.test(password)){
-                strength++;
-            }
-
-
-            if(/[^A-Za-z0-9]/.test(password)){
-                strength++;
-            }
-
-
-            if(password.length === 0){
+            if (password.length === 0) {
 
                 bar.style.width = "0%";
 
@@ -222,7 +265,7 @@ document
 
             }
 
-            else if(strength === 1){
+            else if (strength === 1) {
 
                 bar.style.width = "25%";
 
@@ -231,7 +274,7 @@ document
 
             }
 
-            else if(strength === 2){
+            else if (strength === 2) {
 
                 bar.style.width = "50%";
 
@@ -240,7 +283,7 @@ document
 
             }
 
-            else if(strength === 3){
+            else if (strength === 3) {
 
                 bar.style.width = "75%";
 
@@ -249,7 +292,7 @@ document
 
             }
 
-            else{
+            else {
 
                 bar.style.width = "100%";
 
@@ -262,16 +305,148 @@ document
     );
 
 
+/* =====================================================
+   FIREBASE ERROR MESSAGE
+===================================================== */
+
+function getFirebaseErrorMessage(error) {
+
+    switch (error.code) {
+
+        case "auth/invalid-email":
+            return "Please enter a valid email address.";
+
+        case "auth/missing-password":
+            return "Please enter your password.";
+
+        case "auth/invalid-credential":
+            return "Invalid email or password ❌";
+
+        case "auth/user-not-found":
+            return "No account found with this email.";
+
+        case "auth/wrong-password":
+            return "Incorrect password ❌";
+
+        case "auth/email-already-in-use":
+            return "This email is already registered.";
+
+        case "auth/weak-password":
+            return "Password must contain at least 6 characters.";
+
+        case "auth/popup-closed-by-user":
+            return "Google sign-in was cancelled.";
+
+        case "auth/popup-blocked":
+            return "Google popup was blocked. Please allow popups.";
+
+        case "auth/unauthorized-domain":
+            return "This website domain is not authorized in Firebase.";
+
+        case "auth/network-request-failed":
+            return "Network error. Please check your internet.";
+
+        case "auth/too-many-requests":
+            return "Too many attempts. Please try again later.";
+
+        case "auth/account-exists-with-different-credential":
+            return "An account already exists with this email using another sign-in method.";
+
+        case "auth/operation-not-allowed":
+            return "Email/Password sign-in is not enabled in Firebase.";
+
+        default:
+            console.error(error);
+
+            return "Something went wrong. Please try again.";
+    }
+}
+
 
 /* =====================================================
-   REGISTER
+   SAVE USER PROFILE TO FIRESTORE
+===================================================== */
+
+async function saveUserProfile(user, extraData = {}) {
+
+    const userRef =
+        doc(
+            db,
+            "users",
+            user.uid
+        );
+
+
+    const provider =
+        extraData.provider ||
+        (
+            user.providerData?.[0]?.providerId ===
+            "google.com"
+                ? "google"
+                : "password"
+        );
+
+
+    const userData = {
+
+        uid: user.uid,
+
+        name:
+            extraData.name ||
+            user.displayName ||
+            "",
+
+        email:
+            user.email ||
+            "",
+
+        provider: provider,
+
+        photoURL:
+            user.photoURL ||
+            "",
+
+        updatedAt:
+            serverTimestamp()
+
+    };
+
+
+    if (extraData.role) {
+
+        userData.role =
+            extraData.role;
+
+    }
+
+
+    if (extraData.createdAt) {
+
+        userData.createdAt =
+            extraData.createdAt;
+
+    }
+
+
+    await setDoc(
+        userRef,
+        userData,
+        {
+            merge: true
+        }
+    );
+}
+
+
+/* =====================================================
+   REGISTER WITH EMAIL + PASSWORD
 ===================================================== */
 
 document
     .getElementById("registerForm")
     .addEventListener(
         "submit",
-        function(event){
+        async function (event) {
 
             event.preventDefault();
 
@@ -317,166 +492,172 @@ document
                     .value;
 
 
+            const terms =
+                document.getElementById(
+                    "terms"
+                );
 
-            /* Password Length */
 
-            if(password.length < 6){
+            /* VALIDATION */
+
+            if (!name) {
+
+                showToast(
+                    "Please enter your name."
+                );
+
+                return;
+            }
+
+
+            if (!role) {
+
+                showToast(
+                    "Please select your role."
+                );
+
+                return;
+            }
+
+
+            if (password.length < 6) {
 
                 showToast(
                     "Password must contain at least 6 characters."
                 );
 
                 return;
-
             }
 
 
-            /* Password Match */
-
-            if(password !== confirmPassword){
+            if (password !== confirmPassword) {
 
                 showToast(
                     "Passwords do not match ❌"
                 );
 
                 return;
-
             }
 
 
-            /* Get Existing Users */
+            if (terms && !terms.checked) {
 
-            let users = [];
+                showToast(
+                    "Please accept the Terms & Conditions."
+                );
 
-            try{
-
-                users =
-                    JSON.parse(
-                        localStorage.getItem(
-                            "fastTrackUsers"
-                        )
-                    ) || [];
-
-            }
-            catch(error){
-
-                users = [];
-
+                return;
             }
 
 
-            /* Check Existing Email */
+            try {
 
-            const existingUser =
-                users.find(
-                    function(user){
+                /* CREATE FIREBASE ACCOUNT */
 
-                        return user.email === email;
+                const userCredential =
+                    await createUserWithEmailAndPassword(
+                        auth,
+                        email,
+                        password
+                    );
 
+
+                const user =
+                    userCredential.user;
+
+
+                /* ADD DISPLAY NAME */
+
+                await updateProfile(
+                    user,
+                    {
+                        displayName: name
                     }
                 );
 
 
-            if(existingUser){
+                /* SAVE USER TO FIRESTORE */
 
-                showToast(
-                    "This email is already registered."
+                await saveUserProfile(
+                    user,
+                    {
+                        name: name,
+                        role: role.value,
+                        provider: "password",
+                        createdAt:
+                            serverTimestamp()
+                    }
                 );
 
-                return;
+
+                showToast(
+                    "Account created successfully 🚀"
+                );
+
+
+                /* RESET FORM */
+
+                document
+                    .getElementById(
+                        "registerForm"
+                    )
+                    .reset();
+
+
+                document
+                    .getElementById(
+                        "strengthBar"
+                    )
+                    .style.width = "0%";
+
+
+                document
+                    .getElementById(
+                        "strengthText"
+                    )
+                    .textContent =
+                        "Password strength";
+
+
+                /* GO TO LOGIN */
+
+                setTimeout(
+                    function () {
+
+                        document
+                            .getElementById(
+                                "loginEmail"
+                            )
+                            .value = email;
+
+                        showLogin();
+
+                    },
+                    1200
+                );
+
+
+            } catch (error) {
+
+                showToast(
+                    getFirebaseErrorMessage(error)
+                );
 
             }
-
-
-            /* Create User */
-
-            const newUser = {
-
-                name:name,
-
-                email:email,
-
-                role:role.value,
-
-                password:password
-
-            };
-
-
-            /* Save */
-
-            users.push(newUser);
-
-
-            localStorage.setItem(
-                "fastTrackUsers",
-                JSON.stringify(users)
-            );
-
-
-            /* Success */
-
-            showToast(
-                "Account created successfully 🚀"
-            );
-
-
-            /* Clear */
-
-            document
-                .getElementById(
-                    "registerForm"
-                )
-                .reset();
-
-
-            document
-                .getElementById(
-                    "strengthBar"
-                )
-                .style.width = "0%";
-
-
-            document
-                .getElementById(
-                    "strengthText"
-                )
-                .textContent =
-                    "Password strength";
-
-
-            /* Go Login */
-
-            setTimeout(
-                function(){
-
-                    document
-                        .getElementById(
-                            "loginEmail"
-                        )
-                        .value = email;
-
-
-                    showLogin();
-
-                },
-                1200
-            );
 
         }
     );
 
 
-
 /* =====================================================
-   LOGIN
+   LOGIN WITH EMAIL + PASSWORD
 ===================================================== */
 
 document
     .getElementById("loginForm")
     .addEventListener(
         "submit",
-        function(event){
+        async function (event) {
 
             event.preventDefault();
 
@@ -499,51 +680,74 @@ document
                     .value;
 
 
-            let users = [];
-
-            try{
-
-                users =
-                    JSON.parse(
-                        localStorage.getItem(
-                            "fastTrackUsers"
-                        )
-                    ) || [];
-
-            }
-            catch(error){
-
-                users = [];
-
-            }
+            const rememberMe =
+                document.getElementById(
+                    "rememberMe"
+                );
 
 
-            const user =
-                users.find(
-                    function(item){
+            try {
 
-                        return (
-                            item.email === email &&
-                            item.password === password
-                        );
+                /* REMEMBER ME */
 
+                await setPersistence(
+                    auth,
+                    rememberMe &&
+                    rememberMe.checked
+                        ? browserLocalPersistence
+                        : browserSessionPersistence
+                );
+
+
+                /* LOGIN */
+
+                const userCredential =
+                    await signInWithEmailAndPassword(
+                        auth,
+                        email,
+                        password
+                    );
+
+
+                const user =
+                    userCredential.user;
+
+
+                /* UPDATE FIRESTORE */
+
+                await saveUserProfile(
+                    user,
+                    {
+                        name:
+                            user.displayName ||
+                            "",
+                        provider: "password"
                     }
                 );
 
 
-            if(user){
-
                 showToast(
-                    "Login successful! Welcome "
-                    + user.name
-                    + " 🚀"
+                    "Login successful! Welcome " +
+                    (
+                        user.displayName ||
+                        user.email
+                    ) +
+                    " 🚀"
                 );
 
-            }
-            else{
+
+                /*
+                   DASHBOARD REDIRECT
+
+                   Later we can add:
+                   window.location.href =
+                       "dashboard.html";
+                */
+
+            } catch (error) {
 
                 showToast(
-                    "Invalid email or password ❌"
+                    getFirebaseErrorMessage(error)
                 );
 
             }
@@ -552,25 +756,106 @@ document
     );
 
 
-
 /* =====================================================
-   GOOGLE BUTTON
+   GOOGLE LOGIN / REGISTER
 ===================================================== */
 
-function googleLogin(){
+async function googleLogin(mode) {
 
-    showToast(
-        "Google Sign-In integration coming soon 🔵"
-    );
+    try {
 
+        /* REGISTER MODE */
+
+        if (mode === "register") {
+
+            const role =
+                document.querySelector(
+                    'input[name="role"]:checked'
+                );
+
+
+            if (!role) {
+
+                showToast(
+                    "Please select Job Seeker or Recruiter first."
+                );
+
+                return;
+            }
+
+
+            sessionStorage.setItem(
+                "fastTrackGoogleRole",
+                role.value
+            );
+        }
+
+
+        /* SAVE MODE */
+
+        sessionStorage.setItem(
+            "fastTrackGoogleMode",
+            mode
+        );
+
+
+        /*
+           On mobile, redirect is more reliable
+           than popup.
+        */
+
+        const isMobile =
+            window.matchMedia(
+                "(max-width: 700px)"
+            ).matches;
+
+
+        if (isMobile) {
+
+            await signInWithRedirect(
+                auth,
+                googleProvider
+            );
+
+            return;
+        }
+
+
+        /* DESKTOP POPUP */
+
+        const result =
+            await signInWithPopup(
+                auth,
+                googleProvider
+            );
+
+
+        await handleGoogleUser(
+            result
+        );
+
+
+    } catch (error) {
+
+        showToast(
+            getFirebaseErrorMessage(error)
+        );
+
+    }
 }
 
+
+/* ================= GOOGLE BUTTONS ================= */
 
 document
     .getElementById("loginGoogle")
     .addEventListener(
         "click",
-        googleLogin
+        function () {
+
+            googleLogin("login");
+
+        }
     );
 
 
@@ -578,9 +863,145 @@ document
     .getElementById("registerGoogle")
     .addEventListener(
         "click",
-        googleLogin
+        function () {
+
+            googleLogin("register");
+
+        }
     );
 
+
+/* =====================================================
+   HANDLE GOOGLE USER
+===================================================== */
+
+async function handleGoogleUser(result) {
+
+    const user =
+        result.user;
+
+
+    const additionalInfo =
+        getAdditionalUserInfo(result);
+
+
+    const isNewUser =
+        additionalInfo?.isNewUser === true;
+
+
+    const mode =
+        sessionStorage.getItem(
+            "fastTrackGoogleMode"
+        );
+
+
+    const savedRole =
+        sessionStorage.getItem(
+            "fastTrackGoogleRole"
+        );
+
+
+    const profileData = {
+
+        name:
+            user.displayName ||
+            "",
+
+        provider:
+            "google"
+
+    };
+
+
+    /*
+       Only assign role to a newly-created
+       Google account.
+
+       Existing account role will not
+       accidentally be overwritten.
+    */
+
+    if (
+        isNewUser &&
+        mode === "register" &&
+        savedRole
+    ) {
+
+        profileData.role =
+            savedRole;
+
+        profileData.createdAt =
+            serverTimestamp();
+    }
+
+
+    await saveUserProfile(
+        user,
+        profileData
+    );
+
+
+    sessionStorage.removeItem(
+        "fastTrackGoogleRole"
+    );
+
+    sessionStorage.removeItem(
+        "fastTrackGoogleMode"
+    );
+
+
+    showToast(
+        "Google sign-in successful! Welcome " +
+        (
+            user.displayName ||
+            user.email
+        ) +
+        " 🚀"
+    );
+
+
+    /*
+       Later:
+
+       window.location.href =
+           "dashboard.html";
+    */
+}
+
+
+/* =====================================================
+   HANDLE GOOGLE REDIRECT RESULT
+===================================================== */
+
+async function checkGoogleRedirect() {
+
+    try {
+
+        const result =
+            await getRedirectResult(auth);
+
+
+        if (!result) {
+            return;
+        }
+
+
+        await handleGoogleUser(
+            result
+        );
+
+
+    } catch (error) {
+
+        showToast(
+            getFirebaseErrorMessage(error)
+        );
+
+    }
+}
+
+
+checkGoogleRedirect();
 
 
 /* =====================================================
@@ -595,227 +1016,4 @@ const forgotModal =
 
 document
     .getElementById("forgotButton")
-    .addEventListener(
-        "click",
-        function(){
-
-            forgotModal.classList.add(
-                "show"
-            );
-
-
-            document
-                .getElementById(
-                    "resetEmail"
-                )
-                .focus();
-
-        }
-    );
-
-
-/* CANCEL */
-
-document
-    .getElementById("cancelForgot")
-    .addEventListener(
-        "click",
-        function(){
-
-            forgotModal.classList.remove(
-                "show"
-            );
-
-        }
-    );
-
-
-/* Outside click */
-
-forgotModal.addEventListener(
-    "click",
-    function(event){
-
-        if(event.target === forgotModal){
-
-            forgotModal.classList.remove(
-                "show"
-            );
-
-        }
-
-    }
-);
-
-
-/* Reset Form */
-
-document
-    .getElementById("resetForm")
-    .addEventListener(
-        "submit",
-        function(event){
-
-            event.preventDefault();
-
-
-            const email =
-                document
-                    .getElementById(
-                        "resetEmail"
-                    )
-                    .value
-                    .trim()
-                    .toLowerCase();
-
-
-            let users = [];
-
-            try{
-
-                users =
-                    JSON.parse(
-                        localStorage.getItem(
-                            "fastTrackUsers"
-                        )
-                    ) || [];
-
-            }
-            catch(error){
-
-                users = [];
-
-            }
-
-
-            const user =
-                users.find(
-                    function(item){
-
-                        return item.email === email;
-
-                    }
-                );
-
-
-            if(!user){
-
-                showToast(
-                    "Email address is not registered."
-                );
-
-                return;
-
-            }
-
-
-            forgotModal.classList.remove(
-                "show"
-            );
-
-
-            showToast(
-                "Password reset link sent 📧"
-            );
-
-        }
-    );
-
-
-
-/* =====================================================
-   TOAST
-===================================================== */
-
-let toastTimer;
-
-
-function showToast(message){
-
-    const toast =
-        document.getElementById(
-            "toast"
-        );
-
-
-    toast.textContent =
-        message;
-
-
-    toast.classList.add(
-        "show"
-    );
-
-
-    clearTimeout(
-        toastTimer
-    );
-
-
-    toastTimer =
-        setTimeout(
-            function(){
-
-                toast.classList.remove(
-                    "show"
-                );
-
-            },
-            3000
-        );
-
-}
-
-
-
-/* =====================================================
-   ESC KEY
-===================================================== */
-
-document.addEventListener(
-    "keydown",
-    function(event){
-
-        if(event.key === "Escape"){
-
-            forgotModal.classList.remove(
-                "show"
-            );
-
-        }
-
-    }
-);
-
-
-/* =====================================================
-   LOGO FALLBACK
-===================================================== */
-
-const logoImage =
-    document.getElementById(
-        "logoImage"
-    );
-
-const logoText =
-    document.getElementById(
-        "logoText"
-    );
-
-
-logoText.style.display = "none";
-
-
-logoImage.addEventListener(
-    "error",
-    function(){
-
-        logoImage.style.display =
-            "none";
-
-        logoText.style.display =
-            "block";
-
-    }
-);
-
+    .
