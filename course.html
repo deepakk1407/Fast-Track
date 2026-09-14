@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>FAST-TRACK | Courses</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:"Inter",sans-serif;
+    background:#f5f7fb;
+    color:#172033;
+}
+
+button,input,select{
+    font-family:inherit;
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:250px;
+    height:100vh;
+    background:linear-gradient(180deg,#111827,#172554);
+    color:white;
+    padding:24px 16px;
+    z-index:1000;
+}
+
+.logo-area{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:4px 10px 28px;
+}
+
+.logo{
+    width:42px;
+    height:42px;
+    object-fit:contain;
+    border-radius:12px;
+}
+
+.logo-text{
+    font-size:20px;
+    font-weight:800;
+}
+
+.logo-sub{
+    font-size:9px;
+    color:#94a3b8;
+    letter-spacing:1px;
+    margin-top:3px;
+}
+
+.nav{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.nav a{
+    text-decoration:none;
+    color:#cbd5e1;
+    padding:13px 14px;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:14px;
+    font-weight:600;
+    transition:.2s;
+}
+
+.nav a:hover{
+    background:rgba(255,255,255,.08);
+    color:white;
+}
+
+.nav a.active{
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    color:white;
+    box-shadow:0 8px 20px rgba(37,99,235,.25);
+}
+
+.logout{
+    position:absolute;
+    left:16px;
+    right:16px;
+    bottom:20px;
+    border:1px solid rgba(255,255,255,.08);
+    background:rgba(255,255,255,.05);
+    color:#cbd5e1;
+    padding:13px;
+    border-radius:12px;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.logout:hover{
+    background:rgba(239,68,68,.15);
+    color:white;
+}
+
+/* ================= MAIN ================= */
+
+.main{
+    margin-left:250px;
+    min-height:100vh;
+}
+
+/* ================= TOPBAR ================= */
+
+.topbar{
+    height:76px;
+    background:white;
+    border-bottom:1px solid #e5e7eb;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 32px;
+}
+
+.page-title{
+    font-size:23px;
+    font-weight:800;
+}
+
+.page-subtitle{
+    color:#64748b;
+    font-size:13px;
+    margin-top:4px;
+}
+
+.top-right{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.notification{
+    width:40px;
+    height:40px;
+    border:1px solid #e5e7eb;
+    background:white;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:18px;
+}
+
+.user{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.avatar{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:800;
+}
+
+.user-name{
+    font-size:13px;
+    font-weight:700;
+}
+
+/* ================= CONTENT ================= */
+
+.content{
+    padding:30px 32px 100px;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    background:linear-gradient(135deg,#172554,#312e81);
+    border-radius:22px;
+    padding:30px;
+    color:white;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:25px;
+    margin-bottom:24px;
+}
+
+.hero h1{
+    font-size:26px;
+    margin-bottom:8px;
+}
+
+.hero p{
+    color:#dbeafe;
+    font-size:13px;
+    line-height:1.7;
+    max-width:700px;
+}
+
+.learning-score{
+    min-width:150px;
+    padding:20px;
+    text-align:center;
+    border-radius:17px;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.14);
+}
+
+.learning-score strong{
+    display:block;
+    font-size:28px;
+}
+
+.learning-score span{
+    font-size:9px;
+    color:#bfdbfe;
+}
+
+/* ================= STATS ================= */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+    margin-bottom:25px;
+}
+
+.stat-card{
+    background:white;
+    border:1px solid #e5e7eb;
+    border-radius:17px;
+    padding:19px;
+}
+
+.stat-icon{
+    width:38px;
+    height:38px;
+    border-radius:11px;
+    background:#eff6ff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:12px;
+}
+
+.stat-card h3{
+    font-size:23px;
+    margin-bottom:3px;
+}
+
+.stat-card p{
+    color:#64748b;
+    font-size:11px;
+}
+
+/* ================= SEARCH ================= */
+
+.search-panel{
+    background:white;
+    border:1px solid #e5e7eb;
+    border-radius:18px;
+    padding:18px;
+    margin-bottom:24px;
+}
+
+.search-row{
+    display:grid;
+    grid-template-columns:1fr 190px 120px;
+    gap:12px;
+}
+
+.search-input,
+.category-select{
+    height:45px;
+    width:100%;
+    border:1px solid #dbe1ea;
+    border-radius:10px;
+    padding:0 13px;
+    outline:none;
+    background:white;
+}
+
+.search-input:focus,
+.category-select:focus{
+    border-color:#2563eb;
+}
+
+.search-btn{
+    border:none;
+    border-radius:10px;
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    color:white;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.filter-row{
+    display:flex;
+    gap:8px;
+    margin-top:13px;
+    flex-wrap:wrap;
+}
+
+.filter{
+    border:1px solid #e2e8f0;
+    background:#f8fafc;
+    color:#475569;
+    padding:8px 13px;
+    border-radius:20px;
+    font-size:11px;
+    cursor:pointer;
+}
+
+.filter.active{
+    background:#eef2ff;
+    color:#4338ca;
+    border-color:#818cf8;
+}
+
+/* ================= SECTION ================= */
+
+.section-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:15px;
+}
+
+.section-head h2{
+    font-size:19px;
+}
+
+.section-head span{
+    font-size:11px;
+    color:#64748b;
+}
+
+/* ================= COURSE GRID ================= */
+
+.course-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.course-card{
+    background:white;
+    border:1px solid #e5e7eb;
+    border-radius:18px;
+    padding:19px;
+    transition:.25s;
+}
+
+.course-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 14px 30px rgba(15,23,42,.08);
+}
+
+.course-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:10px;
+}
+
+.course-icon{
+    width:50px;
+    height:50px;
+    border-radius:14px;
+    background:#eef2ff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:23px;
+}
+
+.level{
+    padding:6px 8px;
+    border-radius:7px;
+    font-size:9px;
+    font-weight:700;
+}
+
+.beginner{
+    background:#dcfce7;
+    color:#166534;
+}
+
+.intermediate{
+    background:#fef3c7;
+    color:#92400e;
+}
+
+.advanced{
+    background:#fee2e2;
+    color:#991b1b;
+}
+
+.course-card h3{
+    font-size:15px;
+    margin-top:15px;
+    margin-bottom:6px;
+}
+
+.course-card .description{
+    color:#64748b;
+    font-size:11px;
+    line-height:1.6;
+    min-height:52px;
+}
+
+.course-meta{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin:14px 0;
+}
+
+.meta{
+    background:#f8fafc;
+    border:1px solid #e2e8f0;
+    padding:6px 8px;
+    border-radius:7px;
+    font-size:9px;
+    color:#64748b;
+}
+
+.skill-target{
+    color:#4338ca;
+    background:#eef2ff;
+    display:inline-block;
+    padding:6px 9px;
+    border-radius:7px;
+    font-size:9px;
+    font-weight:700;
+    margin-bottom:14px;
+}
+
+.progress-label{
+    display:flex;
+    justify-content:space-between;
+    color:#64748b;
+    font-size:9px;
+    margin-bottom:6px;
+}
+
+.progress{
+    height:7px;
+    background:#eef2f7;
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.progress-bar{
+    height:100%;
+    background:linear-gradient(90deg,#2563eb,#7c3aed);
+    border-radius:10px;
+}
+
+.course-bottom{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:15px;
+}
+
+.course-status{
+    font-size:9px;
+    color:#64748b;
+}
+
+.course-btn{
+    border:none;
+    background:#2563eb;
+    color:white;
+    padding:9px 13px;
+    border-radius:9px;
+    font-size:10px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.course-btn:hover{
+    background:#1d4ed8;
+}
+
+/* ================= EMPTY ================= */
+
+.no-results{
+    display:none;
+    background:white;
+    border:1px dashed #cbd5e1;
+    border-radius:18px;
+    padding:45px 20px;
+    text-align:center;
+    color:#64748b;
+}
+
+.no-results strong{
+    display:block;
+    color:#334155;
+    margin-bottom:5px;
+}
+
+/* ================= COURSE MODAL ================= */
+
+.modal-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(15,23,42,.6);
+    backdrop-filter:blur(5px);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    z-index:1500;
+}
+
+.modal-overlay.show{
+    display:flex;
+}
+
+.modal{
+    width:min(560px,100%);
+    background:white;
+    border-radius:20px;
+    padding:25px;
+    max-height:90vh;
+    overflow:auto;
+}
+
+.modal-top{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    align-items:flex-start;
+}
+
+.modal h2{
+    font-size:21px;
+    margin-bottom:6px;
+}
+
+.modal-sub{
+    color:#64748b;
+    font-size:11px;
+}
+
+.close-modal{
+    width:34px;
+    height:34px;
+    border:none;
+    border-radius:9px;
+    background:#f1f5f9;
+    cursor:pointer;
+    font-size:18px;
+}
+
+.modal-section{
+    margin-top:20px;
+}
+
+.modal-section h3{
+    font-size:13px;
+    margin-bottom:9px;
+}
+
+.modal-section p{
+    color:#64748b;
+    font-size:11px;
+    line-height:1.7;
+}
+
+.lesson-list{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.lesson{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:11px;
+    background:#f8fafc;
+    border-radius:9px;
+    font-size:10px;
+}
+
+.lesson-number{
+    width:25px;
+    height:25px;
+    border-radius:7px;
+    background:#e0e7ff;
+    color:#4338ca;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:800;
+}
+
+.modal-actions{
+    display:flex;
+    gap:10px;
+    margin-top:22px;
+}
+
+.modal-actions button{
+    flex:1;
+    padding:11px;
+    border-radius:9px;
+    cursor:pointer;
+    font-weight:700;
+}
+
+.start-course{
+    border:none;
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    color:white;
+}
+
+.cancel-course{
+    border:1px solid #e2e8f0;
+    background:white;
+    color:#475569;
+}
+
+/* ================= AI ================= */
+
+.ai-button{
+    position:fixed;
+    right:25px;
+    bottom:25px;
+    width:58px;
+    height:58px;
+    border:none;
+    border-radius:50%;
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    color:white;
+    font-size:22px;
+    cursor:pointer;
+    box-shadow:0 12px 30px rgba(37,99,235,.35);
+    z-index:1200;
+}
+
+/* ================= TOAST ================= */
+
+.toast{
+    position:fixed;
+    left:50%;
+    bottom:30px;
+    transform:translate(-50%,120px);
+    background:#111827;
+    color:white;
+    padding:12px 18px;
+    border-radius:10px;
+    font-size:12px;
+    opacity:0;
+    transition:.3s;
+    z-index:2000;
+}
+
+.toast.show{
+    transform:translate(-50%,0);
+    opacity:1;
+}
+
+/* ================= MOBILE NAV ================= */
+
+.mobile-nav{
+    display:none;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:1050px){
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .course-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:900px){
+
+    .sidebar{
+        display:none;
+    }
+
+    .main{
+        margin-left:0;
+        padding-bottom:70px;
+    }
+
+    .content{
+        padding:20px 16px 90px;
+    }
+
+    .hero{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .learning-score{
+        width:100%;
+    }
+
+    .search-row{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .search-btn{
+        height:45px;
+    }
+
+    .mobile-nav{
+        display:flex;
+        position:fixed;
+        left:0;
+        right:0;
+        bottom:0;
+        height:66px;
+        background:white;
+        border-top:1px solid #e5e7eb;
+        z-index:1100;
+        justify-content:space-around;
+        align-items:center;
+    }
+
+    .mobile-nav a{
+        text-decoration:none;
+        color:#64748b;
+        font-size:10px;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        gap:4px;
+    }
+
+    .mobile-nav a.active{
+        color:#2563eb;
+        font-weight:700;
+    }
+
+    .mobile-nav span{
+        font-size:19px;
+    }
+}
+
+@media(max-width:600px){
+
+    .topbar{
+        height:68px;
+        padding:0 15px;
+    }
+
+    .page-title{
+        font-size:18px;
+    }
+
+    .page-subtitle{
+        display:none;
+    }
+
+    .user-name{
+        display:none;
+    }
+
+    .content{
+        padding:15px 12px 90px;
+    }
+
+    .hero{
+        padding:21px;
+        border-radius:18px;
+    }
+
+    .hero h1{
+        font-size:21px;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+        gap:10px;
+    }
+
+    .stat-card{
+        padding:14px;
+    }
+
+    .stat-card h3{
+        font-size:20px;
+    }
+
+    .search-row{
+        grid-template-columns:1fr;
+    }
+
+    .course-grid{
+        grid-template-columns:1fr;
+    }
+
+    .course-card{
+        padding:16px;
+    }
+
+    .ai-button{
+        right:15px;
+        bottom:82px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= SIDEBAR ================= -->
+
+<aside class="sidebar">
+
+    <div class="logo-area">
+
+        <img
+            src="fast-track-logo.png"
+            class="logo"
+            alt="FAST-TRACK"
+        >
+
+        <div>
+
+            <div class="logo-text">
+                FAST-TRACK
+            </div>
+
+            <div class="logo-sub">
+                SMART CAREER PLATFORM
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <nav class="nav">
+
+        <a href="dashboard.html">
+            📊
+            <span>Dashboard</span>
+        </a>
+
+        <a href="jobs.html">
+            💼
+            <span>Jobs</span>
+        </a>
+
+        <a href="skills.html">
+            🧠
+            <span>Skills</span>
+        </a>
+
+        <a href="course.html" class="active">
+            📚
+            <span>Courses</span>
+        </a>
+
+        <a href="resume builder.html">
+            📄
+            <span>Resume Builder</span>
+        </a>
+
+        <a href="career progress.html">
+            📈
+            <span>Career Progress</span>
+        </a>
+
+        <a href="my profile.html">
+            👤
+            <span>My Profile</span>
+        </a>
+
+    </nav>
+
+
+    <button class="logout" id="logoutBtn">
+        🚪 Logout
+    </button>
+
+</aside>
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="main">
+
+    <!-- TOPBAR -->
+
+    <header class="topbar">
+
+        <div>
+
+            <div class="page-title">
+                Learning Center
+            </div>
+
+            <div class="page-subtitle">
+                Learn the skills you need for your target career
+            </div>
+
+        </div>
+
+
+        <div class="top-right">
+
+            <button
+                class="notification"
+                id="notifyBtn"
+            >
+                🔔
+            </button>
+
+
+            <div class="user">
+
+                <div
+                    class="avatar"
+                    id="avatar"
+                >
+                    U
+                </div>
+
+                <div
+                    class="user-name"
+                    id="topName"
+                >
+                    User
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= CONTENT ================= -->
+
+    <section class="content">
+
+
+        <!-- HERO -->
+
+        <div class="hero">
+
+            <div>
+
+                <h1>
+                    Turn Skill Gaps Into Skills 🚀
+                </h1>
+
+                <p>
+                    FAST-TRACK recommends learning based on your
+                    target career, missing skills and job requirements.
+                    Complete courses, improve your profile and
+                    strengthen your career readiness.
+                </p>
+
+            </div>
+
+
+            <div class="learning-score">
+
+                <strong id="learningProgress">
+                    0%
+                </strong>
+
+                <span>
+                    LEARNING PROGRESS
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= STATS ================= -->
+
+        <div class="stats">
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📚
+                </div>
+
+                <h3 id="totalCourses">
+                    0
+                </h3>
+
+                <p>
+                    Recommended Courses
+                </p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ▶️
+                </div>
+
+                <h3 id="activeCourses">
+                    0
+                </h3>
+
+                <p>
+                    Courses In Progress
+                </p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ✅
+                </div>
+
+                <h3 id="completedCourses">
+                    0
+                </h3>
+
+                <p>
+                    Completed Courses
+                </p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🎯
+                </div>
+
+                <h3 id="skillsToImprove">
+                    0
+                </h3>
+
+                <p>
+                    Skills To Improve
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= SEARCH ================= -->
+
+        <div class="search-panel">
+
+            <div class="search-row">
+
+                <input
+                    class="search-input"
+                    id="searchInput"
+                    type="text"
+                    placeholder="Search courses or skills..."
+                >
+
+
+                <select
+                    class="category-select"
+                    id="categorySelect"
+                >
+
+                    <option value="">
+                        All Categories
+                    </option>
+
+                    <option value="Programming">
+                        Programming
+                    </option>
+
+                    <option value="Data Science">
+                        Data Science
+                    </option>
+
+                    <option value="AI & ML">
+                        AI & ML
+                    </option>
+
+                    <option value="Tools">
+                        Tools
+                    </option>
+
+                    <option value="Analytics">
+                        Analytics
+                    </option>
+
+                </select>
+
+
+                <button
+                    class="search-btn"
+                    id="searchBtn"
+                >
+                    Search
+                </button>
+
+            </div>
+
+
+            <div class="filter-row">
+
+                <button
+                    class="filter active"
+                    data-filter="all"
+                >
+                    All
+                </button>
+
+                <button
+                    class="filter"
+                    data-filter="recommended"
+                >
+                    Recommended
+                </button>
+
+                <button
+                    class="filter"
+                    data-filter="beginner"
+                >
+                    Beginner
+                </button>
+
+                <button
+                    class="filter"
+                    data-filter="intermediate"
+                >
+                    Intermediate
+                </button>
+
+                <button
+                    class="filter"
+                    data-filter="inprogress"
+                >
+                    In Progress
+                </button>
+
+            </div>
+
+       
