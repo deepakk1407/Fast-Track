@@ -115,24 +115,11 @@ function firebaseError(error) {
 
     const code = error?.code || "unknown-error";
 
-    const firebaseMessage =
+    const message =
         error?.message || "Unknown Firebase error";
 
 
-    console.log("Firebase Error Code:", code);
-    console.log("Firebase Error Message:", firebaseMessage);
-
-
     switch (code) {
-
-        case "auth/invalid-credential":
-            return "Invalid email or password.";
-
-        case "auth/user-not-found":
-            return "No account found with this email.";
-
-        case "auth/wrong-password":
-            return "Incorrect password.";
 
         case "auth/email-already-in-use":
             return "This email is already registered.";
@@ -144,19 +131,22 @@ function firebaseError(error) {
             return "Password must contain at least 6 characters.";
 
         case "auth/operation-not-allowed":
-            return "Email/Password login is not enabled.";
+            return "Email/Password authentication is disabled in Firebase.";
 
         case "auth/unauthorized-domain":
-            return "This website domain is not authorized.";
-
-        case "auth/popup-blocked":
-            return "Google popup was blocked.";
-
-        case "auth/popup-closed-by-user":
-            return "Google login was cancelled.";
+            return "This website domain is not authorized in Firebase.";
 
         case "auth/network-request-failed":
-            return "Network error. Check your internet.";
+            return "Network error. Check your internet connection.";
+
+        case "auth/invalid-credential":
+            return "Invalid email or password.";
+
+        case "auth/user-not-found":
+            return "No account found with this email.";
+
+        case "auth/wrong-password":
+            return "Incorrect password.";
 
         case "auth/too-many-requests":
             return "Too many attempts. Try again later.";
@@ -165,16 +155,13 @@ function firebaseError(error) {
             return "Firestore permission denied.";
 
         default:
-
-            /* SHOW ACTUAL FIREBASE ERROR */
-
-            return `Firebase error: ${firebaseMessage}`;
+            return `Firebase error: ${message}`;
     }
 }
 
 
 /* =========================
-   LOGIN / REGISTER SWITCH
+   LOGIN / REGISTER TABS
 ========================= */
 
 function showLogin() {
@@ -205,7 +192,7 @@ goLogin?.addEventListener("click", showLogin);
 
 
 /* =========================
-   PASSWORD SHOW / HIDE
+   PASSWORD TOGGLE
 ========================= */
 
 function setupPasswordToggle(inputId, buttonId) {
@@ -245,6 +232,8 @@ setupPasswordToggle("confirmPassword", "confirmEye");
 loginForm?.addEventListener("submit", async (event) => {
 
     event.preventDefault();
+
+    showToast("LOGIN BUTTON WORKING");
 
 
     const email =
@@ -334,20 +323,37 @@ registerForm?.addEventListener("submit", async (event) => {
     event.preventDefault();
 
 
+    /* DEBUG MESSAGE */
+
+    showToast(
+        "REGISTER BUTTON WORKING"
+    );
+
+
     const name =
-        document.getElementById("registerName")?.value.trim();
+        document
+            .getElementById("registerName")
+            ?.value.trim();
 
     const email =
-        document.getElementById("registerEmail")?.value.trim();
+        document
+            .getElementById("registerEmail")
+            ?.value.trim();
 
     const password =
-        document.getElementById("registerPassword")?.value;
+        document
+            .getElementById("registerPassword")
+            ?.value;
 
     const confirmPassword =
-        document.getElementById("confirmPassword")?.value;
+        document
+            .getElementById("confirmPassword")
+            ?.value;
 
     const terms =
-        document.getElementById("terms")?.checked;
+        document
+            .getElementById("terms")
+            ?.checked;
 
 
     const roleElement =
@@ -417,9 +423,16 @@ registerForm?.addEventListener("submit", async (event) => {
     }
 
 
+    /* =========================
+       CREATE FIREBASE ACCOUNT
+    ========================= */
+
     try {
 
-        /* CREATE ACCOUNT */
+        showToast(
+            "Creating your account..."
+        );
+
 
         const result =
             await createUserWithEmailAndPassword(
@@ -429,10 +442,11 @@ registerForm?.addEventListener("submit", async (event) => {
             );
 
 
-        const user = result.user;
+        const user =
+            result.user;
 
 
-        /* ADD NAME */
+        /* UPDATE NAME */
 
         await updateProfile(
             user,
@@ -442,7 +456,9 @@ registerForm?.addEventListener("submit", async (event) => {
         );
 
 
-        /* FIRESTORE */
+        /* =========================
+           FIRESTORE PROFILE
+        ========================= */
 
         try {
 
@@ -458,25 +474,35 @@ registerForm?.addEventListener("submit", async (event) => {
                     email: email,
                     role: role,
                     profileCompleted: false,
-                    createdAt: serverTimestamp()
+                    createdAt:
+                        serverTimestamp()
                 }
             );
+
 
         } catch (firestoreError) {
 
             console.error(
-                "Firestore error:",
+                "Firestore Error:",
                 firestoreError
             );
 
+            /*
+              Firebase Auth account is already
+              successfully created.
+            */
+
             showToast(
-                "Account created, but profile storage failed.",
+                "Account created! Firestore profile needs setup.",
                 "error"
             );
+
         }
 
 
-        /* LOCAL STORAGE */
+        /* =========================
+           LOCAL STORAGE
+        ========================= */
 
         localStorage.setItem(
             "fastTrackUser",
@@ -504,6 +530,12 @@ registerForm?.addEventListener("submit", async (event) => {
 
     } catch (error) {
 
+        console.error(
+            "REGISTER ERROR:",
+            error
+        );
+
+
         showToast(
             firebaseError(error),
             "error"
@@ -519,6 +551,11 @@ registerForm?.addEventListener("submit", async (event) => {
 ========================= */
 
 async function googleLogin() {
+
+    showToast(
+        "Opening Google login..."
+    );
+
 
     try {
 
@@ -536,11 +573,6 @@ async function googleLogin() {
             browserLocalPersistence
         );
 
-
-        /*
-           Redirect is better for mobile
-           than popup.
-        */
 
         await signInWithRedirect(
             auth,
@@ -565,7 +597,6 @@ loginGoogle?.addEventListener(
     googleLogin
 );
 
-
 registerGoogle?.addEventListener(
     "click",
     googleLogin
@@ -582,7 +613,8 @@ getRedirectResult(auth)
         if (!result) return;
 
 
-        const user = result.user;
+        const user =
+            result.user;
 
 
         const userRef =
@@ -593,21 +625,8 @@ getRedirectResult(auth)
             );
 
 
-        let userData = {
-
-            uid: user.uid,
-
-            name:
-                user.displayName ||
-                "User",
-
-            email:
-                user.email ||
-                "",
-
-            role:
-                "Job Seeker"
-        };
+        let role =
+            "Job Seeker";
 
 
         try {
@@ -639,17 +658,17 @@ getRedirectResult(auth)
 
             } else {
 
-                userData.role =
+                role =
                     userDoc.data().role ||
                     "Job Seeker";
             }
 
 
-        } catch (error) {
+        } catch (firestoreError) {
 
             console.error(
-                "Google Firestore error:",
-                error
+                "Google Firestore Error:",
+                firestoreError
             );
 
         }
@@ -657,7 +676,16 @@ getRedirectResult(auth)
 
         localStorage.setItem(
             "fastTrackUser",
-            JSON.stringify(userData)
+            JSON.stringify({
+                uid: user.uid,
+                name:
+                    user.displayName ||
+                    "User",
+                email:
+                    user.email ||
+                    "",
+                role: role
+            })
         );
 
 
@@ -693,7 +721,9 @@ forgotButton?.addEventListener(
     "click",
     () => {
 
-        forgotModal?.classList.add("active");
+        forgotModal?.classList.add(
+            "active"
+        );
 
     }
 );
@@ -703,7 +733,9 @@ cancelForgot?.addEventListener(
     "click",
     () => {
 
-        forgotModal?.classList.remove("active");
+        forgotModal?.classList.remove(
+            "active"
+        );
 
     }
 );
@@ -713,9 +745,14 @@ forgotModal?.addEventListener(
     "click",
     (event) => {
 
-        if (event.target === forgotModal) {
+        if (
+            event.target ===
+            forgotModal
+        ) {
 
-            forgotModal.classList.remove("active");
+            forgotModal.classList.remove(
+                "active"
+            );
 
         }
 
