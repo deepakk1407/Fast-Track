@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>FAST-TRACK | Dashboard</title>
+<title>FAST-TRACK Dashboard</title>
 
 <style>
 *{
@@ -14,485 +14,699 @@
 }
 
 body{
-    font-family:Arial,Helvetica,sans-serif;
-    background:#f5f7fb;
+    font-family:Arial,sans-serif;
+    background:#f4f7fb;
     color:#0f172a;
 }
 
-.app{
-    min-height:100vh;
-}
+/* ================= SIDEBAR ================= */
 
-/* SIDEBAR */
 .sidebar{
     position:fixed;
     left:0;
     top:0;
     bottom:0;
     width:250px;
-    padding:25px 16px;
-    background:linear-gradient(180deg,#0f172a,#172554,#1e1b4b);
-    color:white;
-    z-index:1000;
-    display:flex;
-    flex-direction:column;
-}
-
-.brand{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    padding:0 10px;
-    margin-bottom:35px;
-}
-
-.brand img{
-    width:42px;
-    height:42px;
-    object-fit:contain;
-    border-radius:10px;
-}
-
-.brand h2{
-    font-size:18px;
-}
-
-.brand span{
-    display:block;
-    color:#93c5fd;
-    font-size:9px;
-    margin-top:3px;
-    letter-spacing:1px;
-}
-
-.nav-title{
-    color:#94a3b8;
-    font-size:10px;
-    font-weight:bold;
-    letter-spacing:1.5px;
-    padding:0 12px;
-    margin-bottom:10px;
-}
-
-.nav{
-    display:flex;
-    flex-direction:column;
-    gap:6px;
-}
-
-.nav-item{
-    display:flex;
-    align-items:center;
-    gap:13px;
-    padding:12px 14px;
-    border-radius:10px;
-    color:#cbd5e1;
-    text-decoration:none;
-    font-size:14px;
-    transition:.2s;
-}
-
-.nav-item:hover,
-.nav-item.active{
-    background:rgba(96,165,250,.18);
-    color:white;
-}
-
-.nav-item.active{
-    box-shadow:inset 3px 0 #60a5fa;
-}
-
-.nav-icon{
-    width:22px;
-    text-align:center;
-    font-size:17px;
-}
-
-.sidebar-bottom{
-    margin-top:auto;
-}
-
-.career-mini{
-    padding:16px;
-    margin:10px 4px 18px;
-    border-radius:14px;
-    background:rgba(255,255,255,.07);
-}
-
-.career-mini p{
-    color:#94a3b8;
-    font-size:11px;
-    margin-bottom:8px;
-}
-
-.career-mini strong{
-    font-size:13px;
-}
-
-.logout-btn{
-    width:100%;
-    padding:12px;
-    border:0;
-    border-radius:10px;
-    background:rgba(239,68,68,.1);
-    color:#fca5a5;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-.logout-btn:hover{
-    background:#ef4444;
-    color:white;
-}
-
-/* MAIN */
-.main{
-    margin-left:250px;
-    padding:25px 35px;
-    min-height:100vh;
-}
-
-/* MOBILE HEADER */
-.mobile-header{
-    display:none;
-}
-
-.mobile-menu-btn{
-    border:0;
     background:#0f172a;
     color:white;
-    width:42px;
-    height:42px;
-    border-radius:10px;
-    font-size:22px;
-    cursor:pointer;
+    padding:25px 15px;
+    z-index:1000;
 }
 
-/* TOP */
-.topbar{
+.logo{
     display:flex;
     align-items:center;
-    justify-content:space-between;
+    gap:10px;
+    padding:10px;
     margin-bottom:30px;
 }
 
-.page-title h1{
-    font-size:28px;
-    margin-bottom:6px;
+.logo img{
+    width:42px;
+    height:42px;
+    object-fit:contain;
 }
 
-.page-title p{
-    color:#64748b;
-    font-size:14px;
+.logo h2{
+    font-size:18px;
 }
 
-.profile-mini{
+.logo p{
+    font-size:8px;
+    color:#93c5fd;
+    margin-top:4px;
+}
+
+.menu-title{
+    font-size:10px;
+    color:#94a3b8;
+    margin:20px 12px 10px;
+}
+
+.menu a{
     display:flex;
     align-items:center;
     gap:12px;
-    padding:8px 13px;
-    background:white;
-    border:1px solid #e2e8f0;
-    border-radius:12px;
+    text-decoration:none;
+    color:#cbd5e1;
+    padding:13px;
+    margin-bottom:5px;
+    border-radius:10px;
+    font-size:14px;
 }
 
-.profile-avatar{
-    width:38px;
-    height:38px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:50%;
-    background:#dbeafe;
-    color:#2563eb;
-    font-weight:800;
-}
-
-/* WELCOME */
-.welcome-card{
-    padding:32px;
-    border-radius:22px;
-    background:linear-gradient(120deg,#0f172a,#1d4ed8,#312e81);
+.menu a:hover,
+.menu a.active{
+    background:#1d4ed8;
     color:white;
+}
+
+.logout{
+    position:absolute;
+    bottom:25px;
+    left:15px;
+    right:15px;
+    padding:12px;
+    border:0;
+    border-radius:10px;
+    background:#7f1d1d;
+    color:white;
+    cursor:pointer;
+    font-size:14px;
+}
+
+.logout:hover{
+    background:#991b1b;
+}
+
+/* ================= MAIN ================= */
+
+.main{
+    margin-left:250px;
+    padding:30px;
+}
+
+/* ================= TOPBAR ================= */
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
     margin-bottom:25px;
 }
 
-.welcome-badge{
-    display:inline-block;
-    padding:7px 12px;
-    border-radius:30px;
-    background:rgba(255,255,255,.12);
-    font-size:10px;
-    letter-spacing:1px;
-    margin-bottom:15px;
+.topbar h1{
+    font-size:28px;
 }
 
-.welcome-card h2{
-    font-size:30px;
-    margin-bottom:8px;
+.topbar p{
+    color:#64748b;
+    margin-top:5px;
+    font-size:14px;
 }
 
-.welcome-card h2 span{
+.profile{
+    background:white;
+    border:1px solid #e2e8f0;
+    padding:8px 15px;
+    border-radius:12px;
+}
+
+/* ================= WELCOME ================= */
+
+.welcome{
+    background:linear-gradient(
+        135deg,
+        #0f172a,
+        #2563eb,
+        #3730a3
+    );
+    color:white;
+    padding:35px;
+    border-radius:20px;
+    margin-bottom:25px;
+}
+
+.welcome span{
     color:#93c5fd;
 }
 
-.welcome-card p{
-    max-width:700px;
-    color:#dbeafe;
-    font-size:14px;
-    line-height:1.7;
+.welcome h2{
+    font-size:30px;
+    margin-bottom:10px;
 }
 
-/* STATS */
+.welcome p{
+    color:#dbeafe;
+    line-height:1.6;
+    max-width:650px;
+}
+
+/* ================= STATS ================= */
+
 .stats{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
+    grid-template-columns:repeat(4,1fr);
     gap:18px;
     margin-bottom:25px;
 }
 
-.stat-card{
+.card{
     background:white;
-    border:1px solid #e2e8f0;
-    border-radius:16px;
     padding:22px;
-    transition:.2s;
+    border-radius:16px;
+    border:1px solid #e2e8f0;
 }
 
-.stat-card:hover{
-    transform:translateY(-3px);
-    box-shadow:0 12px 30px rgba(15,23,42,.07);
-}
-
-.stat-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:18px;
-}
-
-.stat-icon{
-    width:42px;
-    height:42px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:11px;
-    background:#eff6ff;
-    font-size:19px;
-}
-
-.stat-card small{
+.card small{
     color:#64748b;
     font-size:11px;
-    font-weight:bold;
-    text-transform:uppercase;
 }
 
-.stat-card h3{
-    font-size:25px;
+.card h2{
+    margin-top:10px;
+    font-size:28px;
 }
 
-/* CONTENT */
-.content-grid{
+.card p{
+    margin-top:5px;
+    color:#64748b;
+    font-size:11px;
+}
+
+.blue{color:#2563eb;}
+.green{color:#16a34a;}
+.orange{color:#d97706;}
+.purple{color:#7c3aed;}
+
+/* ================= GRID ================= */
+
+.grid{
     display:grid;
     grid-template-columns:1.5fr 1fr;
     gap:20px;
 }
 
+/* ================= PANEL ================= */
+
 .panel{
     background:white;
-    border:1px solid #e2e8f0;
+    padding:22px;
     border-radius:18px;
-    padding:24px;
-}
-
-.panel-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+    border:1px solid #e2e8f0;
     margin-bottom:20px;
 }
 
-.panel-header h2{
+.panel h2{
     font-size:17px;
+    margin-bottom:18px;
 }
 
-.panel-header span{
-    color:#2563eb;
-    font-size:11px;
-    font-weight:bold;
+/* ================= MATCH ================= */
+
+.match{
+    display:flex;
+    align-items:center;
+    gap:25px;
 }
 
-.feature-list{
+.circle{
+    width:140px;
+    height:140px;
+    min-width:140px;
+    border-radius:50%;
+    background:conic-gradient(
+        #2563eb 0%,
+        #e2e8f0 0%
+    );
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.circle-inner{
+    width:105px;
+    height:105px;
+    background:white;
+    border-radius:50%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+}
+
+.circle-inner strong{
+    font-size:30px;
+}
+
+.circle-inner small{
+    color:#64748b;
+    font-size:9px;
+}
+
+.breakdown{
+    flex:1;
+}
+
+.row{
     display:grid;
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:90px 1fr 50px;
+    align-items:center;
+    gap:10px;
+    margin-bottom:12px;
+    font-size:11px;
+}
+
+.progress{
+    height:7px;
+    background:#e2e8f0;
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.progress div{
+    height:100%;
+    width:0%;
+    background:#2563eb;
+}
+
+/* ================= JOBS ================= */
+
+.job{
+    display:flex;
+    align-items:center;
     gap:12px;
-}
-
-.feature{
-    padding:18px;
+    padding:13px;
     border:1px solid #e2e8f0;
-    border-radius:13px;
-    cursor:pointer;
-    transition:.2s;
-}
-
-.feature:hover{
-    border-color:#93c5fd;
-    background:#f8fbff;
-    transform:translateY(-2px);
-}
-
-.feature-icon{
-    font-size:23px;
+    border-radius:12px;
     margin-bottom:10px;
 }
 
-.feature h3{
-    font-size:14px;
-    margin-bottom:5px;
-}
-
-.feature p{
-    color:#64748b;
-    font-size:11px;
-    line-height:1.5;
-}
-
-/* PROFILE */
-.profile-info{
-    display:flex;
-    flex-direction:column;
-    gap:14px;
-}
-
-.info-row{
-    padding:13px;
+.company{
+    width:42px;
+    height:42px;
+    background:#eff6ff;
+    color:#2563eb;
     border-radius:10px;
-    background:#f8fafc;
-    border:1px solid #eef2f7;
-}
-
-.info-row small{
-    display:block;
-    color:#64748b;
-    font-size:10px;
-    margin-bottom:5px;
-    text-transform:uppercase;
+    display:flex;
+    align-items:center;
+    justify-content:center;
     font-weight:bold;
 }
 
-.info-row strong{
-    font-size:13px;
-    word-break:break-word;
+.job-info{
+    flex:1;
 }
 
-/* OVERLAY */
+.job-info h3{
+    font-size:13px;
+}
+
+.job-info p{
+    color:#64748b;
+    font-size:10px;
+    margin-top:4px;
+}
+
+.match-badge{
+    background:#f1f5f9;
+    color:#64748b;
+    padding:6px 8px;
+    border-radius:7px;
+    font-size:10px;
+    font-weight:bold;
+}
+
+/* ================= SKILLS ================= */
+
+.skill{
+    padding:14px;
+    border-radius:12px;
+    background:#f8fafc;
+    border:1px solid #e2e8f0;
+    margin-bottom:10px;
+}
+
+.skill-top{
+    display:flex;
+    justify-content:space-between;
+}
+
+.skill h3{
+    font-size:13px;
+}
+
+.missing{
+    color:#dc2626;
+    font-size:10px;
+    font-weight:bold;
+}
+
+.good{
+    color:#16a34a;
+    font-size:10px;
+    font-weight:bold;
+}
+
+.skill p{
+    color:#64748b;
+    font-size:10px;
+    margin-top:6px;
+}
+
+/* ================= APPLICATION ================= */
+
+.application{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:14px 0;
+    border-bottom:1px solid #e2e8f0;
+}
+
+.application:last-child{
+    border-bottom:0;
+}
+
+.application h3{
+    font-size:12px;
+}
+
+.application p{
+    color:#64748b;
+    font-size:10px;
+    margin-top:4px;
+}
+
+.status{
+    padding:6px 9px;
+    border-radius:7px;
+    font-size:9px;
+    font-weight:bold;
+}
+
+.review{
+    background:#dbeafe;
+    color:#2563eb;
+}
+
+/* ================= LEARNING ================= */
+
+.learning{
+    padding:14px;
+    border:1px solid #e2e8f0;
+    border-radius:12px;
+    margin-bottom:10px;
+}
+
+.learning h3{
+    font-size:12px;
+}
+
+.learning p{
+    color:#64748b;
+    font-size:10px;
+    margin-top:5px;
+}
+
+.start{
+    display:inline-block;
+    margin-top:9px;
+    background:#2563eb;
+    color:white;
+    padding:7px 10px;
+    border-radius:7px;
+    text-decoration:none;
+    font-size:9px;
+}
+
+/* ================= PROFILE ================= */
+
+.profile-progress{
+    height:9px;
+    background:#e2e8f0;
+    border-radius:20px;
+    overflow:hidden;
+    margin:15px 0;
+}
+
+.profile-progress div{
+    height:100%;
+    width:0%;
+    background:#2563eb;
+}
+
+.profile-text{
+    font-size:11px;
+    color:#64748b;
+}
+
+/* ================= AI BUTTON ================= */
+
+.ai{
+    position:fixed;
+    right:25px;
+    bottom:25px;
+    border:0;
+    background:#2563eb;
+    color:white;
+    padding:13px 18px;
+    border-radius:30px;
+    font-weight:bold;
+    box-shadow:0 10px 25px rgba(37,99,235,.3);
+    cursor:pointer;
+}
+
+/* ================= MOBILE HEADER ================= */
+
+.mobile-header{
+    display:none;
+}
+
+.mobile-logo{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.mobile-logo img{
+    width:35px;
+    height:35px;
+    object-fit:contain;
+}
+
+.mobile-logo strong{
+    font-size:16px;
+}
+
+.mobile-menu-btn{
+    display:none;
+    width:42px;
+    height:42px;
+    border:1px solid #e2e8f0;
+    background:white;
+    border-radius:10px;
+    font-size:22px;
+    cursor:pointer;
+    align-items:center;
+    justify-content:center;
+}
+
 .mobile-overlay{
     display:none;
 }
 
-/* TABLET */
-@media(max-width:950px){
+/* ================= TABLET ================= */
 
-    .sidebar{
-        width:220px;
-    }
-
-    .main{
-        margin-left:220px;
-        padding:25px;
-    }
+@media(max-width:1000px){
 
     .stats{
         grid-template-columns:repeat(2,1fr);
     }
 
-    .content-grid{
+    .grid{
         grid-template-columns:1fr;
     }
 }
 
-/* MOBILE */
-@media(max-width:700px){
+/* ================= MOBILE ================= */
+
+@media(max-width:768px){
+
+    body{
+        overflow-x:hidden;
+    }
 
     .sidebar{
-        display:flex;
         width:270px;
-        transform:translateX(-100%);
-        transition:.3s ease;
+        transform:translateX(-110%);
+        transition:transform .3s ease;
+        box-shadow:10px 0 30px rgba(0,0,0,.2);
     }
 
     .sidebar.mobile-open{
         transform:translateX(0);
     }
 
-    .main{
-        width:100%;
-        margin-left:0;
-        padding:16px;
-    }
-
-    .mobile-header{
-        display:flex;
-        align-items:center;
-        justify-content:space-between;
-        margin-bottom:18px;
-    }
-
-    .mobile-brand{
-        display:flex;
-        align-items:center;
-        gap:8px;
-    }
-
-    .mobile-brand img{
-        width:35px;
-        height:35px;
-    }
-
-    .mobile-brand strong{
-        font-size:16px;
-    }
-
-    .topbar{
-        margin-bottom:20px;
-    }
-
-    .profile-mini{
-        display:none;
-    }
-
-    .page-title h1{
-        font-size:24px;
-    }
-
-    .welcome-card{
-        padding:25px 20px;
-    }
-
-    .welcome-card h2{
-        font-size:25px;
-    }
-
-    .stats{
-        grid-template-columns:1fr;
-    }
-
-    .feature-list{
-        grid-template-columns:1fr;
-    }
-
     .mobile-overlay{
         position:fixed;
         inset:0;
-        background:rgba(0,0,0,.45);
+        background:rgba(15,23,42,.5);
         z-index:999;
     }
 
     .mobile-overlay.mobile-open{
         display:block;
+    }
+
+    .main{
+        margin-left:0;
+        padding:15px;
+        width:100%;
+    }
+
+    .mobile-header{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        margin-bottom:20px;
+    }
+
+    .mobile-menu-btn{
+        display:flex;
+    }
+
+    .topbar{
+        margin-bottom:18px;
+    }
+
+    .topbar h1{
+        font-size:23px;
+    }
+
+    .topbar p{
+        font-size:11px;
+    }
+
+    .profile{
+        display:none;
+    }
+
+    .welcome{
+        padding:23px 18px;
+        border-radius:17px;
+    }
+
+    .welcome h2{
+        font-size:23px;
+    }
+
+    .welcome p{
+        font-size:11px;
+    }
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+        gap:10px;
+    }
+
+    .card{
+        padding:15px;
+    }
+
+    .card h2{
+        font-size:22px;
+    }
+
+    .card small{
+        font-size:9px;
+    }
+
+    .grid{
+        display:block;
+    }
+
+    .panel{
+        padding:16px;
+        border-radius:15px;
+        margin-bottom:14px;
+    }
+
+    .match{
+        flex-direction:column;
+        gap:20px;
+    }
+
+    .circle{
+        width:125px;
+        height:125px;
+        min-width:125px;
+    }
+
+    .circle-inner{
+        width:94px;
+        height:94px;
+    }
+
+    .circle-inner strong{
+        font-size:25px;
+    }
+
+    .breakdown{
+        width:100%;
+    }
+
+    .row{
+        grid-template-columns:75px 1fr 45px;
+        font-size:10px;
+    }
+
+    .job{
+        padding:11px;
+    }
+
+    .job-info h3{
+        font-size:12px;
+    }
+
+    .match-badge{
+        font-size:9px;
+    }
+
+    .ai{
+        right:15px;
+        bottom:15px;
+        padding:11px 15px;
+    }
+}
+
+/* VERY SMALL MOBILE */
+
+@media(max-width:420px){
+
+    .main{
+        padding:12px;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .card{
+        min-width:0;
+        padding:13px;
+    }
+
+    .card h2{
+        font-size:20px;
+    }
+
+    .welcome h2{
+        font-size:21px;
+    }
+
+    .welcome p{
+        font-size:10px;
     }
 }
 </style>
@@ -500,84 +714,68 @@ body{
 
 <body>
 
-<div class="app">
+<!-- ================= SIDEBAR ================= -->
 
-<!-- SIDEBAR -->
 <aside class="sidebar" id="sidebar">
 
-    <div class="brand">
+    <div class="logo">
         <img src="fast-track-logo.png" alt="FAST-TRACK">
         <div>
             <h2>FAST-TRACK</h2>
-            <span>SMART CAREER PLATFORM</span>
+            <p>SMART CAREER PLATFORM</p>
         </div>
     </div>
 
-    <div class="nav-title">MAIN MENU</div>
+    <div class="menu-title">MAIN MENU</div>
 
-    <nav class="nav">
+    <nav class="menu">
 
-        <a href="dashboard.html" class="nav-item active">
-            <span class="nav-icon">🏠</span>
-            Dashboard
+        <a href="dashboard.html" class="active">
+            🏠 Dashboard
         </a>
 
-        <a href="jobs.html" class="nav-item">
-            <span class="nav-icon">💼</span>
-            Jobs
+        <a href="jobs.html">
+            💼 Jobs
         </a>
 
-        <a href="skills.html" class="nav-item">
-            <span class="nav-icon">🎯</span>
-            Skills
+        <a href="skills.html">
+            🎯 Skills
         </a>
 
-        <a href="course.html" class="nav-item">
-            <span class="nav-icon">📚</span>
-            Courses
+        <a href="course.html">
+            📚 Courses
         </a>
 
-        <a href="resume builder.html" class="nav-item">
-            <span class="nav-icon">📄</span>
-            Resume Builder
+        <a href="resume builder.html">
+            📄 Resume Builder
         </a>
 
-        <a href="career progress.html" class="nav-item">
-            <span class="nav-icon">📈</span>
-            Career Progress
+        <a href="career progress.html">
+            📈 Career Progress
         </a>
 
-        <a href="my profile.html" class="nav-item">
-            <span class="nav-icon">👤</span>
-            My Profile
+        <a href="my profile.html">
+            👤 My Profile
         </a>
 
     </nav>
 
-    <div class="sidebar-bottom">
-
-        <div class="career-mini">
-            <p>YOUR CAREER JOURNEY</p>
-            <strong>Keep moving forward 🚀</strong>
-        </div>
-
-        <button class="logout-btn" id="logoutBtn">
-            🚪 Logout
-        </button>
-
-    </div>
+    <button class="logout" id="logoutBtn">
+        🚪 Logout
+    </button>
 
 </aside>
 
-<div class="mobile-overlay" id="mobileOverlay"></div>
 
-<!-- MAIN -->
+<!-- ================= MAIN ================= -->
+
 <main class="main">
 
     <!-- MOBILE HEADER -->
+
     <div class="mobile-header">
 
-        <div class="mobile-brand">
+        <div class="mobile-logo">
             <img src="fast-track-logo.png" alt="FAST-TRACK">
             <strong>FAST-TRACK</strong>
         </div>
@@ -585,399 +783,421 @@ body{
         <button
             class="mobile-menu-btn"
             id="mobileMenuBtn"
-            aria-label="Open menu">
+            type="button">
             ☰
         </button>
 
     </div>
 
+    <div
+        class="mobile-overlay"
+        id="mobileOverlay">
+    </div>
+
+
     <!-- TOPBAR -->
+
     <header class="topbar">
 
-        <div class="page-title">
+        <div>
+
             <h1>Dashboard</h1>
-            <p>Manage your career journey from one place.</p>
+
+            <p>
+                Your career journey, all in one place.
+            </p>
+
         </div>
 
-        <div class="profile-mini">
-
-            <div class="profile-avatar" id="profileAvatar">
-                U
-            </div>
-
-            <div>
-                <strong id="topUserName">User</strong>
-                <span>Career Explorer</span>
-            </div>
-
+        <div class="profile">
+            👤
+            <strong id="topName">User</strong>
         </div>
 
     </header>
 
-    <!-- WELCOME -->
-    <section class="welcome-card">
 
-        <div class="welcome-badge">
-            SMART CAREER PLATFORM
-        </div>
+    <!-- WELCOME -->
+
+    <section class="welcome">
 
         <h2>
             Welcome,
-            <span id="userName">User</span> 👋
+            <span id="welcomeName">User</span>
+            👋
         </h2>
 
         <p>
-            Your FAST-TRACK career journey starts here.
-            Explore opportunities, develop your skills,
-            build your resume and move closer to your
-            dream career.
+            FAST-TRACK helps you understand your job
+            fit, identify skill gaps, improve your profile
+            and move confidently toward your career goals.
         </p>
 
     </section>
 
+
     <!-- STATS -->
+
     <section class="stats">
 
-        <div class="stat-card">
+        <div class="card">
 
-            <div class="stat-top">
-                <div class="stat-icon">💼</div>
-                <small>Opportunities</small>
-            </div>
+            <small>AI MATCH SCORE</small>
 
-            <h3>Explore</h3>
+            <h2 class="blue" id="aiMatchStat">
+                0%
+            </h2>
 
-        </div>
-
-        <div class="stat-card">
-
-            <div class="stat-top">
-                <div class="stat-icon">🎯</div>
-                <small>AI Match Score</small>
-            </div>
-
-            <!-- DEFAULT 0 -->
-            <h3 id="matchScore">0%</h3>
+            <p>Best current match</p>
 
         </div>
 
-        <div class="stat-card">
 
-            <div class="stat-top">
-                <div class="stat-icon">📄</div>
-                <small>Resume</small>
-            </div>
+        <div class="card">
 
-            <h3>Create</h3>
+            <small>RECOMMENDED JOBS</small>
+
+            <h2 class="green">
+                0
+            </h2>
+
+            <p>Matching opportunities</p>
+
+        </div>
+
+
+        <div class="card">
+
+            <small>SKILL READINESS</small>
+
+            <h2 class="orange">
+                0/0
+            </h2>
+
+            <p>Current skill level</p>
+
+        </div>
+
+
+        <div class="card">
+
+            <small>APPLICATIONS</small>
+
+            <h2 class="purple">
+                0
+            </h2>
+
+            <p>Active applications</p>
 
         </div>
 
     </section>
 
-    <!-- CONTENT -->
-    <section class="content-grid">
 
-        <div class="panel">
+    <!-- MAIN GRID -->
 
-            <div class="panel-header">
-                <h2>Quick Actions</h2>
-                <span>FAST-TRACK</span>
+    <section class="grid">
+
+        <!-- LEFT COLUMN -->
+
+        <div>
+
+            <!-- AI MATCH -->
+
+            <div class="panel">
+
+                <h2>
+                    🤖 AI Match Score
+                </h2>
+
+                <div class="match">
+
+                    <div
+                        class="circle"
+                        id="matchCircle">
+
+                        <div class="circle-inner">
+
+                            <strong id="matchCircleScore">
+                                0%
+                            </strong>
+
+                            <small>
+                                AI MATCH
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="breakdown">
+
+                        <div class="row">
+
+                            <span>Skills</span>
+
+                            <div class="progress">
+                                <div></div>
+                            </div>
+
+                            <b>0/45</b>
+
+                        </div>
+
+
+                        <div class="row">
+
+                            <span>Education</span>
+
+                            <div class="progress">
+                                <div></div>
+                            </div>
+
+                            <b>0/20</b>
+
+                        </div>
+
+
+                        <div class="row">
+
+                            <span>Projects</span>
+
+                            <div class="progress">
+                                <div></div>
+                            </div>
+
+                            <b>0/20</b>
+
+                        </div>
+
+
+                        <div class="row">
+
+                            <span>Certificates</span>
+
+                            <div class="progress">
+                                <div></div>
+                            </div>
+
+                            <b>0/15</b>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <p style="
+                    margin-top:18px;
+                    font-size:10px;
+                    color:#64748b;
+                    line-height:1.5;
+                ">
+                    ℹ️ This score shows how closely your
+                    profile matches the job requirements.
+                    Final hiring decisions are made by the recruiter.
+                </p>
+
             </div>
 
-            <div class="feature-list">
 
-                <div class="feature"
-                     onclick="location.href='jobs.html'">
+            <!-- JOBS -->
 
-                    <div class="feature-icon">💼</div>
+            <div class="panel">
 
-                    <h3>Find Jobs</h3>
+                <h2>
+                    💼 Recommended Jobs
+                </h2>
 
-                    <p>
-                        Discover career opportunities
-                        matching your skills.
-                    </p>
+                <div class="job">
 
-                </div>
+                    <div class="company">
+                        ABC
+                    </div>
 
-                <div class="feature"
-                     onclick="location.href='skills.html'">
+                    <div class="job-info">
 
-                    <div class="feature-icon">🧠</div>
+                        <h3>
+                            Software Developer
+                        </h3>
 
-                    <h3>Improve Skills</h3>
+                        <p>
+                            ABC Technologies • Full Time
+                        </p>
 
-                    <p>
-                        Identify and develop the skills
-                        needed for your dream career.
-                    </p>
+                    </div>
 
-                </div>
-
-                <div class="feature"
-                     onclick="location.href='course.html'">
-
-                    <div class="feature-icon">📚</div>
-
-                    <h3>Learn</h3>
-
-                    <p>
-                        Build skills through recommended
-                        learning resources.
-                    </p>
-
-                </div>
-
-                <div class="feature"
-                     onclick="location.href='resume builder.html'">
-
-                    <div class="feature-icon">📄</div>
-
-                    <h3>Build Resume</h3>
-
-                    <p>
-                        Create and improve your professional
-                        resume.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <!-- PROFILE -->
-        <div class="panel">
-
-            <div class="panel-header">
-                <h2>My Profile</h2>
-                <span id="profileStatus">START</span>
-            </div>
-
-            <div class="profile-info">
-
-                <div class="info-row">
-                    <small>Name</small>
-                    <strong id="profileName">
-                        User
-                    </strong>
-                </div>
-
-                <div class="info-row">
-                    <small>Email</small>
-                    <strong id="profileEmail">
-                        Not available
-                    </strong>
-                </div>
-
-                <div class="info-row">
-                    <small>Role</small>
-                    <strong id="profileRole">
-                        Job Seeker
-                    </strong>
-                </div>
-
-                <div class="info-row">
-                    <small>AI Match Score</small>
-                    <strong id="profileScore">
+                    <div class="match-badge">
                         0%
-                    </strong>
+                    </div>
+
+                </div>
+
+
+                <div class="job">
+
+                    <div class="company">
+                        T
+                    </div>
+
+                    <div class="job-info">
+
+                        <h3>
+                            Python Developer
+                        </h3>
+
+                        <p>
+                            TechNova • Entry Level
+                        </p>
+
+                    </div>
+
+                    <div class="match-badge">
+                        0%
+                    </div>
+
+                </div>
+
+
+                <div class="job">
+
+                    <div class="company">
+                        D
+                    </div>
+
+                    <div class="job-info">
+
+                        <h3>
+                            Data Analyst
+                        </h3>
+
+                        <p>
+                            DataWorks • Hybrid
+                        </p>
+
+                    </div>
+
+                    <div class="match-badge">
+                        0%
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- APPLICATIONS -->
+
+            <div class="panel">
+
+                <h2>
+                    📋 Recent Applications
+                </h2>
+
+                <div class="application">
+
+                    <div>
+
+                        <h3>
+                            No applications yet
+                        </h3>
+
+                        <p>
+                            Apply for a job to track
+                            your application here.
+                        </p>
+
+                    </div>
+
+                    <span class="status review">
+                        0
+                    </span>
+
                 </div>
 
             </div>
 
         </div>
 
-    </section>
 
-</main>
+        <!-- RIGHT COLUMN -->
 
-</div>
+        <div>
 
-<script type="module">
+            <!-- SKILL GAP -->
 
-/* =========================
-   USER DATA
-========================= */
+            <div class="panel">
 
-function loadUser(){
+                <h2>
+                    🎯 Skill Gap
+                </h2>
 
-    let savedUser = null;
+                <div class="skill">
 
-    try{
-        savedUser =
-            JSON.parse(
-                localStorage.getItem("fastTrackUser") || "null"
-            );
-    }
-    catch(error){
-        console.error("User data error:",error);
-    }
+                    <div class="skill-top">
 
-    if(!savedUser){
-        return;
-    }
+                        <h3>Java</h3>
 
-    const name =
-        savedUser.name ||
-        savedUser.displayName ||
-        "User";
+                        <span class="missing">
+                            MISSING
+                        </span>
 
-    const email =
-        savedUser.email ||
-        "Not available";
+                    </div>
 
-    const role =
-        savedUser.role ||
-        "Job Seeker";
+                    <p>
+                        Required by several software
+                        development roles.
+                    </p>
 
-    document.getElementById("userName").textContent = name;
-    document.getElementById("topUserName").textContent = name;
+                </div>
 
-    document.getElementById("profileName").textContent = name;
-    document.getElementById("profileEmail").textContent = email;
-    document.getElementById("profileRole").textContent = role;
 
-    const avatar =
-        document.getElementById("profileAvatar");
+                <div class="skill">
 
-    if(avatar){
-        avatar.textContent =
-            name.trim().charAt(0).toUpperCase() || "U";
-    }
-}
+                    <div class="skill-top">
 
+                        <h3>Git</h3>
 
-/* =========================
-   AI MATCH SCORE
-   DEFAULT = 0
-========================= */
+                        <span class="missing">
+                            BEGINNER
+                        </span>
 
-function loadMatchScore(){
+                    </div>
 
-    const score =
-        localStorage.getItem("fastTrackMatchScore");
+                    <p>
+                        Improve version control
+                        and collaboration skills.
+                    </p>
 
-    const finalScore =
-        score !== null ? Number(score) : 0;
+                </div>
 
-    document.getElementById("matchScore").textContent =
-        finalScore + "%";
 
-    document.getElementById("profileScore").textContent =
-        finalScore + "%";
-}
+                <div class="skill">
 
-loadUser();
-loadMatchScore();
+                    <div class="skill-top">
 
+                        <h3>Python</h3>
 
-/* =========================
-   MOBILE MENU
-========================= */
+                        <span class="good">
+                            GOOD
+                        </span>
 
-const menuBtn =
-    document.getElementById("mobileMenuBtn");
+                    </div>
 
-const sidebar =
-    document.getElementById("sidebar");
+                    <p>
+                        Continue practicing through
+                        coding and projects.
+                    </p>
 
-const overlay =
-    document.getElementById("mobileOverlay");
+                </div>
 
-function openMenu(){
+            </div>
 
-    sidebar.classList.add("mobile-open");
-    overlay.classList.add("mobile-open");
 
-    menuBtn.textContent = "✕";
-}
+            <!-- LEARNING -->
 
-function closeMenu(){
+            <div class="panel">
 
-    sidebar.classList.remove("mobile-open");
-    overlay.classList.remove("mobile-open");
-
-    menuBtn.textContent = "☰";
-}
-
-if(menuBtn){
-    menuBtn.addEventListener("click",function(){
-
-        if(sidebar.classList.contains("mobile-open")){
-            closeMenu();
-        }else{
-            openMenu();
-        }
-
-    });
-}
-
-if(overlay){
-    overlay.addEventListener("click",closeMenu);
-}
-
-
-/* Close mobile menu after navigation */
-
-document.querySelectorAll(".nav-item")
-.forEach(item => {
-
-    item.addEventListener("click",function(){
-
-        if(window.innerWidth <= 700){
-            closeMenu();
-        }
-
-    });
-
-});
-
-
-/* =========================
-   LOGOUT
-========================= */
-
-const logoutBtn =
-    document.getElementById("logoutBtn");
-
-if(logoutBtn){
-
-    logoutBtn.addEventListener("click",async function(){
-
-        logoutBtn.disabled = true;
-        logoutBtn.textContent = "Logging out...";
-
-        try{
-
-            /*
-             Firebase logout can be added here.
-             Local session is always cleared.
-            */
-
-            localStorage.removeItem("fastTrackUser");
-            localStorage.removeItem("fastTrackMatchScore");
-
-            sessionStorage.clear();
-
-            window.location.replace("index.html");
-
-        }
-        catch(error){
-
-            console.error("Logout error:",error);
-
-            localStorage.clear();
-            sessionStorage.clear();
-
-            window.location.replace("index.html");
-        }
-
-    });
-
-}
-
-</script>
-
-</body>
-    </html>
+                <h2>
+                 
