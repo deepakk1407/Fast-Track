@@ -1,10 +1,12 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { initializeApp } from
+"https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
 
 import {
     getAuth,
     createUserWithEmailAndPassword,
     updateProfile
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+} from
+"https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
 
 /* =========================
@@ -12,13 +14,13 @@ import {
 ========================= */
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDJ84_tSgau334V60r17bqHHubaf5Lecta",
+    apiKey: "AIzaSyDJ84_tSgau334V60r17bqHHubaf5Lecto",
     authDomain: "fast-track-6d262.firebaseapp.com",
     projectId: "fast-track-6d262",
     storageBucket: "fast-track-6d262.firebasestorage.app",
     messagingSenderId: "338934873510",
-    appId: "1:338934873510:web:16b3211577dd2ce683a367",
-    measurementId: "G-9TFBXV2PQM"
+    appId: "1:338934873510:web:1ad3791207107af183a367",
+    measurementId: "G-M6FSRH2Y9H"
 };
 
 
@@ -43,7 +45,8 @@ const registerBox = document.getElementById("registerBox");
 const goRegister = document.getElementById("goRegister");
 const goLogin = document.getElementById("goLogin");
 
-const registerForm = document.getElementById("registerForm");
+const registerForm =
+    document.getElementById("registerForm");
 
 const registerButton =
     document.getElementById("registerButton");
@@ -127,10 +130,10 @@ goLogin.addEventListener("click", showLogin);
 
 
 /* =========================
-   REGISTER ACCOUNT
+   REGISTER
 ========================= */
 
-registerForm.addEventListener("submit", async function (event) {
+registerForm.addEventListener("submit", async (event) => {
 
     event.preventDefault();
 
@@ -147,71 +150,52 @@ registerForm.addEventListener("submit", async function (event) {
         confirmPassword.value;
 
 
-    /* =========================
-       VALIDATION
-    ========================= */
-
-    if (name === "") {
-
+    if (!name) {
         showToast(
             "Please enter your full name.",
             "error"
         );
-
         return;
     }
 
 
-    if (email === "") {
-
+    if (!email) {
         showToast(
             "Please enter your email.",
             "error"
         );
-
         return;
     }
 
 
     if (password.length < 6) {
-
         showToast(
-            "Password must contain at least 6 characters.",
+            "Password must be at least 6 characters.",
             "error"
         );
-
         return;
     }
 
 
     if (password !== confirm) {
-
         showToast(
             "Passwords do not match.",
             "error"
         );
-
         return;
     }
 
 
     if (!terms.checked) {
-
         showToast(
             "Please accept Terms & Conditions.",
             "error"
         );
-
         return;
     }
 
 
-    /* =========================
-       CREATE ACCOUNT
-    ========================= */
-
     registerButton.disabled = true;
-
     registerButton.textContent =
         "Creating Account...";
 
@@ -226,23 +210,9 @@ registerForm.addEventListener("submit", async function (event) {
             );
 
 
-        const user =
-            result.user;
-
-
-        /* =========================
-           SAVE USER NAME
-        ========================= */
-
-        await updateProfile(user, {
+        await updateProfile(result.user, {
             displayName: name
         });
-
-
-        console.log(
-            "ACCOUNT CREATED:",
-            user
-        );
 
 
         showToast(
@@ -253,14 +223,8 @@ registerForm.addEventListener("submit", async function (event) {
         registerForm.reset();
 
 
-        /* =========================
-           GO TO LOGIN
-        ========================= */
-
         setTimeout(() => {
-
             showLogin();
-
         }, 1500);
 
 
@@ -272,17 +236,8 @@ registerForm.addEventListener("submit", async function (event) {
         );
 
 
-        /* SHOW EXACT FIREBASE ERROR */
-
-        const code =
-            error.code || "unknown-error";
-
-        const message =
-            error.message || "Unknown error";
-
-
         showToast(
-            code + " | " + message,
+            error.code + " | " + error.message,
             "error"
         );
 
