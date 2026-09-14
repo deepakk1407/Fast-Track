@@ -1,6 +1,9 @@
-/* =========================================================
-   FAST-TRACK | Firebase Authentication
-   ========================================================= */
+// =====================================================
+// FAST-TRACK - Authentication Script
+// Existing index.html compatible
+// Firebase Authentication + Firestore
+// Professional Popup Notifications
+// =====================================================
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
@@ -24,9 +27,9 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
-/* =========================================================
-   FIREBASE CONFIG
-   ========================================================= */
+// =====================================================
+// FIREBASE CONFIG
+// =====================================================
 
 const firebaseConfig = {
     apiKey: "AIzaSyDJ84_tSgau334V60r17bqHHubaf5Lecto",
@@ -39,1019 +42,829 @@ const firebaseConfig = {
 };
 
 
-/* =========================================================
-   INITIALIZE FIREBASE
-   ========================================================= */
+// =====================================================
+// INITIALIZE FIREBASE
+// =====================================================
 
 const app = initializeApp(firebaseConfig);
-
 const auth = getAuth(app);
-
 const db = getFirestore(app);
 
 
-/* =========================================================
-   HELPER FUNCTIONS
-   ========================================================= */
+// =====================================================
+// ELEMENTS
+// =====================================================
 
+const loginTab = document.getElementById("loginTab");
+const registerTab = document.getElementById("registerTab");
 
-/*
-   Get element safely
-*/
-function getElement(id) {
-    return document.getElementById(id);
-}
+const loginBox = document.getElementById("loginBox");
+const registerBox = document.getElementById("registerBox");
 
+const loginForm = document.getElementById("loginForm");
+const registerForm = document.getElementById("registerForm");
 
-/*
-   Show professional message
-*/
-function showMessage(message, type = "success") {
+const loginEmail = document.getElementById("loginEmail");
+const loginPassword = document.getElementById("loginPassword");
+const rememberMe = document.getElementById("rememberMe");
 
-    /*
-       If existing toast exists, use it.
-    */
+const registerName = document.getElementById("registerName");
+const registerEmail = document.getElementById("registerEmail");
+const registerPassword = document.getElementById("registerPassword");
+const confirmPassword = document.getElementById("confirmPassword");
 
-    const toast = getElement("toast");
+const jobSeeker = document.getElementById("jobSeeker");
+const recruiter = document.getElementById("recruiter");
 
-    if (toast) {
+const terms = document.getElementById("terms");
 
-        toast.textContent = message;
+const goRegister = document.getElementById("goRegister");
+const goLogin = document.getElementById("goLogin");
 
-        toast.classList.remove(
-            "show",
-            "success",
-            "error",
-            "warning"
-        );
+const forgotButton = document.getElementById("forgotButton");
+const forgotModal = document.getElementById("forgotModal");
+const resetForm = document.getElementById("resetForm");
+const resetEmail = document.getElementById("resetEmail");
+const cancelForgot = document.getElementById("cancelForgot");
 
-        toast.classList.add(type);
-        toast.classList.add("show");
 
-        setTimeout(() => {
-            toast.classList.remove("show");
-        }, 3500);
+// =====================================================
+// PROFESSIONAL POPUP
+// =====================================================
 
-        return;
-    }
+function showPopup(type, title, message) {
 
+    let popup = document.getElementById("fastTrackPopup");
 
-    /*
-       Fallback toast
-    */
+    if (!popup) {
 
-    const existing = document.querySelector(".ft-toast");
+        popup = document.createElement("div");
 
-    if (existing) {
-        existing.remove();
-    }
+        popup.id = "fastTrackPopup";
 
+        popup.innerHTML = `
+            <div class="ft-popup-box">
 
-    const newToast = document.createElement("div");
-
-    newToast.className = `ft-toast ${type}`;
-
-    newToast.textContent = message;
-
-    document.body.appendChild(newToast);
-
-
-    setTimeout(() => {
-        newToast.classList.add("show");
-    }, 50);
-
-
-    setTimeout(() => {
-        newToast.classList.remove("show");
-
-        setTimeout(() => {
-            newToast.remove();
-        }, 300);
-
-    }, 3500);
-}
-
-
-/*
-   Save user information locally
-   so other FAST-TRACK pages can use it.
-*/
-function saveCurrentUser(userData) {
-
-    localStorage.setItem(
-        "fastTrackCurrentUser",
-        JSON.stringify(userData)
-    );
-
-    localStorage.setItem(
-        "fastTrackUserName",
-        userData.name || "User"
-    );
-
-    localStorage.setItem(
-        "fastTrackUserEmail",
-        userData.email || ""
-    );
-
-    localStorage.setItem(
-        "fastTrackUserRole",
-        userData.role || ""
-    );
-
-    localStorage.setItem(
-        "fastTrackUID",
-        userData.uid || ""
-    );
-}
-
-
-/*
-   Clear local user data
-*/
-function clearCurrentUser() {
-
-    localStorage.removeItem("fastTrackCurrentUser");
-    localStorage.removeItem("fastTrackUserName");
-    localStorage.removeItem("fastTrackUserEmail");
-    localStorage.removeItem("fastTrackUserRole");
-    localStorage.removeItem("fastTrackUID");
-}
-
-
-/*
-   Fetch user profile from Firestore
-*/
-async function getUserProfile(user) {
-
-    if (!user) {
-        return null;
-    }
-
-    try {
-
-        const userRef = doc(
-            db,
-            "users",
-            user.uid
-        );
-
-        const userSnapshot = await getDoc(userRef);
-
-
-        if (userSnapshot.exists()) {
-
-            const data = userSnapshot.data();
-
-            return {
-                uid: user.uid,
-                name: data.name || user.displayName || "User",
-                email: data.email || user.email || "",
-                role: data.role || "Job Seeker"
-            };
-        }
-
-
-        /*
-           If Firestore document doesn't exist,
-           create a basic local profile.
-        */
-
-        return {
-            uid: user.uid,
-            name: user.displayName || "User",
-            email: user.email || "",
-            role: "Job Seeker"
-        };
-
-    } catch (error) {
-
-        console.error(
-            "Error fetching user profile:",
-            error
-        );
-
-        return {
-            uid: user.uid,
-            name: user.displayName || "User",
-            email: user.email || "",
-            role: "Job Seeker"
-        };
-    }
-}
-
-
-/* =========================================================
-   PROFESSIONAL SUCCESS POPUP
-   ========================================================= */
-
-function showSuccessPopup(name = "User") {
-
-    /*
-       Remove existing popup
-    */
-
-    const oldPopup =
-        document.getElementById("fastTrackSuccessPopup");
-
-    if (oldPopup) {
-        oldPopup.remove();
-    }
-
-
-    /*
-       Popup
-    */
-
-    const popup =
-        document.createElement("div");
-
-    popup.id =
-        "fastTrackSuccessPopup";
-
-
-    popup.innerHTML = `
-
-        <div class="ft-success-backdrop">
-
-            <div class="ft-success-card">
-
-                <div class="ft-success-icon">
+                <div class="ft-popup-icon" id="ftPopupIcon">
                     ✓
                 </div>
 
-                <div class="ft-success-content">
-
-                    <div class="ft-success-label">
-                        FAST-TRACK
+                <div class="ft-popup-content">
+                    <div class="ft-popup-title" id="ftPopupTitle">
+                        Success
                     </div>
 
-                    <h2>
-                        Login Successful
-                    </h2>
-
-                    <p>
-                        Welcome back,
-                        <strong>${escapeHTML(name)}</strong> 👋
-                    </p>
-
-                    <div class="ft-loading">
-
-                        <div class="ft-loading-bar">
-                            <span></span>
-                        </div>
-
-                        <small>
-                            Taking you to your dashboard...
-                        </small>
-
+                    <div class="ft-popup-message" id="ftPopupMessage">
+                        Operation completed successfully.
                     </div>
-
                 </div>
 
+                <button class="ft-popup-close" id="ftPopupClose">
+                    ×
+                </button>
+
+                <div class="ft-popup-progress"></div>
+
             </div>
+        `;
 
-        </div>
-    `;
+        document.body.appendChild(popup);
 
+        const style = document.createElement("style");
 
-    document.body.appendChild(popup);
+        style.textContent = `
 
-
-    /*
-       Add popup styles dynamically
-    */
-
-    const style =
-        document.createElement("style");
-
-    style.id =
-        "fastTrackPopupStyles";
-
-
-    style.textContent = `
-
-        #fastTrackSuccessPopup {
-            position: fixed;
-            inset: 0;
-            z-index: 99999;
-            font-family:
-                Inter,
-                Arial,
-                sans-serif;
-        }
-
-        .ft-success-backdrop {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-
-            background:
-                rgba(5, 10, 30, 0.72);
-
-            backdrop-filter:
-                blur(10px);
-
-            animation:
-                ftFadeIn 0.25s ease;
-        }
-
-        .ft-success-card {
-
-            width: min(430px, 100%);
-
-            background:
-                rgba(255, 255, 255, 0.98);
-
-            border-radius: 24px;
-
-            padding: 32px 28px;
-
-            display: flex;
-            align-items: center;
-            gap: 20px;
-
-            box-shadow:
-                0 25px 80px
-                rgba(0, 0, 0, 0.30);
-
-            transform:
-                translateY(10px);
-
-            animation:
-                ftPopup 0.4s ease forwards;
-        }
-
-        .ft-success-icon {
-
-            min-width: 64px;
-            width: 64px;
-            height: 64px;
-
-            border-radius: 50%;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #2563eb,
-                    #7c3aed
-                );
-
-            color: white;
-
-            font-size: 32px;
-            font-weight: 800;
-
-            box-shadow:
-                0 10px 25px
-                rgba(37, 99, 235, 0.30);
-        }
-
-        .ft-success-label {
-
-            font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 2px;
-
-            color: #6366f1;
-
-            margin-bottom: 5px;
-        }
-
-        .ft-success-content h2 {
-
-            margin: 0;
-
-            color: #111827;
-
-            font-size: 23px;
-            font-weight: 800;
-        }
-
-        .ft-success-content p {
-
-            margin: 7px 0 16px;
-
-            color: #6b7280;
-
-            font-size: 14px;
-        }
-
-        .ft-success-content strong {
-            color: #111827;
-        }
-
-        .ft-loading {
-            width: 100%;
-        }
-
-        .ft-loading-bar {
-
-            width: 100%;
-            height: 4px;
-
-            overflow: hidden;
-
-            border-radius: 10px;
-
-            background:
-                #e5e7eb;
-        }
-
-        .ft-loading-bar span {
-
-            display: block;
-
-            width: 35%;
-            height: 100%;
-
-            border-radius: 10px;
-
-            background:
-                linear-gradient(
-                    90deg,
-                    #2563eb,
-                    #7c3aed
-                );
-
-            animation:
-                ftLoading 1.3s
-                infinite ease-in-out;
-        }
-
-        .ft-loading small {
-
-            display: block;
-
-            margin-top: 8px;
-
-            color: #9ca3af;
-
-            font-size: 11px;
-        }
-
-        @keyframes ftFadeIn {
-
-            from {
+            #fastTrackPopup {
+                position: fixed;
+                top: 25px;
+                right: 25px;
+                z-index: 99999;
+                pointer-events: none;
                 opacity: 0;
+                transform: translateX(120%);
+                transition:
+                    opacity .35s ease,
+                    transform .35s ease;
             }
 
-            to {
+            #fastTrackPopup.show {
                 opacity: 1;
+                transform: translateX(0);
             }
 
-        }
+            .ft-popup-box {
+                position: relative;
+                width: 370px;
+                min-height: 90px;
+                padding: 18px 45px 18px 18px;
 
-        @keyframes ftPopup {
-
-            from {
-                opacity: 0;
-                transform:
-                    translateY(20px)
-                    scale(0.96);
-            }
-
-            to {
-                opacity: 1;
-                transform:
-                    translateY(0)
-                    scale(1);
-            }
-
-        }
-
-        @keyframes ftLoading {
-
-            0% {
-                transform:
-                    translateX(-120%);
-            }
-
-            100% {
-                transform:
-                    translateX(320%);
-            }
-
-        }
-
-        @media (max-width: 500px) {
-
-            .ft-success-card {
-
-                padding: 25px 20px;
-
-                border-radius: 20px;
-
+                display: flex;
+                align-items: center;
                 gap: 15px;
+
+                background: rgba(255,255,255,.97);
+                border: 1px solid rgba(0,0,0,.08);
+                border-radius: 18px;
+
+                box-shadow:
+                    0 20px 50px rgba(0,0,0,.18),
+                    0 5px 15px rgba(0,0,0,.08);
+
+                backdrop-filter: blur(15px);
+
+                font-family:
+                    Inter,
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    sans-serif;
+
+                overflow: hidden;
             }
 
-            .ft-success-icon {
+            .ft-popup-icon {
+                width: 48px;
+                height: 48px;
+                min-width: 48px;
 
-                min-width: 54px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
 
-                width: 54px;
+                border-radius: 50%;
 
-                height: 54px;
+                font-size: 24px;
+                font-weight: 800;
 
-                font-size: 27px;
+                color: white;
+                background: #16a34a;
+
+                box-shadow:
+                    0 8px 20px rgba(22,163,74,.25);
             }
 
-            .ft-success-content h2 {
-
-                font-size: 20px;
+            .ft-popup-content {
+                flex: 1;
             }
 
+            .ft-popup-title {
+                font-size: 16px;
+                font-weight: 800;
+                color: #111827;
+                margin-bottom: 4px;
+            }
+
+            .ft-popup-message {
+                font-size: 13px;
+                line-height: 1.45;
+                color: #6b7280;
+            }
+
+            .ft-popup-close {
+                position: absolute;
+                top: 10px;
+                right: 12px;
+
+                border: none;
+                background: transparent;
+
+                font-size: 22px;
+                color: #9ca3af;
+
+                cursor: pointer;
+
+                pointer-events: auto;
+            }
+
+            .ft-popup-close:hover {
+                color: #111827;
+            }
+
+            .ft-popup-progress {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+
+                height: 3px;
+                width: 100%;
+
+                background: #16a34a;
+
+                animation: ftPopupProgress 4s linear forwards;
+            }
+
+            @keyframes ftPopupProgress {
+                from {
+                    width: 100%;
+                }
+
+                to {
+                    width: 0%;
+                }
+            }
+
+            #fastTrackPopup.error .ft-popup-icon {
+                background: #dc2626;
+                box-shadow:
+                    0 8px 20px rgba(220,38,38,.25);
+            }
+
+            #fastTrackPopup.error .ft-popup-progress {
+                background: #dc2626;
+            }
+
+            #fastTrackPopup.warning .ft-popup-icon {
+                background: #f59e0b;
+                box-shadow:
+                    0 8px 20px rgba(245,158,11,.25);
+            }
+
+            #fastTrackPopup.warning .ft-popup-progress {
+                background: #f59e0b;
+            }
+
+            #fastTrackPopup.info .ft-popup-icon {
+                background: #2563eb;
+                box-shadow:
+                    0 8px 20px rgba(37,99,235,.25);
+            }
+
+            #fastTrackPopup.info .ft-popup-progress {
+                background: #2563eb;
+            }
+
+            @media (max-width: 480px) {
+
+                #fastTrackPopup {
+                    left: 15px;
+                    right: 15px;
+                    top: 15px;
+                    transform: translateY(-120%);
+                }
+
+                #fastTrackPopup.show {
+                    transform: translateY(0);
+                }
+
+                .ft-popup-box {
+                    width: auto;
+                }
+            }
+
+        `;
+
+        document.head.appendChild(style);
+
+        document
+            .getElementById("ftPopupClose")
+            .addEventListener("click", hidePopup);
+    }
+
+    const icon = document.getElementById("ftPopupIcon");
+    const titleElement = document.getElementById("ftPopupTitle");
+    const messageElement = document.getElementById("ftPopupMessage");
+
+    popup.className = "";
+
+    if (type === "error") {
+        icon.innerHTML = "!";
+        popup.classList.add("error");
+    }
+
+    else if (type === "warning") {
+        icon.innerHTML = "!";
+        popup.classList.add("warning");
+    }
+
+    else if (type === "info") {
+        icon.innerHTML = "i";
+        popup.classList.add("info");
+    }
+
+    else {
+        icon.innerHTML = "✓";
+    }
+
+    titleElement.textContent = title;
+    messageElement.textContent = message;
+
+    // Restart progress animation
+    const progress = popup.querySelector(".ft-popup-progress");
+
+    progress.style.animation = "none";
+    progress.offsetHeight;
+    progress.style.animation = "ftPopupProgress 4s linear forwards";
+
+    popup.classList.add("show");
+
+    clearTimeout(window.fastTrackPopupTimer);
+
+    window.fastTrackPopupTimer = setTimeout(() => {
+        hidePopup();
+    }, 4000);
+}
+
+
+function hidePopup() {
+
+    const popup = document.getElementById("fastTrackPopup");
+
+    if (popup) {
+        popup.classList.remove("show");
+    }
+}
+
+
+// =====================================================
+// ERROR MESSAGE HANDLER
+// =====================================================
+
+function firebaseError(error) {
+
+    console.log("Firebase Error:", error);
+
+    switch (error.code) {
+
+        case "auth/email-already-in-use":
+            return "This email is already registered.";
+
+        case "auth/invalid-email":
+            return "Please enter a valid email address.";
+
+        case "auth/weak-password":
+            return "Password must be at least 6 characters.";
+
+        case "auth/invalid-credential":
+        case "auth/wrong-password":
+        case "auth/user-not-found":
+            return "Invalid email or password.";
+
+        case "auth/too-many-requests":
+            return "Too many attempts. Please try again later.";
+
+        case "auth/network-request-failed":
+            return "Network error. Please check your internet connection.";
+
+        case "auth/user-disabled":
+            return "This account has been disabled.";
+
+        default:
+            return error.message || "Something went wrong. Please try again.";
+    }
+}
+
+
+// =====================================================
+// TAB SWITCHING
+// =====================================================
+
+function showLogin() {
+
+    loginTab.classList.add("active");
+    registerTab.classList.remove("active");
+
+    loginBox.style.display = "block";
+    registerBox.style.display = "none";
+}
+
+
+function showRegister() {
+
+    registerTab.classList.add("active");
+    loginTab.classList.remove("active");
+
+    loginBox.style.display = "none";
+    registerBox.style.display = "block";
+}
+
+
+loginTab.addEventListener("click", showLogin);
+
+registerTab.addEventListener("click", showRegister);
+
+goRegister.addEventListener("click", function (e) {
+
+    e.preventDefault();
+
+    showRegister();
+});
+
+
+goLogin.addEventListener("click", function (e) {
+
+    e.preventDefault();
+
+    showLogin();
+});
+
+
+// =====================================================
+// PASSWORD SHOW / HIDE
+// =====================================================
+
+function setupPasswordToggle(buttonId, inputId) {
+
+    const button = document.getElementById(buttonId);
+    const input = document.getElementById(inputId);
+
+    if (!button || !input) return;
+
+    button.addEventListener("click", function () {
+
+        if (input.type === "password") {
+
+            input.type = "text";
+
+            button.textContent = "🙈";
+
+        } else {
+
+            input.type = "password";
+
+            button.textContent = "👁";
         }
-
-    `;
-
-
-    document.head.appendChild(style);
+    });
 }
 
 
-/*
-   Escape HTML
-   Prevents user-entered name from
-   being inserted directly as HTML.
-*/
-function escapeHTML(value) {
+setupPasswordToggle("loginEye", "loginPassword");
 
-    return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-}
+setupPasswordToggle("registerEye", "registerPassword");
+
+setupPasswordToggle("confirmEye", "confirmPassword");
 
 
-/* =========================================================
-   LOGIN / REGISTER TABS
-   ========================================================= */
+// =====================================================
+// PASSWORD STRENGTH
+// =====================================================
 
-const loginTab =
-    getElement("loginTab");
+registerPassword.addEventListener("input", function () {
 
-const registerTab =
-    getElement("registerTab");
+    const password = registerPassword.value;
 
-const loginBox =
-    getElement("loginBox");
+    const strengthBar = document.getElementById("strengthBar");
+    const strengthText = document.getElementById("strengthText");
 
-const registerBox =
-    getElement("registerBox");
+    if (!strengthBar || !strengthText) return;
 
+    let strength = 0;
 
-if (registerTab) {
+    if (password.length >= 6)
+        strength++;
 
-    registerTab.addEventListener(
-        "click",
-        () => {
+    if (password.length >= 10)
+        strength++;
 
-            loginTab?.classList.remove(
-                "active"
-            );
+    if (/[A-Z]/.test(password))
+        strength++;
 
-            registerTab.classList.add(
-                "active"
-            );
+    if (/[0-9]/.test(password))
+        strength++;
 
+    if (/[^A-Za-z0-9]/.test(password))
+        strength++;
 
-            loginBox?.classList.remove(
-                "active"
-            );
+    if (password.length === 0) {
 
-            registerBox?.classList.add(
-                "active"
-            );
+        strengthBar.style.width = "0%";
+        strengthText.textContent = "";
 
-        }
-    );
-}
+    } else if (strength <= 2) {
 
+        strengthBar.style.width = "35%";
+        strengthText.textContent = "Weak password";
 
-if (loginTab) {
+    } else if (strength <= 4) {
 
-    loginTab.addEventListener(
-        "click",
-        () => {
+        strengthBar.style.width = "70%";
+        strengthText.textContent = "Medium password";
 
-            registerTab?.classList.remove(
-                "active"
-            );
+    } else {
 
-            loginTab.classList.add(
-                "active"
-            );
+        strengthBar.style.width = "100%";
+        strengthText.textContent = "Strong password";
+    }
+});
 
 
-            registerBox?.classList.remove(
-                "active"
-            );
+// =====================================================
+// REGISTER
+// =====================================================
 
-            loginBox?.classList.add(
-                "active"
-            );
+registerForm.addEventListener("submit", async function (e) {
 
-        }
-    );
-}
+    e.preventDefault();
 
+    const name = registerName.value.trim();
+    const email = registerEmail.value.trim();
+    const password = registerPassword.value;
+    const confirm = confirmPassword.value;
 
-/* =========================================================
-   CREATE ONE / LOGIN HERE
-   ========================================================= */
+    let role = "";
 
-const goRegister =
-    getElement("goRegister");
+    if (jobSeeker && jobSeeker.checked) {
+        role = "jobseeker";
+    }
 
-const goLogin =
-    getElement("goLogin");
-
-
-if (goRegister) {
-
-    goRegister.addEventListener(
-        "click",
-        () => {
-
-            registerTab?.click();
-
-        }
-    );
-}
+    if (recruiter && recruiter.checked) {
+        role = "recruiter";
+    }
 
 
-if (goLogin) {
+    // Validation
 
-    goLogin.addEventListener(
-        "click",
-        () => {
+    if (!name) {
 
-            loginTab?.click();
+        showPopup(
+            "error",
+            "Registration Failed",
+            "Please enter your full name."
+        );
 
-        }
-    );
-}
-
-
-/* =========================================================
-   PASSWORD SHOW / HIDE
-   ========================================================= */
-
-function setupPasswordToggle(
-    eyeId,
-    passwordId
-) {
-
-    const eye =
-        getElement(eyeId);
-
-    const password =
-        getElement(passwordId);
-
-
-    if (!eye || !password) {
+        registerName.focus();
         return;
     }
 
 
-    eye.addEventListener(
-        "click",
-        () => {
+    if (!email) {
 
-            if (
-                password.type ===
-                "password"
-            ) {
+        showPopup(
+            "error",
+            "Registration Failed",
+            "Please enter your email address."
+        );
 
-                password.type =
-                    "text";
+        registerEmail.focus();
+        return;
+    }
 
-                eye.textContent =
-                    "🙈";
 
-            } else {
+    if (!role) {
 
-                password.type =
-                    "password";
+        showPopup(
+            "warning",
+            "Select Account Type",
+            "Please select Job Seeker or Recruiter."
+        );
 
-                eye.textContent =
-                    "👁️";
+        return;
+    }
+
+
+    if (password.length < 6) {
+
+        showPopup(
+            "error",
+            "Weak Password",
+            "Password must contain at least 6 characters."
+        );
+
+        return;
+    }
+
+
+    if (password !== confirm) {
+
+        showPopup(
+            "error",
+            "Password Mismatch",
+            "Password and confirm password do not match."
+        );
+
+        return;
+    }
+
+
+    if (terms && !terms.checked) {
+
+        showPopup(
+            "warning",
+            "Terms Required",
+            "Please accept the Terms & Conditions."
+        );
+
+        return;
+    }
+
+
+    // Disable button
+
+    const button = registerForm.querySelector("button[type='submit']");
+
+    const originalText = button ? button.textContent : "";
+
+    if (button) {
+
+        button.disabled = true;
+        button.textContent = "Creating Account...";
+    }
+
+
+    try {
+
+        // Create Firebase account
+
+        const userCredential =
+            await createUserWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+        const user = userCredential.user;
+
+
+        // Save profile
+
+        await setDoc(
+            doc(db, "users", user.uid),
+            {
+                name: name,
+                email: email,
+                role: role,
+
+                skills: [],
+                projects: [],
+                certificates: [],
+
+                education: null,
+
+                resumeUploaded: false,
+
+                matchScore: 0,
+
+                createdAt: serverTimestamp()
             }
+        );
 
+
+        showPopup(
+            "success",
+            "Account Created!",
+            "Your FAST-TRACK account has been created successfully."
+        );
+
+
+        registerForm.reset();
+
+        const strengthBar =
+            document.getElementById("strengthBar");
+
+        const strengthText =
+            document.getElementById("strengthText");
+
+        if (strengthBar)
+            strengthBar.style.width = "0%";
+
+        if (strengthText)
+            strengthText.textContent = "";
+
+
+        setTimeout(() => {
+
+            showLogin();
+
+            loginEmail.value = email;
+
+        }, 1200);
+
+
+    } catch (error) {
+
+        showPopup(
+            "error",
+            "Registration Failed",
+            firebaseError(error)
+        );
+
+    } finally {
+
+        if (button) {
+
+            button.disabled = false;
+            button.textContent = originalText;
         }
-    );
-}
+    }
+
+});
 
 
-setupPasswordToggle(
-    "loginEye",
-    "loginPassword"
-);
+// =====================================================
+// LOGIN
+// =====================================================
 
-setupPasswordToggle(
-    "registerEye",
-    "registerPassword"
-);
+loginForm.addEventListener("submit", async function (e) {
 
-setupPasswordToggle(
-    "confirmEye",
-    "confirmPassword"
-);
+    e.preventDefault();
+
+    const email = loginEmail.value.trim();
+    const password = loginPassword.value;
 
 
-/* =========================================================
-   PASSWORD STRENGTH
-   ========================================================= */
+    if (!email) {
 
-const registerPassword =
-    getElement("registerPassword");
+        showPopup(
+            "error",
+            "Login Failed",
+            "Please enter your email address."
+        );
 
-const strengthBar =
-    getElement("strengthBar");
-
-const strengthText =
-    getElement("strengthText");
+        return;
+    }
 
 
-if (registerPassword) {
+    if (!password) {
 
-    registerPassword.addEventListener(
-        "input",
-        () => {
+        showPopup(
+            "error",
+            "Login Failed",
+            "Please enter your password."
+        );
 
-            const password =
-                registerPassword.value;
-
-
-            if (!password) {
-
-                if (strengthBar) {
-                    strengthBar.style.width =
-                        "0%";
-                }
-
-                if (strengthText) {
-                    strengthText.textContent =
-                        "Password strength";
-                }
-
-                return;
-            }
+        return;
+    }
 
 
-            let score = 0;
+    const button = loginForm.querySelector("button[type='submit']");
+
+    const originalText = button ? button.textContent : "";
+
+    if (button) {
+
+        button.disabled = true;
+        button.textContent = "Signing In...";
+    }
 
 
-            if (password.length >= 6) {
-                score++;
-            }
+    try {
 
-            if (password.length >= 10) {
-                score++;
-            }
+        // Remember me
 
-            if (/[A-Z]/.test(password)) {
-                score++;
-            }
-
-            if (/[0-9]/.test(password)) {
-                score++;
-            }
-
-            if (/[^A-Za-z0-9]/.test(password)) {
-                score++;
-            }
+        await setPersistence(
+            auth,
+            rememberMe && rememberMe.checked
+                ? browserLocalPersistence
+                : browserSessionPersistence
+        );
 
 
-            const percentage =
-                Math.min(
-                    score * 20,
-                    100
+        // Firebase login
+
+        const userCredential =
+            await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+        const user = userCredential.user;
+
+
+        // Get profile
+
+        let profile = null;
+
+        try {
+
+            const profileSnap =
+                await getDoc(
+                    doc(db, "users", user.uid)
                 );
 
+            if (profileSnap.exists()) {
 
-            if (strengthBar) {
-
-                strengthBar.style.width =
-                    percentage + "%";
+                profile = profileSnap.data();
             }
 
+        } catch (profileError) {
 
-            if (strengthText) {
-
-                if (score <= 1) {
-
-                    strengthText.textContent =
-                        "Weak password";
-
-                } else if (score <= 3) {
-
-                    strengthText.textContent =
-                        "Medium password";
-
-                } else {
-
-                    strengthText.textContent =
-                        "Strong password";
-                }
-            }
-
+            console.log(
+                "Profile fetch error:",
+                profileError
+            );
         }
-    );
-}
 
 
-/* =========================================================
-   REGISTER
-   ========================================================= */
+        // Store user locally
 
-const registerForm =
-    getElement("registerForm");
+        localStorage.setItem(
+            "fastTrackUser",
+            JSON.stringify({
+                uid: user.uid,
+                name: profile?.name || "User",
+                email: user.email,
+                role: profile?.role || "jobseeker"
+            })
+        );
 
 
-if (registerForm) {
+        showPopup(
+            "success",
+            "Welcome Back!",
+            `Login successful. Welcome ${profile?.name || "to FAST-TRACK"}!`
+        );
 
-    registerForm.addEventListener(
-        "submit",
-        async (event) => {
 
-            event.preventDefault();
+        setTimeout(() => {
 
-
-            const name =
-                getElement(
-                    "registerName"
-                )?.value.trim();
-
-
-            const email =
-                getElement(
-                    "registerEmail"
-                )?.value.trim();
-
-
-            const role =
-                document.querySelector(
-                    'input[name="role"]:checked'
-                )?.value;
-
-
-            const password =
-                getElement(
-                    "registerPassword"
-                )?.value;
-
-
-            const confirmPasswordValue =
-                getElement(
-                    "confirmPassword"
-                )?.value;
-
-
-            /* -------------------------
-               VALIDATION
-            ------------------------- */
-
-            if (!name) {
-
-                showMessage(
-                    "Please enter your full name.",
-                    "error"
-                );
-
-                return;
-            }
-
-
-            if (!email) {
-
-                showMessage(
-                    "Please enter your email.",
-                    "error"
-                );
-
-                return;
-            }
-
-
-            if (!role) {
-
-                showMessage(
-                    "Please select your role.",
-                    "error"
-                );
-
-                return;
-            }
-
-
-            if (password !== confirmPasswordValue) {
-
-                showMessage(
-                    "Passwords do not match.",
-                    "error"
-                );
-
-                return;
-            }
-
-
-            if (password.length < 6) {
-
-                showMessage(
-                    "Password should be at least 6 characters.",
-                    "error"
-                );
-
-                return;
-            }
-
-
-            try {
-
-                /* -------------------------
-                   CREATE FIREBASE ACCOUNT
-                ------------------------- */
-
-                const userCredential =
-                    await createUserWithEmailAndPassword(
-                        auth,
-                        email,
-                        password
-                    );
-
-
-                const user =
-                    userCredential.user;
-
-
-                /* -------------------------
-                   SAVE PROFILE
-                ------------------------- */
-
-                await setDoc(
-                    doc(
-                        db,
-                        "users",
-                        user.uid
-                    ),
-                    {
-
-                        name: name,
-
-                        email: email,
-
-                        role: role,
-
-                        /*
-                           New users start with
-                           zero career data.
-                        */
-
-                        skills: [],
-
-                        projects: [],
-
-                        certificates: [],
-
-                        education: null,
-
-                        resumeUploaded: false,
-
-                        matchScore: 0,
-
-                        createdAt:
-                            serverTimestamp()
-
-                    }
-                );
-
-
-                /* -------------------------
-                   SAVE CURRENT USER
-                ------------------------- */
-
-                saveCurrentUser({
-
-                    uid: user.uid,
-
-                    name: name,
-
-                    email: email,
-
-                    role: role
-
-                });
-
-
-                console.log(
-                    "Use
+            window.locat
