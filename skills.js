@@ -10,15 +10,16 @@ import {
 
 import {
     getFirestore,
-    collection,
-    addDoc,
-    serverTimestamp
+    doc,
+    getDoc
 } from
 "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
+/* ================= FIREBASE ================= */
+
 const firebaseConfig = {
-    apiKey: "AIzaSyDJ84_tSgau334V60r17bqHHubaf5Lecto",
+    apiKey: "AIzaSyDJ84_tSgau334V60r17bqHHubaf5Lecta",
     authDomain: "fast-track-6d262.firebaseapp.com",
     projectId: "fast-track-6d262",
     storageBucket: "fast-track-6d262.firebasestorage.app",
@@ -35,12 +36,42 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 
-let currentUser = null;
+/* ================= HTML ELEMENTS ================= */
+
+const topName =
+    document.getElementById("topName");
+
+const avatar =
+    document.getElementById("avatar");
+
+const logoutBtn =
+    document.getElementById("logoutBtn");
+
+const roleSelect =
+    document.getElementById("roleSelect");
+
+const readinessCircle =
+    document.getElementById("readinessCircle");
+
+const totalSkills =
+    document.getElementById("totalSkills");
+
+const missingSkills =
+    document.getElementById("missingSkills");
+
+const strongSkills =
+    document.getElementById("strongSkills");
+
+const coursesCount =
+    document.getElementById("coursesCount");
+
+const skillsList =
+    document.getElementById("skillsList");
 
 
 /* ================= AUTH ================= */
 
-onAuthStateChanged(auth, (user) => {
+onAuthStateChanged(auth, async (user) => {
 
     if (!user) {
 
@@ -49,234 +80,302 @@ onAuthStateChanged(auth, (user) => {
         return;
     }
 
-    currentUser = user;
-
-    const topUserName =
-        document.getElementById("topUserName");
-
-    const profileAvatar =
-        document.getElementById("profileAvatar");
-
-    const name =
-        user.displayName || "User";
-
-    topUserName.textContent = name;
-
-    profileAvatar.textContent =
-        name.charAt(0).toUpperCase();
-
-});
-
-
-/* ================= MOBILE MENU ================= */
-
-const menuBtn =
-    document.getElementById("menuBtn");
-
-const sidebar =
-    document.getElementById("sidebar");
-
-const overlay =
-    document.getElementById("overlay");
-
-
-function closeMenu(){
-
-    sidebar.classList.remove("open");
-
-    overlay.classList.remove("show");
-
-}
-
-
-menuBtn.addEventListener("click", () => {
-
-    sidebar.classList.toggle("open");
-
-    overlay.classList.toggle("show");
-
-});
-
-
-overlay.addEventListener("click", closeMenu);
-
-
-document.querySelectorAll(".nav-item").forEach(item => {
-
-    item.addEventListener("click", () => {
-
-        closeMenu();
-
-    });
-
-});
-
-
-/* ================= LOGOUT ================= */
-
-const logoutBtn =
-    document.getElementById("logoutBtn");
-
-
-logoutBtn.addEventListener("click", async () => {
 
     try {
 
-        await signOut(auth);
+        let name = user.displayName || "User";
 
-        window.location.href = "index.html";
 
-    } catch(error){
+        /* Get Firestore profile */
 
-        console.error(error);
+        const userRef =
+            doc(db, "users", user.uid);
 
-        alert("Logout failed. Please try again.");
+        const userDoc =
+            await getDoc(userRef);
+
+
+        if (userDoc.exists()) {
+
+            const data =
+                userDoc.data();
+
+            name =
+                data.name ||
+                user.displayName ||
+                "User";
+        }
+
+
+        /* Display username */
+
+        if (topName) {
+
+            topName.textContent = name;
+        }
+
+
+        /* Display avatar */
+
+        if (avatar) {
+
+            avatar.textContent =
+                name.charAt(0).toUpperCase();
+        }
+
+
+        /* Load skills */
+
+        loadSkills();
+
+    }
+    catch (error) {
+
+        console.error(
+            "Error loading profile:",
+            error
+        );
 
     }
 
 });
 
 
-/* ================= SEARCH ================= */
+/* ================= LOAD SKILLS ================= */
 
-const searchInput =
-    document.getElementById("skillSearch");
+function loadSkills() {
 
-const skillCards =
-    document.querySelectorAll("#skillsGrid .skill-card");
-
-const noResult =
-    document.getElementById("noResult");
+    const skillRows =
+        skillsList
+            ? skillsList.querySelectorAll(".skill-row")
+            : [];
 
 
-searchInput.addEventListener("input", function(){
-
-    const search =
-        this.value.toLowerCase().trim();
-
-    let visibleCount = 0;
+    const skillCount =
+        skillRows.length;
 
 
-    skillCards.forEach(card => {
+    /* Total skills */
 
-        const skill =
-            card.dataset.skill.toLowerCase();
+    if (totalSkills) {
 
-        if(skill.includes(search)){
+        totalSkills.textContent =
+            skillCount;
+    }
 
-            card.style.display = "block";
 
-            visibleCount++;
+    /* Calculate strong skills */
 
-        }else{
+    let strongCount = 0;
 
-            card.style.display = "none";
+
+    skillRows.forEach(row => {
+
+        const level =
+            row.querySelector(".skill-level");
+
+
+        if (!level) return;
+
+
+        const levelText =
+            level.textContent
+                .trim()
+                .toLowerCase();
+
+
+        if (
+            levelText === "advanced" ||
+            levelText === "excellent" ||
+            levelText === "expert"
+        ) {
+
+            strongCount++;
 
         }
 
     });
 
 
-    noResult.style.display =
-        visibleCount === 0 ? "block" : "none";
+    if (strongSkills) {
 
-});
-
-
-/* ================= ADD SKILL ================= */
-
-const addSkillBtn =
-    document.getElementById("addSkillBtn");
+        strongSkills.textContent =
+            strongCount;
+    }
 
 
-addSkillBtn.addEventListener("click", async () => {
+    /* Default missing skills */
 
-    if(!currentUser){
+    if (missingSkills) {
 
-        alert("Please login first.");
+        missingSkills.textContent =
+            "0";
+    }
 
-        return;
+
+    /* Recommended learning */
+
+    if (coursesCount) {
+
+        coursesCount.textContent =
+            "3";
+    }
+
+
+    /* Readiness */
+
+    let readiness = 0;
+
+
+    if (skillCount > 0) {
+
+        readiness =
+            Math.round(
+                (strongCount / skillCount) * 100
+            );
 
     }
 
 
-    const skillName =
-        prompt("Enter your skill name:");
+    if (readinessCircle) {
 
-
-    if(!skillName || !skillName.trim()){
-
-        return;
-
+        readinessCircle.textContent =
+            readiness + "%";
     }
 
 
-    const level =
-        prompt(
-            "Enter level:\nBeginner / Intermediate / Advanced"
+    /* Update circle */
+
+    const circle =
+        document.querySelector(
+            ".readiness-circle"
         );
 
 
-    if(!level || !level.trim()){
+    if (circle) {
 
-        return;
-
-    }
-
-
-    const progress =
-        prompt("Enter progress percentage (0-100):");
+        const degree =
+            readiness * 3.6;
 
 
-    const progressNumber =
-        Number(progress);
-
-
-    if(
-        isNaN(progressNumber) ||
-        progressNumber < 0 ||
-        progressNumber > 100
-    ){
-
-        alert("Enter a valid percentage between 0 and 100.");
-
-        return;
+        circle.style.background =
+            `conic-gradient(
+                #60a5fa ${degree}deg,
+                rgba(255,255,255,.15) ${degree}deg
+            )`;
 
     }
 
+}
 
-    try{
 
-        await addDoc(
+/* ================= ROLE CHANGE ================= */
 
-            collection(
-                db,
-                "users",
-                currentUser.uid,
-                "skills"
-            ),
+if (roleSelect) {
 
-            {
-                name: skillName.trim(),
-                level: level.trim(),
-                progress: progressNumber,
-                createdAt: serverTimestamp()
+    roleSelect.addEventListener(
+        "change",
+        () => {
+
+            console.log(
+                "Selected role:",
+                roleSelect.value
+            );
+
+        }
+    );
+
+}
+
+
+/* ================= LOGOUT ================= */
+
+if (logoutBtn) {
+
+    logoutBtn.addEventListener(
+        "click",
+        async () => {
+
+            try {
+
+                await signOut(auth);
+
+                window.location.href =
+                    "index.html";
+
+            }
+            catch (error) {
+
+                console.error(
+                    "Logout error:",
+                    error
+                );
+
+                showToast(
+                    "Logout failed. Please try again."
+                );
+
             }
 
-        );
+        }
+    );
+
+}
 
 
-        alert("✅ Skill saved successfully!");
+/* ================= NOTIFICATION ================= */
 
+const notifyBtn =
+    document.getElementById("notifyBtn");
+
+
+if (notifyBtn) {
+
+    notifyBtn.addEventListener(
+        "click",
+        () => {
+
+            showToast(
+                "No new notifications."
+            );
+
+        }
+    );
+
+}
+
+
+/* ================= TOAST ================= */
+
+function showToast(message) {
+
+    let toast =
+        document.querySelector(".toast");
+
+
+    if (!toast) {
+
+        toast =
+            document.createElement("div");
+
+        toast.className =
+            "toast";
+
+        document.body.appendChild(toast);
     }
-    catch(error){
 
-        console.error(error);
 
-        alert(
-            "❌ Unable to save skill. Check Firebase Rules."
-        );
+    toast.textContent =
+        message;
 
-    }
 
-});
+    toast.classList.add("show");
+
+
+    setTimeout(() => {
+
+        toast.classList.remove("show");
+
+    }, 2500);
+
+}
