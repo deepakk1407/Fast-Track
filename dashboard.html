@@ -4,20 +4,56 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>FAST-TRACK Dashboard</title>
+<title>FAST-TRACK | Smart Career Dashboard</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+
+:root{
+    --bg:#f6f8fc;
+    --card:#ffffff;
+    --text:#111827;
+    --muted:#64748b;
+    --line:#e7ebf3;
+    --primary:#2563eb;
+    --primary2:#4f46e5;
+    --dark:#0b1220;
+    --green:#16a34a;
+    --orange:#d97706;
+    --purple:#7c3aed;
+    --red:#dc2626;
+    --shadow:0 10px 35px rgba(15,23,42,.06);
+}
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
 
-body{
-    font-family:Arial,sans-serif;
-    background:#f4f7fb;
-    color:#0f172a;
+html{
+    scroll-behavior:smooth;
 }
+
+body{
+    font-family:Inter,Arial,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    min-height:100vh;
+}
+
+button{
+    font-family:inherit;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
 
 /* ================= SIDEBAR ================= */
 
@@ -27,226 +63,390 @@ body{
     top:0;
     bottom:0;
     width:250px;
-    background:#0f172a;
+    background:linear-gradient(
+        180deg,
+        #0b1220 0%,
+        #111c3d 58%,
+        #17134b 100%
+    );
     color:white;
-    padding:25px 15px;
-    z-index:1000;
+    padding:24px 15px;
+    z-index:100;
+    display:flex;
+    flex-direction:column;
 }
 
-.logo{
+.brand{
     display:flex;
     align-items:center;
-    gap:10px;
-    padding:10px;
-    margin-bottom:30px;
+    gap:11px;
+    padding:6px 10px 28px;
 }
 
-.logo img{
-    width:42px;
-    height:42px;
+.brand img{
+    width:43px;
+    height:43px;
+    border-radius:10px;
     object-fit:contain;
 }
 
-.logo h2{
+.brand h2{
     font-size:18px;
+    letter-spacing:.5px;
 }
 
-.logo p{
-    font-size:8px;
+.brand small{
+    display:block;
     color:#93c5fd;
+    font-size:8px;
     margin-top:4px;
+    letter-spacing:1px;
 }
 
-.menu-title{
-    font-size:10px;
+.section-label{
+    font-size:9px;
     color:#94a3b8;
-    margin:20px 12px 10px;
+    letter-spacing:1.5px;
+    font-weight:700;
+    padding:0 12px 10px;
 }
 
-.menu a{
+.nav{
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+}
+
+.nav a{
     display:flex;
     align-items:center;
     gap:12px;
-    text-decoration:none;
+    padding:12px 13px;
     color:#cbd5e1;
-    padding:13px;
-    margin-bottom:5px;
-    border-radius:10px;
-    font-size:14px;
+    border-radius:11px;
+    font-size:13px;
+    font-weight:500;
+    transition:.2s;
 }
 
-.menu a:hover,
-.menu a.active{
-    background:#1d4ed8;
+.nav a:hover{
+    background:rgba(255,255,255,.08);
     color:white;
+}
+
+.nav a.active{
+    background:linear-gradient(
+        90deg,
+        rgba(37,99,235,.9),
+        rgba(79,70,229,.75)
+    );
+    color:white;
+    box-shadow:0 8px 20px rgba(37,99,235,.2);
+}
+
+.nav-icon{
+    width:22px;
+    text-align:center;
+    font-size:17px;
+}
+
+.sidebar-bottom{
+    margin-top:auto;
+}
+
+.mini-box{
+    padding:14px;
+    margin:8px 4px 14px;
+    border:1px solid rgba(255,255,255,.08);
+    background:rgba(255,255,255,.06);
+    border-radius:13px;
+}
+
+.mini-box p{
+    font-size:10px;
+    color:#94a3b8;
+    margin-bottom:7px;
+}
+
+.mini-box strong{
+    font-size:12px;
 }
 
 .logout{
-    position:absolute;
-    bottom:25px;
-    left:15px;
-    right:15px;
+    width:100%;
     padding:12px;
     border:0;
     border-radius:10px;
-    background:#7f1d1d;
-    color:white;
+    background:rgba(239,68,68,.1);
+    color:#fca5a5;
     cursor:pointer;
-    font-size:14px;
+    font-weight:700;
+    transition:.2s;
 }
 
 .logout:hover{
-    background:#991b1b;
+    background:#ef4444;
+    color:white;
 }
+
 
 /* ================= MAIN ================= */
 
 .main{
     margin-left:250px;
-    padding:30px;
+    padding:28px 34px 50px;
+    min-height:100vh;
 }
-
-/* ================= TOPBAR ================= */
 
 .topbar{
     display:flex;
-    justify-content:space-between;
     align-items:center;
-    margin-bottom:25px;
+    justify-content:space-between;
+    margin-bottom:24px;
 }
 
-.topbar h1{
-    font-size:28px;
+.title h1{
+    font-size:27px;
+    letter-spacing:-.6px;
 }
 
-.topbar p{
-    color:#64748b;
-    margin-top:5px;
-    font-size:14px;
+.title p{
+    color:var(--muted);
+    font-size:13px;
+    margin-top:6px;
 }
 
-.profile{
+.user-box{
+    display:flex;
+    align-items:center;
+    gap:10px;
     background:white;
-    border:1px solid #e2e8f0;
-    padding:8px 15px;
-    border-radius:12px;
+    border:1px solid var(--line);
+    padding:7px 12px;
+    border-radius:13px;
 }
+
+.avatar{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    background:#dbeafe;
+    color:#1d4ed8;
+    font-weight:800;
+}
+
+.user-box strong{
+    font-size:12px;
+}
+
+.user-box span{
+    display:block;
+    color:var(--muted);
+    font-size:9px;
+    margin-top:2px;
+}
+
 
 /* ================= WELCOME ================= */
 
 .welcome{
+    position:relative;
+    overflow:hidden;
     background:linear-gradient(
-        135deg,
-        #0f172a,
-        #2563eb,
-        #3730a3
+        120deg,
+        #0b1220,
+        #1d4ed8 60%,
+        #4338ca
     );
     color:white;
-    padding:35px;
-    border-radius:20px;
-    margin-bottom:25px;
+    padding:28px 30px;
+    border-radius:22px;
+    margin-bottom:22px;
+    box-shadow:0 18px 45px rgba(37,99,235,.15);
 }
 
-.welcome span{
-    color:#93c5fd;
+.welcome:after{
+    content:"";
+    position:absolute;
+    width:240px;
+    height:240px;
+    border-radius:50%;
+    right:-80px;
+    top:-100px;
+    background:rgba(255,255,255,.07);
+}
+
+.badge{
+    display:inline-flex;
+    padding:6px 10px;
+    border-radius:30px;
+    background:rgba(255,255,255,.12);
+    font-size:9px;
+    letter-spacing:1px;
+    margin-bottom:12px;
 }
 
 .welcome h2{
-    font-size:30px;
-    margin-bottom:10px;
+    font-size:27px;
+    position:relative;
+    z-index:1;
+}
+
+.welcome h2 span{
+    color:#93c5fd;
 }
 
 .welcome p{
+    font-size:12px;
     color:#dbeafe;
-    line-height:1.6;
-    max-width:650px;
+    line-height:1.7;
+    max-width:690px;
+    margin-top:8px;
+    position:relative;
+    z-index:1;
 }
+
 
 /* ================= STATS ================= */
 
 .stats{
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    gap:18px;
-    margin-bottom:25px;
+    gap:15px;
+    margin-bottom:22px;
 }
 
-.card{
-    background:white;
-    padding:22px;
-    border-radius:16px;
-    border:1px solid #e2e8f0;
+.stat{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:17px;
+    padding:18px;
+    box-shadow:var(--shadow);
+    transition:.2s;
 }
 
-.card small{
-    color:#64748b;
-    font-size:11px;
+.stat:hover{
+    transform:translateY(-2px);
 }
 
-.card h2{
-    margin-top:10px;
-    font-size:28px;
+.stat-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
 
-.card p{
-    margin-top:5px;
-    color:#64748b;
-    font-size:11px;
+.stat small{
+    font-size:9px;
+    color:var(--muted);
+    font-weight:800;
+    letter-spacing:.6px;
 }
 
-.blue{color:#2563eb;}
-.green{color:#16a34a;}
-.orange{color:#d97706;}
-.purple{color:#7c3aed;}
+.stat-icon{
+    width:38px;
+    height:38px;
+    border-radius:10px;
+    display:grid;
+    place-items:center;
+    background:#eff6ff;
+    font-size:17px;
+}
+
+.stat h3{
+    font-size:25px;
+    margin-top:12px;
+}
+
+.stat p{
+    font-size:10px;
+    color:var(--muted);
+    margin-top:4px;
+}
+
+.blue{
+    color:var(--primary);
+}
+
+.green{
+    color:var(--green);
+}
+
+.orange{
+    color:var(--orange);
+}
+
+.purple{
+    color:var(--purple);
+}
+
 
 /* ================= GRID ================= */
 
 .grid{
     display:grid;
-    grid-template-columns:1.5fr 1fr;
-    gap:20px;
+    grid-template-columns:1.45fr 1fr;
+    gap:18px;
 }
 
-/* ================= PANEL ================= */
-
-.panel{
+.card{
     background:white;
-    padding:22px;
+    border:1px solid var(--line);
     border-radius:18px;
-    border:1px solid #e2e8f0;
-    margin-bottom:20px;
-}
-
-.panel h2{
-    font-size:17px;
+    padding:21px;
+    box-shadow:var(--shadow);
     margin-bottom:18px;
 }
 
-/* ================= MATCH ================= */
-
-.match{
+.card-head{
     display:flex;
     align-items:center;
-    gap:25px;
+    justify-content:space-between;
+    margin-bottom:18px;
+}
+
+.card-head h2{
+    font-size:15px;
+    letter-spacing:-.2px;
+}
+
+.card-head p{
+    font-size:10px;
+    color:var(--muted);
+}
+
+.view{
+    font-size:10px;
+    color:var(--primary);
+    font-weight:700;
+}
+
+
+/* ================= MATCH SCORE ================= */
+
+.match-wrap{
+    display:flex;
+    align-items:center;
+    gap:28px;
 }
 
 .circle{
-    width:140px;
-    height:140px;
-    min-width:140px;
+    width:145px;
+    height:145px;
     border-radius:50%;
     background:conic-gradient(
-        #2563eb 0%,
-        #e2e8f0 0%
+        var(--primary) 0deg,
+        #e8edf5 0deg
     );
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    display:grid;
+    place-items:center;
+    flex:none;
 }
 
 .circle-inner{
-    width:105px;
-    height:105px;
+    width:108px;
+    height:108px;
     background:white;
     border-radius:50%;
     display:flex;
@@ -256,12 +456,13 @@ body{
 }
 
 .circle-inner strong{
-    font-size:30px;
+    font-size:29px;
 }
 
 .circle-inner small{
-    color:#64748b;
-    font-size:9px;
+    font-size:8px;
+    color:var(--muted);
+    margin-top:2px;
 }
 
 .breakdown{
@@ -270,81 +471,82 @@ body{
 
 .row{
     display:grid;
-    grid-template-columns:90px 1fr 50px;
+    grid-template-columns:82px 1fr 48px;
     align-items:center;
-    gap:10px;
-    margin-bottom:12px;
-    font-size:11px;
+    gap:9px;
+    margin-bottom:13px;
+    font-size:10px;
 }
 
-.progress{
+.bar{
     height:7px;
-    background:#e2e8f0;
-    border-radius:10px;
+    background:#e7ebf2;
+    border-radius:20px;
     overflow:hidden;
 }
 
-.progress div{
+.bar div{
     height:100%;
-    width:0%;
-    background:#2563eb;
+    width:0;
+    background:var(--primary);
 }
 
-/* ================= JOBS ================= */
-
-.job{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    padding:13px;
-    border:1px solid #e2e8f0;
-    border-radius:12px;
-    margin-bottom:10px;
+.score{
+    font-weight:700;
+    text-align:right;
 }
 
-.company{
-    width:42px;
-    height:42px;
-    background:#eff6ff;
-    color:#2563eb;
-    border-radius:10px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:bold;
+
+/* ================= EMPTY ================= */
+
+.empty{
+    text-align:center;
+    padding:25px 10px;
+    border:1px dashed #d7deea;
+    border-radius:13px;
+    background:#fbfcfe;
 }
 
-.job-info{
-    flex:1;
+.empty-icon{
+    font-size:27px;
+    margin-bottom:8px;
 }
 
-.job-info h3{
+.empty h3{
     font-size:13px;
 }
 
-.job-info p{
-    color:#64748b;
+.empty p{
     font-size:10px;
-    margin-top:4px;
+    color:var(--muted);
+    margin:5px 0 13px;
 }
 
-.match-badge{
-    background:#f1f5f9;
-    color:#64748b;
-    padding:6px 8px;
-    border-radius:7px;
+.primary-btn{
+    display:inline-block;
+    border:0;
+    border-radius:9px;
+    background:var(--primary);
+    color:white;
+    padding:9px 13px;
     font-size:10px;
-    font-weight:bold;
+    font-weight:700;
+    cursor:pointer;
 }
+
 
 /* ================= SKILLS ================= */
 
 .skill{
-    padding:14px;
+    padding:13px;
+    border:1px solid var(--line);
+    background:#fafbfd;
     border-radius:12px;
-    background:#f8fafc;
-    border:1px solid #e2e8f0;
-    margin-bottom:10px;
+    margin-bottom:9px;
+}
+
+.skill:last-child{
+    margin-bottom:0;
 }
 
 .skill-top{
@@ -353,35 +555,41 @@ body{
 }
 
 .skill h3{
-    font-size:13px;
+    font-size:11px;
+}
+
+.skill-status{
+    font-size:9px;
+    font-weight:800;
 }
 
 .missing{
-    color:#dc2626;
-    font-size:10px;
-    font-weight:bold;
+    color:var(--red);
+}
+
+.beginner{
+    color:var(--orange);
 }
 
 .good{
-    color:#16a34a;
-    font-size:10px;
-    font-weight:bold;
+    color:var(--green);
 }
 
 .skill p{
-    color:#64748b;
-    font-size:10px;
-    margin-top:6px;
+    font-size:9px;
+    color:var(--muted);
+    margin-top:5px;
 }
+
 
 /* ================= APPLICATION ================= */
 
 .application{
     display:flex;
-    justify-content:space-between;
     align-items:center;
-    padding:14px 0;
-    border-bottom:1px solid #e2e8f0;
+    justify-content:space-between;
+    padding:13px 0;
+    border-bottom:1px solid var(--line);
 }
 
 .application:last-child{
@@ -389,136 +597,146 @@ body{
 }
 
 .application h3{
-    font-size:12px;
+    font-size:11px;
 }
 
 .application p{
-    color:#64748b;
-    font-size:10px;
+    font-size:9px;
+    color:var(--muted);
     margin-top:4px;
 }
 
 .status{
-    padding:6px 9px;
+    font-size:8px;
+    font-weight:800;
+    padding:6px 8px;
     border-radius:7px;
-    font-size:9px;
-    font-weight:bold;
+    background:#f1f5f9;
+    color:#64748b;
 }
 
-.review{
-    background:#dbeafe;
-    color:#2563eb;
-}
 
 /* ================= LEARNING ================= */
 
-.learning{
-    padding:14px;
-    border:1px solid #e2e8f0;
+.learn{
+    padding:13px;
+    border:1px solid var(--line);
     border-radius:12px;
-    margin-bottom:10px;
+    margin-bottom:9px;
 }
 
-.learning h3{
-    font-size:12px;
+.learn:last-child{
+    margin-bottom:0;
 }
 
-.learning p{
-    color:#64748b;
-    font-size:10px;
+.learn h3{
+    font-size:11px;
+}
+
+.learn p{
+    font-size:9px;
+    color:var(--muted);
     margin-top:5px;
 }
 
-.start{
+.learn-btn{
     display:inline-block;
-    margin-top:9px;
-    background:#2563eb;
-    color:white;
-    padding:7px 10px;
-    border-radius:7px;
-    text-decoration:none;
+    margin-top:8px;
     font-size:9px;
+    color:var(--primary);
+    font-weight:800;
 }
+
 
 /* ================= PROFILE ================= */
 
+.profile-row{
+    display:flex;
+    justify-content:space-between;
+    font-size:10px;
+    font-weight:700;
+}
+
 .profile-progress{
-    height:9px;
-    background:#e2e8f0;
+    height:8px;
+    background:#e8edf4;
     border-radius:20px;
     overflow:hidden;
-    margin:15px 0;
+    margin:12px 0;
 }
 
 .profile-progress div{
+    width:0;
     height:100%;
-    width:0%;
-    background:#2563eb;
+    background:linear-gradient(
+        90deg,
+        var(--primary),
+        var(--primary2)
+    );
 }
 
-.profile-text{
-    font-size:11px;
-    color:#64748b;
+.profile-note{
+    font-size:9px;
+    color:var(--muted);
 }
+
 
 /* ================= AI BUTTON ================= */
 
-.ai{
+.ai-btn{
     position:fixed;
     right:25px;
     bottom:25px;
     border:0;
-    background:#2563eb;
-    color:white;
-    padding:13px 18px;
     border-radius:30px;
-    font-weight:bold;
-    box-shadow:0 10px 25px rgba(37,99,235,.3);
+    padding:12px 17px;
+    background:linear-gradient(
+        135deg,
+        var(--primary),
+        var(--primary2)
+    );
+    color:white;
+    font-size:11px;
+    font-weight:800;
+    box-shadow:0 12px 28px rgba(37,99,235,.28);
     cursor:pointer;
+    z-index:50;
 }
 
-/* ================= MOBILE HEADER ================= */
+.toast{
+    position:fixed;
+    right:22px;
+    top:20px;
+    background:#0f172a;
+    color:white;
+    padding:12px 15px;
+    border-radius:11px;
+    font-size:11px;
+    opacity:0;
+    transform:translateY(-10px);
+    pointer-events:none;
+    transition:.25s;
+    z-index:300;
+}
 
-.mobile-header{
+.toast.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+
+/* ================= MOBILE ================= */
+
+.mobile-head{
     display:none;
 }
 
-.mobile-logo{
-    display:flex;
-    align-items:center;
-    gap:8px;
-}
-
-.mobile-logo img{
-    width:35px;
-    height:35px;
-    object-fit:contain;
-}
-
-.mobile-logo strong{
-    font-size:16px;
-}
-
-.mobile-menu-btn{
-    display:none;
-    width:42px;
-    height:42px;
-    border:1px solid #e2e8f0;
-    background:white;
-    border-radius:10px;
-    font-size:22px;
-    cursor:pointer;
-    align-items:center;
-    justify-content:center;
-}
-
-.mobile-overlay{
+.mobile-nav{
     display:none;
 }
 
-/* ================= TABLET ================= */
 
-@media(max-width:1000px){
+@media(max-width:1100px){
 
     .stats{
         grid-template-columns:repeat(2,1fr);
@@ -527,82 +745,84 @@ body{
     .grid{
         grid-template-columns:1fr;
     }
+
 }
 
-/* ================= MOBILE ================= */
 
-@media(max-width:768px){
+@media(max-width:700px){
 
     body{
-        overflow-x:hidden;
+        padding-bottom:72px;
     }
 
     .sidebar{
-        width:270px;
-        transform:translateX(-110%);
-        transition:transform .3s ease;
-        box-shadow:10px 0 30px rgba(0,0,0,.2);
-    }
-
-    .sidebar.mobile-open{
-        transform:translateX(0);
-    }
-
-    .mobile-overlay{
-        position:fixed;
-        inset:0;
-        background:rgba(15,23,42,.5);
-        z-index:999;
-    }
-
-    .mobile-overlay.mobile-open{
-        display:block;
+        display:none;
     }
 
     .main{
-        margin-left:0;
-        padding:15px;
-        width:100%;
+        margin:0;
+        padding:14px 14px 90px;
     }
 
-    .mobile-header{
+    .mobile-head{
         display:flex;
-        justify-content:space-between;
         align-items:center;
-        margin-bottom:20px;
-    }
-
-    .mobile-menu-btn{
-        display:flex;
-    }
-
-    .topbar{
+        justify-content:space-between;
         margin-bottom:18px;
     }
 
-    .topbar h1{
+    .mobile-brand{
+        display:flex;
+        align-items:center;
+        gap:8px;
+    }
+
+    .mobile-brand img{
+        width:36px;
+        height:36px;
+        border-radius:9px;
+    }
+
+    .mobile-brand strong{
+        font-size:16px;
+    }
+
+    .bell{
+        width:38px;
+        height:38px;
+        border:1px solid var(--line);
+        background:white;
+        border-radius:10px;
+        cursor:pointer;
+    }
+
+    .topbar{
+        margin-bottom:17px;
+    }
+
+    .title h1{
         font-size:23px;
     }
 
-    .topbar p{
-        font-size:11px;
+    .title p{
+        font-size:10px;
     }
 
-    .profile{
+    .user-box{
         display:none;
     }
 
     .welcome{
-        padding:23px 18px;
-        border-radius:17px;
+        padding:22px 18px;
+        border-radius:18px;
     }
 
     .welcome h2{
-        font-size:23px;
+        font-size:22px;
     }
 
     .welcome p{
-        font-size:11px;
+        font-size:10px;
     }
 
     .stats{
@@ -610,42 +830,47 @@ body{
         gap:10px;
     }
 
-    .card{
-        padding:15px;
+    .stat{
+        padding:14px;
+        border-radius:14px;
     }
 
-    .card h2{
-        font-size:22px;
+    .stat h3{
+        font-size:21px;
     }
 
-    .card small{
+    .stat small{
+        font-size:8px;
+    }
+
+    .stat p{
         font-size:9px;
     }
 
-    .grid{
-        display:block;
+    .stat-icon{
+        width:32px;
+        height:32px;
+        font-size:14px;
     }
 
-    .panel{
+    .card{
         padding:16px;
         border-radius:15px;
-        margin-bottom:14px;
     }
 
-    .match{
+    .match-wrap{
         flex-direction:column;
-        gap:20px;
+        gap:18px;
     }
 
     .circle{
         width:125px;
         height:125px;
-        min-width:125px;
     }
 
     .circle-inner{
-        width:94px;
-        height:94px;
+        width:93px;
+        height:93px;
     }
 
     .circle-inner strong{
@@ -657,151 +882,197 @@ body{
     }
 
     .row{
-        grid-template-columns:75px 1fr 45px;
-        font-size:10px;
-    }
-
-    .job{
-        padding:11px;
-    }
-
-    .job-info h3{
-        font-size:12px;
-    }
-
-    .match-badge{
+        grid-template-columns:65px 1fr 42px;
         font-size:9px;
     }
 
-    .ai{
-        right:15px;
-        bottom:15px;
-        padding:11px 15px;
+    .ai-btn{
+        right:14px;
+        bottom:84px;
+        padding:10px 14px;
+        font-size:9px;
     }
+
+    .mobile-nav{
+        display:grid;
+        grid-template-columns:repeat(4,1fr);
+        position:fixed;
+        left:0;
+        right:0;
+        bottom:0;
+        height:68px;
+        background:white;
+        border-top:1px solid var(--line);
+        z-index:100;
+    }
+
+    .mobile-nav a{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        gap:4px;
+        font-size:8px;
+        color:#64748b;
+        font-weight:700;
+    }
+
+    .mobile-nav a.active{
+        color:var(--primary);
+    }
+
+    .mobile-nav span:first-child{
+        font-size:17px;
+    }
+
 }
 
-/* VERY SMALL MOBILE */
 
-@media(max-width:420px){
+@media(max-width:380px){
 
     .main{
-        padding:12px;
+        padding-left:10px;
+        padding-right:10px;
     }
 
     .stats{
-        grid-template-columns:1fr 1fr;
+        gap:7px;
     }
 
-    .card{
-        min-width:0;
-        padding:13px;
+    .stat{
+        padding:11px;
     }
 
-    .card h2{
-        font-size:20px;
-    }
-
-    .welcome h2{
-        font-size:21px;
-    }
-
-    .welcome p{
-        font-size:10px;
-    }
 }
+
 </style>
 </head>
 
+
 <body>
+
 
 <!-- ================= SIDEBAR ================= -->
 
-<aside class="sidebar" id="sidebar">
+<aside class="sidebar">
 
-    <div class="logo">
+    <div class="brand">
+
         <img src="fast-track-logo.png" alt="FAST-TRACK">
+
         <div>
+
             <h2>FAST-TRACK</h2>
-            <p>SMART CAREER PLATFORM</p>
+
+            <small>SMART CAREER PLATFORM</small>
+
         </div>
+
     </div>
 
-    <div class="menu-title">MAIN MENU</div>
 
-    <nav class="menu">
+    <div class="section-label">
+        MAIN MENU
+    </div>
+
+
+    <nav class="nav">
 
         <a href="dashboard.html" class="active">
-            🏠 Dashboard
+            <span class="nav-icon">🏠</span>
+            Dashboard
         </a>
 
         <a href="jobs.html">
-            💼 Jobs
+            <span class="nav-icon">💼</span>
+            Jobs
         </a>
 
         <a href="skills.html">
-            🎯 Skills
+            <span class="nav-icon">🎯</span>
+            Skills
         </a>
 
         <a href="course.html">
-            📚 Courses
+            <span class="nav-icon">📚</span>
+            Courses
         </a>
 
         <a href="resume builder.html">
-            📄 Resume Builder
+            <span class="nav-icon">📄</span>
+            Resume Builder
         </a>
 
         <a href="career progress.html">
-            📈 Career Progress
+            <span class="nav-icon">📈</span>
+            Career Progress
         </a>
 
         <a href="my profile.html">
-            👤 My Profile
+            <span class="nav-icon">👤</span>
+            My Profile
         </a>
 
     </nav>
 
-    <button class="logout" id="logoutBtn">
-        🚪 Logout
-    </button>
+
+    <div class="sidebar-bottom">
+
+        <div class="mini-box">
+
+            <p>CAREER STATUS</p>
+
+            <strong>
+                🚀 Ready to Fast-Track
+            </strong>
+
+        </div>
+
+
+        <button class="logout" id="logoutBtn">
+            🚪 Logout
+        </button>
+
+    </div>
 
 </aside>
+
 
 
 <!-- ================= MAIN ================= -->
 
 <main class="main">
 
+
     <!-- MOBILE HEADER -->
 
-    <div class="mobile-header">
+    <div class="mobile-head">
 
-        <div class="mobile-logo">
+        <div class="mobile-brand">
+
             <img src="fast-track-logo.png" alt="FAST-TRACK">
+
             <strong>FAST-TRACK</strong>
+
         </div>
 
-        <button
-            class="mobile-menu-btn"
-            id="mobileMenuBtn"
-            type="button">
-            ☰
+        <button class="bell" id="notifyBtn">
+            🔔
         </button>
 
     </div>
 
-    <div
-        class="mobile-overlay"
-        id="mobileOverlay">
-    </div>
 
 
-    <!-- TOPBAR -->
+    <!-- TOP BAR -->
 
     <header class="topbar">
 
-        <div>
+        <div class="title">
 
-            <h1>Dashboard</h1>
+            <h1>
+                Dashboard
+            </h1>
 
             <p>
                 Your career journey, all in one place.
@@ -809,116 +1080,208 @@ body{
 
         </div>
 
-        <div class="profile">
-            👤
-            <strong id="topName">User</strong>
+
+        <div class="user-box">
+
+            <div class="avatar" id="avatar">
+                U
+            </div>
+
+            <div>
+
+                <strong id="topName">
+                    User
+                </strong>
+
+                <span>
+                    Job Seeker
+                </span>
+
+            </div>
+
         </div>
 
     </header>
 
 
-    <!-- WELCOME -->
+
+    <!-- ================= WELCOME ================= -->
 
     <section class="welcome">
 
+        <div class="badge">
+            AI-POWERED CAREER PLATFORM
+        </div>
+
         <h2>
             Welcome,
-            <span id="welcomeName">User</span>
+            <span id="welcomeName">
+                User
+            </span>
             👋
         </h2>
 
         <p>
-            FAST-TRACK helps you understand your job
-            fit, identify skill gaps, improve your profile
-            and move confidently toward your career goals.
+            FAST-TRACK helps you understand your job fit,
+            identify skill gaps, improve your profile and move
+            confidently toward your career goals.
         </p>
 
     </section>
 
 
-    <!-- STATS -->
+
+    <!-- ================= STATS ================= -->
 
     <section class="stats">
 
-        <div class="card">
 
-            <small>AI MATCH SCORE</small>
+        <div class="stat">
 
-            <h2 class="blue" id="aiMatchStat">
+            <div class="stat-top">
+
+                <small>
+                    AI MATCH SCORE
+                </small>
+
+                <div class="stat-icon">
+                    🤖
+                </div>
+
+            </div>
+
+            <h3 class="blue">
                 0%
-            </h2>
+            </h3>
 
-            <p>Best current match</p>
+            <p>
+                No job match calculated yet
+            </p>
 
         </div>
 
 
-        <div class="card">
 
-            <small>RECOMMENDED JOBS</small>
+        <div class="stat">
 
-            <h2 class="green">
+            <div class="stat-top">
+
+                <small>
+                    RECOMMENDED JOBS
+                </small>
+
+                <div class="stat-icon">
+                    💼
+                </div>
+
+            </div>
+
+            <h3 class="green">
                 0
-            </h2>
+            </h3>
 
-            <p>Matching opportunities</p>
-
-        </div>
-
-
-        <div class="card">
-
-            <small>SKILL READINESS</small>
-
-            <h2 class="orange">
-                0/0
-            </h2>
-
-            <p>Current skill level</p>
+            <p>
+                Matching opportunities
+            </p>
 
         </div>
 
 
-        <div class="card">
 
-            <small>APPLICATIONS</small>
+        <div class="stat">
 
-            <h2 class="purple">
+            <div class="stat-top">
+
+                <small>
+                    SKILL READINESS
+                </small>
+
+                <div class="stat-icon">
+                    🎯
+                </div>
+
+            </div>
+
+            <h3 class="orange">
+                0/10
+            </h3>
+
+            <p>
+                Current skill level
+            </p>
+
+        </div>
+
+
+
+        <div class="stat">
+
+            <div class="stat-top">
+
+                <small>
+                    APPLICATIONS
+                </small>
+
+                <div class="stat-icon">
+                    📨
+                </div>
+
+            </div>
+
+            <h3 class="purple">
                 0
-            </h2>
+            </h3>
 
-            <p>Active applications</p>
+            <p>
+                Active applications
+            </p>
 
         </div>
 
     </section>
 
 
-    <!-- MAIN GRID -->
+
+    <!-- ================= CONTENT GRID ================= -->
 
     <section class="grid">
+
 
         <!-- LEFT COLUMN -->
 
         <div>
 
+
             <!-- AI MATCH -->
 
-            <div class="panel">
+            <div class="card">
 
-                <h2>
-                    🤖 AI Match Score
-                </h2>
+                <div class="card-head">
 
-                <div class="match">
+                    <div>
 
-                    <div
-                        class="circle"
-                        id="matchCircle">
+                        <h2>
+                            🤖 AI Match Score
+                        </h2>
+
+                        <p>
+                            Your job-fit analysis will appear here.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="match-wrap">
+
+
+                    <div class="circle">
 
                         <div class="circle-inner">
 
-                            <strong id="matchCircleScore">
+                            <strong>
                                 0%
                             </strong>
 
@@ -931,273 +1294,8 @@ body{
                     </div>
 
 
+
                     <div class="breakdown">
 
-                        <div class="row">
 
-                            <span>Skills</span>
-
-                            <div class="progress">
-                                <div></div>
-                            </div>
-
-                            <b>0/45</b>
-
-                        </div>
-
-
-                        <div class="row">
-
-                            <span>Education</span>
-
-                            <div class="progress">
-                                <div></div>
-                            </div>
-
-                            <b>0/20</b>
-
-                        </div>
-
-
-                        <div class="row">
-
-                            <span>Projects</span>
-
-                            <div class="progress">
-                                <div></div>
-                            </div>
-
-                            <b>0/20</b>
-
-                        </div>
-
-
-                        <div class="row">
-
-                            <span>Certificates</span>
-
-                            <div class="progress">
-                                <div></div>
-                            </div>
-
-                            <b>0/15</b>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <p style="
-                    margin-top:18px;
-                    font-size:10px;
-                    color:#64748b;
-                    line-height:1.5;
-                ">
-                    ℹ️ This score shows how closely your
-                    profile matches the job requirements.
-                    Final hiring decisions are made by the recruiter.
-                </p>
-
-            </div>
-
-
-            <!-- JOBS -->
-
-            <div class="panel">
-
-                <h2>
-                    💼 Recommended Jobs
-                </h2>
-
-                <div class="job">
-
-                    <div class="company">
-                        ABC
-                    </div>
-
-                    <div class="job-info">
-
-                        <h3>
-                            Software Developer
-                        </h3>
-
-                        <p>
-                            ABC Technologies • Full Time
-                        </p>
-
-                    </div>
-
-                    <div class="match-badge">
-                        0%
-                    </div>
-
-                </div>
-
-
-                <div class="job">
-
-                    <div class="company">
-                        T
-                    </div>
-
-                    <div class="job-info">
-
-                        <h3>
-                            Python Developer
-                        </h3>
-
-                        <p>
-                            TechNova • Entry Level
-                        </p>
-
-                    </div>
-
-                    <div class="match-badge">
-                        0%
-                    </div>
-
-                </div>
-
-
-                <div class="job">
-
-                    <div class="company">
-                        D
-                    </div>
-
-                    <div class="job-info">
-
-                        <h3>
-                            Data Analyst
-                        </h3>
-
-                        <p>
-                            DataWorks • Hybrid
-                        </p>
-
-                    </div>
-
-                    <div class="match-badge">
-                        0%
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- APPLICATIONS -->
-
-            <div class="panel">
-
-                <h2>
-                    📋 Recent Applications
-                </h2>
-
-                <div class="application">
-
-                    <div>
-
-                        <h3>
-                            No applications yet
-                        </h3>
-
-                        <p>
-                            Apply for a job to track
-                            your application here.
-                        </p>
-
-                    </div>
-
-                    <span class="status review">
-                        0
-                    </span>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- RIGHT COLUMN -->
-
-        <div>
-
-            <!-- SKILL GAP -->
-
-            <div class="panel">
-
-                <h2>
-                    🎯 Skill Gap
-                </h2>
-
-                <div class="skill">
-
-                    <div class="skill-top">
-
-                        <h3>Java</h3>
-
-                        <span class="missing">
-                            MISSING
-                        </span>
-
-                    </div>
-
-                    <p>
-                        Required by several software
-                        development roles.
-                    </p>
-
-                </div>
-
-
-                <div class="skill">
-
-                    <div class="skill-top">
-
-                        <h3>Git</h3>
-
-                        <span class="missing">
-                            BEGINNER
-                        </span>
-
-                    </div>
-
-                    <p>
-                        Improve version control
-                        and collaboration skills.
-                    </p>
-
-                </div>
-
-
-                <div class="skill">
-
-                    <div class="skill-top">
-
-                        <h3>Python</h3>
-
-                        <span class="good">
-                            GOOD
-                        </span>
-
-                    </div>
-
-                    <p>
-                        Continue practicing through
-                        coding and projects.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <!-- LEARNING -->
-
-            <div class="panel">
-
-                <h2>
-                 
+              
