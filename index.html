@@ -1,1025 +1,919 @@
-<!DOCTYPE html>  <html lang="en">  <head>  
-    <meta charset="UTF-8">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>FAST-TRACK | Dashboard</title>  
-
-<style>  
-    * {  
-        margin: 0;  
-        padding: 0;  
-        box-sizing: border-box;  
-    }  
-
-    body {  
-        min-height: 100vh;  
-        font-family: Arial, Helvetica, sans-serif;  
-        background: #f5f7fb;  
-        color: #0f172a;  
-    }  
-
-    /* =========================  
-       LAYOUT  
-    ========================== */  
-
-    .app {  
-        display: flex;  
-        min-height: 100vh;  
-    }  
-
-    /* =========================  
-       SIDEBAR  
-    ========================== */  
-
-    .sidebar {  
-        width: 250px;  
-        min-height: 100vh;  
-
-        background:  
-            linear-gradient(  
-                180deg,  
-                #0f172a 0%,  
-                #172554 55%,  
-                #1e1b4b 100%  
-            );  
-
-        color: white;  
-
-        padding: 25px 16px;  
-
-        position: fixed;  
-        left: 0;  
-        top: 0;  
-        bottom: 0;  
-
-        display: flex;  
-        flex-direction: column;  
-
-        z-index: 100;  
-    }  
-
-    .brand {  
-        display: flex;  
-        align-items: center;  
-        gap: 12px;  
-
-        padding: 0 10px;  
-        margin-bottom: 35px;  
-    }  
-
-    .brand img {  
-        width: 42px;  
-        height: 42px;  
-
-        object-fit: contain;  
-
-        border-radius: 10px;  
-    }  
-
-    .brand-text h2 {  
-        font-size: 18px;  
-        letter-spacing: 1px;  
-    }  
-
-    .brand-text span {  
-        display: block;  
-
-        margin-top: 3px;  
-
-        font-size: 9px;  
-        color: #93c5fd;  
-
-        letter-spacing: 1px;  
-    }  
-
-    /* =========================  
-       NAVIGATION  
-    ========================== */  
-
-    .nav-title {  
-        padding: 0 12px;  
-
-        margin-bottom: 10px;  
-
-        font-size: 10px;  
-
-        color: #94a3b8;  
-
-        letter-spacing: 1.5px;  
-
-        font-weight: 700;  
-    }  
-
-    .nav {  
-        display: flex;  
-        flex-direction: column;  
-        gap: 6px;  
-    }  
-
-    .nav-item {  
-        width: 100%;  
-
-        display: flex;  
-        align-items: center;  
-
-        gap: 13px;  
-
-        padding: 12px 14px;  
-
-        border-radius: 10px;  
-
-        color: #cbd5e1;  
-
-        text-decoration: none;  
-
-        font-size: 14px;  
-
-        transition: 0.25s;  
-    }  
-
-    .nav-item:hover {  
-        background: rgba(255, 255, 255, 0.08);  
-        color: white;  
-    }  
-
-    .nav-item.active {  
-        background: rgba(96, 165, 250, 0.18);  
-        color: white;  
-
-        box-shadow:  
-            inset 3px 0 0 #60a5fa;  
-    }  
-
-    .nav-icon {  
-        width: 22px;  
-
-        text-align: center;  
-
-        font-size: 17px;  
-    }  
-
-    /* =========================  
-       SIDEBAR BOTTOM  
-    ========================== */  
-
-    .sidebar-bottom {  
-        margin-top: auto;  
-    }  
-
-    .career-mini {  
-        padding: 16px;  
-
-        margin: 10px 4px 18px;  
-
-        border-radius: 14px;  
-
-        background: rgba(255,255,255,0.07);  
-
-        border: 1px solid rgba(255,255,255,0.08);  
-    }  
-
-    .career-mini p {  
-        font-size: 11px;  
-
-        color: #94a3b8;  
-
-        margin-bottom: 8px;  
-    }  
-
-    .career-mini strong {  
-        font-size: 13px;  
-    }  
-
-    .logout-btn {  
-        width: 100%;  
-
-        border: none;  
-
-        padding: 12px;  
-
-        border-radius: 10px;  
-
-        background: rgba(239, 68, 68, 0.1);  
-
-        color: #fca5a5;  
-
-        font-size: 14px;  
-
-        font-weight: 700;  
-
-        cursor: pointer;  
-
-        transition: 0.25s;  
-    }  
-
-    .logout-btn:hover {  
-        background: #ef4444;  
-        color: white;  
-    }  
-
-    /* =========================  
-       MAIN CONTENT  
-    ========================== */  
-
-    .main {  
-        width: calc(100% - 250px);  
-
-        margin-left: 250px;  
-
-        min-height: 100vh;  
-
-        padding: 25px 35px;  
-    }  
-
-    /* =========================  
-       TOPBAR  
-    ========================== */  
-
-    .topbar {  
-        display: flex;  
-
-        align-items: center;  
-
-        justify-content: space-between;  
-
-        margin-bottom: 30px;  
-    }  
-
-    .page-title h1 {  
-        font-size: 28px;  
-
-        margin-bottom: 6px;  
-    }  
-
-    .page-title p {  
-        color: #64748b;  
-
-        font-size: 14px;  
-    }  
-
-    .profile-mini {  
-        display: flex;  
-
-        align-items: center;  
-
-        gap: 12px;  
-
-        padding: 8px 13px;  
-
-        background: white;  
-
-        border: 1px solid #e2e8f0;  
-
-        border-radius: 12px;  
-    }  
-
-    .profile-avatar {  
-        width: 38px;  
-        height: 38px;  
-
-        display: flex;  
-
-        align-items: center;  
-        justify-content: center;  
-
-        border-radius: 50%;  
-
-        background: #dbeafe;  
-
-        color: #2563eb;  
-
-        font-weight: 800;  
-    }  
-
-    .profile-mini strong {  
-        display: block;  
-
-        font-size: 13px;  
-    }  
-
-    .profile-mini span {  
-        display: block;  
-
-        margin-top: 2px;  
-
-        font-size: 10px;  
-
-        color: #64748b;  
-    }  
-
-    /* =========================  
-       WELCOME CARD  
-    ========================== */  
-
-    .welcome-card {  
-        position: relative;  
-
-        overflow: hidden;  
-
-        padding: 32px;  
-
-        border-radius: 22px;  
-
-        background:  
-            linear-gradient(  
-                120deg,  
-                #0f172a,  
-                #1d4ed8,  
-                #312e81  
-            );  
-
-        color: white;  
-
-        box-shadow:  
-            0 18px 45px rgba(30, 64, 175, 0.18);  
-
-        margin-bottom: 25px;  
-    }  
-
-    .welcome-card::after {  
-        content: "";  
-
-        position: absolute;  
-
-        width: 220px;  
-        height: 220px;  
-
-        border-radius: 50%;  
-
-        background: rgba(255,255,255,0.06);  
-
-        right: -70px;  
-        top: -80px;  
-    }  
-
-    .welcome-badge {  
-        display: inline-block;  
-
-        padding: 7px 12px;  
-
-        border-radius: 30px;  
-
-        background: rgba(255,255,255,0.12);  
-
-        font-size: 10px;  
-
-        letter-spacing: 1px;  
-
-        margin-bottom: 15px;  
-    }  
-
-    .welcome-card h2 {  
-        position: relative;  
-
-        z-index: 2;  
-
-        font-size: 30px;  
-
-        margin-bottom: 8px;  
-    }  
-
-    .welcome-card h2 span {  
-        color: #93c5fd;  
-    }  
-
-    .welcome-card p {  
-        position: relative;  
-
-        z-index: 2;  
-
-        max-width: 650px;  
-
-        color: #dbeafe;  
-
-        font-size: 14px;  
-
-        line-height: 1.7;  
-    }  
-
-    /* =========================  
-       STAT CARDS  
-    ========================== */  
-
-    .stats {  
-        display: grid;  
-
-        grid-template-columns:  
-            repeat(3, 1fr);  
-
-        gap: 18px;  
-
-        margin-bottom: 25px;  
-    }  
-
-    .stat-card {  
-        background: white;  
-
-        border: 1px solid #e2e8f0;  
-
-        border-radius: 16px;  
-
-        padding: 22px;  
-
-        transition: 0.25s;  
-    }  
-
-    .stat-card:hover {  
-        transform: translateY(-3px);  
-
-        box-shadow:  
-            0 12px 30px rgba(15,23,42,0.07);  
-    }  
-
-    .stat-top {  
-        display: flex;  
-
-        align-items: center;  
-
-        justify-content: space-between;  
-
-        margin-bottom: 18px;  
-    }  
-
-    .stat-icon {  
-        width: 42px;  
-        height: 42px;  
-
-        display: flex;  
-
-        align-items: center;  
-        justify-content: center;  
-
-        border-radius: 11px;  
-
-        background: #eff6ff;  
-
-        font-size: 19px;  
-    }  
-
-    .stat-card small {  
-        color: #64748b;  
-
-        font-size: 11px;  
-
-        font-weight: 700;  
-
-        text-transform: uppercase;  
-
-        letter-spacing: 0.5px;  
-    }  
-
-    .stat-card h3 {  
-        font-size: 25px;  
-
-        margin-top: 5px;  
-    }  
-
-    /* =========================  
-       CONTENT GRID  
-    ========================== */  
-
-    .content-grid {  
-        display: grid;  
-
-        grid-template-columns:  
-            1.5fr 1fr;  
-
-        gap: 20px;  
-    }  
-
-    .panel {  
-        background: white;  
-
-        border: 1px solid #e2e8f0;  
-
-        border-radius: 18px;  
-
-        padding: 24px;  
-    }  
-
-    .panel-header {  
-        display: flex;  
-
-        justify-content: space-between;  
-
-        align-items: center;  
-
-        margin-bottom: 20px;  
-    }  
-
-    .panel-header h2 {  
-        font-size: 17px;  
-    }  
-
-    .panel-header span {  
-        font-size: 11px;  
-
-        color: #2563eb;  
-
-        font-weight: 700;  
-    }  
-
-    /* =========================  
-       FEATURE ITEMS  
-    ========================== */  
-
-    .feature-list {  
-        display: grid;  
-
-        grid-template-columns:  
-            repeat(2, 1fr);  
-
-        gap: 12px;  
-    }  
-
-    .feature {  
-        padding: 18px;  
-
-        border: 1px solid #e2e8f0;  
-
-        border-radius: 13px;  
-
-        cursor: pointer;  
-
-        transition: 0.25s;  
-    }  
-
-    .feature:hover {  
-        border-color: #93c5fd;  
-
-        background: #f8fbff;  
-
-        transform: translateY(-2px);  
-    }  
-
-    .feature-icon {  
-        font-size: 23px;  
-
-        margin-bottom: 10px;  
-    }  
-
-    .feature h3 {  
-        font-size: 14px;  
-
-        margin-bottom: 5px;  
-    }  
-
-    .feature p {  
-        color: #64748b;  
-
-        font-size: 11px;  
-
-        line-height: 1.5;  
-    }  
-
-    /* =========================  
-       PROFILE INFO  
-    ========================== */  
-
-    .profile-info {  
-        display: flex;  
-
-        flex-direction: column;  
-
-        gap: 14px;  
-    }  
-
-    .info-row {  
-        padding: 13px;  
-
-        border-radius: 10px;  
-
-        background: #f8fafc;  
-
-        border: 1px solid #eef2f7;  
-    }  
-
-    .info-row small {  
-        display: block;  
-
-        color: #64748b;  
-
-        font-size: 10px;  
-
-        margin-bottom: 5px;  
-
-        text-transform: uppercase;  
-
-        font-weight: 700;  
-    }  
-
-    .info-row strong {  
-        display: block;  
-
-        font-size: 13px;  
-
-        word-break: break-word;  
-    }  
-
-    /* =========================  
-       MOBILE HEADER  
-    ========================== */  
-
-    .mobile-header {  
-        display: none;  
-    }  
-
-    /* =========================
-       MOBILE MENU
-    ========================== */
-    .mobile-menu-btn {
-        display: none; width: 42px; height: 42px; border: 0; border-radius: 10px;
-        background: #0f172a; color: #fff; font-size: 22px; cursor: pointer;
-        align-items: center; justify-content: center; flex-shrink: 0;
-    }
-    .mobile-overlay {
-        display: none; position: fixed; inset: 0; background: rgba(15,23,42,.45); z-index: 90;
-    }
-
-    /* =========================  
-       RESPONSIVE  
-    ========================== */  
-
-    @media (max-width: 950px) {  
-
-        .sidebar {  
-            width: 220px;  
-        }  
-
-        .main {  
-            width: calc(100% - 220px);  
-
-            margin-left: 220px;  
-
-            padding: 25px;  
-        }  
-
-        .stats {  
-            grid-template-columns:  
-                repeat(2, 1fr);  
-        }  
-
-        .content-grid {  
-            grid-template-columns: 1fr;  
-        }  
-    }  
-
-    @media (max-width: 700px) {  
-
-        .sidebar {
-            display: flex;
-            width: 270px;
-            transform: translateX(-100%);
-            transition: transform .3s ease;
-            box-shadow: 12px 0 30px rgba(15,23,42,.18);
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FAST-TRACK | Smart Career Platform</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Logout button */
+        .logout-top {
+            position: absolute;
+            top: 22px;
+            right: 25px;
+            z-index: 20;
         }
 
-        .sidebar.mobile-open {
-            transform: translateX(0);
-        }  
+        .logout-btn {
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+            padding: 10px 16px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.25s ease;
+            backdrop-filter: blur(10px);
+        }
 
-        .main {  
-            width: 100%;  
+        .logout-btn:hover {
+            background: #ef4444;
+            border-color: #ef4444;
+            transform: translateY(-1px);
+        }
 
-            margin-left: 0;  
+        @media (max-width: 600px) {
+            .logout-top {
+                top: 12px;
+                right: 12px;
+            }
 
-            padding: 18px;  
-        }  
+            .logout-btn {
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
 
-        .mobile-header {  
-            display: flex;  
 
-            align-items: center;  
+<body>
 
-            justify-content: space-between;  
+    <div class="auth-container">
 
-            margin-bottom: 20px;  
-        }  
 
-        .mobile-brand {  
-            display: flex;  
+        <!-- =========================================
+             LEFT SIDE
+        ========================================== -->
 
-            align-items: center;  
+        <section class="brand-side">
 
-            gap: 8px;  
-        }  
+            <div class="brand-content">
 
-        .mobile-brand img {  
-            width: 35px;  
-            height: 35px;  
+                <div class="logo">
 
-            object-fit: contain;  
-        }  
+                    <img
+                        src="fast-track-logo.png"
+                        alt="FAST-TRACK Logo">
 
-        .mobile-brand strong {  
-            font-size: 16px;  
-        }  
+                    <h2>FAST-TRACK</h2>
 
-        .topbar {  
-            margin-bottom: 20px;  
-        }  
+                </div>
 
-        .profile-mini {  
-            display: none;  
-        }  
 
-        .page-title h1 {  
-            font-size: 24px;  
-        }  
+                <div class="brand-badge">
 
-        .welcome-card {  
-            padding: 25px 20px;  
-        }  
+                    <span class="status-dot"></span>
 
-        .welcome-card h2 {  
-            font-size: 25px;  
-        }  
+                    SMART CAREER PLATFORM
 
-        .stats {  
-            grid-template-columns: 1fr;  
-        }  
+                </div>
 
-        .feature-list {  
-            grid-template-columns: 1fr;  
-        }  
-    }  
-</style>
 
-</head>  <body>  <div class="app">  <!-- =========================  
-     SIDEBAR  
-========================== -->  
+                <h1>
 
-<aside class="sidebar">  
+                    Your Career.<br>
 
-    <div class="brand">  
+                    <span>Fast-Tracked.</span>
 
-        <img  
-            src="fast-track-logo.png"  
-            alt="FAST-TRACK Logo">  
+                </h1>
 
-        <div class="brand-text">  
 
-            <h2>FAST-TRACK</h2>  
+                <p>
 
-            <span>SMART CAREER PLATFORM</span>  
+                    Connect with the right opportunities, build your skills,
+                    discover your potential and move closer to your dream career
+                    with FAST-TRACK.
 
-        </div>  
+                </p>
 
-    </div>  
+            </div>
 
 
-    <div class="nav-title">  
-        MAIN MENU  
-    </div>  
+            <div class="brand-bottom">
 
+                <div class="brand-bottom-line"></div>
 
-    <nav class="nav">  
+                <p>
 
-        <a  
-            href="dashboard.html"  
-            class="nav-item active">  
+                    FIND &nbsp; • &nbsp;
+                    CONNECT &nbsp; • &nbsp;
+                    GROW
 
-            <span class="nav-icon">🏠</span>  
+                </p>
 
-            <span>Dashboard</span>  
+            </div>
 
-        </a>  
+        </section>
 
 
-        <a  
-            href="jobs.html"  
-            class="nav-item">  
 
-            <span class="nav-icon">💼</span>  
+        <!-- =========================================
+             RIGHT SIDE
+        ========================================== -->
 
-            <span>Jobs</span>  
+        <section class="form-side">
 
-        </a>  
 
+            <!-- LOGOUT -->
 
-        <a  
-            href="skills.html"  
-            class="nav-item">  
+            <div class="logout-top">
 
-            <span class="nav-icon">🎯</span>  
+                <button
+                    type="button"
+                    class="logout-btn"
+                    id="logoutBtn">
 
-            <span>Skills</span>  
+                    Logout
 
-        </a>  
+                </button>
 
+            </div>
 
-        <a  
-            href="course.html"  
-            class="nav-item">  
 
-            <span class="nav-icon">📚</span>  
 
-            <span>Courses</span>  
+            <!-- =====================================
+                 LOGIN / REGISTER TABS
+            ====================================== -->
 
-        </a>  
+            <div class="auth-tabs">
 
+                <button
+                    type="button"
+                    class="auth-tab active"
+                    id="loginTab">
 
-        <a  
-            href="resume builder.html"  
-            class="nav-item">  
+                    Login
 
-            <span class="nav-icon">📄</span>  
+                </button>
 
-            <span>Resume Builder</span>  
 
-        </a>  
+                <button
+                    type="button"
+                    class="auth-tab"
+                    id="registerTab">
 
+                    Register
 
-        <a  
-            href="career progress.html"  
-            class="nav-item">  
+                </button>
 
-            <span class="nav-icon">📈</span>  
+            </div>
 
-            <span>Career Progress</span>  
 
-        </a>  
 
+            <!-- =====================================
+                 LOGIN
+            ====================================== -->
 
-        <a  
-            href="my profile.html"  
-            class="nav-item">  
+            <div
+                class="form-box active"
+                id="loginBox">
 
-            <span class="nav-icon">👤</span>  
 
-            <span>My Profile</span>  
+                <h2 class="form-title">
 
-        </a>  
+                    Welcome back 👋
 
-    </nav>  
+                </h2>
 
 
-    <div class="sidebar-bottom">  
+                <p class="form-subtitle">
 
-        <div class="career-mini">  
+                    Sign in to continue your FAST-TRACK journey.
 
-            <p>YOUR CAREER JOURNEY</p>  
+                </p>
 
-            <strong>  
-                Keep moving forward 🚀  
-            </strong>  
 
-        </div>  
 
+                <!-- GOOGLE LOGIN -->
 
-        <button  
-            class="logout-btn"  
-            id="logoutBtn">  
+                <button
+                    type="button"
+                    class="google-btn"
+                    id="loginGoogle">
 
-            🚪 Logout  
+                    <span class="google-icon">G</span>
 
-        </button>  
+                    Continue with Google
 
-    </div>  
+                </button>
 
-</aside>  
 
 
+                <div class="divider">
 
-<!-- =========================  
-     MAIN CONTENT  
-========================== -->  
+                    OR CONTINUE WITH EMAIL
 
-<main class="main">  
+                </div>
 
 
-    <!-- MOBILE HEADER -->  
 
-    <div class="mobile-header">  
+                <!-- LOGIN FORM -->
 
-        <div class="mobile-brand">  
+                <form id="loginForm">
 
-            <img  
-                src="fast-track-logo.png"  
-                alt="FAST-TRACK">  
 
-            <strong>  
-                FAST-TRACK  
-            </strong>  
+                    <!-- EMAIL -->
 
-        </div>  
+                    <div class="input-group">
 
-        <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
+                        <label>
+                            Email Address
+                        </label>
+
+
+                        <input
+                            type="email"
+                            id="loginEmail"
+                            placeholder="Enter your email"
+                            autocomplete="email"
+                            required>
+
+                    </div>
+
+
+
+                    <!-- PASSWORD -->
+
+                    <div class="input-group">
+
+                        <label>
+                            Password
+                        </label>
+
+
+                        <div class="password-wrapper">
+
+                            <input
+                                type="password"
+                                id="loginPassword"
+                                placeholder="Enter your password"
+                                autocomplete="current-password"
+                                required>
+
+
+                            <span
+                                class="password-toggle"
+                                id="loginEye">
+
+                                👁
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- OPTIONS -->
+
+                    <div class="form-options">
+
+
+                        <label class="remember">
+
+                            <input
+                                type="checkbox"
+                                id="rememberMe">
+
+                            Remember me
+
+                        </label>
+
+
+
+                        <span
+                            class="forgot"
+                            id="forgotButton">
+
+                            Forgot Password?
+
+                        </span>
+
+                    </div>
+
+
+
+                    <!-- LOGIN BUTTON -->
+
+                    <button
+                        type="submit"
+                        class="main-btn"
+                        id="loginSubmit">
+
+                        Login to FAST-TRACK →
+
+                    </button>
+
+                </form>
+
+
+
+                <!-- REGISTER LINK -->
+
+                <p class="bottom-text">
+
+                    Don't have an account?
+
+                    <span id="goRegister">
+
+                        Create one
+
+                    </span>
+
+                </p>
+
+            </div>
+
+
+
+            <!-- =====================================
+                 REGISTER
+            ====================================== -->
+
+            <div
+                class="form-box"
+                id="registerBox">
+
+
+                <h2 class="form-title">
+
+                    Create your account 🚀
+
+                </h2>
+
+
+                <p class="form-subtitle">
+
+                    Join FAST-TRACK and take your career to the next level.
+
+                </p>
+
+
+
+                <!-- GOOGLE REGISTER -->
+
+                <button
+                    type="button"
+                    class="google-btn"
+                    id="registerGoogle">
+
+                    <span class="google-icon">G</span>
+
+                    Sign up with Google
+
+                </button>
+
+
+
+                <div class="divider">
+
+                    OR CREATE WITH EMAIL
+
+                </div>
+
+
+
+                <!-- REGISTER FORM -->
+
+                <form id="registerForm">
+
+
+                    <!-- NAME -->
+
+                    <div class="input-group">
+
+                        <label>
+                            Full Name
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="registerName"
+                            placeholder="Enter your full name"
+                            autocomplete="name"
+                            required>
+
+                    </div>
+
+
+
+                    <!-- EMAIL -->
+
+                    <div class="input-group">
+
+                        <label>
+                            Email Address
+                        </label>
+
+
+                        <input
+                            type="email"
+                            id="registerEmail"
+                            placeholder="Enter your email"
+                            autocomplete="email"
+                            required>
+
+                    </div>
+
+
+
+                    <!-- ROLE -->
+
+                    <div class="input-group">
+
+                        <label>
+                            Choose Your Role
+                        </label>
+
+
+                        <div class="role-selector">
+
+
+                            <!-- JOB SEEKER -->
+
+                            <div class="role-option">
+
+                                <input
+                                    type="radio"
+                                    name="role"
+                                    id="jobSeeker"
+                                    value="Job Seeker"
+                                    required>
+
+
+                                <label
+                                    for="jobSeeker"
+                                    class="role-label">
+
+                                    👤 Job Seeker
+
+                                </label>
+
+                            </div>
+
+
+
+                            <!-- RECRUITER -->
+
+                            <div class="role-option">
+
+                                <input
+                                    type="radio"
+                                    name="role"
+                                    id="recruiter"
+                                    value="Recruiter">
+
+
+                                <label
+                                    for="recruiter"
+                                    class="role-label">
+
+                                    🏢 Recruiter
+
+                                </label>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- PASSWORD -->
+
+                    <div class="input-group">
+
+                        <label>
+                            Password
+                        </label>
+
+
+                        <div class="password-wrapper">
+
+                            <input
+                                type="password"
+                                id="registerPassword"
+                                placeholder="Create a password"
+                                minlength="6"
+                                autocomplete="new-password"
+                                required>
+
+
+                            <span
+                                class="password-toggle"
+                                id="registerEye">
+
+                                👁
+
+                            </span>
+
+                        </div>
+
+
+
+                        <!-- PASSWORD STRENGTH -->
+
+                        <div class="password-strength">
+
+                            <div
+                                class="strength-bar"
+                                id="strengthBar">
+
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="strength-text"
+                            id="strengthText">
+
+                            Password strength
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- CONFIRM PASSWORD -->
+
+                    <div class="input-group">
+
+                        <label>
+                            Confirm Password
+                        </label>
+
+
+                        <div class="password-wrapper">
+
+                            <input
+                                type="password"
+                                id="confirmPassword"
+                                placeholder="Confirm your password"
+                                autocomplete="new-password"
+                                required>
+
+
+                            <span
+                                class="password-toggle"
+                                id="confirmEye">
+
+                                👁
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- TERMS -->
+
+                    <label class="terms">
+
+                        <input
+                            type="checkbox"
+                            id="terms"
+                            required>
+
+
+                        <span>
+
+                            I agree to the Terms & Conditions
+                            and Privacy Policy.
+
+                        </span>
+
+                    </label>
+
+
+
+                    <!-- REGISTER BUTTON -->
+
+                    <button
+                        type="submit"
+                        class="main-btn"
+                        id="registerSubmit">
+
+                        Create FAST-TRACK Account →
+
+                    </button>
+
+                </form>
+
+
+
+                <!-- LOGIN LINK -->
+
+                <p class="bottom-text">
+
+                    Already have an account?
+
+                    <span id="goLogin">
+
+                        Login here
+
+                    </span>
+
+                </p>
+
+            </div>
+
+        </section>
 
     </div>
 
-    <div class="mobile-overlay" id="mobileOverlay"></div>
 
 
-    <!-- TOP BAR -->  
+    <!-- =========================================
+         FORGOT PASSWORD MODAL
+    ========================================== -->
 
-    <header class="topbar">  
-
-        <div class="page-title">  
-
-            <h1>  
-                Dashboard  
-            </h1>  
-
-            <p>  
-                Manage your career journey from one place.  
-            </p>  
-
-        </div>  
+    <div
+        class="modal-overlay"
+        id="forgotModal">
 
 
-        <div class="profile-mini">  
-
-            <div  
-                class="profile-avatar"  
-                id="profileAvatar">  
-
-                U  
-
-            </div>  
+        <div class="modal">
 
 
-            <div>  
+            <div class="modal-icon">
 
-                <strong id="topUserName">  
-                    User  
-                </strong>  
+                🔐
 
-                <span>  
-                    Career Explorer  
-                </span>  
+            </div>
 
-            </div>  
 
-        </div>  
+            <h3>
 
-    </header>  
+                Reset your password
+
+            </h3>
+
+
+            <p>
+
+                Enter your registered email address
+                and we'll send you a password reset link.
+
+            </p>
 
 
 
-    <!-- WELCOME -->  
-
-    <section class="welcome-card">  
-
-        <div class="welcome-badge">  
-            SMART CAREER PLATFORM  
-        </div>  
+            <form id="resetForm">
 
 
-        <h2>  
-            Welcome,  
-            <span id="userName">  
-                User  
-            </span> 👋  
-        </h2>  
+                <div class="input-group">
+
+                    <label>
+                        Email Address
+                    </label>
 
 
-        <p>  
-            Your FAST-TRACK career journey starts here.  
-            Explore opportunities, develop your skills,  
-            build your resume and move closer to your  
-            dream career.  
-        </p>  
+                    <input
+                        type="email"
+                        id="resetEmail"
+                        placeholder="Enter your email"
+                        required>
 
-    </section>  
+                </div>
 
 
 
-    <!-- STAT CARDS -->  
-
-    <section class="stats">  
+                <div class="modal-actions">
 
 
-        <div class="stat-card">  
+                    <button
+                        type="button"
+                        class="cancel-btn"
+                        id="cancelForgot">
 
-            <div class="stat-top">  
+                        Cancel
 
-                <div class="stat-icon">  
-                    💼  
-                </div>  
-
-                <small>  
-                    Opportunities  
-                </small>  
-
-            </div>  
-
-            <h3>  
-                Explore  
-            </h3>  
-
-        </div>  
+                    </button>
 
 
-        <div class="stat-card">  
+                    <button
+                        type="submit"
+                        class="reset-btn">
 
-            <div class="stat-top">  
+                        Send Link
 
-                <div class="stat-icon">  
-                    🎯  
-                </div>  
+                    </button>
 
-                <small>  
-                    Skills  
-                </small>  
+                </div>
 
-            </div>  
+            </form>
 
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================
+         TOAST
+    ========================================== -->
+
+    <div
+        class="toast"
+        id="toast"
+        role="status"
+        aria-live="polite">
+
+
+        <div
+            class="toast-icon"
+            id="toastIcon">
+
+            ✓
+
+        </div>
+
+
+        <div class="toast-content">
+
+            <div
+                class="toast-title"
+                id="toastTitle">
+
+                Success
+
+            </div>
+
+
+            <div
+                class="toast-message"
+                id="toastMessage">
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="toast-close"
+            id="toastClose"
+            type="button"
+            aria-label="Close">
+
+            ×
+
+        </button>
+
+    </div>
+
+
+
+    <!-- =========================================
+         TOAST CSS
+    ========================================== -->
+
+    <style>
+
+        .toast {
+            position: fixed;
+            right: 28px;
+            top: 28px;
+            z-index: 99999;
+            min-width: 320px;
+            max-width: 420px;
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding: 15px 16px;
+            border-radius: 16px;
+            background: rgba(15, 23, 42, .97);
+            color: #fff;
+            box-shadow: 0 18px 45px rgba(15, 23, 42, .25);
+            border: 1px solid rgba(255, 255, 255, .12);
+            transform: translateY(-18px) translateX(25px);
+            opacity: 0;
+            pointer-events: none;
+            transition: .3s ease;
+            font-family: Inter, system-ui, sans-serif;
+        }
+
+
+        .toast.show {
+            transform: translateY(0) translateX(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+
+        .toast-icon {
+            width: 34px;
+            height: 34px;
+            flex: 0 0 34px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            font-weight: 800;
+            background: #16a34a;
+            color: #fff;
+        }
+
+
+        .toast.error .toast-icon {
+            background: #dc2626;
+        }
+
+
+        .toast.warning .toast-icon {
+            background: #d97706;
+        }
+
+
+        .toast.loading .toast-icon {
+            background: #2563eb;
+        }
+
+
+        .toast-content {
+            min-width: 0;
+            flex: 1;
+        }
+
+
+        .toast-title {
+            font-size: 14px;
+            font-weight: 800;
+            margin-bottom: 3px;
+        }
+
+
+        .toast-message {
+            font-size: 13px;
+            line-height: 1.4;
+            color: #cbd5e1;
+            word-break: break-word;
+        }
+
+
+        .toast-close {
+            border: 0;
+            background: transparent;
+            color: #94a3b8;
+            font-size: 23px;
+            cursor: pointer;
+            line-height: 1;
+            padding: 2px 4px;
+        }
+
+
+        .toast-close:hover {
+            color: #fff;
+        }
+
+
+        @media (max-width: 520px) {
+
+            .toast {
+                left: 16px;
+                right: 16px;
+                top: 16px;
+                min-width: 0;
+                max-width: none;
+            }
+
+        }
+
+    </style>
+
+
+
+    <!-- =========================================
+         FIREBASE SCRIPT
+    ========================================== -->
+
+    <script
+        type="module"
+        src="script.js">
+    </script>
+
+
+</body>
+
+</html>
