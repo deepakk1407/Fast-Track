@@ -277,33 +277,30 @@ loginForm.addEventListener(
 
         try {
 
-            const result =
-                await signInWithEmailAndPassword(
-                    auth,
-                    email,
-                    password
-                );
+    const result =
+        await signInWithEmailAndPassword(
+            auth,
+            email,
+            password
+        );
 
+    console.log(
+        "LOGIN SUCCESS:",
+        result.user
+    );
 
-            console.log(
-                "LOGIN SUCCESS:",
-                result.user
-            );
-setTimeout(() => {
-    window.location.href = "dashboard.html";
-}, 1200);
+    showToast(
+        "🎉 Login successful!"
+    );
 
-            showToast(
-                "🎉 Login successful!"
-            );
+    setTimeout(() => {
 
+        window.location.href =
+            "./dashboard.html";
 
-            /*
-             * DASHBOARD WILL BE ADDED
-             * AFTER LOGIN IS TESTED.
-             */
+    }, 1500);
 
-        } catch (error) {
+} catch (error) {
 
             console.error(
                 "LOGIN ERROR:",
