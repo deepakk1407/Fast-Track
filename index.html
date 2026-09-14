@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>FAST-TRACK | Smart Career Platform</title>
+
+    <link rel="stylesheet"
+          href="style.css">
+</head>
+
+<body>
+
+    <div class="auth-container">
+
+        <!-- LEFT SIDE -->
+        <section class="brand-side">
+
+            <div class="brand-content">
+
+                <img src="fast-track-logo.png"
+                     alt="FAST-TRACK Logo"
+                     class="logo">
+
+                <div class="brand-badge">
+                    SMART CAREER PLATFORM
+                </div>
+
+                <h1>
+                    FAST-TRACK
+                </h1>
+
+                <p class="tagline">
+                    Your Career. Fast-Tracked.
+                </p>
+
+                <p class="description">
+                    Build your skills, discover opportunities,
+                    and accelerate your career with FAST-TRACK.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- RIGHT SIDE -->
+        <section class="form-side">
+
+            <div class="auth-card">
+
+                <!-- TABS -->
+                <div class="auth-tabs">
+
+                    <button
+                        type="button"
+                        id="loginTab"
+                        class="auth-tab active">
+
+                        Login
+
+                    </button>
+
+                    <button
+                        type="button"
+                        id="registerTab"
+                        class="auth-tab">
+
+                        Register
+
+                    </button>
+
+                </div>
+
+
+                <!-- LOGIN -->
+                <div
+                    id="loginBox"
+                    class="form-box active">
+
+                    <h2>
+                        Welcome Back 👋
+                    </h2>
+
+                    <p class="form-subtitle">
+                        Login to continue your career journey.
+                    </p>
+
+
+                    <!-- GOOGLE LOGIN -->
+                    <button
+                        type="button"
+                        id="loginGoogle"
+                        class="google-btn">
+
+                        <span>G</span>
+                        Continue with Google
+
+                    </button>
+
+
+                    <div class="divider">
+                        <span>OR</span>
+                    </div>
+
+
+                    <form id="loginForm">
+
+                        <div class="input-group">
+
+                            <label for="loginEmail">
+                                Email
+                            </label>
+
+                            <input
+                                type="email"
+                                id="loginEmail"
+                                placeholder="Enter your email"
+                                required>
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label for="loginPassword">
+                                Password
+                            </label>
+
+                            <div class="password-wrapper">
+
+                                <input
+                                    type="password"
+                                    id="loginPassword"
+                                    placeholder="Enter your password"
+                                    required>
+
+                                <button
+                                    type="button"
+                                    id="loginEye"
+                                    class="password-toggle">
+
+                                    👁
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-options">
+
+                            <label class="remember">
+
+                                <input
+                                    type="checkbox"
+                                    id="rememberMe">
+
+                                <span>
+                                    Remember me
+                                </span>
+
+                            </label>
+
+                            <button
+                                type="button"
+                                id="forgotButton"
+                                class="forgot">
+
+                                Forgot Password?
+
+                            </button>
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="primary-btn">
+
+                            Login
+
+                        </button>
+
+                    </form>
+
+
+                    <p class="switch-text">
+
+                        Don't have an account?
+
+                        <button
+                            type="button"
+                            id="goRegister">
+
+                            Register
+
+                        </button>
+
+                    </p>
+
+                </div>
+
+
+                <!-- REGISTER -->
+                <div
+                    id="registerBox"
+                    class="form-box">
+
+                    <h2>
+                        Create Account 🚀
+                    </h2>
+
+                    <p class="form-subtitle">
+                        Start building your career with FAST-TRACK.
+                    </p>
+
+
+                    <!-- GOOGLE REGISTER -->
+                    <button
+                        type="button"
+                        id="registerGoogle"
+                        class="google-btn">
+
+                        <span>G</span>
+                        Continue with Google
+
+                    </button>
+
+
+                    <div class="divider">
+                        <span>OR</span>
+                    </div>
+
+
+                    <form id="registerForm">
+
+                        <div class="input-group">
+
+                            <label for="registerName">
+                                Full Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="registerName"
+                                placeholder="Enter your full name"
+                                required>
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label for="registerEmail">
+                                Email
+                            </label>
+
+                            <input
+                                type="email"
+                                id="registerEmail"
+                                placeholder="Enter your email"
+                                required>
+
+                        </div>
+
+
+                        <!-- ROLE -->
+                        <div class="input-group">
+
+                            <label>
+                                Select Role
+                            </label>
+
+                            <div class="role-selector">
+
+                                <label class="role-option">
+
+                                    <input
+                                        type="radio"
+                                        name="role"
+                                        id="jobSeeker"
+                                        value="Job Seeker"
+                                        checked>
+
+                                    <span class="role-label">
+                                        👨‍💻 Job Seeker
+                                    </span>
+
+                                </label>
+
+
+                                <label class="role-option">
+
+                                    <input
+                                        type="radio"
+                                        name="role"
+                                        id="recruiter"
+                                        value="Recruiter">
+
+                                    <span class="role-label">
+                                        🏢 Recruiter
+                                    </span>
+
+                                </label>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- PASSWORD -->
+                        <div class="input-group">
+
+                            <label for="registerPassword">
+                                Password
+                            </label>
+
+                            <div class="password-wrapper">
+
+                                <input
+                                    type="password"
+                                    id="registerPassword"
+                                    placeholder="Create a password"
+                                    required>
+
+                                <button
+                                    type="button"
+                                    id="registerEye"
+                                    class="password-toggle">
+
+                                    👁
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- CONFIRM PASSWORD -->
+                        <div class="input-group">
+
+                            <label for="confirmPassword">
+                                Confirm Password
+                            </label>
+
+                            <div class="password-wrapper">
+
+                                <input
+                                    type="password"
+                                    id="confirmPassword"
+                                    placeholder="Confirm your password"
+                                    required>
+
+                                <button
+                                    type="button"
+                                    id="confirmEye"
+                                    class="password-toggle">
+
+                                    👁
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <label class="terms">
+
+                            <input
+                                type="checkbox"
+                                id="terms"
+                                required>
+
+                            <span>
+                                I agree to the Terms & Conditions
+                            </span>
+
+                        </label>
+
+
+                        <button
+                            type="submit"
+                            class="primary-btn">
+
+                            Create Account
+
+                        </button>
+
+                    </form>
+
+
+                    <p class="switch-text">
+
+                        Already have an account?
+
+                        <button
+                            type="button"
+                            id="goLogin">
+
+                            Login
+
+                        </button>
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <!-- FORGOT PASSWORD MODAL -->
+
+    <div
+        class="modal-overlay"
+        id="forgotModal">
+
+        <div class="modal">
+
+            <button
+                type="button"
+                id="cancelForgot"
+                class="modal-close">
+
+                ×
+
+            </button>
+
+            <h3>
+                Reset Password
+            </h3>
+
+            <p>
+                Enter your registered email address.
+            </p>
+
+            <form id="resetForm">
+
+                <input
+                    type="email"
+                    id="resetEmail"
+                    placeholder="Enter your email"
+                    required>
+
+                <button
+                    type="submit"
+                    class="primary-btn">
+
+                    Send Reset Link
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- TOAST -->
+
+    <div
+        class="toast"
+        id="toast">
+
+    </div>
+
+
+    <script
+        type="module"
+        src="script.js">
+    </script>
+
+</body>
+
+  </html>
