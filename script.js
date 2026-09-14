@@ -5,7 +5,9 @@ import {
     getAuth,
     createUserWithEmailAndPassword,
     updateProfile,
-    signInWithEmailAndPassword
+    signInWithEmailAndPassword,
+    GoogleAuthProvider,
+    signInWithPopup
 } from
 "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
@@ -27,6 +29,14 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+
+
+/* =========================
+   GOOGLE PROVIDER
+========================= */
+
+const googleProvider =
+    new GoogleAuthProvider();
 
 
 /* =========================
@@ -57,6 +67,12 @@ const loginPassword =
 
 const loginEye =
     document.getElementById("loginEye");
+
+
+/* GOOGLE LOGIN */
+
+const loginGoogle =
+    document.getElementById("loginGoogle");
 
 
 /* REGISTER */
@@ -141,7 +157,10 @@ function showRegister() {
 }
 
 
-loginTab.addEventListener("click", showLogin);
+loginTab.addEventListener(
+    "click",
+    showLogin
+);
 
 registerTab.addEventListener(
     "click",
@@ -224,6 +243,113 @@ if (confirmEye) {
 
 
 /* =========================
+   GOOGLE LOGIN
+========================= */
+
+if (loginGoogle) {
+
+    loginGoogle.addEventListener(
+        "click",
+        async function () {
+
+            loginGoogle.disabled = true;
+
+            const originalText =
+                loginGoogle.innerHTML;
+
+            loginGoogle.innerHTML =
+                "Signing in with Google...";
+
+
+            try {
+
+                const result =
+                    await signInWithPopup(
+                        auth,
+                        googleProvider
+                    );
+
+
+                console.log(
+                    "GOOGLE LOGIN SUCCESS:",
+                    result.user
+                );
+
+
+                showToast(
+                    "🎉 Google login successful!"
+                );
+
+
+                setTimeout(() => {
+
+                    window.location.href =
+                        "./dashboard.html";
+
+                }, 1500);
+
+
+            } catch (error) {
+
+                console.error(
+                    "GOOGLE LOGIN ERROR:",
+                    error
+                );
+
+
+                if (
+                    error.code ===
+                    "auth/popup-closed-by-user"
+                ) {
+
+                    showToast(
+                        "Google login was cancelled.",
+                        "error"
+                    );
+
+                } else if (
+                    error.code ===
+                    "auth/popup-blocked"
+                ) {
+
+                    showToast(
+                        "Google popup was blocked. Please allow popups.",
+                        "error"
+                    );
+
+                } else if (
+                    error.code ===
+                    "auth/account-exists-with-different-credential"
+                ) {
+
+                    showToast(
+                        "This email already has an account with another login method.",
+                        "error"
+                    );
+
+                } else {
+
+                    showToast(
+                        error.code + " | " +
+                        error.message,
+                        "error"
+                    );
+                }
+
+            } finally {
+
+                loginGoogle.disabled = false;
+
+                loginGoogle.innerHTML =
+                    originalText;
+            }
+
+        }
+    );
+}
+
+
+/* =========================
    LOGIN
 ========================= */
 
@@ -277,30 +403,34 @@ loginForm.addEventListener(
 
         try {
 
-    const result =
-        await signInWithEmailAndPassword(
-            auth,
-            email,
-            password
-        );
+            const result =
+                await signInWithEmailAndPassword(
+                    auth,
+                    email,
+                    password
+                );
 
-    console.log(
-        "LOGIN SUCCESS:",
-        result.user
-    );
 
-    showToast(
-        "🎉 Login successful!"
-    );
+            console.log(
+                "LOGIN SUCCESS:",
+                result.user
+            );
 
-    setTimeout(() => {
 
-        window.location.href =
-            "./dashboard.html";
+            showToast(
+                "🎉 Login successful!"
+            );
 
-    }, 1500);
 
-} catch (error) {
+            setTimeout(() => {
+
+                window.location.href =
+                    "./dashboard.html";
+
+            }, 1500);
+
+
+        } catch (error) {
 
             console.error(
                 "LOGIN ERROR:",
