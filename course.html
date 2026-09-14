@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FAST-TRACK | Courses</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f5f7fb;
+            color: #172033;
+        }
+
+        button,
+        input,
+        select {
+            font-family: inherit;
+        }
+
+        /* ================= SIDEBAR ================= */
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 250px;
+            height: 100vh;
+            background: linear-gradient(180deg, #0e172d, #182653);
+            color: white;
+            padding: 20px 12px;
+            z-index: 1000;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 5px 8px 25px;
+        }
+
+        .logo-area img {
+            width: 34px;
+            height: 34px;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+
+        .logo-text {
+            font-size: 15px;
+            font-weight: 800;
+            letter-spacing: .3px;
+        }
+
+        .logo-subtitle {
+            display: block;
+            font-size: 7px;
+            letter-spacing: 1px;
+            opacity: .65;
+            margin-top: 2px;
+        }
+
+        .nav {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: #d8deef;
+            padding: 11px 12px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            font-weight: 500;
+            transition: .2s;
+        }
+
+        .nav a:hover {
+            background: rgba(255, 255, 255, .08);
+            color: white;
+        }
+
+        .nav a.active {
+            color: white;
+            background: linear-gradient(90deg, #2563eb, #7c3aed);
+            box-shadow: 0 5px 15px rgba(71, 76, 220, .25);
+        }
+
+        .nav-icon {
+            width: 18px;
+            text-align: center;
+        }
+
+        .logout-btn {
+            position: absolute;
+            left: 12px;
+            right: 12px;
+            bottom: 20px;
+            border: 0;
+            background: rgba(255, 255, 255, .07);
+            color: #d8deef;
+            padding: 11px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255, 80, 80, .15);
+            color: #fff;
+        }
+
+        /* ================= MAIN ================= */
+
+        .main {
+            margin-left: 250px;
+            min-height: 100vh;
+        }
+
+        /* ================= TOPBAR ================= */
+
+        .topbar {
+            height: 68px;
+            background: white;
+            border-bottom: 1px solid #e9edf5;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+        }
+
+        .page-title {
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .page-subtitle {
+            font-size: 10px;
+            color: #8b94a7;
+            margin-top: 3px;
+        }
+
+        .top-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .notification {
+            width: 34px;
+            height: 34px;
+            border: 1px solid #edf0f5;
+            background: white;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .user-area {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .avatar {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .user-name {
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        /* ================= CONTENT ================= */
+
+        .content {
+            padding: 22px;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            background: linear-gradient(135deg, #172c68, #37318c);
+            border-radius: 17px;
+            padding: 22px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 17px;
+        }
+
+        .hero h1 {
+            font-size: 21px;
+            margin-bottom: 6px;
+        }
+
+        .hero p {
+            max-width: 600px;
+            font-size: 10px;
+            line-height: 1.7;
+            color: #dbe2ff;
+        }
+
+        .learning-score {
+            min-width: 110px;
+            height: 80px;
+            background: rgba(255, 255, 255, .1);
+            border: 1px solid rgba(255, 255, 255, .15);
+            border-radius: 14px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .learning-score strong {
+            font-size: 23px;
+        }
+
+        .learning-score span {
+            font-size: 7px;
+            letter-spacing: .5px;
+            margin-top: 4px;
+            color: #d7dcff;
+        }
+
+        /* ================= STATS ================= */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 17px;
+        }
+
+        .stat-card {
+            background: white;
+            border: 1px solid #edf0f5;
+            border-radius: 14px;
+            padding: 14px;
+            min-height: 90px;
+            box-shadow: 0 2px 8px rgba(20, 30, 60, .02);
+        }
+
+        .stat-icon {
+            width: 29px;
+            height: 29px;
+            background: #f1f5ff;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .stat-value {
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .stat-label {
+            font-size: 9px;
+            color: #8a93a5;
+            margin-top: 2px;
+        }
+
+        /* ================= SEARCH ================= */
+
+        .search-panel {
+            background: white;
+            border: 1px solid #edf0f5;
+            border-radius: 14px;
+            padding: 15px;
+            margin-bottom: 18px;
+        }
+
+        .search-row {
+            display: grid;
+            grid-template-columns: 1fr 190px 90px;
+            gap: 10px;
+        }
+
+        .search-input,
+        .category-select {
+            height: 40px;
+            border: 1px solid #e1e5ed;
+            border-radius: 9px;
+            outline: none;
+            padding: 0 12px;
+            font-size: 11px;
+            background: white;
+        }
+
+        .search-input:focus,
+        .category-select:focus {
+            border-color: #6366f1;
+        }
+
+        .search-btn {
+            border: 0;
+            border-radius: 9px;
+            background: linear-gradient(90deg, #2563eb, #7c3aed);
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .filter-row {
+            display: flex;
+            gap: 7px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+        }
+
+        .filter {
+            border: 1px solid #e2e6ef;
+            background: white;
+            padding: 7px 12px;
+            border-radius: 20px;
+            font-size: 9px;
+            cursor: pointer;
+            color: #687286;
+        }
+
+        .filter.active {
+            background: #eef2ff;
+            border-color: #6366f1;
+            color: #4f46e5;
+            font-weight: 700;
+        }
+
+        /* ================= SECTION ================= */
+
+        .section-title {
+            font-size: 15px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        /* ================= COURSES ================= */
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .course-card {
+            background: white;
+            border: 1px solid #e8ecf3;
+            border-radius: 15px;
+            padding: 16px;
+            transition: .2s;
+            box-shadow: 0 2px 8px rgba(20, 30, 60, .025);
+        }
+
+        .course-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(30, 40, 80, .08);
+        }
+
+        .course-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .course-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 11px;
+            background: #f2f5ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 21px;
+        }
+
+        .level {
+            padding: 5px 8px;
+            border-radius: 20px;
+            font-size: 8px;
+            font-weight: 700;
+        }
+
+        .beginner {
+            background: #eafaf0;
+            color: #159447;
+        }
+
+        .intermediate {
+            background: #fff5e5;
+            color: #d27a00;
+        }
+
+        .course-title {
+            font-size: 14px;
+            font-weight: 800;
+            line-height: 1.4;
+            margin-bottom: 6px;
+        }
+
+        .course-description {
+            font-size: 9px;
+            color: #7b8497;
+            line-height: 1.6;
+            min-height: 42px;
+            margin-bottom: 10px;
+        }
+
+        .course-meta {
+            display: flex;
+            gap: 12px;
+            color: #7e8798;
+            font-size: 8px;
+            margin-bottom: 11px;
+        }
+
+        .meta {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .skill-target {
+            font-size: 8px;
+            color: #647084;
+            margin-bottom: 6px;
+        }
+
+        .skill-target strong {
+            color: #334155;
+        }
+
+        .progress {
+            height: 6px;
+            background: #edf0f5;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 11px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #2563eb, #7c3aed);
+            border-radius: 10px;
+        }
+
+        .course-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .progress-text {
+            font-size: 8px;
+            color: #8992a4;
+        }
+
+        .course-btn {
+            border: 0;
+            background: linear-gradient(90deg, #2563eb, #7c3aed);
+            color: white;
+            border-radius: 8px;
+            padding: 8px 12px;
+            font-size: 9px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .course-btn:hover {
+            opacity: .9;
+        }
+
+        /* ================= EMPTY ================= */
+
+        .no-results {
+            display: none;
+            text-align: center;
+            background: white;
+            border: 1px solid #edf0f5;
+            border-radius: 14px;
+            padding: 35px;
+            color: #8b94a7;
+            font-size: 11px;
+        }
+
+        /* ================= MODAL ================= */
+
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 18, 40, .6);
+            backdrop-filter: blur(4px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 2000;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .modal {
+            background: white;
+            width: 100%;
+            max-width: 550px;
+            max-height: 90vh;
+            overflow-y: auto;
+            border-radius: 18px;
+            padding: 22px;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            width: 30px;
+            height: 30px;
+            border: 0;
+            border-radius: 50%;
+            background: #f1f3f7;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .modal-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 13px;
+            background: #f1f5ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+            margin-bottom: 12px;
+        }
+
+        .modal h2 {
+            font-size: 19px;
+            margin-bottom: 7px;
+            padding-right: 35px;
+        }
+
+        .modal-description {
+            color: #7a8496;
+            font-size: 10px;
+            line-height: 1.7;
+            margin-bottom: 18px;
+        }
+
+        .lesson-title {
+            font-size: 12px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .lesson-list {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            margin-bottom: 18px;
+        }
+
+        .lesson {
+            padding: 10px 12px;
+            border: 1px solid #edf0f5;
+            border-radius: 9px;
+            font-size: 9px;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .lesson-number {
+            width: 22px;
+            height: 22px;
+            border-radius: 6px;
+            background: #eef2ff;
+            color: #4f46e5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8px;
+            font-weight: 700;
+        }
+
+        .start-learning {
+            width: 100%;
+            height: 42px;
+            border: 0;
+            border-radius: 9px;
+            background: linear-gradient(90deg, #2563eb, #7c3aed);
+            color: white;
+            font-weight: 700;
+            font-size: 11px;
+            cursor: pointer;
+        }
+
+        /* ================= AI BUTTON ================= */
+
+        .ai-button {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            width: 48px;
+            height: 48px;
+            border: 0;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(74, 67, 210, .35);
+            z-index: 900;
+        }
+
+        /* ================= TOAST ================= */
+
+        .toast {
+            position: fixed;
+            right: 20px;
+            top: 85px;
+            background: #172033;
+            color: white;
+            padding: 11px 15px;
+            border-radius: 9px;
+            font-size: 10px;
+            opacity: 0;
+            transform: translateY(-10px);
+            pointer-events: none;
+            transition: .25s;
+            z-index: 3000;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ================= MOBILE NAV ================= */
+
+        .mobile-nav {
+            display: none;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 1100px) {
+            .course-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+
+            .sidebar {
+                display: none;
+            }
+
+            .main {
+                margin-left: 0;
+            }
+
+            .topbar {
+                padding: 0 15px;
+            }
+
+            .content {
+                padding: 15px 12px 85px;
+            }
+
+            .hero {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .learning-score {
+                width: 100%;
+            }
+
+            .search-row {
+                grid-template-columns: 1fr;
+            }
+
+            .search-btn {
+                height: 40px;
+            }
+
+            .course-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .mobile-nav {
+                position: fixed;
+                display: flex;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                height: 64px;
+                background: white;
+                border-top: 1px solid #e5e8ef;
+                z-index: 1500;
+                justify-content: space-around;
+                align-items: center;
+            }
+
+            .mobile-nav a {
+                text-decoration: none;
+                color: #7c8495;
+                font-size: 8px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 3px;
+            }
+
+            .mobile-nav a.active {
+                color: #4f46e5;
+                font-weight: 700;
+            }
+
+            .mobile-nav span {
+                font-size: 17px;
+            }
+
+            .ai-button {
+                right: 15px;
+                bottom: 78px;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            .stats {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+
+            .stat-card {
+                min-height: 85px;
+                padding: 12px;
+            }
+
+            .hero h1 {
+                font-size: 19px;
+            }
+
+            .hero p {
+                font-size: 9px;
+            }
+
+            .page-title {
+                font-size: 16px;
+            }
+
+            .user-name {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <div class="logo-area">
+            <img src="fast-track-logo.png" alt="FAST-TRACK">
+
+            <div>
+                <div class="logo-text">FAST-TRACK</div>
+                <span class="logo-subtitle">SMART CAREER PLATFORM</span>
+            </div>
+        </div>
+
+        <nav class="nav">
+
+            <a href="dashboard.html">
+                <span class="nav-icon">📊</span>
+                Dashboard
+            </a>
+
+            <a href="jobs.html">
+                <span class="nav-icon">💼</span>
+                Jobs
+            </a>
+
+            <a href="skills.html">
+                <span class="nav-icon">🧠</span>
+                Skills
+            </a>
+
+            <a href="course.html" class="active">
+                <span class="nav-icon">📚</span>
+                Courses
+            </a>
+
+            <a href="resume builder.html">
+                <span class="nav-icon">📄</span>
+                Resume Builder
+            </a>
+
+            <a href="career progress.html">
+                <span class="nav-icon">📈</span>
+                Career Progress
+            </a>
+
+            <a href="my profile.html">
+                <span class="nav-icon">👤</span>
+        
