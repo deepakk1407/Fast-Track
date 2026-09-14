@@ -280,7 +280,7 @@ button,input,select{
     border:1px solid #e5e7eb;
     border-radius:18px;
     padding:18px;
-    margin-bottom:24px;
+    margin-bottom:25px;
 }
 
 .search-row{
@@ -314,10 +314,17 @@ button,input,select{
     cursor:pointer;
 }
 
+.filter-title{
+    margin-top:18px;
+    margin-bottom:9px;
+    font-size:11px;
+    font-weight:700;
+    color:#475569;
+}
+
 .filter-row{
     display:flex;
     gap:8px;
-    margin-top:13px;
     flex-wrap:wrap;
 }
 
@@ -329,6 +336,11 @@ button,input,select{
     border-radius:20px;
     font-size:11px;
     cursor:pointer;
+    transition:.2s;
+}
+
+.filter:hover{
+    border-color:#818cf8;
 }
 
 .filter.active{
@@ -411,18 +423,13 @@ button,input,select{
     color:#92400e;
 }
 
-.advanced{
-    background:#fee2e2;
-    color:#991b1b;
-}
-
 .course-card h3{
     font-size:15px;
     margin-top:15px;
     margin-bottom:6px;
 }
 
-.course-card .description{
+.description{
     color:#64748b;
     font-size:11px;
     line-height:1.6;
@@ -522,12 +529,12 @@ button,input,select{
     margin-bottom:5px;
 }
 
-/* ================= COURSE MODAL ================= */
+/* ================= MODAL ================= */
 
 .modal-overlay{
     position:fixed;
     inset:0;
-    background:rgba(15,23,42,.6);
+    background:rgba(15,23,42,.65);
     backdrop-filter:blur(5px);
     display:none;
     align-items:center;
@@ -850,7 +857,6 @@ button,input,select{
         >
 
         <div>
-
             <div class="logo-text">
                 FAST-TRACK
             </div>
@@ -858,7 +864,6 @@ button,input,select{
             <div class="logo-sub">
                 SMART CAREER PLATFORM
             </div>
-
         </div>
 
     </div>
@@ -915,263 +920,333 @@ button,input,select{
 
 <main class="main">
 
-    <!-- TOPBAR -->
+<header class="topbar">
 
-    <header class="topbar">
+    <div>
 
-        <div>
-
-            <div class="page-title">
-                Learning Center
-            </div>
-
-            <div class="page-subtitle">
-                Learn the skills you need for your target career
-            </div>
-
+        <div class="page-title">
+            Learning Center
         </div>
 
+        <div class="page-subtitle">
+            Learn the skills you need for your target career
+        </div>
 
-        <div class="top-right">
+    </div>
 
-            <button
-                class="notification"
-                id="notifyBtn"
+
+    <div class="top-right">
+
+        <button
+            class="notification"
+            id="notifyBtn"
+        >
+            🔔
+        </button>
+
+        <div class="user">
+
+            <div
+                class="avatar"
+                id="avatar"
             >
-                🔔
-            </button>
+                U
+            </div>
 
-
-            <div class="user">
-
-                <div
-                    class="avatar"
-                    id="avatar"
-                >
-                    U
-                </div>
-
-                <div
-                    class="user-name"
-                    id="topName"
-                >
-                    User
-                </div>
-
+            <div
+                class="user-name"
+                id="topName"
+            >
+                User
             </div>
 
         </div>
 
-    </header>
+    </div>
+
+</header>
 
 
-    <!-- ================= CONTENT ================= -->
-
-    <section class="content">
+<section class="content">
 
 
-        <!-- HERO -->
+<!-- ================= HERO ================= -->
 
-        <div class="hero">
+<div class="hero">
 
-            <div>
+    <div>
 
-                <h1>
-                    Turn Skill Gaps Into Skills 🚀
-                </h1>
+        <h1>
+            Turn Skill Gaps Into Skills 🚀
+        </h1>
 
-                <p>
-                    FAST-TRACK recommends learning based on your
-                    target career, missing skills and job requirements.
-                    Complete courses, improve your profile and
-                    strengthen your career readiness.
-                </p>
+        <p>
+            FAST-TRACK recommends learning based on your target
+            career, missing skills and job requirements.
+            Complete courses, improve your profile and strengthen
+            your career readiness.
+        </p>
 
-            </div>
+    </div>
 
 
-            <div class="learning-score">
+    <div class="learning-score">
 
-                <strong id="learningProgress">
-                    0%
-                </strong>
+        <strong id="learningProgress">
+            0%
+        </strong>
 
-                <span>
-                    LEARNING PROGRESS
-                </span>
+        <span>
+            LEARNING PROGRESS
+        </span>
 
-            </div>
+    </div>
 
+</div>
+
+
+<!-- ================= STATS ================= -->
+
+<div class="stats">
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+            📚
         </div>
 
+        <h3 id="totalCourses">
+            5
+        </h3>
 
-        <!-- ================= STATS ================= -->
+        <p>
+            Recommended Courses
+        </p>
 
-        <div class="stats">
-
-            <div class="stat-card">
-
-                <div class="stat-icon">
-                    📚
-                </div>
-
-                <h3 id="totalCourses">
-                    0
-                </h3>
-
-                <p>
-                    Recommended Courses
-                </p>
-
-            </div>
+    </div>
 
 
-            <div class="stat-card">
+    <div class="stat-card">
 
-                <div class="stat-icon">
-                    ▶️
-                </div>
-
-                <h3 id="activeCourses">
-                    0
-                </h3>
-
-                <p>
-                    Courses In Progress
-                </p>
-
-            </div>
-
-
-            <div class="stat-card">
-
-                <div class="stat-icon">
-                    ✅
-                </div>
-
-                <h3 id="completedCourses">
-                    0
-                </h3>
-
-                <p>
-                    Completed Courses
-                </p>
-
-            </div>
-
-
-            <div class="stat-card">
-
-                <div class="stat-icon">
-                    🎯
-                </div>
-
-                <h3 id="skillsToImprove">
-                    0
-                </h3>
-
-                <p>
-                    Skills To Improve
-                </p>
-
-            </div>
-
+        <div class="stat-icon">
+            ▶️
         </div>
 
+        <h3 id="activeCourses">
+            0
+        </h3>
 
-        <!-- ================= SEARCH ================= -->
+        <p>
+            Courses In Progress
+        </p>
 
-        <div class="search-panel">
-
-            <div class="search-row">
-
-                <input
-                    class="search-input"
-                    id="searchInput"
-                    type="text"
-                    placeholder="Search courses or skills..."
-                >
+    </div>
 
 
-                <select
-                    class="category-select"
-                    id="categorySelect"
-                >
+    <div class="stat-card">
 
-                    <option value="">
-                        All Categories
-                    </option>
+        <div class="stat-icon">
+            ✅
+        </div>
 
-                    <option value="Programming">
-                        Programming
-                    </option>
+        <h3 id="completedCourses">
+            0
+        </h3>
 
-                    <option value="Data Science">
-                        Data Science
-                    </option>
+        <p>
+            Completed Courses
+        </p>
 
-                    <option value="AI & ML">
-                        AI & ML
-                    </option>
-
-                    <option value="Tools">
-                        Tools
-                    </option>
-
-                    <option value="Analytics">
-                        Analytics
-                    </option>
-
-                </select>
+    </div>
 
 
-                <button
-                    class="search-btn"
-                    id="searchBtn"
-                >
-                    Search
-                </button>
+    <div class="stat-card">
 
-            </div>
+        <div class="stat-icon">
+            🎯
+        </div>
+
+        <h3 id="skillsToImprove">
+            5
+        </h3>
+
+        <p>
+            Skills To Improve
+        </p>
+
+    </div>
+
+</div>
 
 
-            <div class="filter-row">
+<!-- ================= SEARCH + FILTER ================= -->
 
-                <button
-                    class="filter active"
-                    data-filter="all"
-                >
-                    All
-                </button>
+<div class="search-panel">
 
-                <button
-                    class="filter"
-                    data-filter="recommended"
-                >
-                    Recommended
-                </button>
+    <div class="search-row">
 
-                <button
-                    class="filter"
-                    data-filter="beginner"
-                >
-                    Beginner
-                </button>
+        <input
+            class="search-input"
+            id="searchInput"
+            type="text"
+            placeholder="Search courses or skills..."
+        >
 
-                <button
-                    class="filter"
-                    data-filter="intermediate"
-                >
-                    Intermediate
-                </button>
 
-                <button
-                    class="filter"
-                    data-filter="inprogress"
-                >
-                    In Progress
-                </button>
+        <select
+            class="category-select"
+            id="categorySelect"
+        >
 
-            </div>
+            <option value="">
+                All Categories
+            </option>
 
-       
+            <option value="Programming">
+                Programming
+            </option>
+
+            <option value="Data Science">
+                Data Science
+            </option>
+
+            <option value="AI & ML">
+                AI & ML
+            </option>
+
+            <option value="Analytics">
+                Analytics
+            </option>
+
+            <option value="Tools">
+                Tools
+            </option>
+
+        </select>
+
+
+        <button
+            class="search-btn"
+            id="searchBtn"
+        >
+            Search
+        </button>
+
+    </div>
+
+
+    <div class="filter-title">
+        Filter Courses
+    </div>
+
+
+    <div class="filter-row">
+
+        <button
+            class="filter active"
+            data-filter="all"
+        >
+            All
+        </button>
+
+        <button
+            class="filter"
+            data-filter="recommended"
+        >
+            ⭐ Recommended
+        </button>
+
+        <button
+            class="filter"
+            data-filter="beginner"
+        >
+            🟢 Beginner
+        </button>
+
+        <button
+            class="filter"
+            data-filter="intermediate"
+        >
+            🟡 Intermediate
+        </button>
+
+        <button
+            class="filter"
+            data-filter="inprogress"
+        >
+            ▶️ In Progress
+        </button>
+
+        <button
+            class="filter"
+            data-filter="completed"
+        >
+            ✅ Completed
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================= COURSE SECTION ================= -->
+
+<div class="section-head">
+
+    <h2>
+        Recommended Courses
+    </h2>
+
+    <span id="courseCount">
+        5 courses available
+    </span>
+
+</div>
+
+
+<div
+    class="course-grid"
+    id="courseGrid"
+>
+
+
+<!-- ================= COURSE 1 ================= -->
+
+<article
+    class="course-card"
+    data-category="Data Science"
+    data-level="beginner"
+    data-status="recommended"
+    data-progress="0"
+    data-title="Python for Data Science"
+>
+
+    <div class="course-header">
+
+        <div class="course-icon">
+            🐍
+        </div>
+
+        <span class="level beginner">
+            Beginner
+        </span>
+
+    </div>
+
+
+    <h3>
+        Python for Data Science
+    </h3>
+
+
+    <p class="description">
+        Learn Python fundamentals, NumPy, Pandas and practical
+        data analysis skills for your career.
+    </p>
+
+
+    <div class="course-meta">
+
+        <span class="meta">
+            📚 12 Lessons
+    
