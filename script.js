@@ -32,14 +32,23 @@ const auth = getAuth(app);
    ELEMENTS
 ========================= */
 
-const loginTab = document.getElementById("loginTab");
-const registerTab = document.getElementById("registerTab");
+const loginTab =
+    document.getElementById("loginTab");
 
-const loginBox = document.getElementById("loginBox");
-const registerBox = document.getElementById("registerBox");
+const registerTab =
+    document.getElementById("registerTab");
 
-const goRegister = document.getElementById("goRegister");
-const goLogin = document.getElementById("goLogin");
+const loginBox =
+    document.getElementById("loginBox");
+
+const registerBox =
+    document.getElementById("registerBox");
+
+const goRegister =
+    document.getElementById("goRegister");
+
+const goLogin =
+    document.getElementById("goLogin");
 
 const registerForm =
     document.getElementById("registerForm");
@@ -90,7 +99,7 @@ function showToast(message, type = "success") {
 
     window.toastTimer = setTimeout(() => {
         toast.classList.remove("show");
-    }, 4000);
+    }, 6000);
 }
 
 
@@ -118,174 +127,195 @@ function showRegister() {
 }
 
 
-loginTab.addEventListener("click", showLogin);
-registerTab.addEventListener("click", showRegister);
+loginTab.addEventListener(
+    "click",
+    showLogin
+);
 
-goRegister.addEventListener("click", showRegister);
-goLogin.addEventListener("click", showLogin);
+registerTab.addEventListener(
+    "click",
+    showRegister
+);
+
+goRegister.addEventListener(
+    "click",
+    showRegister
+);
+
+goLogin.addEventListener(
+    "click",
+    showLogin
+);
 
 
 /* =========================
    REGISTER
 ========================= */
 
-registerForm.addEventListener("submit", async function (event) {
+registerForm.addEventListener(
+    "submit",
+    async function (event) {
 
-    event.preventDefault();
-
-    const name =
-        registerName.value.trim();
-
-    const email =
-        registerEmail.value.trim();
-
-    const password =
-        registerPassword.value;
-
-    const confirm =
-        confirmPassword.value;
+        event.preventDefault();
 
 
-    /* VALIDATION */
+        const name =
+            registerName.value.trim();
 
-    if (!name) {
-        showToast("Please enter your full name.", "error");
-        return;
-    }
+        const email =
+            registerEmail.value.trim();
 
+        const password =
+            registerPassword.value;
 
-    if (!email) {
-        showToast("Please enter your email.", "error");
-        return;
-    }
-
-
-    if (password.length < 6) {
-        showToast(
-            "Password must be at least 6 characters.",
-            "error"
-        );
-        return;
-    }
+        const confirm =
+            confirmPassword.value;
 
 
-    if (password !== confirm) {
-        showToast(
-            "Passwords do not match.",
-            "error"
-        );
-        return;
-    }
+        /* VALIDATION */
 
+        if (!name) {
 
-    if (!terms.checked) {
-        showToast(
-            "Please accept Terms & Conditions.",
-            "error"
-        );
-        return;
-    }
-
-
-    /* DISABLE BUTTON */
-
-    registerButton.disabled = true;
-
-    registerButton.textContent =
-        "Creating Account...";
-
-
-    try {
-
-        /* CREATE FIREBASE ACCOUNT */
-
-        const result =
-            await createUserWithEmailAndPassword(
-                auth,
-                email,
-                password
+            showToast(
+                "Please enter your full name.",
+                "error"
             );
 
-
-        const user = result.user;
-
-
-        /* SAVE USER NAME */
-
-        await updateProfile(user, {
-            displayName: name
-        });
-
-
-        console.log(
-            "REGISTER SUCCESS:",
-            user
-        );
-
-
-        showToast(
-            "🎉 Account created successfully!"
-        );
-
-
-        /* RESET FORM */
-
-        registerForm.reset();
-
-
-        /* RETURN TO LOGIN */
-
-        setTimeout(() => {
-            showLogin();
-        }, 1500);
-
-
-    } catch (error) {
-
-        console.error(
-            "REGISTER ERROR:",
-            error
-        );
-
-
-        let message =
-            "Registration failed.";
-
-
-        if (error.code ===
-            "auth/email-already-in-use") {
-
-            message =
-                "This email is already registered.";
-
-        } else if (error.code ===
-            "auth/invalid-email") {
-
-            message =
-                "Please enter a valid email.";
-
-        } else if (error.code ===
-            "auth/weak-password") {
-
-            message =
-                "Password is too weak.";
-
+            return;
         }
 
 
-        showToast(
-            message,
-            "error"
-        );
+        if (!email) {
+
+            showToast(
+                "Please enter your email.",
+                "error"
+            );
+
+            return;
+        }
 
 
-    } finally {
+        if (password.length < 6) {
 
-        registerButton.disabled = false;
+            showToast(
+                "Password must be at least 6 characters.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        if (password !== confirm) {
+
+            showToast(
+                "Passwords do not match.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        if (!terms.checked) {
+
+            showToast(
+                "Please accept Terms & Conditions.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        /* DISABLE BUTTON */
+
+        registerButton.disabled = true;
 
         registerButton.textContent =
-            "Create Account";
+            "Creating Account...";
+
+
+        try {
+
+            /* CREATE FIREBASE USER */
+
+            const result =
+                await createUserWithEmailAndPassword(
+                    auth,
+                    email,
+                    password
+                );
+
+
+            const user =
+                result.user;
+
+
+            /* SAVE DISPLAY NAME */
+
+            await updateProfile(
+                user,
+                {
+                    displayName: name
+                }
+            );
+
+
+            console.log(
+                "REGISTER SUCCESS:",
+                user
+            );
+
+
+            showToast(
+                "🎉 Account created successfully!"
+            );
+
+
+            registerForm.reset();
+
+
+            setTimeout(() => {
+
+                showLogin();
+
+            }, 1500);
+
+
+        } catch (error) {
+
+            /* EXACT FIREBASE ERROR */
+
+            console.error(
+                "FULL FIREBASE ERROR:",
+                error
+            );
+
+
+            const errorCode =
+                error?.code ||
+                "NO_ERROR_CODE";
+
+
+            const errorMessage =
+                error?.message ||
+                "No error message";
+
+
+            showToast(
+                `${errorCode} | ${errorMessage}`,
+                "error"
+            );
+
+        } finally {
+
+            registerButton.disabled = false;
+
+            registerButton.textContent =
+                "Create Account";
+        }
 
     }
-
-});
+);
