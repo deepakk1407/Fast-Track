@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FAST-TRACK | Smart Career Platform</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="auth-container">
+
+        <!-- LEFT SIDE -->
+        <section class="brand-side">
+
+            <div class="brand-content">
+
+                <div class="logo">
+                    <img src="fast-track-logo.png"
+                         alt="FAST-TRACK Logo">
+
+                    <h2>FAST-TRACK</h2>
+                </div>
+
+                <div class="brand-badge">
+                    <span class="status-dot"></span>
+                    SMART CAREER PLATFORM
+                </div>
+
+                <h1>
+                    Your Career.<br>
+                    <span>Fast-Tracked.</span>
+                </h1>
+
+                <p>
+                    Connect with the right opportunities, build your skills,
+                    discover your potential and move closer to your dream career
+                    with FAST-TRACK.
+                </p>
+
+            </div>
+
+            <div class="brand-bottom">
+                <div class="brand-bottom-line"></div>
+
+                <p>
+                    FIND &nbsp; • &nbsp;
+                    CONNECT &nbsp; • &nbsp;
+                    GROW
+                </p>
+            </div>
+
+        </section>
+
+
+        <!-- RIGHT SIDE -->
+        <section class="form-side">
+
+            <div class="auth-tabs">
+
+                <button
+                    type="button"
+                    class="auth-tab active"
+                    id="loginTab">
+                    Login
+                </button>
+
+                <button
+                    type="button"
+                    class="auth-tab"
+                    id="registerTab">
+                    Register
+                </button>
+
+            </div>
+
+
+            <!-- ================= LOGIN ================= -->
+
+            <div class="form-box active" id="loginBox">
+
+                <h2 class="form-title">
+                    Welcome back 👋
+                </h2>
+
+                <p class="form-subtitle">
+                    Sign in to continue your FAST-TRACK journey.
+                </p>
+
+                <button
+                    type="button"
+                    class="google-btn"
+                    id="loginGoogle">
+
+                    <span class="google-icon">G</span>
+
+                    Continue with Google
+
+                </button>
+
+                <div class="divider">
+                    OR CONTINUE WITH EMAIL
+                </div>
+
+
+                <form id="loginForm">
+
+                    <div class="input-group">
+
+                        <label>Email Address</label>
+
+                        <input
+                            type="email"
+                            id="loginEmail"
+                            placeholder="Enter your email"
+                            autocomplete="email"
+                            required>
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label>Password</label>
+
+                        <div class="password-wrapper">
+
+                            <input
+                                type="password"
+                                id="loginPassword"
+                                placeholder="Enter your password"
+                                autocomplete="current-password"
+                                required>
+
+                            <span
+                                class="password-toggle"
+                                id="loginEye">
+                                👁
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-options">
+
+                        <label class="remember">
+
+                            <input
+                                type="checkbox"
+                                id="rememberMe">
+
+                            Remember me
+
+                        </label>
+
+                        <span
+                            class="forgot"
+                            id="forgotButton">
+
+                            Forgot Password?
+
+                        </span>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="main-btn"
+                        id="loginSubmit">
+
+                        Login to FAST-TRACK →
+
+                    </button>
+
+                </form>
+
+
+                <p class="bottom-text">
+
+                    Don't have an account?
+
+                    <span id="goRegister">
+                        Create one
+                    </span>
+
+                </p>
+
+            </div>
+
+
+            <!-- ================= REGISTER ================= -->
+
+            <div class="form-box" id="registerBox">
+
+                <h2 class="form-title">
+                    Create your account 🚀
+                </h2>
+
+                <p class="form-subtitle">
+                    Join FAST-TRACK and take your career to the next level.
+                </p>
+
+
+                <button
+                    type="button"
+                    class="google-btn"
+                    id="registerGoogle">
+
+                    <span class="google-icon">G</span>
+
+                    Sign up with Google
+
+                </button>
+
+
+                <div class="divider">
+                    OR CREATE WITH EMAIL
+                </div>
+
+
+                <form id="registerForm">
+
+                    <div class="input-group">
+
+                        <label>Full Name</label>
+
+                        <input
+                            type="text"
+                            id="registerName"
+                            placeholder="Enter your full name"
+                            autocomplete="name"
+                            required>
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label>Email Address</label>
+
+                        <input
+                            type="email"
+                            id="registerEmail"
+                            placeholder="Enter your email"
+                            autocomplete="email"
+                            required>
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label>Choose Your Role</label>
+
+                        <div class="role-selector">
+
+                            <div class="role-option">
+
+                                <input
+                                    type="radio"
+                                    name="role"
+                                    id="jobSeeker"
+                                    value="Job Seeker"
+                                    required>
+
+                                <label
+                                    for="jobSeeker"
+                                    class="role-label">
+
+                                    👤 Job Seeker
+
+                                </label>
+
+                            </div>
+
+
+                            <div class="role-option">
+
+                                <input
+                                    type="radio"
+                                    name="role"
+                                    id="recruiter"
+                                    value="Recruiter">
+
+                                <label
+                                    for="recruiter"
+                                    class="role-label">
+
+                                    🏢 Recruiter
+
+                                </label>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label>Password</label>
+
+                        <div class="password-wrapper">
+
+                            <input
+                                type="password"
+                                id="registerPassword"
+                                placeholder="Create a password"
+                                minlength="6"
+                                autocomplete="new-password"
+                                required>
+
+                            <span
+                                class="password-toggle"
+                                id="registerEye">
+                                👁
+                            </span>
+
+                        </div>
+
+
+                        <div class="password-strength">
+
+                            <div
+                                class="strength-bar"
+                                id="strengthBar">
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="strength-text"
+                            id="strengthText">
+
+                            Password strength
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label>Confirm Password</label>
+
+                        <div class="password-wrapper">
+
+                            <input
+                                type="password"
+                                id="confirmPassword"
+                                placeholder="Confirm your password"
+                                autocomplete="new-password"
+                                required>
+
+                            <span
+                                class="password-toggle"
+                                id="confirmEye">
+                                👁
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <label class="terms">
+
+                        <input
+                            type="checkbox"
+                            id="terms"
+                            required>
+
+                        <span>
+                            I agree to the Terms & Conditions
+                            and Privacy Policy.
+                        </span>
+
+                    </label>
+
+
+                    <button
+                        type="submit"
+                        class="main-btn"
+                        id="registerSubmit">
+
+                        Create FAST-TRACK Account →
+
+                    </button>
+
+                </form>
+
+
+                <p class="bottom-text">
+
+                    Already have an account?
+
+                    <span id="goLogin">
+                        Login here
+                    </span>
+
+                </p>
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <!-- ================= FORGOT PASSWORD ================= -->
+
+    <div
+        class="modal-overlay"
+        id="forgotModal">
+
+        <div class="modal">
+
+            <div class="modal-icon">
+                🔐
+            </div>
+
+            <h3>
+                Reset your password
+            </h3>
+
+            <p>
+                Enter your registered email address
+                and we'll send you a password reset link.
+            </p>
+
+            <form id="resetForm">
+
+                <div class="input-group">
+
+                    <label>Email Address</label>
+
+                    <input
+                        type="email"
+                        id="resetEmail"
+                        placeholder="Enter your email"
+                        required>
+
+                </div>
+
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="cancel-btn"
+                        id="cancelForgot">
+
+                        Cancel
+
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="reset-btn">
+
+                        Send Link
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= PROFESSIONAL TOAST ================= -->
+    <div class="toast" id="toast" role="status" aria-live="polite">
+        <div class="toast-icon" id="toastIcon">✓</div>
+        <div class="toast-content">
+            <div class="toast-title" id="toastTitle">Success</div>
+            <div class="toast-message" id="toastMessage"></div>
+        </div>
+        <button class="toast-close" id="toastClose" type="button" aria-label="Close">×</button>
+    </div>
+
+    <style>
+        .toast{position:fixed;right:28px;top:28px;z-index:99999;min-width:320px;max-width:420px;display:flex;align-items:center;gap:13px;padding:15px 16px;border-radius:16px;background:rgba(15,23,42,.97);color:#fff;box-shadow:0 18px 45px rgba(15,23,42,.25);border:1px solid rgba(255,255,255,.12);transform:translateY(-18px) translateX(25px);opacity:0;pointer-events:none;transition:.3s ease;font-family:Inter,system-ui,sans-serif}
+        .toast.show{transform:translateY(0) translateX(0);opacity:1;pointer-events:auto}
+        .toast-icon{width:34px;height:34px;flex:0 0 34px;border-radius:50%;display:grid;place-items:center;font-weight:800;background:#16a34a;color:#fff}
+        .toast.error .toast-icon{background:#dc2626}
+        .toast.warning .toast-icon{background:#d97706}
+        .toast.loading .toast-icon{background:#2563eb}
+        .toast-content{min-width:0;flex:1}.toast-title{font-size:14px;font-weight:800;margin-bottom:3px}.toast-message{font-size:13px;line-height:1.4;color:#cbd5e1;word-break:break-word}.toast-close{border:0;background:transparent;color:#94a3b8;font-size:23px;cursor:pointer;line-height:1;padding:2px 4px}.toast-close:hover{color:#fff}
+        @media(max-width:520px){.toast{left:16px;right:16px;top:16px;min-width:0;max-width:none}}
+    </style>
+
+    <script type="module" src="script.js"></script>
+
+</body>
+</html>
