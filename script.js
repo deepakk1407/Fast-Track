@@ -42,7 +42,7 @@ const firebaseConfig = {
 
 
 /* =========================
-   INITIALIZE
+   INITIALIZE FIREBASE
 ========================= */
 
 const app = initializeApp(firebaseConfig);
@@ -51,7 +51,7 @@ const db = getFirestore(app);
 
 
 /* =========================
-   ELEMENTS
+   HTML ELEMENTS
 ========================= */
 
 const loginTab = document.getElementById("loginTab");
@@ -101,19 +101,27 @@ function showToast(message, type = "success") {
 
     window.fastTrackToastTimer = setTimeout(() => {
         toast.classList.remove("show");
-    }, 4000);
+    }, 5000);
 }
 
 
 /* =========================
-   FIREBASE ERROR MESSAGE
+   FIREBASE ERROR
 ========================= */
 
 function firebaseError(error) {
 
-    console.error("Firebase Error:", error);
+    console.error("FULL FIREBASE ERROR:", error);
 
-    const code = error?.code || "";
+    const code = error?.code || "unknown-error";
+
+    const firebaseMessage =
+        error?.message || "Unknown Firebase error";
+
+
+    console.log("Firebase Error Code:", code);
+    console.log("Firebase Error Message:", firebaseMessage);
+
 
     switch (code) {
 
@@ -136,28 +144,31 @@ function firebaseError(error) {
             return "Password must contain at least 6 characters.";
 
         case "auth/operation-not-allowed":
-            return "Email/Password login is not enabled in Firebase.";
+            return "Email/Password login is not enabled.";
 
         case "auth/unauthorized-domain":
-            return "This website domain is not authorized in Firebase.";
+            return "This website domain is not authorized.";
 
         case "auth/popup-blocked":
-            return "Google login popup was blocked.";
+            return "Google popup was blocked.";
 
         case "auth/popup-closed-by-user":
             return "Google login was cancelled.";
 
         case "auth/network-request-failed":
-            return "Network error. Check your internet connection.";
+            return "Network error. Check your internet.";
 
         case "auth/too-many-requests":
             return "Too many attempts. Try again later.";
 
         case "permission-denied":
-            return "Firestore permission denied. Check Firestore Rules.";
+            return "Firestore permission denied.";
 
         default:
-            return `Firebase error: ${code || "unknown-error"}`;
+
+            /* SHOW ACTUAL FIREBASE ERROR */
+
+            return `Firebase error: ${firebaseMessage}`;
     }
 }
 
@@ -168,21 +179,21 @@ function firebaseError(error) {
 
 function showLogin() {
 
-    loginTab.classList.add("active");
-    registerTab.classList.remove("active");
+    loginTab?.classList.add("active");
+    registerTab?.classList.remove("active");
 
-    loginBox.classList.add("active");
-    registerBox.classList.remove("active");
+    loginBox?.classList.add("active");
+    registerBox?.classList.remove("active");
 }
 
 
 function showRegister() {
 
-    registerTab.classList.add("active");
-    loginTab.classList.remove("active");
+    registerTab?.classList.add("active");
+    loginTab?.classList.remove("active");
 
-    registerBox.classList.add("active");
-    loginBox.classList.remove("active");
+    registerBox?.classList.add("active");
+    loginBox?.classList.remove("active");
 }
 
 
@@ -194,7 +205,7 @@ goLogin?.addEventListener("click", showLogin);
 
 
 /* =========================
-   PASSWORD TOGGLE
+   PASSWORD SHOW / HIDE
 ========================= */
 
 function setupPasswordToggle(inputId, buttonId) {
@@ -207,11 +218,15 @@ function setupPasswordToggle(inputId, buttonId) {
     button.addEventListener("click", () => {
 
         if (input.type === "password") {
+
             input.type = "text";
             button.textContent = "🙈";
+
         } else {
+
             input.type = "password";
             button.textContent = "👁";
+
         }
 
     });
@@ -231,11 +246,13 @@ loginForm?.addEventListener("submit", async (event) => {
 
     event.preventDefault();
 
+
     const email =
         document.getElementById("loginEmail")?.value.trim();
 
     const password =
         document.getElementById("loginPassword")?.value;
+
 
     const rememberMe =
         document.getElementById("rememberMe")?.checked;
@@ -289,7 +306,10 @@ loginForm?.addEventListener("submit", async (event) => {
 
 
         setTimeout(() => {
-            window.location.href = "dashboard.html";
+
+            window.location.href =
+                "dashboard.html";
+
         }, 1000);
 
 
@@ -335,6 +355,7 @@ registerForm?.addEventListener("submit", async (event) => {
             'input[name="role"]:checked'
         );
 
+
     const role =
         roleElement?.value || "Job Seeker";
 
@@ -342,43 +363,63 @@ registerForm?.addEventListener("submit", async (event) => {
     /* VALIDATION */
 
     if (!name) {
-        showToast("Please enter your name.", "error");
+
+        showToast(
+            "Please enter your name.",
+            "error"
+        );
+
         return;
     }
+
 
     if (!email) {
-        showToast("Please enter your email.", "error");
+
+        showToast(
+            "Please enter your email.",
+            "error"
+        );
+
         return;
     }
 
+
     if (password.length < 6) {
+
         showToast(
             "Password must contain at least 6 characters.",
             "error"
         );
+
         return;
     }
 
+
     if (password !== confirmPassword) {
+
         showToast(
             "Passwords do not match.",
             "error"
         );
+
         return;
     }
 
+
     if (!terms) {
+
         showToast(
             "Please accept the Terms & Conditions.",
             "error"
         );
+
         return;
     }
 
 
     try {
 
-        /* CREATE AUTH ACCOUNT */
+        /* CREATE ACCOUNT */
 
         const result =
             await createUserWithEmailAndPassword(
@@ -391,19 +432,26 @@ registerForm?.addEventListener("submit", async (event) => {
         const user = result.user;
 
 
-        /* DISPLAY NAME */
+        /* ADD NAME */
 
-        await updateProfile(user, {
-            displayName: name
-        });
+        await updateProfile(
+            user,
+            {
+                displayName: name
+            }
+        );
 
 
-        /* FIRESTORE PROFILE */
+        /* FIRESTORE */
 
         try {
 
             await setDoc(
-                doc(db, "users", user.uid),
+                doc(
+                    db,
+                    "users",
+                    user.uid
+                ),
                 {
                     uid: user.uid,
                     name: name,
@@ -421,13 +469,9 @@ registerForm?.addEventListener("submit", async (event) => {
                 firestoreError
             );
 
-            /*
-              Auth account is already created.
-              So don't show registration failure.
-            */
-
             showToast(
-                "Account created! Profile storage needs setup."
+                "Account created, but profile storage failed.",
+                "error"
             );
         }
 
@@ -451,7 +495,10 @@ registerForm?.addEventListener("submit", async (event) => {
 
 
         setTimeout(() => {
-            window.location.href = "dashboard.html";
+
+            window.location.href =
+                "dashboard.html";
+
         }, 1000);
 
 
@@ -491,14 +538,15 @@ async function googleLogin() {
 
 
         /*
-          Redirect is more reliable on mobile
-          browsers than popup.
+           Redirect is better for mobile
+           than popup.
         */
 
         await signInWithRedirect(
             auth,
             provider
         );
+
 
     } catch (error) {
 
@@ -517,6 +565,7 @@ loginGoogle?.addEventListener(
     googleLogin
 );
 
+
 registerGoogle?.addEventListener(
     "click",
     googleLogin
@@ -532,18 +581,32 @@ getRedirectResult(auth)
 
         if (!result) return;
 
+
         const user = result.user;
 
 
         const userRef =
-            doc(db, "users", user.uid);
+            doc(
+                db,
+                "users",
+                user.uid
+            );
 
 
         let userData = {
+
             uid: user.uid,
-            name: user.displayName || "User",
-            email: user.email || "",
-            role: "Job Seeker"
+
+            name:
+                user.displayName ||
+                "User",
+
+            email:
+                user.email ||
+                "",
+
+            role:
+                "Job Seeker"
         };
 
 
@@ -558,9 +621,19 @@ getRedirectResult(auth)
                 await setDoc(
                     userRef,
                     {
-                        ...userData,
-                        profileCompleted: false,
-                        createdAt: serverTimestamp()
+                        uid: user.uid,
+                        name:
+                            user.displayName ||
+                            "User",
+                        email:
+                            user.email ||
+                            "",
+                        role:
+                            "Job Seeker",
+                        profileCompleted:
+                            false,
+                        createdAt:
+                            serverTimestamp()
                     }
                 );
 
@@ -570,6 +643,7 @@ getRedirectResult(auth)
                     userDoc.data().role ||
                     "Job Seeker";
             }
+
 
         } catch (error) {
 
@@ -593,7 +667,10 @@ getRedirectResult(auth)
 
 
         setTimeout(() => {
-            window.location.href = "dashboard.html";
+
+            window.location.href =
+                "dashboard.html";
+
         }, 1000);
 
 
@@ -616,7 +693,7 @@ forgotButton?.addEventListener(
     "click",
     () => {
 
-        forgotModal.classList.add("active");
+        forgotModal?.classList.add("active");
 
     }
 );
@@ -626,7 +703,7 @@ cancelForgot?.addEventListener(
     "click",
     () => {
 
-        forgotModal.classList.remove("active");
+        forgotModal?.classList.remove("active");
 
     }
 );
@@ -658,7 +735,8 @@ resetForm?.addEventListener(
 
 
         const email =
-            document.getElementById("resetEmail")
+            document
+                .getElementById("resetEmail")
                 ?.value.trim();
 
 
@@ -681,7 +759,10 @@ resetForm?.addEventListener(
             );
 
 
-            forgotModal.classList.remove("active");
+            forgotModal?.classList.remove(
+                "active"
+            );
+
 
             resetForm.reset();
 
