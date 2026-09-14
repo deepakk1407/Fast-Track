@@ -1,528 +1,1025 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAST-TRACK | Smart Career Platform</title>
-    <link rel="stylesheet" href="style.css">
+<!DOCTYPE html>  <html lang="en">  <head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>FAST-TRACK | Dashboard</title>  
 
-    <style>
-        .toast{
-            position:fixed;
-            top:25px;
-            right:25px;
-            z-index:99999;
-            min-width:320px;
-            max-width:430px;
-            display:flex;
-            align-items:center;
-            gap:14px;
-            padding:16px;
-            border-radius:16px;
-            background:#0f172a;
-            color:white;
-            box-shadow:0 15px 40px rgba(0,0,0,.25);
-            transform:translateY(-30px);
-            opacity:0;
-            pointer-events:none;
-            transition:.35s ease;
+<style>  
+    * {  
+        margin: 0;  
+        padding: 0;  
+        box-sizing: border-box;  
+    }  
+
+    body {  
+        min-height: 100vh;  
+        font-family: Arial, Helvetica, sans-serif;  
+        background: #f5f7fb;  
+        color: #0f172a;  
+    }  
+
+    /* =========================  
+       LAYOUT  
+    ========================== */  
+
+    .app {  
+        display: flex;  
+        min-height: 100vh;  
+    }  
+
+    /* =========================  
+       SIDEBAR  
+    ========================== */  
+
+    .sidebar {  
+        width: 250px;  
+        min-height: 100vh;  
+
+        background:  
+            linear-gradient(  
+                180deg,  
+                #0f172a 0%,  
+                #172554 55%,  
+                #1e1b4b 100%  
+            );  
+
+        color: white;  
+
+        padding: 25px 16px;  
+
+        position: fixed;  
+        left: 0;  
+        top: 0;  
+        bottom: 0;  
+
+        display: flex;  
+        flex-direction: column;  
+
+        z-index: 100;  
+    }  
+
+    .brand {  
+        display: flex;  
+        align-items: center;  
+        gap: 12px;  
+
+        padding: 0 10px;  
+        margin-bottom: 35px;  
+    }  
+
+    .brand img {  
+        width: 42px;  
+        height: 42px;  
+
+        object-fit: contain;  
+
+        border-radius: 10px;  
+    }  
+
+    .brand-text h2 {  
+        font-size: 18px;  
+        letter-spacing: 1px;  
+    }  
+
+    .brand-text span {  
+        display: block;  
+
+        margin-top: 3px;  
+
+        font-size: 9px;  
+        color: #93c5fd;  
+
+        letter-spacing: 1px;  
+    }  
+
+    /* =========================  
+       NAVIGATION  
+    ========================== */  
+
+    .nav-title {  
+        padding: 0 12px;  
+
+        margin-bottom: 10px;  
+
+        font-size: 10px;  
+
+        color: #94a3b8;  
+
+        letter-spacing: 1.5px;  
+
+        font-weight: 700;  
+    }  
+
+    .nav {  
+        display: flex;  
+        flex-direction: column;  
+        gap: 6px;  
+    }  
+
+    .nav-item {  
+        width: 100%;  
+
+        display: flex;  
+        align-items: center;  
+
+        gap: 13px;  
+
+        padding: 12px 14px;  
+
+        border-radius: 10px;  
+
+        color: #cbd5e1;  
+
+        text-decoration: none;  
+
+        font-size: 14px;  
+
+        transition: 0.25s;  
+    }  
+
+    .nav-item:hover {  
+        background: rgba(255, 255, 255, 0.08);  
+        color: white;  
+    }  
+
+    .nav-item.active {  
+        background: rgba(96, 165, 250, 0.18);  
+        color: white;  
+
+        box-shadow:  
+            inset 3px 0 0 #60a5fa;  
+    }  
+
+    .nav-icon {  
+        width: 22px;  
+
+        text-align: center;  
+
+        font-size: 17px;  
+    }  
+
+    /* =========================  
+       SIDEBAR BOTTOM  
+    ========================== */  
+
+    .sidebar-bottom {  
+        margin-top: auto;  
+    }  
+
+    .career-mini {  
+        padding: 16px;  
+
+        margin: 10px 4px 18px;  
+
+        border-radius: 14px;  
+
+        background: rgba(255,255,255,0.07);  
+
+        border: 1px solid rgba(255,255,255,0.08);  
+    }  
+
+    .career-mini p {  
+        font-size: 11px;  
+
+        color: #94a3b8;  
+
+        margin-bottom: 8px;  
+    }  
+
+    .career-mini strong {  
+        font-size: 13px;  
+    }  
+
+    .logout-btn {  
+        width: 100%;  
+
+        border: none;  
+
+        padding: 12px;  
+
+        border-radius: 10px;  
+
+        background: rgba(239, 68, 68, 0.1);  
+
+        color: #fca5a5;  
+
+        font-size: 14px;  
+
+        font-weight: 700;  
+
+        cursor: pointer;  
+
+        transition: 0.25s;  
+    }  
+
+    .logout-btn:hover {  
+        background: #ef4444;  
+        color: white;  
+    }  
+
+    /* =========================  
+       MAIN CONTENT  
+    ========================== */  
+
+    .main {  
+        width: calc(100% - 250px);  
+
+        margin-left: 250px;  
+
+        min-height: 100vh;  
+
+        padding: 25px 35px;  
+    }  
+
+    /* =========================  
+       TOPBAR  
+    ========================== */  
+
+    .topbar {  
+        display: flex;  
+
+        align-items: center;  
+
+        justify-content: space-between;  
+
+        margin-bottom: 30px;  
+    }  
+
+    .page-title h1 {  
+        font-size: 28px;  
+
+        margin-bottom: 6px;  
+    }  
+
+    .page-title p {  
+        color: #64748b;  
+
+        font-size: 14px;  
+    }  
+
+    .profile-mini {  
+        display: flex;  
+
+        align-items: center;  
+
+        gap: 12px;  
+
+        padding: 8px 13px;  
+
+        background: white;  
+
+        border: 1px solid #e2e8f0;  
+
+        border-radius: 12px;  
+    }  
+
+    .profile-avatar {  
+        width: 38px;  
+        height: 38px;  
+
+        display: flex;  
+
+        align-items: center;  
+        justify-content: center;  
+
+        border-radius: 50%;  
+
+        background: #dbeafe;  
+
+        color: #2563eb;  
+
+        font-weight: 800;  
+    }  
+
+    .profile-mini strong {  
+        display: block;  
+
+        font-size: 13px;  
+    }  
+
+    .profile-mini span {  
+        display: block;  
+
+        margin-top: 2px;  
+
+        font-size: 10px;  
+
+        color: #64748b;  
+    }  
+
+    /* =========================  
+       WELCOME CARD  
+    ========================== */  
+
+    .welcome-card {  
+        position: relative;  
+
+        overflow: hidden;  
+
+        padding: 32px;  
+
+        border-radius: 22px;  
+
+        background:  
+            linear-gradient(  
+                120deg,  
+                #0f172a,  
+                #1d4ed8,  
+                #312e81  
+            );  
+
+        color: white;  
+
+        box-shadow:  
+            0 18px 45px rgba(30, 64, 175, 0.18);  
+
+        margin-bottom: 25px;  
+    }  
+
+    .welcome-card::after {  
+        content: "";  
+
+        position: absolute;  
+
+        width: 220px;  
+        height: 220px;  
+
+        border-radius: 50%;  
+
+        background: rgba(255,255,255,0.06);  
+
+        right: -70px;  
+        top: -80px;  
+    }  
+
+    .welcome-badge {  
+        display: inline-block;  
+
+        padding: 7px 12px;  
+
+        border-radius: 30px;  
+
+        background: rgba(255,255,255,0.12);  
+
+        font-size: 10px;  
+
+        letter-spacing: 1px;  
+
+        margin-bottom: 15px;  
+    }  
+
+    .welcome-card h2 {  
+        position: relative;  
+
+        z-index: 2;  
+
+        font-size: 30px;  
+
+        margin-bottom: 8px;  
+    }  
+
+    .welcome-card h2 span {  
+        color: #93c5fd;  
+    }  
+
+    .welcome-card p {  
+        position: relative;  
+
+        z-index: 2;  
+
+        max-width: 650px;  
+
+        color: #dbeafe;  
+
+        font-size: 14px;  
+
+        line-height: 1.7;  
+    }  
+
+    /* =========================  
+       STAT CARDS  
+    ========================== */  
+
+    .stats {  
+        display: grid;  
+
+        grid-template-columns:  
+            repeat(3, 1fr);  
+
+        gap: 18px;  
+
+        margin-bottom: 25px;  
+    }  
+
+    .stat-card {  
+        background: white;  
+
+        border: 1px solid #e2e8f0;  
+
+        border-radius: 16px;  
+
+        padding: 22px;  
+
+        transition: 0.25s;  
+    }  
+
+    .stat-card:hover {  
+        transform: translateY(-3px);  
+
+        box-shadow:  
+            0 12px 30px rgba(15,23,42,0.07);  
+    }  
+
+    .stat-top {  
+        display: flex;  
+
+        align-items: center;  
+
+        justify-content: space-between;  
+
+        margin-bottom: 18px;  
+    }  
+
+    .stat-icon {  
+        width: 42px;  
+        height: 42px;  
+
+        display: flex;  
+
+        align-items: center;  
+        justify-content: center;  
+
+        border-radius: 11px;  
+
+        background: #eff6ff;  
+
+        font-size: 19px;  
+    }  
+
+    .stat-card small {  
+        color: #64748b;  
+
+        font-size: 11px;  
+
+        font-weight: 700;  
+
+        text-transform: uppercase;  
+
+        letter-spacing: 0.5px;  
+    }  
+
+    .stat-card h3 {  
+        font-size: 25px;  
+
+        margin-top: 5px;  
+    }  
+
+    /* =========================  
+       CONTENT GRID  
+    ========================== */  
+
+    .content-grid {  
+        display: grid;  
+
+        grid-template-columns:  
+            1.5fr 1fr;  
+
+        gap: 20px;  
+    }  
+
+    .panel {  
+        background: white;  
+
+        border: 1px solid #e2e8f0;  
+
+        border-radius: 18px;  
+
+        padding: 24px;  
+    }  
+
+    .panel-header {  
+        display: flex;  
+
+        justify-content: space-between;  
+
+        align-items: center;  
+
+        margin-bottom: 20px;  
+    }  
+
+    .panel-header h2 {  
+        font-size: 17px;  
+    }  
+
+    .panel-header span {  
+        font-size: 11px;  
+
+        color: #2563eb;  
+
+        font-weight: 700;  
+    }  
+
+    /* =========================  
+       FEATURE ITEMS  
+    ========================== */  
+
+    .feature-list {  
+        display: grid;  
+
+        grid-template-columns:  
+            repeat(2, 1fr);  
+
+        gap: 12px;  
+    }  
+
+    .feature {  
+        padding: 18px;  
+
+        border: 1px solid #e2e8f0;  
+
+        border-radius: 13px;  
+
+        cursor: pointer;  
+
+        transition: 0.25s;  
+    }  
+
+    .feature:hover {  
+        border-color: #93c5fd;  
+
+        background: #f8fbff;  
+
+        transform: translateY(-2px);  
+    }  
+
+    .feature-icon {  
+        font-size: 23px;  
+
+        margin-bottom: 10px;  
+    }  
+
+    .feature h3 {  
+        font-size: 14px;  
+
+        margin-bottom: 5px;  
+    }  
+
+    .feature p {  
+        color: #64748b;  
+
+        font-size: 11px;  
+
+        line-height: 1.5;  
+    }  
+
+    /* =========================  
+       PROFILE INFO  
+    ========================== */  
+
+    .profile-info {  
+        display: flex;  
+
+        flex-direction: column;  
+
+        gap: 14px;  
+    }  
+
+    .info-row {  
+        padding: 13px;  
+
+        border-radius: 10px;  
+
+        background: #f8fafc;  
+
+        border: 1px solid #eef2f7;  
+    }  
+
+    .info-row small {  
+        display: block;  
+
+        color: #64748b;  
+
+        font-size: 10px;  
+
+        margin-bottom: 5px;  
+
+        text-transform: uppercase;  
+
+        font-weight: 700;  
+    }  
+
+    .info-row strong {  
+        display: block;  
+
+        font-size: 13px;  
+
+        word-break: break-word;  
+    }  
+
+    /* =========================  
+       MOBILE HEADER  
+    ========================== */  
+
+    .mobile-header {  
+        display: none;  
+    }  
+
+    /* =========================
+       MOBILE MENU
+    ========================== */
+    .mobile-menu-btn {
+        display: none; width: 42px; height: 42px; border: 0; border-radius: 10px;
+        background: #0f172a; color: #fff; font-size: 22px; cursor: pointer;
+        align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .mobile-overlay {
+        display: none; position: fixed; inset: 0; background: rgba(15,23,42,.45); z-index: 90;
+    }
+
+    /* =========================  
+       RESPONSIVE  
+    ========================== */  
+
+    @media (max-width: 950px) {  
+
+        .sidebar {  
+            width: 220px;  
+        }  
+
+        .main {  
+            width: calc(100% - 220px);  
+
+            margin-left: 220px;  
+
+            padding: 25px;  
+        }  
+
+        .stats {  
+            grid-template-columns:  
+                repeat(2, 1fr);  
+        }  
+
+        .content-grid {  
+            grid-template-columns: 1fr;  
+        }  
+    }  
+
+    @media (max-width: 700px) {  
+
+        .sidebar {
+            display: flex;
+            width: 270px;
+            transform: translateX(-100%);
+            transition: transform .3s ease;
+            box-shadow: 12px 0 30px rgba(15,23,42,.18);
         }
 
-        .toast.show{
-            transform:translateY(0);
-            opacity:1;
-            pointer-events:auto;
-        }
-
-        .toast-icon{
-            width:38px;
-            height:38px;
-            min-width:38px;
-            border-radius:50%;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            background:#16a34a;
-            font-weight:bold;
-        }
-
-        .toast.error .toast-icon{background:#dc2626}
-        .toast.warning .toast-icon{background:#d97706}
-        .toast.loading .toast-icon{background:#2563eb}
-
-        .toast-content{flex:1}
-        .toast-title{
-            font-size:14px;
-            font-weight:800;
-            margin-bottom:4px;
-        }
-
-        .toast-message{
-            font-size:13px;
-            color:#cbd5e1;
-            line-height:1.4;
-        }
-
-        .toast-close{
-            background:none;
-            border:none;
-            color:#94a3b8;
-            font-size:22px;
-            cursor:pointer;
-        }
-
-        @media(max-width:520px){
-            .toast{
-                left:15px;
-                right:15px;
-                top:15px;
-                min-width:0;
-            }
-        }
-    </style>
-</head>
-
-<body>
+        .sidebar.mobile-open {
+            transform: translateX(0);
+        }  
 
-<div class="auth-container">
+        .main {  
+            width: 100%;  
 
-    <!-- LEFT SIDE -->
-    <section class="brand-side">
+            margin-left: 0;  
 
-        <div class="brand-content">
+            padding: 18px;  
+        }  
 
-            <div class="logo">
-                <img src="fast-track-logo.png" alt="FAST-TRACK Logo">
-                <h2>FAST-TRACK</h2>
-            </div>
+        .mobile-header {  
+            display: flex;  
 
-            <div class="brand-badge">
-                <span class="status-dot"></span>
-                SMART CAREER PLATFORM
-            </div>
+            align-items: center;  
 
-            <h1>
-                Your Career.<br>
-                <span>Fast-Tracked.</span>
-            </h1>
+            justify-content: space-between;  
 
-            <p>
-                Connect with the right opportunities, build your skills,
-                discover your potential and move closer to your dream career
-                with FAST-TRACK.
-            </p>
+            margin-bottom: 20px;  
+        }  
 
-        </div>
+        .mobile-brand {  
+            display: flex;  
 
-        <div class="brand-bottom">
-            <div class="brand-bottom-line"></div>
-            <p>FIND &nbsp; • &nbsp; CONNECT &nbsp; • &nbsp; GROW</p>
-        </div>
+            align-items: center;  
 
-    </section>
+            gap: 8px;  
+        }  
 
+        .mobile-brand img {  
+            width: 35px;  
+            height: 35px;  
 
-    <!-- RIGHT SIDE -->
-    <section class="form-side">
+            object-fit: contain;  
+        }  
 
-        <div class="auth-tabs">
+        .mobile-brand strong {  
+            font-size: 16px;  
+        }  
 
-            <button type="button"
-                    class="auth-tab active"
-                    id="loginTab">
-                Login
-            </button>
+        .topbar {  
+            margin-bottom: 20px;  
+        }  
 
-            <button type="button"
-                    class="auth-tab"
-                    id="registerTab">
-                Register
-            </button>
+        .profile-mini {  
+            display: none;  
+        }  
 
-        </div>
+        .page-title h1 {  
+            font-size: 24px;  
+        }  
 
+        .welcome-card {  
+            padding: 25px 20px;  
+        }  
 
-        <!-- LOGIN -->
+        .welcome-card h2 {  
+            font-size: 25px;  
+        }  
 
-        <div class="form-box active" id="loginBox">
+        .stats {  
+            grid-template-columns: 1fr;  
+        }  
 
-            <h2 class="form-title">
-                Welcome back 👋
-            </h2>
+        .feature-list {  
+            grid-template-columns: 1fr;  
+        }  
+    }  
+</style>
 
-            <p class="form-subtitle">
-                Sign in to continue your FAST-TRACK journey.
-            </p>
+</head>  <body>  <div class="app">  <!-- =========================  
+     SIDEBAR  
+========================== -->  
 
-            <button type="button"
-                    class="google-btn"
-                    id="loginGoogle">
+<aside class="sidebar">  
 
-                <span class="google-icon">G</span>
-                Continue with Google
+    <div class="brand">  
 
-            </button>
+        <img  
+            src="fast-track-logo.png"  
+            alt="FAST-TRACK Logo">  
 
-            <div class="divider">
-                OR CONTINUE WITH EMAIL
-            </div>
+        <div class="brand-text">  
 
+            <h2>FAST-TRACK</h2>  
 
-            <form id="loginForm">
+            <span>SMART CAREER PLATFORM</span>  
 
-                <div class="input-group">
+        </div>  
 
-                    <label>Email Address</label>
+    </div>  
 
-                    <input type="email"
-                           id="loginEmail"
-                           placeholder="Enter your email"
-                           autocomplete="email"
-                           required>
 
-                </div>
+    <div class="nav-title">  
+        MAIN MENU  
+    </div>  
 
 
-                <div class="input-group">
+    <nav class="nav">  
 
-                    <label>Password</label>
+        <a  
+            href="dashboard.html"  
+            class="nav-item active">  
 
-                    <div class="password-wrapper">
+            <span class="nav-icon">🏠</span>  
 
-                        <input type="password"
-                               id="loginPassword"
-                               placeholder="Enter your password"
-                               autocomplete="current-password"
-                               required>
+            <span>Dashboard</span>  
 
-                        <span class="password-toggle"
-                              id="loginEye">
-                            👁
-                        </span>
+        </a>  
 
-                    </div>
 
-                </div>
+        <a  
+            href="jobs.html"  
+            class="nav-item">  
 
+            <span class="nav-icon">💼</span>  
 
-                <div class="form-options">
+            <span>Jobs</span>  
 
-                    <label class="remember">
+        </a>  
 
-                        <input type="checkbox"
-                               id="rememberMe">
 
-                        Remember me
+        <a  
+            href="skills.html"  
+            class="nav-item">  
 
-                    </label>
+            <span class="nav-icon">🎯</span>  
 
-                    <span class="forgot"
-                          id="forgotButton">
-                        Forgot Password?
-                    </span>
+            <span>Skills</span>  
 
-                </div>
+        </a>  
 
 
-                <button type="submit"
-                        class="main-btn"
-                        id="loginSubmit">
+        <a  
+            href="course.html"  
+            class="nav-item">  
 
-                    Login to FAST-TRACK →
+            <span class="nav-icon">📚</span>  
 
-                </button>
+            <span>Courses</span>  
 
-            </form>
+        </a>  
 
 
-            <p class="bottom-text">
-                Don't have an account?
-                <span id="goRegister">Create one</span>
-            </p>
+        <a  
+            href="resume builder.html"  
+            class="nav-item">  
 
-        </div>
+            <span class="nav-icon">📄</span>  
 
+            <span>Resume Builder</span>  
 
-        <!-- REGISTER -->
+        </a>  
 
-        <div class="form-box" id="registerBox">
 
-            <h2 class="form-title">
-                Create your account 🚀
-            </h2>
+        <a  
+            href="career progress.html"  
+            class="nav-item">  
 
-            <p class="form-subtitle">
-                Join FAST-TRACK and take your career to the next level.
-            </p>
+            <span class="nav-icon">📈</span>  
 
+            <span>Career Progress</span>  
 
-            <button type="button"
-                    class="google-btn"
-                    id="registerGoogle">
+        </a>  
 
-                <span class="google-icon">G</span>
-                Sign up with Google
 
-            </button>
+        <a  
+            href="my profile.html"  
+            class="nav-item">  
 
+            <span class="nav-icon">👤</span>  
 
-            <div class="divider">
-                OR CREATE WITH EMAIL
-            </div>
+            <span>My Profile</span>  
 
+        </a>  
 
-            <form id="registerForm">
+    </nav>  
 
-                <div class="input-group">
 
-                    <label>Full Name</label>
+    <div class="sidebar-bottom">  
 
-                    <input type="text"
-                           id="registerName"
-                           placeholder="Enter your full name"
-                           autocomplete="name"
-                           required>
+        <div class="career-mini">  
 
-                </div>
+            <p>YOUR CAREER JOURNEY</p>  
 
+            <strong>  
+                Keep moving forward 🚀  
+            </strong>  
 
-                <div class="input-group">
+        </div>  
 
-                    <label>Email Address</label>
 
-                    <input type="email"
-                           id="registerEmail"
-                           placeholder="Enter your email"
-                           autocomplete="email"
-                           required>
+        <button  
+            class="logout-btn"  
+            id="logoutBtn">  
 
-                </div>
+            🚪 Logout  
 
+        </button>  
 
-                <div class="input-group">
+    </div>  
 
-                    <label>Choose Your Role</label>
+</aside>  
 
-                    <div class="role-selector">
 
-                        <div class="role-option">
 
-                            <input type="radio"
-                                   name="role"
-                                   id="jobSeeker"
-                                   value="Job Seeker"
-                                   required>
+<!-- =========================  
+     MAIN CONTENT  
+========================== -->  
 
-                            <label for="jobSeeker"
-                                   class="role-label">
-                                👤 Job Seeker
-                            </label>
+<main class="main">  
 
-                        </div>
 
+    <!-- MOBILE HEADER -->  
 
-                        <div class="role-option">
+    <div class="mobile-header">  
 
-                            <input type="radio"
-                                   name="role"
-                                   id="recruiter"
-                                   value="Recruiter">
+        <div class="mobile-brand">  
 
-                            <label for="recruiter"
-                                   class="role-label">
-                                🏢 Recruiter
-                            </label>
+            <img  
+                src="fast-track-logo.png"  
+                alt="FAST-TRACK">  
 
-                        </div>
+            <strong>  
+                FAST-TRACK  
+            </strong>  
 
-                    </div>
+        </div>  
 
-                </div>
-
-
-                <div class="input-group">
-
-                    <label>Password</label>
-
-                    <div class="password-wrapper">
-
-                        <input type="password"
-                               id="registerPassword"
-                               placeholder="Create a password"
-                               minlength="6"
-                               autocomplete="new-password"
-                               required>
-
-                        <span class="password-toggle"
-                              id="registerEye">
-                            👁
-                        </span>
-
-                    </div>
-
-                    <div class="password-strength">
-                        <div class="strength-bar"
-                             id="strengthBar"></div>
-                    </div>
-
-                    <div class="strength-text"
-                         id="strengthText">
-                        Password strength
-                    </div>
-
-                </div>
-
-
-                <div class="input-group">
-
-                    <label>Confirm Password</label>
-
-                    <div class="password-wrapper">
-
-                        <input type="password"
-                               id="confirmPassword"
-                               placeholder="Confirm your password"
-                               autocomplete="new-password"
-                               required>
-
-                        <span class="password-toggle"
-                              id="confirmEye">
-                            👁
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <label class="terms">
-
-                    <input type="checkbox"
-                           id="terms"
-                           required>
-
-                    <span>
-                        I agree to the Terms & Conditions
-                        and Privacy Policy.
-                    </span>
-
-                </label>
-
-
-                <button type="submit"
-                        class="main-btn"
-                        id="registerSubmit">
-
-                    Create FAST-TRACK Account →
-
-                </button>
-
-            </form>
-
-
-            <p class="bottom-text">
-
-                Already have an account?
-                <span id="goLogin">Login here</span>
-
-            </p>
-
-        </div>
-
-    </section>
-
-</div>
-
-
-<!-- FORGOT PASSWORD -->
-
-<div class="modal-overlay"
-     id="forgotModal">
-
-    <div class="modal">
-
-        <div class="modal-icon">🔐</div>
-
-        <h3>Reset your password</h3>
-
-        <p>
-            Enter your registered email address
-            and we'll send you a password reset link.
-        </p>
-
-
-        <form id="resetForm">
-
-            <div class="input-group">
-
-                <label>Email Address</label>
-
-                <input type="email"
-                       id="resetEmail"
-                       placeholder="Enter your email"
-                       required>
-
-            </div>
-
-
-            <div class="modal-actions">
-
-                <button type="button"
-                        class="cancel-btn"
-                        id="cancelForgot">
-                    Cancel
-                </button>
-
-                <button type="submit"
-                        class="reset-btn">
-                    Send Link
-                </button>
-
-            </div>
-
-        </form>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
 
     </div>
 
-</div>
+    <div class="mobile-overlay" id="mobileOverlay"></div>
 
 
-<!-- PROFESSIONAL TOAST -->
+    <!-- TOP BAR -->  
 
-<div class="toast"
-     id="toast"
-     role="status"
-     aria-live="polite">
+    <header class="topbar">  
 
-    <div class="toast-icon"
-         id="toastIcon">
-        ✓
-    </div>
+        <div class="page-title">  
 
-    <div class="toast-content">
+            <h1>  
+                Dashboard  
+            </h1>  
 
-        <div class="toast-title"
-             id="toastTitle">
-            Success
-        </div>
+            <p>  
+                Manage your career journey from one place.  
+            </p>  
 
-        <div class="toast-message"
-             id="toastMessage">
-        </div>
-
-    </div>
-
-    <button class="toast-close"
-            id="toastClose"
-            type="button">
-        ×
-    </button>
-
-</div>
+        </div>  
 
 
-<!-- IMPORTANT -->
-<script type="module" src="script.js"></script>
+        <div class="profile-mini">  
 
-</body>
-</html>
+            <div  
+                class="profile-avatar"  
+                id="profileAvatar">  
+
+                U  
+
+            </div>  
+
+
+            <div>  
+
+                <strong id="topUserName">  
+                    User  
+                </strong>  
+
+                <span>  
+                    Career Explorer  
+                </span>  
+
+            </div>  
+
+        </div>  
+
+    </header>  
+
+
+
+    <!-- WELCOME -->  
+
+    <section class="welcome-card">  
+
+        <div class="welcome-badge">  
+            SMART CAREER PLATFORM  
+        </div>  
+
+
+        <h2>  
+            Welcome,  
+            <span id="userName">  
+                User  
+            </span> 👋  
+        </h2>  
+
+
+        <p>  
+            Your FAST-TRACK career journey starts here.  
+            Explore opportunities, develop your skills,  
+            build your resume and move closer to your  
+            dream career.  
+        </p>  
+
+    </section>  
+
+
+
+    <!-- STAT CARDS -->  
+
+    <section class="stats">  
+
+
+        <div class="stat-card">  
+
+            <div class="stat-top">  
+
+                <div class="stat-icon">  
+                    💼  
+                </div>  
+
+                <small>  
+                    Opportunities  
+                </small>  
+
+            </div>  
+
+            <h3>  
+                Explore  
+            </h3>  
+
+        </div>  
+
+
+        <div class="stat-card">  
+
+            <div class="stat-top">  
+
+                <div class="stat-icon">  
+                    🎯  
+                </div>  
+
+                <small>  
+                    Skills  
+                </small>  
+
+            </div>  
+
