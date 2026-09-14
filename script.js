@@ -289,7 +289,9 @@ loginForm.addEventListener(
                 "LOGIN SUCCESS:",
                 result.user
             );
-
+setTimeout(() => {
+    window.location.href = "dashboard.html";
+}, 1200);
 
             showToast(
                 "🎉 Login successful!"
