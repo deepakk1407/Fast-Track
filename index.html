@@ -1,489 +1,1001 @@
-<!DOCTYPE html>
-<html lang="en">
+/* =========================================
+   FAST-TRACK | Firebase Authentication
+========================================= */
 
-<head>
-    <meta charset="UTF-8">
+import { initializeApp } from
+    "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    updateProfile,
+    signInWithEmailAndPassword,
+    GoogleAuthProvider,
+    signInWithPopup,
+    sendPasswordResetEmail
+} from
+    "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
-    <title>FAST-TRACK | Smart Career Platform</title>
 
-    <link rel="stylesheet"
-          href="style.css">
-</head>
+/* =========================================
+   FIREBASE CONFIG
+========================================= */
 
-<body>
+const firebaseConfig = {
+    apiKey: "AIzaSyDJ84_tSgau334V60r17bqHHubaf5Lecto",
+    authDomain: "fast-track-6d262.firebaseapp.com",
+    projectId: "fast-track-6d262",
+    storageBucket: "fast-track-6d262.firebasestorage.app",
+    messagingSenderId: "338934873510",
+    appId: "1:338934873510:web:1ad3791207107af183a367",
+    measurementId: "G-M6FSRH2Y9H"
+};
 
-    <div class="auth-container">
 
-        <!-- LEFT SIDE -->
-        <section class="brand-side">
+/* =========================================
+   INITIALIZE FIREBASE
+========================================= */
 
-            <div class="brand-content">
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
-                <img src="fast-track-logo.png"
-                     alt="FAST-TRACK Logo"
-                     class="logo">
+const googleProvider = new GoogleAuthProvider();
 
-                <div class="brand-badge">
-                    SMART CAREER PLATFORM
-                </div>
 
-                <h1>FAST-TRACK</h1>
+/* =========================================
+   ELEMENTS
+========================================= */
 
-                <p class="tagline">
-                    Your Career. Fast-Tracked.
-                </p>
+/* Tabs */
 
-                <p class="description">
-                    Build your skills, discover opportunities,
-                    and accelerate your career with FAST-TRACK.
-                </p>
+const loginTab = document.getElementById("loginTab");
+const registerTab = document.getElementById("registerTab");
 
-            </div>
+const loginBox = document.getElementById("loginBox");
+const registerBox = document.getElementById("registerBox");
 
-        </section>
+const goRegister = document.getElementById("goRegister");
+const goLogin = document.getElementById("goLogin");
 
 
-        <!-- RIGHT SIDE -->
-        <section class="form-side">
+/* Toast */
 
-            <div class="auth-card">
+const toast = document.getElementById("toast");
 
-                <!-- TABS -->
-                <div class="auth-tabs">
 
-                    <button
-                        type="button"
-                        id="loginTab"
-                        class="auth-tab active">
+/* Login */
 
-                        Login
+const loginForm = document.getElementById("loginForm");
+const loginEmail = document.getElementById("loginEmail");
+const loginPassword = document.getElementById("loginPassword");
+const loginEye = document.getElementById("loginEye");
+const loginGoogle = document.getElementById("loginGoogle");
 
-                    </button>
 
-                    <button
-                        type="button"
-                        id="registerTab"
-                        class="auth-tab">
+/* Register */
 
-                        Register
+const registerForm = document.getElementById("registerForm");
+const registerButton = document.getElementById("registerButton");
 
-                    </button>
+const registerName = document.getElementById("registerName");
+const registerEmail = document.getElementById("registerEmail");
 
-                </div>
+const registerPassword =
+    document.getElementById("registerPassword");
 
+const confirmPassword =
+    document.getElementById("confirmPassword");
 
-                <!-- LOGIN -->
-                <div
-                    id="loginBox"
-                    class="form-box active">
+const registerEye =
+    document.getElementById("registerEye");
 
-                    <h2>
-                        Welcome Back 👋
-                    </h2>
+const confirmEye =
+    document.getElementById("confirmEye");
 
-                    <p class="form-subtitle">
-                        Login to continue your career journey.
-                    </p>
+const terms =
+    document.getElementById("terms");
 
+const jobSeeker =
+    document.getElementById("jobSeeker");
 
-                    <!-- GOOGLE LOGIN -->
-                    <button
-                        type="button"
-                        id="loginGoogle"
-                        class="google-btn">
+const recruiter =
+    document.getElementById("recruiter");
 
-                        <span>G</span>
-                        Continue with Google
+const registerGoogle =
+    document.getElementById("registerGoogle");
 
-                    </button>
 
+/* Forgot Password */
 
-                    <div class="divider">
-                        <span>OR</span>
-                    </div>
+const forgotButton =
+    document.getElementById("forgotButton");
 
+const forgotModal =
+    document.getElementById("forgotModal");
 
-                    <form id="loginForm">
+const cancelForgot =
+    document.getElementById("cancelForgot");
 
-                        <div class="input-group">
+const resetForm =
+    document.getElementById("resetForm");
 
-                            <label for="loginEmail">
-                                Email
-                            </label>
+const resetEmail =
+    document.getElementById("resetEmail");
 
-                            <input
-                                type="email"
-                                id="loginEmail"
-                                placeholder="Enter your email"
-                                required>
 
-                        </div>
+/* =========================================
+   TOAST MESSAGE
+========================================= */
 
+function showToast(message, type = "success") {
 
-                        <div class="input-group">
+    if (!toast) {
+        console.log(message);
+        return;
+    }
 
-                            <label for="loginPassword">
-                                Password
-                            </label>
+    toast.textContent = message;
 
-                            <div class="password-wrapper">
+    if (type === "error") {
+        toast.style.background = "#dc2626";
+    } else {
+        toast.style.background = "#111827";
+    }
 
-                                <input
-                                    type="password"
-                                    id="loginPassword"
-                                    placeholder="Enter your password"
-                                    required>
+    toast.classList.add("show");
 
-                                <button
-                                    type="button"
-                                    id="loginEye"
-                                    class="password-toggle">
+    clearTimeout(window.toastTimer);
 
-                                    👁
+    window.toastTimer = setTimeout(() => {
+        toast.classList.remove("show");
+    }, 5000);
+}
 
-                                </button>
 
-                            </div>
+/* =========================================
+   LOGIN / REGISTER TAB SWITCH
+========================================= */
 
-                        </div>
+function showLogin() {
 
+    loginTab.classList.add("active");
+    registerTab.classList.remove("active");
 
-                        <div class="form-options">
+    loginBox.classList.add("active");
+    registerBox.classList.remove("active");
+}
 
-                            <label class="remember">
 
-                                <input
-                                    type="checkbox"
-                                    id="rememberMe">
+function showRegister() {
 
-                                <span>
-                                    Remember me
-                                </span>
+    registerTab.classList.add("active");
+    loginTab.classList.remove("active");
 
-                            </label>
+    registerBox.classList.add("active");
+    loginBox.classList.remove("active");
+}
 
-                            <button
-                                type="button"
-                                id="forgotButton"
-                                class="forgot">
 
-                                Forgot Password?
+if (loginTab) {
+    loginTab.addEventListener("click", showLogin);
+}
 
-                            </button>
+if (registerTab) {
+    registerTab.addEventListener("click", showRegister);
+}
 
-                        </div>
+if (goRegister) {
+    goRegister.addEventListener("click", showRegister);
+}
 
+if (goLogin) {
+    goLogin.addEventListener("click", showLogin);
+}
 
-                        <button
-                            type="submit"
-                            class="primary-btn">
 
-                            Login
+/* =========================================
+   PASSWORD SHOW / HIDE
+========================================= */
 
-                        </button>
+if (loginEye) {
 
-                    </form>
+    loginEye.addEventListener("click", () => {
 
+        if (loginPassword.type === "password") {
 
-                    <p class="switch-text">
+            loginPassword.type = "text";
+            loginEye.textContent = "🙈";
 
-                        Don't have an account?
+        } else {
 
-                        <button
-                            type="button"
-                            id="goRegister">
+            loginPassword.type = "password";
+            loginEye.textContent = "👁";
 
-                            Register
+        }
 
-                        </button>
+    });
 
-                    </p>
+}
 
-                </div>
 
+if (registerEye) {
 
-                <!-- REGISTER -->
-                <div
-                    id="registerBox"
-                    class="form-box">
+    registerEye.addEventListener("click", () => {
 
-                    <h2>
-                        Create Account 🚀
-                    </h2>
+        if (registerPassword.type === "password") {
 
-                    <p class="form-subtitle">
-                        Start building your career with FAST-TRACK.
-                    </p>
+            registerPassword.type = "text";
+            registerEye.textContent = "🙈";
 
+        } else {
 
-                    <!-- GOOGLE REGISTER -->
-                    <button
-                        type="button"
-                        id="registerGoogle"
-                        class="google-btn">
+            registerPassword.type = "password";
+            registerEye.textContent = "👁";
 
-                        <span>G</span>
-                        Continue with Google
+        }
 
-                    </button>
+    });
 
+}
 
-                    <div class="divider">
-                        <span>OR</span>
-                    </div>
 
+if (confirmEye) {
 
-                    <!-- REGISTER FORM -->
-                    <form id="registerForm">
+    confirmEye.addEventListener("click", () => {
 
-                        <div class="input-group">
+        if (confirmPassword.type === "password") {
 
-                            <label for="registerName">
-                                Full Name
-                            </label>
+            confirmPassword.type = "text";
+            confirmEye.textContent = "🙈";
 
-                            <input
-                                type="text"
-                                id="registerName"
-                                placeholder="Enter your full name"
-                                required>
+        } else {
 
-                        </div>
+            confirmPassword.type = "password";
+            confirmEye.textContent = "👁";
 
+        }
 
-                        <div class="input-group">
+    });
 
-                            <label for="registerEmail">
-                                Email
-                            </label>
+}
 
-                            <input
-                                type="email"
-                                id="registerEmail"
-                                placeholder="Enter your email"
-                                required>
 
-                        </div>
+/* =========================================
+   EMAIL LOGIN
+========================================= */
 
+if (loginForm) {
 
-                        <!-- ROLE -->
-                        <div class="input-group">
+    loginForm.addEventListener("submit", async (event) => {
 
-                            <label>
-                                Select Role
-                            </label>
+        event.preventDefault();
 
-                            <div class="role-selector">
+        const email = loginEmail.value.trim();
+        const password = loginPassword.value;
 
-                                <label class="role-option">
+        if (!email) {
 
-                                    <input
-                                        type="radio"
-                                        name="role"
-                                        id="jobSeeker"
-                                        value="Job Seeker"
-                                        checked>
+            showToast(
+                "Please enter your email.",
+                "error"
+            );
 
-                                    <span class="role-label">
-                                        👨‍💻 Job Seeker
-                                    </span>
+            return;
+        }
 
-                                </label>
+        if (!password) {
 
+            showToast(
+                "Please enter your password.",
+                "error"
+            );
 
-                                <label class="role-option">
+            return;
+        }
 
-                                    <input
-                                        type="radio"
-                                        name="role"
-                                        id="recruiter"
-                                        value="Recruiter">
 
-                                    <span class="role-label">
-                                        🏢 Recruiter
-                                    </span>
+        const loginButton =
+            loginForm.querySelector(".primary-btn");
 
-                                </label>
+        loginButton.disabled = true;
+        loginButton.textContent = "Logging in...";
 
-                            </div>
 
-                        </div>
+        try {
 
+            const result =
+                await signInWithEmailAndPassword(
+                    auth,
+                    email,
+                    password
+                );
 
-                        <!-- PASSWORD -->
-                        <div class="input-group">
+            console.log(
+                "LOGIN SUCCESS:",
+                result.user
+            );
 
-                            <label for="registerPassword">
-                                Password
-                            </label>
+            showToast(
+                "🎉 Login successful!"
+            );
 
-                            <div class="password-wrapper">
 
-                                <input
-                                    type="password"
-                                    id="registerPassword"
-                                    placeholder="Create a password"
-                                    required>
+            setTimeout(() => {
 
-                                <button
-                                    type="button"
-                                    id="registerEye"
-                                    class="password-toggle">
+                window.location.href =
+                    "./dashboard.html";
 
-                                    👁
+            }, 1200);
 
-                                </button>
 
-                            </div>
+        } catch (error) {
 
-                        </div>
+            console.error(
+                "LOGIN ERROR:",
+                error
+            );
 
 
-                        <!-- CONFIRM PASSWORD -->
-                        <div class="input-group">
+            switch (error.code) {
 
-                            <label for="confirmPassword">
-                                Confirm Password
-                            </label>
+                case "auth/invalid-credential":
 
-                            <div class="password-wrapper">
+                    showToast(
+                        "Invalid email or password.",
+                        "error"
+                    );
 
-                                <input
-                                    type="password"
-                                    id="confirmPassword"
-                                    placeholder="Confirm your password"
-                                    required>
+                    break;
 
-                                <button
-                                    type="button"
-                                    id="confirmEye"
-                                    class="password-toggle">
 
-                                    👁
+                case "auth/user-not-found":
 
-                                </button>
+                    showToast(
+                        "No account found with this email.",
+                        "error"
+                    );
 
-                            </div>
+                    break;
 
-                        </div>
 
+                case "auth/wrong-password":
 
-                        <!-- TERMS -->
-                        <label class="terms">
+                    showToast(
+                        "Incorrect password.",
+                        "error"
+                    );
 
-                            <input
-                                type="checkbox"
-                                id="terms"
-                                required>
+                    break;
 
-                            <span>
-                                I agree to the Terms & Conditions
-                            </span>
 
-                        </label>
+                case "auth/invalid-email":
 
+                    showToast(
+                        "Please enter a valid email.",
+                        "error"
+                    );
 
-                        <!-- REGISTER BUTTON -->
-                        <button
-                            type="submit"
-                            id="registerButton"
-                            class="primary-btn">
+                    break;
 
-                            Create Account
 
-                        </button>
+                default:
 
-                    </form>
+                    showToast(
+                        error.message,
+                        "error"
+                    );
 
+            }
 
-                    <p class="switch-text">
 
-                        Already have an account?
+        } finally {
 
-                        <button
-                            type="button"
-                            id="goLogin">
+            loginButton.disabled = false;
+            loginButton.textContent = "Login";
 
-                            Login
+        }
 
-                        </button>
+    });
 
-                    </p>
+}
 
-                </div>
 
-            </div>
+/* =========================================
+   GOOGLE LOGIN
+========================================= */
 
-        </section>
+if (loginGoogle) {
 
-    </div>
+    loginGoogle.addEventListener("click", async () => {
 
+        const originalHTML =
+            loginGoogle.innerHTML;
 
-    <!-- FORGOT PASSWORD MODAL -->
+        loginGoogle.disabled = true;
 
-    <div
-        class="modal-overlay"
-        id="forgotModal">
+        loginGoogle.innerHTML =
+            "<span>G</span> Signing in...";
 
-        <div class="modal">
 
-            <button
-                type="button"
-                id="cancelForgot"
-                class="modal-close">
+        try {
 
-                ×
+            const result =
+                await signInWithPopup(
+                    auth,
+                    googleProvider
+                );
 
-            </button>
 
-            <h3>
-                Reset Password
-            </h3>
+            console.log(
+                "GOOGLE LOGIN SUCCESS:",
+                result.user
+            );
 
-            <p>
-                Enter your registered email address.
-            </p>
 
-            <form id="resetForm">
+            showToast(
+                "🎉 Google login successful!"
+            );
 
-                <input
-                    type="email"
-                    id="resetEmail"
-                    placeholder="Enter your email"
-                    required>
 
-                <button
-                    type="submit"
-                    class="primary-btn">
+            setTimeout(() => {
 
-                    Send Reset Link
+                window.location.href =
+                    "./dashboard.html";
 
-                </button>
+            }, 1200);
 
-            </form>
 
-        </div>
+        } catch (error) {
 
-    </div>
+            console.error(
+                "GOOGLE LOGIN ERROR:",
+                error
+            );
 
 
-    <!-- TOAST -->
+            if (
+                error.code ===
+                "auth/popup-closed-by-user"
+            ) {
 
-    <div
-        class="toast"
-        id="toast">
-    </div>
+                showToast(
+                    "Google login cancelled.",
+                    "error"
+                );
 
 
-    <!-- JAVASCRIPT -->
-    <script
-        type="module"
-        src="script.js">
-    </script>
+            } else if (
+                error.code ===
+                "auth/popup-blocked"
+            ) {
 
-</body>
+                showToast(
+                    "Popup blocked. Please allow popups.",
+                    "error"
+                );
 
-</html>
+
+            } else if (
+                error.code ===
+                "auth/cancelled-popup-request"
+            ) {
+
+                showToast(
+                    "Google login request cancelled.",
+                    "error"
+                );
+
+
+            } else {
+
+                showToast(
+                    error.code + " | " +
+                    error.message,
+                    "error"
+                );
+
+            }
+
+        } finally {
+
+            loginGoogle.disabled = false;
+            loginGoogle.innerHTML = originalHTML;
+
+        }
+
+    });
+
+}
+
+
+/* =========================================
+   REGISTER
+========================================= */
+
+if (registerForm) {
+
+    registerForm.addEventListener(
+        "submit",
+        async (event) => {
+
+            event.preventDefault();
+
+
+            const name =
+                registerName.value.trim();
+
+            const email =
+                registerEmail.value.trim();
+
+            const password =
+                registerPassword.value;
+
+            const confirm =
+                confirmPassword.value;
+
+
+            /* Validation */
+
+            if (!name) {
+
+                showToast(
+                    "Please enter your full name.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            if (!email) {
+
+                showToast(
+                    "Please enter your email.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            if (password.length < 6) {
+
+                showToast(
+                    "Password must be at least 6 characters.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            if (password !== confirm) {
+
+                showToast(
+                    "Passwords do not match.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            if (!terms.checked) {
+
+                showToast(
+                    "Please accept Terms & Conditions.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            registerButton.disabled = true;
+
+            registerButton.textContent =
+                "Creating Account...";
+
+
+            try {
+
+                const result =
+                    await createUserWithEmailAndPassword(
+                        auth,
+                        email,
+                        password
+                    );
+
+
+                /* Save display name */
+
+                await updateProfile(
+                    result.user,
+                    {
+                        displayName: name
+                    }
+                );
+
+
+                console.log(
+                    "REGISTER SUCCESS:",
+                    result.user
+                );
+
+
+                showToast(
+                    "🎉 Account created successfully!"
+                );
+
+
+                registerForm.reset();
+
+
+                setTimeout(() => {
+
+                    showLogin();
+
+                }, 1200);
+
+
+            } catch (error) {
+
+                console.error(
+                    "REGISTER ERROR:",
+                    error
+                );
+
+
+                switch (error.code) {
+
+                    case "auth/email-already-in-use":
+
+                        showToast(
+                            "This email is already registered.",
+                            "error"
+                        );
+
+                        break;
+
+
+                    case "auth/invalid-email":
+
+                        showToast(
+                            "Please enter a valid email.",
+                            "error"
+                        );
+
+                        break;
+
+
+                    case "auth/weak-password":
+
+                        showToast(
+                            "Password is too weak.",
+                            "error"
+                        );
+
+                        break;
+
+
+                    default:
+
+                        showToast(
+                            error.message,
+                            "error"
+                        );
+
+                }
+
+
+            } finally {
+
+                registerButton.disabled = false;
+
+                registerButton.textContent =
+                    "Create Account";
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   GOOGLE REGISTER
+========================================= */
+
+if (registerGoogle) {
+
+    registerGoogle.addEventListener(
+        "click",
+        async () => {
+
+            const originalHTML =
+                registerGoogle.innerHTML;
+
+            registerGoogle.disabled = true;
+
+            registerGoogle.innerHTML =
+                "<span>G</span> Signing in...";
+
+
+            try {
+
+                const result =
+                    await signInWithPopup(
+                        auth,
+                        googleProvider
+                    );
+
+
+                console.log(
+                    "GOOGLE REGISTER SUCCESS:",
+                    result.user
+                );
+
+
+                showToast(
+                    "🎉 Google account connected!"
+                );
+
+
+                setTimeout(() => {
+
+                    window.location.href =
+                        "./dashboard.html";
+
+                }, 1200);
+
+
+            } catch (error) {
+
+                console.error(
+                    "GOOGLE REGISTER ERROR:",
+                    error
+                );
+
+
+                if (
+                    error.code ===
+                    "auth/popup-closed-by-user"
+                ) {
+
+                    showToast(
+                        "Google login cancelled.",
+                        "error"
+                    );
+
+
+                } else if (
+                    error.code ===
+                    "auth/popup-blocked"
+                ) {
+
+                    showToast(
+                        "Popup blocked. Please allow popups.",
+                        "error"
+                    );
+
+
+                } else {
+
+                    showToast(
+                        error.code + " | " +
+                        error.message,
+                        "error"
+                    );
+
+                }
+
+
+            } finally {
+
+                registerGoogle.disabled = false;
+
+                registerGoogle.innerHTML =
+                    originalHTML;
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   FORGOT PASSWORD MODAL
+========================================= */
+
+if (forgotButton && forgotModal) {
+
+    forgotButton.addEventListener(
+        "click",
+        () => {
+
+            forgotModal.classList.add("show");
+
+        }
+    );
+
+}
+
+
+if (cancelForgot && forgotModal) {
+
+    cancelForgot.addEventListener(
+        "click",
+        () => {
+
+            forgotModal.classList.remove("show");
+
+        }
+    );
+
+}
+
+
+/* Close modal by clicking outside */
+
+if (forgotModal) {
+
+    forgotModal.addEventListener(
+        "click",
+        (event) => {
+
+            if (
+                event.target === forgotModal
+            ) {
+
+                forgotModal.classList.remove(
+                    "show"
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   PASSWORD RESET
+========================================= */
+
+if (resetForm) {
+
+    resetForm.addEventListener(
+        "submit",
+        async (event) => {
+
+            event.preventDefault();
+
+
+            const email =
+                resetEmail.value.trim();
+
+
+            if (!email) {
+
+                showToast(
+                    "Please enter your email.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            const resetButton =
+                resetForm.querySelector(
+                    ".primary-btn"
+                );
+
+
+            resetButton.disabled = true;
+
+            resetButton.textContent =
+                "Sending...";
+
+
+            try {
+
+                await sendPasswordResetEmail(
+                    auth,
+                    email
+                );
+
+
+                showToast(
+                    "📧 Password reset link sent!"
+                );
+
+
+                resetForm.reset();
+
+
+                if (forgotModal) {
+
+                    forgotModal.classList.remove(
+                        "show"
+                    );
+
+                }
+
+
+            } catch (error) {
+
+                console.error(
+                    "PASSWORD RESET ERROR:",
+                    error
+                );
+
+
+                if (
+                    error.code ===
+                    "auth/user-not-found"
+                ) {
+
+                    showToast(
+                        "No account found with this email.",
+                        "error"
+                    );
+
+
+                } else if (
+                    error.code ===
+                    "auth/invalid-email"
+                ) {
+
+                    showToast(
+                        "Please enter a valid email.",
+                        "error"
+                    );
+
+
+                } else {
+
+                    showToast(
+                        error.message,
+                        "error"
+                    );
+
+                }
+
+
+            } finally {
+
+                resetButton.disabled = false;
+
+                resetButton.textContent =
+                    "Send Reset Link";
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   DEBUG MESSAGE
+========================================= */
+
+console.log(
+    "🚀 FAST-TRACK Firebase Authentication Loaded Successfully"
+);
+
+console.log(
+    "Google Login Button:",
+    loginGoogle
+);
+
+console.log(
+    "Google Register Button:",
+    registerGoogle
+);
