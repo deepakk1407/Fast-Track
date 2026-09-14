@@ -4,7 +4,8 @@ import { initializeApp } from
 import {
     getAuth,
     createUserWithEmailAndPassword,
-    updateProfile
+    updateProfile,
+    signInWithEmailAndPassword
 } from
 "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
@@ -24,10 +25,6 @@ const firebaseConfig = {
 };
 
 
-/* =========================
-   INITIALIZE FIREBASE
-========================= */
-
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
@@ -44,6 +41,25 @@ const registerBox = document.getElementById("registerBox");
 
 const goRegister = document.getElementById("goRegister");
 const goLogin = document.getElementById("goLogin");
+
+const toast = document.getElementById("toast");
+
+
+/* LOGIN */
+
+const loginForm = document.getElementById("loginForm");
+
+const loginEmail =
+    document.getElementById("loginEmail");
+
+const loginPassword =
+    document.getElementById("loginPassword");
+
+const loginEye =
+    document.getElementById("loginEye");
+
+
+/* REGISTER */
 
 const registerForm =
     document.getElementById("registerForm");
@@ -66,8 +82,11 @@ const confirmPassword =
 const terms =
     document.getElementById("terms");
 
-const toast =
-    document.getElementById("toast");
+const registerEye =
+    document.getElementById("registerEye");
+
+const confirmEye =
+    document.getElementById("confirmEye");
 
 
 /* =========================
@@ -123,131 +142,412 @@ function showRegister() {
 
 
 loginTab.addEventListener("click", showLogin);
-registerTab.addEventListener("click", showRegister);
 
-goRegister.addEventListener("click", showRegister);
-goLogin.addEventListener("click", showLogin);
+registerTab.addEventListener(
+    "click",
+    showRegister
+);
+
+goRegister.addEventListener(
+    "click",
+    showRegister
+);
+
+goLogin.addEventListener(
+    "click",
+    showLogin
+);
+
+
+/* =========================
+   PASSWORD SHOW / HIDE
+========================= */
+
+if (loginEye) {
+
+    loginEye.addEventListener("click", () => {
+
+        if (loginPassword.type === "password") {
+
+            loginPassword.type = "text";
+            loginEye.textContent = "🙈";
+
+        } else {
+
+            loginPassword.type = "password";
+            loginEye.textContent = "👁";
+
+        }
+
+    });
+}
+
+
+if (registerEye) {
+
+    registerEye.addEventListener("click", () => {
+
+        if (registerPassword.type === "password") {
+
+            registerPassword.type = "text";
+            registerEye.textContent = "🙈";
+
+        } else {
+
+            registerPassword.type = "password";
+            registerEye.textContent = "👁";
+
+        }
+
+    });
+}
+
+
+if (confirmEye) {
+
+    confirmEye.addEventListener("click", () => {
+
+        if (confirmPassword.type === "password") {
+
+            confirmPassword.type = "text";
+            confirmEye.textContent = "🙈";
+
+        } else {
+
+            confirmPassword.type = "password";
+            confirmEye.textContent = "👁";
+
+        }
+
+    });
+}
+
+
+/* =========================
+   LOGIN
+========================= */
+
+loginForm.addEventListener(
+    "submit",
+    async function (event) {
+
+        event.preventDefault();
+
+
+        const email =
+            loginEmail.value.trim();
+
+        const password =
+            loginPassword.value;
+
+
+        if (!email) {
+
+            showToast(
+                "Please enter your email.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        if (!password) {
+
+            showToast(
+                "Please enter your password.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        const loginButton =
+            loginForm.querySelector(
+                ".primary-btn"
+            );
+
+
+        loginButton.disabled = true;
+
+        loginButton.textContent =
+            "Logging in...";
+
+
+        try {
+
+            const result =
+                await signInWithEmailAndPassword(
+                    auth,
+                    email,
+                    password
+                );
+
+
+            console.log(
+                "LOGIN SUCCESS:",
+                result.user
+            );
+
+
+            showToast(
+                "🎉 Login successful!"
+            );
+
+
+            /*
+             * DASHBOARD WILL BE ADDED
+             * AFTER LOGIN IS TESTED.
+             */
+
+        } catch (error) {
+
+            console.error(
+                "LOGIN ERROR:",
+                error
+            );
+
+
+            if (
+                error.code ===
+                "auth/invalid-credential"
+            ) {
+
+                showToast(
+                    "Invalid email or password.",
+                    "error"
+                );
+
+            } else if (
+                error.code ===
+                "auth/user-not-found"
+            ) {
+
+                showToast(
+                    "No account found with this email.",
+                    "error"
+                );
+
+            } else if (
+                error.code ===
+                "auth/wrong-password"
+            ) {
+
+                showToast(
+                    "Incorrect password.",
+                    "error"
+                );
+
+            } else if (
+                error.code ===
+                "auth/invalid-email"
+            ) {
+
+                showToast(
+                    "Please enter a valid email.",
+                    "error"
+                );
+
+            } else {
+
+                showToast(
+                    error.code + " | " +
+                    error.message,
+                    "error"
+                );
+            }
+
+        } finally {
+
+            loginButton.disabled = false;
+
+            loginButton.textContent =
+                "Login";
+        }
+
+    }
+);
 
 
 /* =========================
    REGISTER
 ========================= */
 
-registerForm.addEventListener("submit", async (event) => {
+registerForm.addEventListener(
+    "submit",
+    async function (event) {
 
-    event.preventDefault();
-
-    const name =
-        registerName.value.trim();
-
-    const email =
-        registerEmail.value.trim();
-
-    const password =
-        registerPassword.value;
-
-    const confirm =
-        confirmPassword.value;
+        event.preventDefault();
 
 
-    if (!name) {
-        showToast(
-            "Please enter your full name.",
-            "error"
-        );
-        return;
-    }
+        const name =
+            registerName.value.trim();
+
+        const email =
+            registerEmail.value.trim();
+
+        const password =
+            registerPassword.value;
+
+        const confirm =
+            confirmPassword.value;
 
 
-    if (!email) {
-        showToast(
-            "Please enter your email.",
-            "error"
-        );
-        return;
-    }
+        if (!name) {
+
+            showToast(
+                "Please enter your full name.",
+                "error"
+            );
+
+            return;
+        }
 
 
-    if (password.length < 6) {
-        showToast(
-            "Password must be at least 6 characters.",
-            "error"
-        );
-        return;
-    }
+        if (!email) {
+
+            showToast(
+                "Please enter your email.",
+                "error"
+            );
+
+            return;
+        }
 
 
-    if (password !== confirm) {
-        showToast(
-            "Passwords do not match.",
-            "error"
-        );
-        return;
-    }
+        if (password.length < 6) {
+
+            showToast(
+                "Password must be at least 6 characters.",
+                "error"
+            );
+
+            return;
+        }
 
 
-    if (!terms.checked) {
-        showToast(
-            "Please accept Terms & Conditions.",
-            "error"
-        );
-        return;
-    }
+        if (password !== confirm) {
+
+            showToast(
+                "Passwords do not match.",
+                "error"
+            );
+
+            return;
+        }
 
 
-    registerButton.disabled = true;
-    registerButton.textContent =
-        "Creating Account...";
+        if (!terms.checked) {
+
+            showToast(
+                "Please accept Terms & Conditions.",
+                "error"
+            );
+
+            return;
+        }
 
 
-    try {
+        registerButton.disabled = true;
 
-        const result =
-            await createUserWithEmailAndPassword(
-                auth,
-                email,
-                password
+        registerButton.textContent =
+            "Creating Account...";
+
+
+        try {
+
+            const result =
+                await createUserWithEmailAndPassword(
+                    auth,
+                    email,
+                    password
+                );
+
+
+            await updateProfile(
+                result.user,
+                {
+                    displayName: name
+                }
             );
 
 
-        await updateProfile(result.user, {
-            displayName: name
-        });
+            console.log(
+                "REGISTER SUCCESS:",
+                result.user
+            );
 
 
-        showToast(
-            "🎉 Account created successfully!"
-        );
+            showToast(
+                "🎉 Account created successfully!"
+            );
 
 
-        registerForm.reset();
+            registerForm.reset();
 
 
-        setTimeout(() => {
-            showLogin();
-        }, 1500);
+            setTimeout(() => {
+
+                showLogin();
+
+            }, 1500);
 
 
-    } catch (error) {
+        } catch (error) {
 
-        console.error(
-            "FIREBASE ERROR:",
-            error
-        );
-
-
-        showToast(
-            error.code + " | " + error.message,
-            "error"
-        );
+            console.error(
+                "REGISTER ERROR:",
+                error
+            );
 
 
-    } finally {
+            if (
+                error.code ===
+                "auth/email-already-in-use"
+            ) {
 
-        registerButton.disabled = false;
+                showToast(
+                    "This email is already registered.",
+                    "error"
+                );
 
-        registerButton.textContent =
-            "Create Account";
+            } else if (
+                error.code ===
+                "auth/invalid-email"
+            ) {
+
+                showToast(
+                    "Please enter a valid email.",
+                    "error"
+                );
+
+            } else if (
+                error.code ===
+                "auth/weak-password"
+            ) {
+
+                showToast(
+                    "Password is too weak.",
+                    "error"
+                );
+
+            } else {
+
+                showToast(
+                    error.code + " | " +
+                    error.message,
+                    "error"
+                );
+            }
+
+        } finally {
+
+            registerButton.disabled = false;
+
+            registerButton.textContent =
+                "Create Account";
+        }
+
     }
-
-});
+);
