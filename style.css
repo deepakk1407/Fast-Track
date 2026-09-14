@@ -701,3 +701,30 @@ input {
         gap: 10px;
     }
 }
+/* ===== REGISTER BUTTON CLICK FIX ===== */
+
+#registerButton {
+    position: relative;
+    z-index: 9999;
+    pointer-events: auto !important;
+    cursor: pointer;
+}
+
+#registerForm {
+    position: relative;
+    z-index: 100;
+}
+
+.form-box {
+    position: relative;
+}
+
+.auth-card {
+    position: relative;
+    z-index: 10;
+}
+
+.form-side {
+    position: relative;
+    z-index: 10;
+}
