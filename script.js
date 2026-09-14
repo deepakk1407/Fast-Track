@@ -1,9 +1,10 @@
-// =====================================================
-// FAST-TRACK | FIREBASE AUTHENTICATION
-// =====================================================
+// ============================================
+// FAST-TRACK | Firebase Authentication
+// Login + Register + Google + Forgot Password
+// Logout + Session Management
+// ============================================
 
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 import {
     getAuth,
@@ -12,12 +13,13 @@ import {
     sendPasswordResetEmail,
     GoogleAuthProvider,
     signInWithPopup,
+    signOut,
     setPersistence,
     browserLocalPersistence,
     browserSessionPersistence,
-    updateProfile
-}
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    updateProfile,
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 import {
     getFirestore,
@@ -25,16 +27,15 @@ import {
     setDoc,
     getDoc,
     serverTimestamp
-}
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
-// =====================================================
+// ============================================
 // FIREBASE CONFIG
-// =====================================================
+// ============================================
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDJ84_tSgau334V60r17bqHHubaf5Lecto",
+    apiKey: "AIzaSyDJ84_tSgau334V60r17bqHHubaf5Lecta",
     authDomain: "fast-track-6d262.firebaseapp.com",
     projectId: "fast-track-6d262",
     storageBucket: "fast-track-6d262.firebasestorage.app",
@@ -44,822 +45,723 @@ const firebaseConfig = {
 };
 
 
-// =====================================================
+// ============================================
 // INITIALIZE FIREBASE
-// =====================================================
+// ============================================
 
 const app = initializeApp(firebaseConfig);
+
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-console.log("🔥 FAST-TRACK Firebase initialized");
 
-
-// =====================================================
+// ============================================
 // ELEMENTS
-// =====================================================
+// ============================================
 
-const $ = id => document.getElementById(id);
+const loginForm = document.getElementById("loginForm");
+const registerForm = document.getElementById("registerForm");
 
-const loginTab = $("loginTab");
-const registerTab = $("registerTab");
+const loginTab = document.getElementById("loginTab");
+const registerTab = document.getElementById("registerTab");
 
-const loginBox = $("loginBox");
-const registerBox = $("registerBox");
+const googleLoginBtn = document.getElementById("googleLoginBtn");
 
-const loginForm = $("loginForm");
-const registerForm = $("registerForm");
-
-const goRegister = $("goRegister");
-const goLogin = $("goLogin");
-
-const loginEmail = $("loginEmail");
-const loginPassword = $("loginPassword");
-const rememberMe = $("rememberMe");
-
-const registerName = $("registerName");
-const registerEmail = $("registerEmail");
-const jobSeeker = $("jobSeeker");
-const recruiter = $("recruiter");
-const registerPassword = $("registerPassword");
-const confirmPassword = $("confirmPassword");
-const terms = $("terms");
-
-const forgotButton = $("forgotButton");
-const forgotModal = $("forgotModal");
-const resetForm = $("resetForm");
-const resetEmail = $("resetEmail");
-const cancelForgot = $("cancelForgot");
-
-const loginGoogle = $("loginGoogle");
-const registerGoogle = $("registerGoogle");
-
-const loginEye = $("loginEye");
-const registerEye = $("registerEye");
-const confirmEye = $("confirmEye");
-
-const strengthBar = $("strengthBar");
-const strengthText = $("strengthText");
-
-const toast = $("toast");
-const toastIcon = $("toastIcon");
-const toastTitle = $("toastTitle");
-const toastMessage = $("toastMessage");
-const toastClose = $("toastClose");
+const forgotPassword = document.getElementById("forgotPassword");
 
 
-// =====================================================
-// PROFESSIONAL TOAST
-// =====================================================
+// ============================================
+// TOAST MESSAGE
+// ============================================
 
-let toastTimer;
+function showToast(message, type = "info") {
 
-function showToast(message, type = "success", title = "") {
+    let toast = document.getElementById("fastTrackToast");
 
     if (!toast) {
-        console.log(message);
-        return;
+
+        toast = document.createElement("div");
+
+        toast.id = "fastTrackToast";
+
+        toast.style.position = "fixed";
+        toast.style.top = "25px";
+        toast.style.right = "25px";
+        toast.style.zIndex = "99999";
+        toast.style.padding = "14px 20px";
+        toast.style.borderRadius = "12px";
+        toast.style.background = "#111827";
+        toast.style.color = "white";
+        toast.style.fontSize = "14px";
+        toast.style.fontWeight = "600";
+        toast.style.boxShadow = "0 10px 30px rgba(0,0,0,0.2)";
+        toast.style.transition = "all 0.3s ease";
+
+        document.body.appendChild(toast);
     }
 
-    clearTimeout(toastTimer);
+    toast.textContent = message;
 
-    const titles = {
-        success: "Success",
-        error: "Something went wrong",
-        warning: "Attention",
-        loading: "Please wait"
-    };
-
-    const icons = {
-        success: "✓",
-        error: "!",
-        warning: "!",
-        loading: "..."
-    };
-
-    toastIcon.textContent = icons[type] || "✓";
-    toastTitle.textContent = title || titles[type] || "Notification";
-    toastMessage.textContent = message;
-
-    toast.classList.remove(
-        "success",
-        "error",
-        "warning",
-        "loading",
-        "show"
-    );
-
-    toast.classList.add(type);
-    requestAnimationFrame(() => {
-        toast.classList.add("show");
-    });
-
-    toastTimer = setTimeout(() => {
-        toast.classList.remove("show");
-    }, 4000);
-}
-
-
-if (toastClose) {
-    toastClose.addEventListener("click", () => {
-        toast.classList.remove("show");
-    });
-}
-
-
-// =====================================================
-// SWITCH LOGIN / REGISTER
-// =====================================================
-
-function showLogin() {
-
-    loginTab?.classList.add("active");
-    registerTab?.classList.remove("active");
-
-    loginBox?.classList.add("active");
-    registerBox?.classList.remove("active");
-}
-
-
-function showRegister() {
-
-    registerTab?.classList.add("active");
-    loginTab?.classList.remove("active");
-
-    registerBox?.classList.add("active");
-    loginBox?.classList.remove("active");
-}
-
-
-loginTab?.addEventListener("click", showLogin);
-registerTab?.addEventListener("click", showRegister);
-goRegister?.addEventListener("click", showRegister);
-goLogin?.addEventListener("click", showLogin);
-
-
-// =====================================================
-// PASSWORD SHOW / HIDE
-// =====================================================
-
-function togglePassword(input, eye) {
-
-    if (!input || !eye) return;
-
-    eye.addEventListener("click", () => {
-
-        if (input.type === "password") {
-            input.type = "text";
-            eye.textContent = "🙈";
-        } else {
-            input.type = "password";
-            eye.textContent = "👁";
-        }
-
-    });
-}
-
-
-togglePassword(loginPassword, loginEye);
-togglePassword(registerPassword, registerEye);
-togglePassword(confirmPassword, confirmEye);
-
-
-// =====================================================
-// PASSWORD STRENGTH
-// =====================================================
-
-registerPassword?.addEventListener("input", () => {
-
-    const password = registerPassword.value;
-
-    let score = 0;
-
-    if (password.length >= 6) score++;
-    if (/[A-Z]/.test(password)) score++;
-    if (/[0-9]/.test(password)) score++;
-    if (/[^A-Za-z0-9]/.test(password)) score++;
-
-    const width = ["0%", "25%", "50%", "75%", "100%"];
-
-    strengthBar.style.width = width[score];
-
-    if (!password) {
-        strengthText.textContent = "Password strength";
-    } else if (score <= 1) {
-        strengthText.textContent = "Weak password";
-    } else if (score === 2) {
-        strengthText.textContent = "Medium password";
-    } else if (score === 3) {
-        strengthText.textContent = "Strong password";
+    if (type === "success") {
+        toast.style.background = "#16a34a";
+    } else if (type === "error") {
+        toast.style.background = "#dc2626";
     } else {
-        strengthText.textContent = "Very strong password";
+        toast.style.background = "#111827";
     }
 
-});
+    toast.style.opacity = "1";
+
+    setTimeout(() => {
+        toast.style.opacity = "0";
+    }, 3000);
+}
 
 
-// =====================================================
-// REGISTER
-// =====================================================
+// ============================================
+// SAVE USER DATA
+// ============================================
 
-registerForm?.addEventListener("submit", async (event) => {
+function saveUserData(user, role = "") {
 
-    event.preventDefault();
+    const userData = {
+        uid: user.uid,
+        name: user.displayName || "",
+        email: user.email || "",
+        role: role || "Job Seeker"
+    };
 
-    const name = registerName.value.trim();
-    const email = registerEmail.value.trim();
-    const password = registerPassword.value;
-    const confirm = confirmPassword.value;
-
-    let role = "";
-
-    if (jobSeeker?.checked) {
-        role = "Job Seeker";
-    }
-
-    if (recruiter?.checked) {
-        role = "Recruiter";
-    }
+    localStorage.setItem(
+        "fastTrackUser",
+        JSON.stringify(userData)
+    );
+}
 
 
-    // VALIDATION
-
-    if (name.length < 2) {
-        showToast(
-            "Please enter your full name.",
-            "error"
-        );
-        return;
-    }
-
-
-    if (!email) {
-        showToast(
-            "Please enter your email address.",
-            "error"
-        );
-        return;
-    }
-
-
-    if (!role) {
-        showToast(
-            "Please select your role.",
-            "error"
-        );
-        return;
-    }
-
-
-    if (password.length < 6) {
-        showToast(
-            "Password must contain at least 6 characters.",
-            "error"
-        );
-        return;
-    }
-
-
-    if (password !== confirm) {
-        showToast(
-            "Passwords do not match.",
-            "error"
-        );
-        return;
-    }
-
-
-    if (!terms?.checked) {
-        showToast(
-            "Please accept Terms & Conditions.",
-            "error"
-        );
-        return;
-    }
-
-
-    try {
-
-        showToast(
-            "Creating your FAST-TRACK account...",
-            "loading"
-        );
-
-
-        // CREATE FIREBASE USER
-
-        const result =
-            await createUserWithEmailAndPassword(
-                auth,
-                email,
-                password
-            );
-
-        const user = result.user;
-
-
-        // SAVE DISPLAY NAME
-
-        await updateProfile(user, {
-            displayName: name
-        });
-
-
-        // SAVE FIRESTORE PROFILE
-
-        await setDoc(
-            doc(db, "users", user.uid),
-            {
-                uid: user.uid,
-                name: name,
-                email: email,
-                role: role,
-                profileCompleted: false,
-                createdAt: serverTimestamp()
-            }
-        );
-
-
-        console.log(
-            "✅ Registration successful:",
-            user.uid
-        );
-
-
-        registerForm.reset();
-
-        if (strengthBar) {
-            strengthBar.style.width = "0%";
-        }
-
-        if (strengthText) {
-            strengthText.textContent = "Password strength";
-        }
-
-
-        showToast(
-            "Your account has been created successfully! 🎉",
-            "success"
-        );
-
-
-        // MOVE TO LOGIN
-
-        setTimeout(() => {
-
-            showLogin();
-
-            if (loginEmail) {
-                loginEmail.value = email;
-            }
-
-            if (loginPassword) {
-                loginPassword.value = "";
-            }
-
-        }, 1400);
-
-    }
-
-    catch (error) {
-
-        console.error(
-            "❌ REGISTER ERROR:",
-            error
-        );
-
-        showToast(
-            getFirebaseError(error),
-            "error"
-        );
-    }
-
-});
-
-
-// =====================================================
+// ============================================
 // LOGIN
-// =====================================================
+// ============================================
 
-loginForm?.addEventListener("submit", async (event) => {
+if (loginForm) {
 
-    event.preventDefault();
+    loginForm.addEventListener("submit", async (e) => {
 
-    const email = loginEmail.value.trim();
-    const password = loginPassword.value;
+        e.preventDefault();
 
+        const emailInput =
+            document.getElementById("loginEmail");
 
-    if (!email) {
-        showToast(
-            "Please enter your email address.",
-            "error"
-        );
-        return;
-    }
+        const passwordInput =
+            document.getElementById("loginPassword");
 
+        const rememberMe =
+            document.getElementById("rememberMe");
 
-    if (!password) {
-        showToast(
-            "Please enter your password.",
-            "error"
-        );
-        return;
-    }
+        const email = emailInput?.value.trim();
+        const password = passwordInput?.value;
 
+        if (!email || !password) {
 
-    try {
-
-        showToast(
-            "Signing you in...",
-            "loading"
-        );
-
-
-        // REMEMBER ME
-
-        await setPersistence(
-            auth,
-            rememberMe?.checked
-                ? browserLocalPersistence
-                : browserSessionPersistence
-        );
-
-
-        // FIREBASE LOGIN
-
-        const result =
-            await signInWithEmailAndPassword(
-                auth,
-                email,
-                password
+            showToast(
+                "Please enter email and password",
+                "error"
             );
 
-        const user = result.user;
-
-
-        // GET USER PROFILE
-
-        let profile = {};
+            return;
+        }
 
         try {
 
-            const userDoc =
-                await getDoc(
+            // Remember me
+            if (rememberMe && rememberMe.checked) {
+
+                await setPersistence(
+                    auth,
+                    browserLocalPersistence
+                );
+
+            } else {
+
+                await setPersistence(
+                    auth,
+                    browserSessionPersistence
+                );
+            }
+
+
+            const result =
+                await signInWithEmailAndPassword(
+                    auth,
+                    email,
+                    password
+                );
+
+            const user = result.user;
+
+
+            // Get profile from Firestore
+            let role = "Job Seeker";
+
+            try {
+
+                const userDoc = await getDoc(
                     doc(db, "users", user.uid)
                 );
 
-            if (userDoc.exists()) {
-                profile = userDoc.data();
+                if (userDoc.exists()) {
+
+                    role =
+                        userDoc.data().role ||
+                        "Job Seeker";
+                }
+
+            } catch (error) {
+
+                console.log(
+                    "Profile fetch skipped:",
+                    error
+                );
             }
 
-        } catch (profileError) {
 
-            console.warn(
-                "Profile fetch warning:",
-                profileError
+            saveUserData(user, role);
+
+            showToast(
+                "Login successful! 🚀",
+                "success"
             );
 
+
+            setTimeout(() => {
+
+                window.location.href =
+                    "dashboard.html";
+
+            }, 700);
+
+
+        } catch (error) {
+
+            console.error(error);
+
+            let message =
+                "Login failed. Please try again.";
+
+            if (error.code === "auth/invalid-credential") {
+
+                message =
+                    "Invalid email or password.";
+
+            } else if (error.code === "auth/user-not-found") {
+
+                message =
+                    "No account found with this email.";
+
+            } else if (error.code === "auth/wrong-password") {
+
+                message =
+                    "Incorrect password.";
+
+            } else if (error.code === "auth/invalid-email") {
+
+                message =
+                    "Invalid email address.";
+
+            }
+
+            showToast(message, "error");
         }
 
-
-        // SAVE USER LOCALLY
-
-        const userData = {
-            uid: user.uid,
-
-            name:
-                profile.name ||
-                user.displayName ||
-                "",
-
-            email:
-                user.email || "",
-
-            role:
-                profile.role ||
-                ""
-        };
-
-
-        localStorage.setItem(
-            "fastTrackUser",
-            JSON.stringify(userData)
-        );
-
-
-        showToast(
-            "Login successful! Redirecting to dashboard 🚀",
-            "success"
-        );
-
-
-        // DASHBOARD
-
-        setTimeout(() => {
-
-            window.location.href =
-                "dashboard.html";
-
-        }, 1200);
-
-    }
-
-    catch (error) {
-
-        console.error(
-            "❌ LOGIN ERROR:",
-            error
-        );
-
-        showToast(
-            getFirebaseError(error),
-            "error"
-        );
-    }
-
-});
-
-
-// =====================================================
-// FIREBASE ERROR HANDLER
-// =====================================================
-
-function getFirebaseError(error) {
-
-    switch (error?.code) {
-
-        case "auth/invalid-credential":
-            return "Invalid email or password.";
-
-        case "auth/user-not-found":
-            return "No account found with this email.";
-
-        case "auth/wrong-password":
-            return "Incorrect password.";
-
-        case "auth/invalid-email":
-            return "Please enter a valid email address.";
-
-        case "auth/email-already-in-use":
-            return "This email is already registered.";
-
-        case "auth/weak-password":
-            return "Password is too weak.";
-
-        case "auth/user-disabled":
-            return "This account has been disabled.";
-
-        case "auth/too-many-requests":
-            return "Too many attempts. Please try again later.";
-
-        case "auth/network-request-failed":
-            return "Network error. Check your internet connection.";
-
-        case "auth/popup-closed-by-user":
-            return "Google login was cancelled.";
-
-        case "auth/popup-blocked":
-            return "Please allow popups for Google login.";
-
-        default:
-            return error?.message ||
-                   "Something went wrong. Please try again.";
-    }
+    });
 }
 
 
-// =====================================================
-// FORGOT PASSWORD
-// =====================================================
+// ============================================
+// REGISTER
+// ============================================
 
-forgotButton?.addEventListener("click", () => {
+if (registerForm) {
 
-    forgotModal?.classList.add("active");
+    registerForm.addEventListener("submit", async (e) => {
 
-    if (resetEmail && loginEmail) {
-        resetEmail.value = loginEmail.value.trim();
-    }
-
-});
+        e.preventDefault();
 
 
-cancelForgot?.addEventListener("click", () => {
+        const nameInput =
+            document.getElementById("registerName");
 
-    forgotModal?.classList.remove("active");
+        const emailInput =
+            document.getElementById("registerEmail");
 
-});
+        const passwordInput =
+            document.getElementById("registerPassword");
 
-
-forgotModal?.addEventListener("click", (event) => {
-
-    if (event.target === forgotModal) {
-        forgotModal.classList.remove("active");
-    }
-
-});
+        const roleInput =
+            document.getElementById("registerRole");
 
 
-resetForm?.addEventListener("submit", async (event) => {
+        const name =
+            nameInput?.value.trim();
 
-    event.preventDefault();
+        const email =
+            emailInput?.value.trim();
 
-    const email = resetEmail.value.trim();
+        const password =
+            passwordInput?.value;
 
-
-    if (!email) {
-
-        showToast(
-            "Please enter your email address.",
-            "error"
-        );
-
-        return;
-    }
+        const role =
+            roleInput?.value || "Job Seeker";
 
 
-    try {
+        if (!name || !email || !password) {
 
-        showToast(
-            "Sending password reset link...",
-            "loading"
-        );
-
-
-        await sendPasswordResetEmail(
-            auth,
-            email
-        );
-
-
-        forgotModal?.classList.remove("active");
-
-
-        showToast(
-            "Password reset link sent to your email 📩",
-            "success"
-        );
-
-    }
-
-    catch (error) {
-
-        console.error(
-            "❌ RESET ERROR:",
-            error
-        );
-
-        showToast(
-            getFirebaseError(error),
-            "error"
-        );
-    }
-
-});
-
-
-// =====================================================
-// GOOGLE LOGIN
-// =====================================================
-
-async function googleLogin() {
-
-    try {
-
-        showToast(
-            "Opening Google sign-in...",
-            "loading"
-        );
-
-
-        const provider =
-            new GoogleAuthProvider();
-
-        provider.setCustomParameters({
-            prompt: "select_account"
-        });
-
-
-        const result =
-            await signInWithPopup(
-                auth,
-                provider
+            showToast(
+                "Please fill all required fields.",
+                "error"
             );
 
-        const user = result.user;
-
-
-        // USER DOCUMENT
-
-        const userRef =
-            doc(
-                db,
-                "users",
-                user.uid
-            );
-
-
-        const userDoc =
-            await getDoc(userRef);
-
-
-        if (!userDoc.exists()) {
-
-            await setDoc(
-                userRef,
-                {
-                    uid: user.uid,
-
-                    name:
-                        user.displayName || "",
-
-                    email:
-                        user.email || "",
-
-                    role: "Job Seeker",
-
-                    profileCompleted: false,
-
-                    createdAt:
-                        serverTimestamp()
-                }
-            );
-
-        }
-
-
-        // LOCAL STORAGE
-
-        localStorage.setItem(
-            "fastTrackUser",
-            JSON.stringify({
-                uid: user.uid,
-
-                name:
-                    user.displayName || "",
-
-                email:
-                    user.email || "",
-
-                role: "Job Seeker"
-            })
-        );
-
-
-        showToast(
-            "Google login successful! Redirecting 🚀",
-            "success"
-        );
-
-
-        setTimeout(() => {
-
-            window.location.href =
-                "dashboard.html";
-
-        }, 1200);
-
-    }
-
-    catch (error) {
-
-        console.error(
-            "❌ GOOGLE LOGIN ERROR:",
-            error
-        );
-
-
-        if (
-            error.code ===
-            "auth/popup-closed-by-user"
-        ) {
             return;
         }
 
 
-        showToast(
-            getFirebaseError(error),
-            "error"
-        );
-    }
+        if (password.length < 6) {
 
+            showToast(
+                "Password must contain at least 6 characters.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        try {
+
+            const result =
+                await createUserWithEmailAndPassword(
+                    auth,
+                    email,
+                    password
+                );
+
+            const user = result.user;
+
+
+            // Set display name
+            await updateProfile(user, {
+                displayName: name
+            });
+
+
+            // Save user profile
+            await setDoc(
+                doc(db, "users", user.uid),
+                {
+                    uid: user.uid,
+                    name: name,
+                    email: email,
+                    role: role,
+                    profileCompleted: false,
+                    createdAt: serverTimestamp()
+                }
+            );
+
+
+            saveUserData(user, role);
+
+
+            showToast(
+                "Account created successfully! 🎉",
+                "success"
+            );
+
+
+            setTimeout(() => {
+
+                window.location.href =
+                    "dashboard.html";
+
+            }, 700);
+
+
+        } catch (error) {
+
+            console.error(error);
+
+            let message =
+                "Registration failed.";
+
+            if (error.code === "auth/email-already-in-use") {
+
+                message =
+                    "This email is already registered.";
+
+            } else if (error.code === "auth/invalid-email") {
+
+                message =
+                    "Invalid email address.";
+
+            } else if (error.code === "auth/weak-password") {
+
+                message =
+                    "Password is too weak.";
+
+            }
+
+            showToast(message, "error");
+        }
+
+    });
 }
 
 
-loginGoogle?.addEventListener(
-    "click",
-    googleLogin
+// ============================================
+// LOGIN / REGISTER TABS
+// ============================================
+
+if (loginTab && registerTab) {
+
+    loginTab.addEventListener("click", () => {
+
+        loginTab.classList.add("active");
+        registerTab.classList.remove("active");
+
+        if (loginForm) {
+            loginForm.classList.add("active");
+        }
+
+        if (registerForm) {
+            registerForm.classList.remove("active");
+        }
+    });
+
+
+    registerTab.addEventListener("click", () => {
+
+        registerTab.classList.add("active");
+        loginTab.classList.remove("active");
+
+        if (registerForm) {
+            registerForm.classList.add("active");
+        }
+
+        if (loginForm) {
+            loginForm.classList.remove("active");
+        }
+    });
+}
+
+
+// ============================================
+// GOOGLE SIGN-IN
+// ============================================
+
+if (googleLoginBtn) {
+
+    googleLoginBtn.addEventListener(
+        "click",
+        async () => {
+
+            try {
+
+                const provider =
+                    new GoogleAuthProvider();
+
+
+                const result =
+                    await signInWithPopup(
+                        auth,
+                        provider
+                    );
+
+
+                const user = result.user;
+
+
+                // Check existing Firestore profile
+                let role = "Job Seeker";
+
+                try {
+
+                    const userDoc =
+                        await getDoc(
+                            doc(db, "users", user.uid)
+                        );
+
+                    if (userDoc.exists()) {
+
+                        role =
+                            userDoc.data().role ||
+                            "Job Seeker";
+
+                    } else {
+
+                        // Create profile for first Google login
+                        await setDoc(
+                            doc(db, "users", user.uid),
+                            {
+                                uid: user.uid,
+                                name:
+                                    user.displayName || "",
+                                email:
+                                    user.email || "",
+                                role: "Job Seeker",
+                                profileCompleted: false,
+                                createdAt:
+                                    serverTimestamp()
+                            }
+                        );
+                    }
+
+                } catch (error) {
+
+                    console.log(
+                        "Google profile error:",
+                        error
+                    );
+                }
+
+
+                saveUserData(user, role);
+
+
+                showToast(
+                    "Google login successful! 🚀",
+                    "success"
+                );
+
+
+                setTimeout(() => {
+
+                    window.location.href =
+                        "dashboard.html";
+
+                }, 700);
+
+
+            } catch (error) {
+
+                console.error(
+                    "Google Login Error:",
+                    error
+                );
+
+
+                if (
+                    error.code ===
+                    "auth/popup-closed-by-user"
+                ) {
+
+                    showToast(
+                        "Google login cancelled.",
+                        "error"
+                    );
+
+                } else {
+
+                    showToast(
+                        "Google login failed.",
+                        "error"
+                    );
+                }
+            }
+        }
+    );
+}
+
+
+// ============================================
+// FORGOT PASSWORD
+// ============================================
+
+if (forgotPassword) {
+
+    forgotPassword.addEventListener(
+        "click",
+        async (e) => {
+
+            e.preventDefault();
+
+
+            const emailInput =
+                document.getElementById("loginEmail");
+
+            const email =
+                emailInput?.value.trim();
+
+
+            if (!email) {
+
+                showToast(
+                    "Enter your email first.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            try {
+
+                await sendPasswordResetEmail(
+                    auth,
+                    email
+                );
+
+
+                showToast(
+                    "Password reset email sent! 📧",
+                    "success"
+                );
+
+
+            } catch (error) {
+
+                console.error(error);
+
+                showToast(
+                    "Unable to send reset email.",
+                    "error"
+                );
+            }
+        }
+    );
+}
+
+
+// ============================================
+// PASSWORD SHOW / HIDE
+// ============================================
+
+document.querySelectorAll(
+    ".password-toggle"
+).forEach((button) => {
+
+    button.addEventListener("click", () => {
+
+        const input =
+            button.parentElement.querySelector(
+                "input"
+            );
+
+        if (!input) return;
+
+
+        if (input.type === "password") {
+
+            input.type = "text";
+
+            button.textContent = "🙈";
+
+        } else {
+
+            input.type = "password";
+
+            button.textContent = "👁";
+        }
+    });
+});
+
+
+// ============================================
+// LOGOUT FUNCTION
+// ============================================
+
+async function logoutUser() {
+
+    try {
+
+        // Firebase logout
+        await signOut(auth);
+
+    } catch (error) {
+
+        console.error(
+            "Firebase logout error:",
+            error
+        );
+
+    } finally {
+
+        // Remove saved login information
+        localStorage.removeItem(
+            "fastTrackUser"
+        );
+
+        // Also clear session storage
+        sessionStorage.clear();
+
+        // Go back to login page
+        window.location.replace(
+            "index.html"
+        );
+    }
+}
+
+
+// ============================================
+// LOGOUT BUTTON
+// ============================================
+
+const logoutBtn =
+    document.getElementById("logoutBtn");
+
+if (logoutBtn) {
+
+    logoutBtn.addEventListener(
+        "click",
+        async () => {
+
+            await logoutUser();
+
+        }
+    );
+}
+
+
+// ============================================
+// MAKE LOGOUT AVAILABLE GLOBALLY
+// ============================================
+
+window.logoutUser = logoutUser;
+
+
+// ============================================
+// AUTH STATE
+// ============================================
+
+onAuthStateChanged(
+    auth,
+    (user) => {
+
+        // IMPORTANT:
+        // Don't automatically redirect
+        // from index.html.
+        //
+        // This allows the user to stay on
+        // the login page and manually login.
+
+        if (user) {
+
+            console.log(
+                "Firebase user:",
+                user.email
+            );
+
+        } else {
+
+            console.log(
+                "No Firebase user logged in."
+            );
+        }
+    }
 );
 
-registerGoogle?.addEventListener(
-    "click",
-    googleLogin
-);
 
-
-// =====================================================
-// START
-// =====================================================
+// ============================================
+// FINISHED
+// ============================================
 
 console.log(
-    "🚀 FAST-TRACK Authentication Ready"
+    "FAST-TRACK Authentication JS Loaded 🚀"
 );
