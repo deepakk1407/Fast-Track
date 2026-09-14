@@ -1,1001 +1,560 @@
-/* =========================================
-   FAST-TRACK | Firebase Authentication
-========================================= */
+<!DOCTYPE html>
+<html lang="en">
 
-import { initializeApp } from
-    "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+<head>
+    <meta charset="UTF-8">
 
-import {
-    getAuth,
-    createUserWithEmailAndPassword,
-    updateProfile,
-    signInWithEmailAndPassword,
-    GoogleAuthProvider,
-    signInWithPopup,
-    sendPasswordResetEmail
-} from
-    "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
+    <title>FAST-TRACK | Smart Career Platform</title>
 
-/* =========================================
-   FIREBASE CONFIG
-========================================= */
+    <link rel="stylesheet"
+          href="style.css">
+</head>
 
-const firebaseConfig = {
-    apiKey: "AIzaSyDJ84_tSgau334V60r17bqHHubaf5Lecto",
-    authDomain: "fast-track-6d262.firebaseapp.com",
-    projectId: "fast-track-6d262",
-    storageBucket: "fast-track-6d262.firebasestorage.app",
-    messagingSenderId: "338934873510",
-    appId: "1:338934873510:web:1ad3791207107af183a367",
-    measurementId: "G-M6FSRH2Y9H"
-};
+<body>
 
+    <div class="auth-container">
 
-/* =========================================
-   INITIALIZE FIREBASE
-========================================= */
+        <!-- =========================
+             LEFT SIDE
+        ========================== -->
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+        <section class="brand-side">
 
-const googleProvider = new GoogleAuthProvider();
+            <div class="brand-content">
 
+                <img src="fast-track-logo.png"
+                     alt="FAST-TRACK Logo"
+                     class="logo">
 
-/* =========================================
-   ELEMENTS
-========================================= */
+                <div class="brand-badge">
+                    SMART CAREER PLATFORM
+                </div>
 
-/* Tabs */
+                <h1>FAST-TRACK</h1>
 
-const loginTab = document.getElementById("loginTab");
-const registerTab = document.getElementById("registerTab");
+                <p class="tagline">
+                    Your Career. Fast-Tracked.
+                </p>
 
-const loginBox = document.getElementById("loginBox");
-const registerBox = document.getElementById("registerBox");
+                <p class="description">
+                    Build your skills, discover opportunities,
+                    and accelerate your career with FAST-TRACK.
+                </p>
 
-const goRegister = document.getElementById("goRegister");
-const goLogin = document.getElementById("goLogin");
+            </div>
 
+        </section>
 
-/* Toast */
 
-const toast = document.getElementById("toast");
+        <!-- =========================
+             RIGHT SIDE
+        ========================== -->
 
+        <section class="form-side">
 
-/* Login */
+            <div class="auth-card">
 
-const loginForm = document.getElementById("loginForm");
-const loginEmail = document.getElementById("loginEmail");
-const loginPassword = document.getElementById("loginPassword");
-const loginEye = document.getElementById("loginEye");
-const loginGoogle = document.getElementById("loginGoogle");
 
+                <!-- =========================
+                     TABS
+                ========================== -->
 
-/* Register */
+                <div class="auth-tabs">
 
-const registerForm = document.getElementById("registerForm");
-const registerButton = document.getElementById("registerButton");
+                    <button
+                        type="button"
+                        id="loginTab"
+                        class="auth-tab active">
 
-const registerName = document.getElementById("registerName");
-const registerEmail = document.getElementById("registerEmail");
+                        Login
 
-const registerPassword =
-    document.getElementById("registerPassword");
+                    </button>
 
-const confirmPassword =
-    document.getElementById("confirmPassword");
+                    <button
+                        type="button"
+                        id="registerTab"
+                        class="auth-tab">
 
-const registerEye =
-    document.getElementById("registerEye");
+                        Register
 
-const confirmEye =
-    document.getElementById("confirmEye");
+                    </button>
 
-const terms =
-    document.getElementById("terms");
+                </div>
 
-const jobSeeker =
-    document.getElementById("jobSeeker");
 
-const recruiter =
-    document.getElementById("recruiter");
+                <!-- =========================
+                     LOGIN
+                ========================== -->
 
-const registerGoogle =
-    document.getElementById("registerGoogle");
+                <div
+                    id="loginBox"
+                    class="form-box active">
 
+                    <h2>
+                        Welcome Back 👋
+                    </h2>
 
-/* Forgot Password */
+                    <p class="form-subtitle">
+                        Login to continue your career journey.
+                    </p>
 
-const forgotButton =
-    document.getElementById("forgotButton");
 
-const forgotModal =
-    document.getElementById("forgotModal");
+                    <!-- GOOGLE LOGIN -->
 
-const cancelForgot =
-    document.getElementById("cancelForgot");
+                    <button
+                        type="button"
+                        id="loginGoogle"
+                        class="google-btn">
 
-const resetForm =
-    document.getElementById("resetForm");
+                        <span>G</span>
 
-const resetEmail =
-    document.getElementById("resetEmail");
+                        Continue with Google
 
+                    </button>
 
-/* =========================================
-   TOAST MESSAGE
-========================================= */
 
-function showToast(message, type = "success") {
+                    <div class="divider">
+                        <span>OR</span>
+                    </div>
 
-    if (!toast) {
-        console.log(message);
-        return;
-    }
 
-    toast.textContent = message;
+                    <!-- LOGIN FORM -->
 
-    if (type === "error") {
-        toast.style.background = "#dc2626";
-    } else {
-        toast.style.background = "#111827";
-    }
+                    <form id="loginForm">
 
-    toast.classList.add("show");
 
-    clearTimeout(window.toastTimer);
+                        <!-- EMAIL -->
 
-    window.toastTimer = setTimeout(() => {
-        toast.classList.remove("show");
-    }, 5000);
-}
+                        <div class="input-group">
 
+                            <label for="loginEmail">
+                                Email
+                            </label>
 
-/* =========================================
-   LOGIN / REGISTER TAB SWITCH
-========================================= */
+                            <input
+                                type="email"
+                                id="loginEmail"
+                                placeholder="Enter your email"
+                                autocomplete="email"
+                                required>
 
-function showLogin() {
+                        </div>
 
-    loginTab.classList.add("active");
-    registerTab.classList.remove("active");
 
-    loginBox.classList.add("active");
-    registerBox.classList.remove("active");
-}
+                        <!-- PASSWORD -->
 
+                        <div class="input-group">
 
-function showRegister() {
+                            <label for="loginPassword">
+                                Password
+                            </label>
 
-    registerTab.classList.add("active");
-    loginTab.classList.remove("active");
+                            <div class="password-wrapper">
 
-    registerBox.classList.add("active");
-    loginBox.classList.remove("active");
-}
+                                <input
+                                    type="password"
+                                    id="loginPassword"
+                                    placeholder="Enter your password"
+                                    autocomplete="current-password"
+                                    required>
 
+                                <button
+                                    type="button"
+                                    id="loginEye"
+                                    class="password-toggle">
 
-if (loginTab) {
-    loginTab.addEventListener("click", showLogin);
-}
+                                    👁
 
-if (registerTab) {
-    registerTab.addEventListener("click", showRegister);
-}
+                                </button>
 
-if (goRegister) {
-    goRegister.addEventListener("click", showRegister);
-}
+                            </div>
 
-if (goLogin) {
-    goLogin.addEventListener("click", showLogin);
-}
+                        </div>
 
 
-/* =========================================
-   PASSWORD SHOW / HIDE
-========================================= */
+                        <!-- OPTIONS -->
 
-if (loginEye) {
+                        <div class="form-options">
 
-    loginEye.addEventListener("click", () => {
+                            <label class="remember">
 
-        if (loginPassword.type === "password") {
+                                <input
+                                    type="checkbox"
+                                    id="rememberMe">
 
-            loginPassword.type = "text";
-            loginEye.textContent = "🙈";
+                                <span>
+                                    Remember me
+                                </span>
 
-        } else {
+                            </label>
 
-            loginPassword.type = "password";
-            loginEye.textContent = "👁";
 
-        }
+                            <button
+                                type="button"
+                                id="forgotButton"
+                                class="forgot">
 
-    });
+                                Forgot Password?
 
-}
+                            </button>
 
+                        </div>
 
-if (registerEye) {
 
-    registerEye.addEventListener("click", () => {
+                        <!-- LOGIN BUTTON -->
 
-        if (registerPassword.type === "password") {
+                        <button
+                            type="submit"
+                            class="primary-btn">
 
-            registerPassword.type = "text";
-            registerEye.textContent = "🙈";
+                            Login
 
-        } else {
+                        </button>
 
-            registerPassword.type = "password";
-            registerEye.textContent = "👁";
+                    </form>
 
-        }
 
-    });
+                    <!-- SWITCH -->
 
-}
+                    <p class="switch-text">
 
+                        Don't have an account?
 
-if (confirmEye) {
+                        <button
+                            type="button"
+                            id="goRegister">
 
-    confirmEye.addEventListener("click", () => {
+                            Register
 
-        if (confirmPassword.type === "password") {
+                        </button>
 
-            confirmPassword.type = "text";
-            confirmEye.textContent = "🙈";
+                    </p>
 
-        } else {
+                </div>
 
-            confirmPassword.type = "password";
-            confirmEye.textContent = "👁";
 
-        }
+                <!-- =========================
+                     REGISTER
+                ========================== -->
 
-    });
+                <div
+                    id="registerBox"
+                    class="form-box">
 
-}
+                    <h2>
+                        Create Account 🚀
+                    </h2>
 
+                    <p class="form-subtitle">
+                        Start building your career with FAST-TRACK.
+                    </p>
 
-/* =========================================
-   EMAIL LOGIN
-========================================= */
 
-if (loginForm) {
+                    <!-- GOOGLE REGISTER -->
 
-    loginForm.addEventListener("submit", async (event) => {
+                    <button
+                        type="button"
+                        id="registerGoogle"
+                        class="google-btn">
 
-        event.preventDefault();
+                        <span>G</span>
 
-        const email = loginEmail.value.trim();
-        const password = loginPassword.value;
+                        Continue with Google
 
-        if (!email) {
+                    </button>
 
-            showToast(
-                "Please enter your email.",
-                "error"
-            );
 
-            return;
-        }
+                    <div class="divider">
+                        <span>OR</span>
+                    </div>
 
-        if (!password) {
 
-            showToast(
-                "Please enter your password.",
-                "error"
-            );
+                    <!-- REGISTER FORM -->
 
-            return;
-        }
+                    <form id="registerForm">
 
 
-        const loginButton =
-            loginForm.querySelector(".primary-btn");
+                        <!-- NAME -->
 
-        loginButton.disabled = true;
-        loginButton.textContent = "Logging in...";
+                        <div class="input-group">
 
+                            <label for="registerName">
+                                Full Name
+                            </label>
 
-        try {
+                            <input
+                                type="text"
+                                id="registerName"
+                                placeholder="Enter your full name"
+                                autocomplete="name"
+                                required>
 
-            const result =
-                await signInWithEmailAndPassword(
-                    auth,
-                    email,
-                    password
-                );
+                        </div>
 
-            console.log(
-                "LOGIN SUCCESS:",
-                result.user
-            );
 
-            showToast(
-                "🎉 Login successful!"
-            );
+                        <!-- EMAIL -->
 
+                        <div class="input-group">
 
-            setTimeout(() => {
+                            <label for="registerEmail">
+                                Email
+                            </label>
 
-                window.location.href =
-                    "./dashboard.html";
+                            <input
+                                type="email"
+                                id="registerEmail"
+                                placeholder="Enter your email"
+                                autocomplete="email"
+                                required>
 
-            }, 1200);
+                        </div>
 
 
-        } catch (error) {
+                        <!-- ROLE -->
 
-            console.error(
-                "LOGIN ERROR:",
-                error
-            );
+                        <div class="input-group">
 
+                            <label>
+                                Select Role
+                            </label>
 
-            switch (error.code) {
+                            <div class="role-selector">
 
-                case "auth/invalid-credential":
 
-                    showToast(
-                        "Invalid email or password.",
-                        "error"
-                    );
+                                <!-- JOB SEEKER -->
 
-                    break;
+                                <label class="role-option">
 
+                                    <input
+                                        type="radio"
+                                        name="role"
+                                        id="jobSeeker"
+                                        value="Job Seeker"
+                                        checked>
 
-                case "auth/user-not-found":
+                                    <span class="role-label">
+                                        👨‍💻 Job Seeker
+                                    </span>
 
-                    showToast(
-                        "No account found with this email.",
-                        "error"
-                    );
+                                </label>
 
-                    break;
 
+                                <!-- RECRUITER -->
 
-                case "auth/wrong-password":
+                                <label class="role-option">
 
-                    showToast(
-                        "Incorrect password.",
-                        "error"
-                    );
+                                    <input
+                                        type="radio"
+                                        name="role"
+                                        id="recruiter"
+                                        value="Recruiter">
 
-                    break;
+                                    <span class="role-label">
+                                        🏢 Recruiter
+                                    </span>
 
+                                </label>
 
-                case "auth/invalid-email":
+                            </div>
 
-                    showToast(
-                        "Please enter a valid email.",
-                        "error"
-                    );
+                        </div>
 
-                    break;
 
+                        <!-- PASSWORD -->
 
-                default:
+                        <div class="input-group">
 
-                    showToast(
-                        error.message,
-                        "error"
-                    );
+                            <label for="registerPassword">
+                                Password
+                            </label>
 
-            }
+                            <div class="password-wrapper">
 
+                                <input
+                                    type="password"
+                                    id="registerPassword"
+                                    placeholder="Create a password"
+                                    autocomplete="new-password"
+                                    required>
 
-        } finally {
+                                <button
+                                    type="button"
+                                    id="registerEye"
+                                    class="password-toggle">
 
-            loginButton.disabled = false;
-            loginButton.textContent = "Login";
+                                    👁
 
-        }
+                                </button>
 
-    });
+                            </div>
 
-}
+                        </div>
 
 
-/* =========================================
-   GOOGLE LOGIN
-========================================= */
+                        <!-- CONFIRM PASSWORD -->
 
-if (loginGoogle) {
+                        <div class="input-group">
 
-    loginGoogle.addEventListener("click", async () => {
+                            <label for="confirmPassword">
+                                Confirm Password
+                            </label>
 
-        const originalHTML =
-            loginGoogle.innerHTML;
+                            <div class="password-wrapper">
 
-        loginGoogle.disabled = true;
+                                <input
+                                    type="password"
+                                    id="confirmPassword"
+                                    placeholder="Confirm your password"
+                                    autocomplete="new-password"
+                                    required>
 
-        loginGoogle.innerHTML =
-            "<span>G</span> Signing in...";
+                                <button
+                                    type="button"
+                                    id="confirmEye"
+                                    class="password-toggle">
 
+                                    👁
 
-        try {
+                                </button>
 
-            const result =
-                await signInWithPopup(
-                    auth,
-                    googleProvider
-                );
+                            </div>
 
+                        </div>
 
-            console.log(
-                "GOOGLE LOGIN SUCCESS:",
-                result.user
-            );
 
+                        <!-- TERMS -->
 
-            showToast(
-                "🎉 Google login successful!"
-            );
+                        <label class="terms">
 
+                            <input
+                                type="checkbox"
+                                id="terms"
+                                required>
 
-            setTimeout(() => {
+                            <span>
+                                I agree to the Terms & Conditions
+                            </span>
 
-                window.location.href =
-                    "./dashboard.html";
+                        </label>
 
-            }, 1200);
 
+                        <!-- REGISTER BUTTON -->
 
-        } catch (error) {
+                        <button
+                            type="submit"
+                            id="registerButton"
+                            class="primary-btn">
 
-            console.error(
-                "GOOGLE LOGIN ERROR:",
-                error
-            );
+                            Create Account
 
+                        </button>
 
-            if (
-                error.code ===
-                "auth/popup-closed-by-user"
-            ) {
+                    </form>
 
-                showToast(
-                    "Google login cancelled.",
-                    "error"
-                );
 
+                    <!-- SWITCH -->
 
-            } else if (
-                error.code ===
-                "auth/popup-blocked"
-            ) {
+                    <p class="switch-text">
 
-                showToast(
-                    "Popup blocked. Please allow popups.",
-                    "error"
-                );
+                        Already have an account?
 
+                        <button
+                            type="button"
+                            id="goLogin">
 
-            } else if (
-                error.code ===
-                "auth/cancelled-popup-request"
-            ) {
+                            Login
 
-                showToast(
-                    "Google login request cancelled.",
-                    "error"
-                );
+                        </button>
 
+                    </p>
 
-            } else {
+                </div>
 
-                showToast(
-                    error.code + " | " +
-                    error.message,
-                    "error"
-                );
+            </div>
 
-            }
+        </section>
 
-        } finally {
+    </div>
 
-            loginGoogle.disabled = false;
-            loginGoogle.innerHTML = originalHTML;
 
-        }
+    <!-- =========================
+         FORGOT PASSWORD MODAL
+    ========================== -->
 
-    });
+    <div
+        class="modal-overlay"
+        id="forgotModal">
 
-}
+        <div class="modal">
 
 
-/* =========================================
-   REGISTER
-========================================= */
+            <button
+                type="button"
+                id="cancelForgot"
+                class="modal-close">
 
-if (registerForm) {
+                ×
 
-    registerForm.addEventListener(
-        "submit",
-        async (event) => {
+            </button>
 
-            event.preventDefault();
 
+            <h3>
+                Reset Password
+            </h3>
 
-            const name =
-                registerName.value.trim();
 
-            const email =
-                registerEmail.value.trim();
+            <p>
+                Enter your registered email address.
+            </p>
 
-            const password =
-                registerPassword.value;
 
-            const confirm =
-                confirmPassword.value;
+            <form id="resetForm">
 
+                <input
+                    type="email"
+                    id="resetEmail"
+                    placeholder="Enter your email"
+                    autocomplete="email"
+                    required>
 
-            /* Validation */
 
-            if (!name) {
+                <button
+                    type="submit"
+                    class="primary-btn">
 
-                showToast(
-                    "Please enter your full name.",
-                    "error"
-                );
+                    Send Reset Link
 
-                return;
-            }
+                </button>
 
+            </form>
 
-            if (!email) {
+        </div>
 
-                showToast(
-                    "Please enter your email.",
-                    "error"
-                );
+    </div>
 
-                return;
-            }
 
+    <!-- =========================
+         TOAST
+    ========================== -->
 
-            if (password.length < 6) {
+    <div
+        class="toast"
+        id="toast">
+    </div>
 
-                showToast(
-                    "Password must be at least 6 characters.",
-                    "error"
-                );
 
-                return;
-            }
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
 
+    <script
+        type="module"
+        src="script.js">
+    </script>
 
-            if (password !== confirm) {
+</body>
 
-                showToast(
-                    "Passwords do not match.",
-                    "error"
-                );
-
-                return;
-            }
-
-
-            if (!terms.checked) {
-
-                showToast(
-                    "Please accept Terms & Conditions.",
-                    "error"
-                );
-
-                return;
-            }
-
-
-            registerButton.disabled = true;
-
-            registerButton.textContent =
-                "Creating Account...";
-
-
-            try {
-
-                const result =
-                    await createUserWithEmailAndPassword(
-                        auth,
-                        email,
-                        password
-                    );
-
-
-                /* Save display name */
-
-                await updateProfile(
-                    result.user,
-                    {
-                        displayName: name
-                    }
-                );
-
-
-                console.log(
-                    "REGISTER SUCCESS:",
-                    result.user
-                );
-
-
-                showToast(
-                    "🎉 Account created successfully!"
-                );
-
-
-                registerForm.reset();
-
-
-                setTimeout(() => {
-
-                    showLogin();
-
-                }, 1200);
-
-
-            } catch (error) {
-
-                console.error(
-                    "REGISTER ERROR:",
-                    error
-                );
-
-
-                switch (error.code) {
-
-                    case "auth/email-already-in-use":
-
-                        showToast(
-                            "This email is already registered.",
-                            "error"
-                        );
-
-                        break;
-
-
-                    case "auth/invalid-email":
-
-                        showToast(
-                            "Please enter a valid email.",
-                            "error"
-                        );
-
-                        break;
-
-
-                    case "auth/weak-password":
-
-                        showToast(
-                            "Password is too weak.",
-                            "error"
-                        );
-
-                        break;
-
-
-                    default:
-
-                        showToast(
-                            error.message,
-                            "error"
-                        );
-
-                }
-
-
-            } finally {
-
-                registerButton.disabled = false;
-
-                registerButton.textContent =
-                    "Create Account";
-
-            }
-
-        }
-    );
-
-}
-
-
-/* =========================================
-   GOOGLE REGISTER
-========================================= */
-
-if (registerGoogle) {
-
-    registerGoogle.addEventListener(
-        "click",
-        async () => {
-
-            const originalHTML =
-                registerGoogle.innerHTML;
-
-            registerGoogle.disabled = true;
-
-            registerGoogle.innerHTML =
-                "<span>G</span> Signing in...";
-
-
-            try {
-
-                const result =
-                    await signInWithPopup(
-                        auth,
-                        googleProvider
-                    );
-
-
-                console.log(
-                    "GOOGLE REGISTER SUCCESS:",
-                    result.user
-                );
-
-
-                showToast(
-                    "🎉 Google account connected!"
-                );
-
-
-                setTimeout(() => {
-
-                    window.location.href =
-                        "./dashboard.html";
-
-                }, 1200);
-
-
-            } catch (error) {
-
-                console.error(
-                    "GOOGLE REGISTER ERROR:",
-                    error
-                );
-
-
-                if (
-                    error.code ===
-                    "auth/popup-closed-by-user"
-                ) {
-
-                    showToast(
-                        "Google login cancelled.",
-                        "error"
-                    );
-
-
-                } else if (
-                    error.code ===
-                    "auth/popup-blocked"
-                ) {
-
-                    showToast(
-                        "Popup blocked. Please allow popups.",
-                        "error"
-                    );
-
-
-                } else {
-
-                    showToast(
-                        error.code + " | " +
-                        error.message,
-                        "error"
-                    );
-
-                }
-
-
-            } finally {
-
-                registerGoogle.disabled = false;
-
-                registerGoogle.innerHTML =
-                    originalHTML;
-
-            }
-
-        }
-    );
-
-}
-
-
-/* =========================================
-   FORGOT PASSWORD MODAL
-========================================= */
-
-if (forgotButton && forgotModal) {
-
-    forgotButton.addEventListener(
-        "click",
-        () => {
-
-            forgotModal.classList.add("show");
-
-        }
-    );
-
-}
-
-
-if (cancelForgot && forgotModal) {
-
-    cancelForgot.addEventListener(
-        "click",
-        () => {
-
-            forgotModal.classList.remove("show");
-
-        }
-    );
-
-}
-
-
-/* Close modal by clicking outside */
-
-if (forgotModal) {
-
-    forgotModal.addEventListener(
-        "click",
-        (event) => {
-
-            if (
-                event.target === forgotModal
-            ) {
-
-                forgotModal.classList.remove(
-                    "show"
-                );
-
-            }
-
-        }
-    );
-
-}
-
-
-/* =========================================
-   PASSWORD RESET
-========================================= */
-
-if (resetForm) {
-
-    resetForm.addEventListener(
-        "submit",
-        async (event) => {
-
-            event.preventDefault();
-
-
-            const email =
-                resetEmail.value.trim();
-
-
-            if (!email) {
-
-                showToast(
-                    "Please enter your email.",
-                    "error"
-                );
-
-                return;
-            }
-
-
-            const resetButton =
-                resetForm.querySelector(
-                    ".primary-btn"
-                );
-
-
-            resetButton.disabled = true;
-
-            resetButton.textContent =
-                "Sending...";
-
-
-            try {
-
-                await sendPasswordResetEmail(
-                    auth,
-                    email
-                );
-
-
-                showToast(
-                    "📧 Password reset link sent!"
-                );
-
-
-                resetForm.reset();
-
-
-                if (forgotModal) {
-
-                    forgotModal.classList.remove(
-                        "show"
-                    );
-
-                }
-
-
-            } catch (error) {
-
-                console.error(
-                    "PASSWORD RESET ERROR:",
-                    error
-                );
-
-
-                if (
-                    error.code ===
-                    "auth/user-not-found"
-                ) {
-
-                    showToast(
-                        "No account found with this email.",
-                        "error"
-                    );
-
-
-                } else if (
-                    error.code ===
-                    "auth/invalid-email"
-                ) {
-
-                    showToast(
-                        "Please enter a valid email.",
-                        "error"
-                    );
-
-
-                } else {
-
-                    showToast(
-                        error.message,
-                        "error"
-                    );
-
-                }
-
-
-            } finally {
-
-                resetButton.disabled = false;
-
-                resetButton.textContent =
-                    "Send Reset Link";
-
-            }
-
-        }
-    );
-
-}
-
-
-/* =========================================
-   DEBUG MESSAGE
-========================================= */
-
-console.log(
-    "🚀 FAST-TRACK Firebase Authentication Loaded Successfully"
-);
-
-console.log(
-    "Google Login Button:",
-    loginGoogle
-);
-
-console.log(
-    "Google Register Button:",
-    registerGoogle
-);
+                                   </html>
