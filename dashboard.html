@@ -88,6 +88,8 @@ body{
     text-align:center;
 }
 
+/* ================= LOGOUT ================= */
+
 .logout-area{
     position:absolute;
     bottom:22px;
@@ -111,6 +113,11 @@ body{
 .logout-btn:hover{
     background:#dc2626;
     color:white;
+}
+
+.logout-btn:disabled{
+    opacity:.7;
+    cursor:not-allowed;
 }
 
 /* ================= MAIN ================= */
@@ -651,6 +658,8 @@ body{
         width:100%;
     }
 
+    /* MOBILE NAV */
+
     .mobile-nav{
         display:flex;
         position:fixed;
@@ -665,12 +674,17 @@ body{
         align-items:center;
     }
 
-    .mobile-nav a{
+    .mobile-nav a,
+    .mobile-logout{
         text-decoration:none;
         color:#64748b;
         font-size:10px;
         font-weight:600;
         text-align:center;
+        border:0;
+        background:none;
+        cursor:pointer;
+        font-family:inherit;
     }
 
     .mobile-nav a.active{
@@ -681,6 +695,10 @@ body{
         display:block;
         font-size:19px;
         margin-bottom:3px;
+    }
+
+    .mobile-logout{
+        color:#dc2626;
     }
 
     .ai-button{
@@ -718,9 +736,7 @@ body{
 </style>
 </head>
 
-
 <body>
-
 
 <!-- ================= SIDEBAR ================= -->
 
@@ -737,7 +753,6 @@ body{
         </div>
 
     </div>
-
 
     <nav class="menu">
 
@@ -778,6 +793,7 @@ body{
 
     </nav>
 
+    <!-- DESKTOP LOGOUT -->
 
     <div class="logout-area">
 
@@ -799,7 +815,6 @@ body{
 
 <main class="main">
 
-
     <!-- TOPBAR -->
 
     <header class="topbar">
@@ -816,12 +831,12 @@ body{
 
         </div>
 
-
         <div class="user-area">
 
             <button
                 class="notification"
-                id="notificationBtn">
+                id="notificationBtn"
+                type="button">
 
                 🔔
 
@@ -852,7 +867,6 @@ body{
 
     <div class="content">
 
-
         <!-- WELCOME -->
 
         <section class="welcome">
@@ -861,9 +875,7 @@ body{
 
                 <h1>
                     Welcome back,
-                    <span id="welcomeName">
-                        User
-                    </span>! 👋
+                    <span id="welcomeName">User</span>! 👋
                 </h1>
 
                 <p>
@@ -872,7 +884,6 @@ body{
                 </p>
 
             </div>
-
 
             <div class="welcome-badge">
                 🚀 FAST-TRACK Career Journey
@@ -884,7 +895,6 @@ body{
         <!-- STATS -->
 
         <section class="stats">
-
 
             <div class="stat-card">
 
@@ -992,11 +1002,9 @@ body{
 
         <div class="dashboard-grid">
 
-
             <!-- LEFT -->
 
             <div>
-
 
                 <!-- AI MATCH -->
 
@@ -1019,7 +1027,6 @@ body{
 
 
                     <div class="match-area">
-
 
                         <div
                             class="match-circle"
@@ -1045,7 +1052,6 @@ body{
 
 
                         <div class="breakdown">
-
 
                             <div class="break-row">
 
@@ -1132,14 +1138,4 @@ body{
 
                     <div class="job-item">
 
-                        <div class="job-left">
-
-                            <div class="company-logo">
-                                J
-                            </div>
-
-                            <div>
-
-                                <div class="job-title">
-                                    Software Developer
-  
+                  
