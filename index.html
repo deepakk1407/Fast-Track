@@ -3,827 +3,526 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>FAST-TRACK | Smart Career Platform</title>
-
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        .toast{
+            position:fixed;
+            top:25px;
+            right:25px;
+            z-index:99999;
+            min-width:320px;
+            max-width:430px;
+            display:flex;
+            align-items:center;
+            gap:14px;
+            padding:16px;
+            border-radius:16px;
+            background:#0f172a;
+            color:white;
+            box-shadow:0 15px 40px rgba(0,0,0,.25);
+            transform:translateY(-30px);
+            opacity:0;
+            pointer-events:none;
+            transition:.35s ease;
+        }
+
+        .toast.show{
+            transform:translateY(0);
+            opacity:1;
+            pointer-events:auto;
+        }
+
+        .toast-icon{
+            width:38px;
+            height:38px;
+            min-width:38px;
+            border-radius:50%;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            background:#16a34a;
+            font-weight:bold;
+        }
+
+        .toast.error .toast-icon{background:#dc2626}
+        .toast.warning .toast-icon{background:#d97706}
+        .toast.loading .toast-icon{background:#2563eb}
+
+        .toast-content{flex:1}
+        .toast-title{
+            font-size:14px;
+            font-weight:800;
+            margin-bottom:4px;
+        }
+
+        .toast-message{
+            font-size:13px;
+            color:#cbd5e1;
+            line-height:1.4;
+        }
+
+        .toast-close{
+            background:none;
+            border:none;
+            color:#94a3b8;
+            font-size:22px;
+            cursor:pointer;
+        }
+
+        @media(max-width:520px){
+            .toast{
+                left:15px;
+                right:15px;
+                top:15px;
+                min-width:0;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <div class="auth-container">
+<div class="auth-container">
 
-        <!-- LEFT SIDE -->
-        <section class="brand-side">
+    <!-- LEFT SIDE -->
+    <section class="brand-side">
 
-            <div class="brand-content">
+        <div class="brand-content">
 
-                <div class="logo">
-                    <img src="fast-track-logo.png"
-                         alt="FAST-TRACK Logo">
-
-                    <h2>FAST-TRACK</h2>
-                </div>
-
-                <div class="brand-badge">
-                    <span class="status-dot"></span>
-                    SMART CAREER PLATFORM
-                </div>
-
-                <h1>
-                    Your Career.<br>
-                    <span>Fast-Tracked.</span>
-                </h1>
-
-                <p>
-                    Connect with the right opportunities, build your skills,
-                    discover your potential and move closer to your dream career
-                    with FAST-TRACK.
-                </p>
-
+            <div class="logo">
+                <img src="fast-track-logo.png" alt="FAST-TRACK Logo">
+                <h2>FAST-TRACK</h2>
             </div>
 
-            <div class="brand-bottom">
-                <div class="brand-bottom-line"></div>
-
-                <p>
-                    FIND &nbsp; • &nbsp;
-                    CONNECT &nbsp; • &nbsp;
-                    GROW
-                </p>
+            <div class="brand-badge">
+                <span class="status-dot"></span>
+                SMART CAREER PLATFORM
             </div>
 
-        </section>
+            <h1>
+                Your Career.<br>
+                <span>Fast-Tracked.</span>
+            </h1>
+
+            <p>
+                Connect with the right opportunities, build your skills,
+                discover your potential and move closer to your dream career
+                with FAST-TRACK.
+            </p>
+
+        </div>
+
+        <div class="brand-bottom">
+            <div class="brand-bottom-line"></div>
+            <p>FIND &nbsp; • &nbsp; CONNECT &nbsp; • &nbsp; GROW</p>
+        </div>
+
+    </section>
 
 
-        <!-- RIGHT SIDE -->
-        <section class="form-side">
+    <!-- RIGHT SIDE -->
+    <section class="form-side">
 
-            <div class="auth-tabs">
+        <div class="auth-tabs">
 
-                <button
-                    type="button"
+            <button type="button"
                     class="auth-tab active"
                     id="loginTab">
-                    Login
-                </button>
+                Login
+            </button>
 
-                <button
-                    type="button"
+            <button type="button"
                     class="auth-tab"
                     id="registerTab">
-                    Register
-                </button>
+                Register
+            </button>
 
-            </div>
+        </div>
 
 
-            <!-- ================= LOGIN ================= -->
+        <!-- LOGIN -->
 
-            <div class="form-box active" id="loginBox">
+        <div class="form-box active" id="loginBox">
 
-                <h2 class="form-title">
-                    Welcome back 👋
-                </h2>
+            <h2 class="form-title">
+                Welcome back 👋
+            </h2>
 
-                <p class="form-subtitle">
-                    Sign in to continue your FAST-TRACK journey.
-                </p>
+            <p class="form-subtitle">
+                Sign in to continue your FAST-TRACK journey.
+            </p>
 
-                <button
-                    type="button"
+            <button type="button"
                     class="google-btn"
                     id="loginGoogle">
 
-                    <span class="google-icon">G</span>
+                <span class="google-icon">G</span>
+                Continue with Google
 
-                    Continue with Google
+            </button>
 
-                </button>
-
-                <div class="divider">
-                    OR CONTINUE WITH EMAIL
-                </div>
-
-
-                <form id="loginForm">
-
-                    <div class="input-group">
-
-                        <label>Email Address</label>
-
-                        <input
-                            type="email"
-                            id="loginEmail"
-                            placeholder="Enter your email"
-                            autocomplete="email"
-                            required>
-
-                    </div>
-
-
-                    <div class="input-group">
-
-                        <label>Password</label>
-
-                        <div class="password-wrapper">
-
-                            <input
-                                type="password"
-                                id="loginPassword"
-                                placeholder="Enter your password"
-                                autocomplete="current-password"
-                                required>
-
-                            <span
-                                class="password-toggle"
-                                id="loginEye">
-                                👁
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="form-options">
-
-                        <label class="remember">
-
-                            <input
-                                type="checkbox"
-                                id="rememberMe">
-
-                            Remember me
-
-                        </label>
-
-                        <span
-                            class="forgot"
-                            id="forgotButton">
-
-                            Forgot Password?
-
-                        </span>
-
-                    </div>
-
-
-                    <button
-                        type="submit"
-                        class="main-btn"
-                        id="loginSubmit">
-
-                        Login to FAST-TRACK →
-
-                    </button>
-
-                </form>
-
-
-                <p class="bottom-text">
-
-                    Don't have an account?
-
-                    <span id="goRegister">
-                        Create one
-                    </span>
-
-                </p>
-
+            <div class="divider">
+                OR CONTINUE WITH EMAIL
             </div>
 
 
-            <!-- ================= REGISTER ================= -->
-
-            <div class="form-box" id="registerBox">
-
-                <h2 class="form-title">
-                    Create your account 🚀
-                </h2>
-
-                <p class="form-subtitle">
-                    Join FAST-TRACK and take your career to the next level.
-                </p>
-
-
-                <button
-                    type="button"
-                    class="google-btn"
-                    id="registerGoogle">
-
-                    <span class="google-icon">G</span>
-
-                    Sign up with Google
-
-                </button>
-
-
-                <div class="divider">
-                    OR CREATE WITH EMAIL
-                </div>
-
-
-                <form id="registerForm">
-
-                    <div class="input-group">
-
-                        <label>Full Name</label>
-
-                        <input
-                            type="text"
-                            id="registerName"
-                            placeholder="Enter your full name"
-                            autocomplete="name"
-                            required>
-
-                    </div>
-
-
-                    <div class="input-group">
-
-                        <label>Email Address</label>
-
-                        <input
-                            type="email"
-                            id="registerEmail"
-                            placeholder="Enter your email"
-                            autocomplete="email"
-                            required>
-
-                    </div>
-
-
-                    <div class="input-group">
-
-                        <label>Choose Your Role</label>
-
-                        <div class="role-selector">
-
-                            <div class="role-option">
-
-                                <input
-                                    type="radio"
-                                    name="role"
-                                    id="jobSeeker"
-                                    value="Job Seeker"
-                                    required>
-
-                                <label
-                                    for="jobSeeker"
-                                    class="role-label">
-
-                                    👤 Job Seeker
-
-                                </label>
-
-                            </div>
-
-
-                            <div class="role-option">
-
-                                <input
-                                    type="radio"
-                                    name="role"
-                                    id="recruiter"
-                                    value="Recruiter">
-
-                                <label
-                                    for="recruiter"
-                                    class="role-label">
-
-                                    🏢 Recruiter
-
-                                </label>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="input-group">
-
-                        <label>Password</label>
-
-                        <div class="password-wrapper">
-
-                            <input
-                                type="password"
-                                id="registerPassword"
-                                placeholder="Create a password"
-                                minlength="6"
-                                autocomplete="new-password"
-                                required>
-
-                            <span
-                                class="password-toggle"
-                                id="registerEye">
-                                👁
-                            </span>
-
-                        </div>
-
-
-                        <div class="password-strength">
-
-                            <div
-                                class="strength-bar"
-                                id="strengthBar">
-                            </div>
-
-                        </div>
-
-
-                        <div
-                            class="strength-text"
-                            id="strengthText">
-
-                            Password strength
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="input-group">
-
-                        <label>Confirm Password</label>
-
-                        <div class="password-wrapper">
-
-                            <input
-                                type="password"
-                                id="confirmPassword"
-                                placeholder="Confirm your password"
-                                autocomplete="new-password"
-                                required>
-
-                            <span
-                                class="password-toggle"
-                                id="confirmEye">
-                                👁
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <label class="terms">
-
-                        <input
-                            type="checkbox"
-                            id="terms"
-                            required>
-
-                        <span>
-                            I agree to the Terms & Conditions
-                            and Privacy Policy.
-                        </span>
-
-                    </label>
-
-
-                    <button
-                        type="submit"
-                        class="main-btn"
-                        id="registerSubmit">
-
-                        Create FAST-TRACK Account →
-
-                    </button>
-
-                </form>
-
-
-                <p class="bottom-text">
-
-                    Already have an account?
-
-                    <span id="goLogin">
-                        Login here
-                    </span>
-
-                </p>
-
-            </div>
-
-        </section>
-
-    </div>
-
-
-    <!-- ================= FORGOT PASSWORD ================= -->
-
-    <div
-        class="modal-overlay"
-        id="forgotModal">
-
-        <div class="modal">
-
-            <div class="modal-icon">
-                🔐
-            </div>
-
-            <h3>
-                Reset your password
-            </h3>
-
-            <p>
-                Enter your registered email address
-                and we'll send you a password reset link.
-            </p>
-
-            <form id="resetForm">
+            <form id="loginForm">
 
                 <div class="input-group">
 
                     <label>Email Address</label>
 
-                    <input
-                        type="email"
-                        id="resetEmail"
-                        placeholder="Enter your email"
-                        required>
+                    <input type="email"
+                           id="loginEmail"
+                           placeholder="Enter your email"
+                           autocomplete="email"
+                           required>
 
                 </div>
 
 
-                <div class="modal-actions">
+                <div class="input-group">
 
-                    <button
-                        type="button"
-                        class="cancel-btn"
-                        id="cancelForgot">
+                    <label>Password</label>
 
-                        Cancel
+                    <div class="password-wrapper">
 
-                    </button>
+                        <input type="password"
+                               id="loginPassword"
+                               placeholder="Enter your password"
+                               autocomplete="current-password"
+                               required>
 
-                    <button
-                        type="submit"
-                        class="reset-btn">
+                        <span class="password-toggle"
+                              id="loginEye">
+                            👁
+                        </span>
 
-                        Send Link
-
-                    </button>
+                    </div>
 
                 </div>
+
+
+                <div class="form-options">
+
+                    <label class="remember">
+
+                        <input type="checkbox"
+                               id="rememberMe">
+
+                        Remember me
+
+                    </label>
+
+                    <span class="forgot"
+                          id="forgotButton">
+                        Forgot Password?
+                    </span>
+
+                </div>
+
+
+                <button type="submit"
+                        class="main-btn"
+                        id="loginSubmit">
+
+                    Login to FAST-TRACK →
+
+                </button>
 
             </form>
 
+
+            <p class="bottom-text">
+                Don't have an account?
+                <span id="goRegister">Create one</span>
+            </p>
+
+        </div>
+
+
+        <!-- REGISTER -->
+
+        <div class="form-box" id="registerBox">
+
+            <h2 class="form-title">
+                Create your account 🚀
+            </h2>
+
+            <p class="form-subtitle">
+                Join FAST-TRACK and take your career to the next level.
+            </p>
+
+
+            <button type="button"
+                    class="google-btn"
+                    id="registerGoogle">
+
+                <span class="google-icon">G</span>
+                Sign up with Google
+
+            </button>
+
+
+            <div class="divider">
+                OR CREATE WITH EMAIL
+            </div>
+
+
+            <form id="registerForm">
+
+                <div class="input-group">
+
+                    <label>Full Name</label>
+
+                    <input type="text"
+                           id="registerName"
+                           placeholder="Enter your full name"
+                           autocomplete="name"
+                           required>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>Email Address</label>
+
+                    <input type="email"
+                           id="registerEmail"
+                           placeholder="Enter your email"
+                           autocomplete="email"
+                           required>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>Choose Your Role</label>
+
+                    <div class="role-selector">
+
+                        <div class="role-option">
+
+                            <input type="radio"
+                                   name="role"
+                                   id="jobSeeker"
+                                   value="Job Seeker"
+                                   required>
+
+                            <label for="jobSeeker"
+                                   class="role-label">
+                                👤 Job Seeker
+                            </label>
+
+                        </div>
+
+
+                        <div class="role-option">
+
+                            <input type="radio"
+                                   name="role"
+                                   id="recruiter"
+                                   value="Recruiter">
+
+                            <label for="recruiter"
+                                   class="role-label">
+                                🏢 Recruiter
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>Password</label>
+
+                    <div class="password-wrapper">
+
+                        <input type="password"
+                               id="registerPassword"
+                               placeholder="Create a password"
+                               minlength="6"
+                               autocomplete="new-password"
+                               required>
+
+                        <span class="password-toggle"
+                              id="registerEye">
+                            👁
+                        </span>
+
+                    </div>
+
+                    <div class="password-strength">
+                        <div class="strength-bar"
+                             id="strengthBar"></div>
+                    </div>
+
+                    <div class="strength-text"
+                         id="strengthText">
+                        Password strength
+                    </div>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>Confirm Password</label>
+
+                    <div class="password-wrapper">
+
+                        <input type="password"
+                               id="confirmPassword"
+                               placeholder="Confirm your password"
+                               autocomplete="new-password"
+                               required>
+
+                        <span class="password-toggle"
+                              id="confirmEye">
+                            👁
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <label class="terms">
+
+                    <input type="checkbox"
+                           id="terms"
+                           required>
+
+                    <span>
+                        I agree to the Terms & Conditions
+                        and Privacy Policy.
+                    </span>
+
+                </label>
+
+
+                <button type="submit"
+                        class="main-btn"
+                        id="registerSubmit">
+
+                    Create FAST-TRACK Account →
+
+                </button>
+
+            </form>
+
+
+            <p class="bottom-text">
+
+                Already have an account?
+                <span id="goLogin">Login here</span>
+
+            </p>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<!-- FORGOT PASSWORD -->
+
+<div class="modal-overlay"
+     id="forgotModal">
+
+    <div class="modal">
+
+        <div class="modal-icon">🔐</div>
+
+        <h3>Reset your password</h3>
+
+        <p>
+            Enter your registered email address
+            and we'll send you a password reset link.
+        </p>
+
+
+        <form id="resetForm">
+
+            <div class="input-group">
+
+                <label>Email Address</label>
+
+                <input type="email"
+                       id="resetEmail"
+                       placeholder="Enter your email"
+                       required>
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button type="button"
+                        class="cancel-btn"
+                        id="cancelForgot">
+                    Cancel
+                </button>
+
+                <button type="submit"
+                        class="reset-btn">
+                    Send Link
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- PROFESSIONAL TOAST -->
+
+<div class="toast"
+     id="toast"
+     role="status"
+     aria-live="polite">
+
+    <div class="toast-icon"
+         id="toastIcon">
+        ✓
+    </div>
+
+    <div class="toast-content">
+
+        <div class="toast-title"
+             id="toastTitle">
+            Success
+        </div>
+
+        <div class="toast-message"
+             id="toastMessage">
         </div>
 
     </div>
 
+    <button class="toast-close"
+            id="toastClose"
+            type="button">
+        ×
+    </button>
 
-    <!-- ================= TOAST ================= -->
+</div>
 
-    <div
-        class="toast"
-        id="toast">
-    </div>
 
+<!-- IMPORTANT -->
+<script type="module" src="script.js"></script>
 
-    <!-- =========================================================
-         FIREBASE + FAST-TRACK AUTH SCRIPT
-         ========================================================= -->
-
-    <script>
-
-    document.addEventListener("DOMContentLoaded", function () {
-
-        /* =====================================================
-           FIREBASE CONFIG
-           ===================================================== */
-
-        const firebaseConfig = {
-
-            apiKey:
-                "AIzaSyDJ84_tSgau334V60r17bqHHubaf5Lecto",
-
-            authDomain:
-                "fast-track-6d262.firebaseapp.com",
-
-            projectId:
-                "fast-track-6d262",
-
-            storageBucket:
-                "fast-track-6d262.firebasestorage.app",
-
-            messagingSenderId:
-                "338934873510",
-
-            appId:
-                "1:338934873510:web:16b3211577dd2ce683a367",
-
-            measurementId:
-                "G-9TFBXV2PQM"
-        };
-
-
-        /* =====================================================
-           DOM ELEMENTS
-           ===================================================== */
-
-        const loginTab =
-            document.getElementById("loginTab");
-
-        const registerTab =
-            document.getElementById("registerTab");
-
-        const loginBox =
-            document.getElementById("loginBox");
-
-        const registerBox =
-            document.getElementById("registerBox");
-
-        const loginForm =
-            document.getElementById("loginForm");
-
-        const registerForm =
-            document.getElementById("registerForm");
-
-        const goRegister =
-            document.getElementById("goRegister");
-
-        const goLogin =
-            document.getElementById("goLogin");
-
-
-        const loginEmail =
-            document.getElementById("loginEmail");
-
-        const loginPassword =
-            document.getElementById("loginPassword");
-
-
-        const registerName =
-            document.getElementById("registerName");
-
-        const registerEmail =
-            document.getElementById("registerEmail");
-
-        const registerPassword =
-            document.getElementById("registerPassword");
-
-        const confirmPassword =
-            document.getElementById("confirmPassword");
-
-
-        const jobSeeker =
-            document.getElementById("jobSeeker");
-
-        const recruiter =
-            document.getElementById("recruiter");
-
-
-        const terms =
-            document.getElementById("terms");
-
-
-        const loginEye =
-            document.getElementById("loginEye");
-
-        const registerEye =
-            document.getElementById("registerEye");
-
-        const confirmEye =
-            document.getElementById("confirmEye");
-
-
-        const strengthBar =
-            document.getElementById("strengthBar");
-
-        const strengthText =
-            document.getElementById("strengthText");
-
-
-        const rememberMe =
-            document.getElementById("rememberMe");
-
-
-        const forgotButton =
-            document.getElementById("forgotButton");
-
-        const forgotModal =
-            document.getElementById("forgotModal");
-
-        const resetForm =
-            document.getElementById("resetForm");
-
-        const resetEmail =
-            document.getElementById("resetEmail");
-
-        const cancelForgot =
-            document.getElementById("cancelForgot");
-
-
-        const toast =
-            document.getElementById("toast");
-
-
-        const loginGoogle =
-            document.getElementById("loginGoogle");
-
-        const registerGoogle =
-            document.getElementById("registerGoogle");
-
-
-        const loginSubmit =
-            document.getElementById("loginSubmit");
-
-        const registerSubmit =
-            document.getElementById("registerSubmit");
-
-
-        /* =====================================================
-           FIREBASE VARIABLES
-           ===================================================== */
-
-        let auth = null;
-        let db = null;
-
-        let firebaseAuth = null;
-        let firebaseFirestore = null;
-
-        let firebaseApp = null;
-
-        let firebaseReady = false;
-
-        let firebaseLoading = null;
-
-
-        /* =====================================================
-           TOAST FUNCTION
-           ===================================================== */
-
-        function showToast(message, type = "success") {
-
-            if (!toast) {
-                alert(message);
-                return;
-            }
-
-
-            toast.textContent = message;
-
-
-            toast.classList.remove("success");
-            toast.classList.remove("error");
-            toast.classList.remove("warning");
-
-
-            toast.classList.add(type);
-            toast.classList.add("show");
-
-
-            clearTimeout(
-                window.fastTrackToastTimer
-            );
-
-
-            window.fastTrackToastTimer =
-                setTimeout(function () {
-
-                    toast.classList.remove("show");
-
-                }, 3500);
-        }
-
-
-        /* =====================================================
-           LOGIN / REGISTER TAB
-           ===================================================== */
-
-        function showLogin() {
-
-            loginTab.classList.add("active");
-            registerTab.classList.remove("active");
-
-            loginBox.classList.add("active");
-            registerBox.classList.remove("active");
-        }
-
-
-        function showRegister() {
-
-            registerTab.classList.add("active");
-            loginTab.classList.remove("active");
-
-            registerBox.classList.add("active");
-            loginBox.classList.remove("active");
-        }
-
-
-        loginTab.onclick = showLogin;
-        registerTab.onclick = showRegister;
-
-
-        if (goRegister) {
-            goRegister.onclick = showRegister;
-        }
-
-
-        if (goLogin) {
-            goLogin.onclick = showLogin;
-        }
-
-
-        /* =====================================================
-           PASSWORD SHOW / HIDE
-           ===================================================== */
-
-        function togglePassword(input) {
-
-            if (!input) return;
-
-
-            if (input.type === "password") {
-
-                input.type = "text";
-
-            } else {
-
-                input.type = "password";
-            }
-        }
-
-
-        if (loginEye) {
-
-            loginEye.onclick = function () {
-
-                togglePassword(loginPassword);
-
-            };
-        }
-
-
-        if (registerEye) {
-
-            registerEye.onclick = function () {
-
-                togglePassword(registerPassword);
-
-            };
-        }
-
-
-        if (confirmEye) {
-
-            confirmEye.onclick = function () {
-
-                togglePassword(confirmPassword);
-
-            };
-        }
-
-
-        /* =====================================================
-           PASSWORD STRENGTH
-           ===================================================== */
-
-        if (registerPassword) {
-
-            registerPassword.addEventListener(
-                "input",
-                function () {
-
-                    const password =
-                        registerPassword.value;
-
-
-                    let strength = 0;
-
-
-                    if (password.length >= 6) {
-                        strength++;
-                    }
-
-
-                    if (password.length >= 10) {
-                        strength++;
-                    }
-
-
-                    if (/[A-Z]/.test(password)) {
-                        strength++;
-                    }
-
-
-                    if (/[0-9]/.test(password)) {
-                        strength++;
-                    }
-
-
-                    if (/[^A-Za-z0-9]/.test(password)) {
-                        strength++;
-                    }
-
-
-                    if (password.length === 0) {
-
-                        str
+</body>
+</html>
