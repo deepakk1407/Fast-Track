@@ -1,5 +1,4 @@
-import { initializeApp } from
-"https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
 
 import {
     getAuth,
@@ -7,9 +6,9 @@ import {
     updateProfile,
     signInWithEmailAndPassword,
     GoogleAuthProvider,
-    signInWithPopup
-} from
-"https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+    signInWithPopup,
+    sendPasswordResetEmail
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
 
 /* =========================
@@ -27,16 +26,14 @@ const firebaseConfig = {
 };
 
 
+/* =========================
+   FIREBASE INITIALIZE
+========================= */
+
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-
-/* =========================
-   GOOGLE PROVIDER
-========================= */
-
-const googleProvider =
-    new GoogleAuthProvider();
+const googleProvider = new GoogleAuthProvider();
 
 
 /* =========================
@@ -55,39 +52,22 @@ const goLogin = document.getElementById("goLogin");
 const toast = document.getElementById("toast");
 
 
-/* LOGIN */
+/* Login */
 
 const loginForm = document.getElementById("loginForm");
-
-const loginEmail =
-    document.getElementById("loginEmail");
-
-const loginPassword =
-    document.getElementById("loginPassword");
-
-const loginEye =
-    document.getElementById("loginEye");
+const loginEmail = document.getElementById("loginEmail");
+const loginPassword = document.getElementById("loginPassword");
+const loginEye = document.getElementById("loginEye");
+const loginGoogle = document.getElementById("loginGoogle");
 
 
-/* GOOGLE LOGIN */
+/* Register */
 
-const loginGoogle =
-    document.getElementById("loginGoogle");
+const registerForm = document.getElementById("registerForm");
+const registerButton = document.getElementById("registerButton");
 
-
-/* REGISTER */
-
-const registerForm =
-    document.getElementById("registerForm");
-
-const registerButton =
-    document.getElementById("registerButton");
-
-const registerName =
-    document.getElementById("registerName");
-
-const registerEmail =
-    document.getElementById("registerEmail");
+const registerName = document.getElementById("registerName");
+const registerEmail = document.getElementById("registerEmail");
 
 const registerPassword =
     document.getElementById("registerPassword");
@@ -95,14 +75,35 @@ const registerPassword =
 const confirmPassword =
     document.getElementById("confirmPassword");
 
-const terms =
-    document.getElementById("terms");
-
 const registerEye =
     document.getElementById("registerEye");
 
 const confirmEye =
     document.getElementById("confirmEye");
+
+const terms =
+    document.getElementById("terms");
+
+const registerGoogle =
+    document.getElementById("registerGoogle");
+
+
+/* Forgot Password */
+
+const forgotButton =
+    document.getElementById("forgotButton");
+
+const forgotModal =
+    document.getElementById("forgotModal");
+
+const cancelForgot =
+    document.getElementById("cancelForgot");
+
+const resetForm =
+    document.getElementById("resetForm");
+
+const resetEmail =
+    document.getElementById("resetEmail");
 
 
 /* =========================
@@ -112,7 +113,7 @@ const confirmEye =
 function showToast(message, type = "success") {
 
     if (!toast) {
-        alert(message);
+        console.log(message);
         return;
     }
 
@@ -157,526 +158,655 @@ function showRegister() {
 }
 
 
-loginTab.addEventListener(
-    "click",
-    showLogin
-);
+loginTab.addEventListener("click", showLogin);
+registerTab.addEventListener("click", showRegister);
 
-registerTab.addEventListener(
-    "click",
-    showRegister
-);
-
-goRegister.addEventListener(
-    "click",
-    showRegister
-);
-
-goLogin.addEventListener(
-    "click",
-    showLogin
-);
+goRegister.addEventListener("click", showRegister);
+goLogin.addEventListener("click", showLogin);
 
 
 /* =========================
-   PASSWORD SHOW / HIDE
+   PASSWORD TOGGLE
 ========================= */
 
-if (loginEye) {
+loginEye.addEventListener("click", () => {
 
-    loginEye.addEventListener("click", () => {
+    if (loginPassword.type === "password") {
 
-        if (loginPassword.type === "password") {
+        loginPassword.type = "text";
+        loginEye.textContent = "🙈";
 
-            loginPassword.type = "text";
-            loginEye.textContent = "🙈";
+    } else {
 
-        } else {
+        loginPassword.type = "password";
+        loginEye.textContent = "👁";
 
-            loginPassword.type = "password";
-            loginEye.textContent = "👁";
-
-        }
-
-    });
-}
+    }
+});
 
 
-if (registerEye) {
+registerEye.addEventListener("click", () => {
 
-    registerEye.addEventListener("click", () => {
+    if (registerPassword.type === "password") {
 
-        if (registerPassword.type === "password") {
+        registerPassword.type = "text";
+        registerEye.textContent = "🙈";
 
-            registerPassword.type = "text";
-            registerEye.textContent = "🙈";
+    } else {
 
-        } else {
+        registerPassword.type = "password";
+        registerEye.textContent = "👁";
 
-            registerPassword.type = "password";
-            registerEye.textContent = "👁";
-
-        }
-
-    });
-}
+    }
+});
 
 
-if (confirmEye) {
+confirmEye.addEventListener("click", () => {
 
-    confirmEye.addEventListener("click", () => {
+    if (confirmPassword.type === "password") {
 
-        if (confirmPassword.type === "password") {
+        confirmPassword.type = "text";
+        confirmEye.textContent = "🙈";
 
-            confirmPassword.type = "text";
-            confirmEye.textContent = "🙈";
+    } else {
 
-        } else {
+        confirmPassword.type = "password";
+        confirmEye.textContent = "👁";
 
-            confirmPassword.type = "password";
-            confirmEye.textContent = "👁";
-
-        }
-
-    });
-}
+    }
+});
 
 
 /* =========================
    GOOGLE LOGIN
 ========================= */
 
-if (loginGoogle) {
+loginGoogle.addEventListener("click", async () => {
 
-    loginGoogle.addEventListener(
-        "click",
-        async function () {
+    try {
 
-            loginGoogle.disabled = true;
+        loginGoogle.disabled = true;
 
-            const originalText =
-                loginGoogle.innerHTML;
-
-            loginGoogle.innerHTML =
-                "Signing in with Google...";
+        loginGoogle.innerHTML =
+            "<span>G</span> Signing in...";
 
 
-            try {
-
-                const result =
-                    await signInWithPopup(
-                        auth,
-                        googleProvider
-                    );
+        const result =
+            await signInWithPopup(
+                auth,
+                googleProvider
+            );
 
 
-                console.log(
-                    "GOOGLE LOGIN SUCCESS:",
-                    result.user
-                );
+        console.log(
+            "Google Login Success:",
+            result.user
+        );
 
 
-                showToast(
-                    "🎉 Google login successful!"
-                );
+        showToast(
+            "🎉 Google login successful!"
+        );
 
 
-                setTimeout(() => {
+        setTimeout(() => {
 
-                    window.location.href =
-                        "./dashboard.html";
+            window.location.href =
+                "./dashboard.html";
 
-                }, 1500);
-
-
-            } catch (error) {
-
-                console.error(
-                    "GOOGLE LOGIN ERROR:",
-                    error
-                );
+        }, 1200);
 
 
-                if (
-                    error.code ===
-                    "auth/popup-closed-by-user"
-                ) {
+    } catch (error) {
 
-                    showToast(
-                        "Google login was cancelled.",
-                        "error"
-                    );
+        console.error(
+            "Google Login Error:",
+            error
+        );
 
-                } else if (
-                    error.code ===
-                    "auth/popup-blocked"
-                ) {
 
-                    showToast(
-                        "Google popup was blocked. Please allow popups.",
-                        "error"
-                    );
+        if (
+            error.code ===
+            "auth/popup-closed-by-user"
+        ) {
 
-                } else if (
-                    error.code ===
-                    "auth/account-exists-with-different-credential"
-                ) {
+            showToast(
+                "Google login cancelled.",
+                "error"
+            );
 
-                    showToast(
-                        "This email already has an account with another login method.",
-                        "error"
-                    );
+        } else if (
+            error.code ===
+            "auth/popup-blocked"
+        ) {
 
-                } else {
+            showToast(
+                "Popup blocked. Please allow popups.",
+                "error"
+            );
 
-                    showToast(
-                        error.code + " | " +
-                        error.message,
-                        "error"
-                    );
-                }
+        } else {
 
-            } finally {
-
-                loginGoogle.disabled = false;
-
-                loginGoogle.innerHTML =
-                    originalText;
-            }
-
+            showToast(
+                error.message,
+                "error"
+            );
         }
-    );
-}
+
+
+    } finally {
+
+        loginGoogle.disabled = false;
+
+        loginGoogle.innerHTML =
+            "<span>G</span> Continue with Google";
+
+    }
+
+});
 
 
 /* =========================
-   LOGIN
+   GOOGLE REGISTER
 ========================= */
 
-loginForm.addEventListener(
-    "submit",
-    async function (event) {
+registerGoogle.addEventListener("click", async () => {
 
-        event.preventDefault();
+    try {
 
+        registerGoogle.disabled = true;
 
-        const email =
-            loginEmail.value.trim();
-
-        const password =
-            loginPassword.value;
+        registerGoogle.innerHTML =
+            "<span>G</span> Signing in...";
 
 
-        if (!email) {
+        const result =
+            await signInWithPopup(
+                auth,
+                googleProvider
+            );
+
+
+        console.log(
+            "Google Register Success:",
+            result.user
+        );
+
+
+        showToast(
+            "🎉 Google account connected!"
+        );
+
+
+        setTimeout(() => {
+
+            window.location.href =
+                "./dashboard.html";
+
+        }, 1200);
+
+
+    } catch (error) {
+
+        console.error(
+            "Google Register Error:",
+            error
+        );
+
+
+        if (
+            error.code ===
+            "auth/popup-closed-by-user"
+        ) {
 
             showToast(
-                "Please enter your email.",
+                "Google login cancelled.",
                 "error"
             );
 
-            return;
-        }
-
-
-        if (!password) {
+        } else if (
+            error.code ===
+            "auth/popup-blocked"
+        ) {
 
             showToast(
-                "Please enter your password.",
+                "Popup blocked. Please allow popups.",
                 "error"
             );
 
-            return;
-        }
-
-
-        const loginButton =
-            loginForm.querySelector(
-                ".primary-btn"
-            );
-
-
-        loginButton.disabled = true;
-
-        loginButton.textContent =
-            "Logging in...";
-
-
-        try {
-
-            const result =
-                await signInWithEmailAndPassword(
-                    auth,
-                    email,
-                    password
-                );
-
-
-            console.log(
-                "LOGIN SUCCESS:",
-                result.user
-            );
-
+        } else {
 
             showToast(
-                "🎉 Login successful!"
+                error.message,
+                "error"
             );
-
-
-            setTimeout(() => {
-
-                window.location.href =
-                    "./dashboard.html";
-
-            }, 1500);
-
-
-        } catch (error) {
-
-            console.error(
-                "LOGIN ERROR:",
-                error
-            );
-
-
-            if (
-                error.code ===
-                "auth/invalid-credential"
-            ) {
-
-                showToast(
-                    "Invalid email or password.",
-                    "error"
-                );
-
-            } else if (
-                error.code ===
-                "auth/user-not-found"
-            ) {
-
-                showToast(
-                    "No account found with this email.",
-                    "error"
-                );
-
-            } else if (
-                error.code ===
-                "auth/wrong-password"
-            ) {
-
-                showToast(
-                    "Incorrect password.",
-                    "error"
-                );
-
-            } else if (
-                error.code ===
-                "auth/invalid-email"
-            ) {
-
-                showToast(
-                    "Please enter a valid email.",
-                    "error"
-                );
-
-            } else {
-
-                showToast(
-                    error.code + " | " +
-                    error.message,
-                    "error"
-                );
-            }
-
-        } finally {
-
-            loginButton.disabled = false;
-
-            loginButton.textContent =
-                "Login";
         }
+
+    } finally {
+
+        registerGoogle.disabled = false;
+
+        registerGoogle.innerHTML =
+            "<span>G</span> Continue with Google";
 
     }
-);
+
+});
+
+
+/* =========================
+   EMAIL LOGIN
+========================= */
+
+loginForm.addEventListener("submit", async (event) => {
+
+    event.preventDefault();
+
+
+    const email =
+        loginEmail.value.trim();
+
+    const password =
+        loginPassword.value;
+
+
+    if (!email) {
+
+        showToast(
+            "Please enter your email.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    if (!password) {
+
+        showToast(
+            "Please enter your password.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    const loginButton =
+        loginForm.querySelector(".primary-btn");
+
+
+    loginButton.disabled = true;
+
+    loginButton.textContent =
+        "Logging in...";
+
+
+    try {
+
+        const result =
+            await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+
+        console.log(
+            "Login Success:",
+            result.user
+        );
+
+
+        showToast(
+            "🎉 Login successful!"
+        );
+
+
+        setTimeout(() => {
+
+            window.location.href =
+                "./dashboard.html";
+
+        }, 1200);
+
+
+    } catch (error) {
+
+        console.error(
+            "Login Error:",
+            error
+        );
+
+
+        if (
+            error.code ===
+            "auth/invalid-credential"
+        ) {
+
+            showToast(
+                "Invalid email or password.",
+                "error"
+            );
+
+        } else if (
+            error.code ===
+            "auth/invalid-email"
+        ) {
+
+            showToast(
+                "Please enter a valid email.",
+                "error"
+            );
+
+        } else {
+
+            showToast(
+                error.message,
+                "error"
+            );
+        }
+
+    } finally {
+
+        loginButton.disabled = false;
+
+        loginButton.textContent =
+            "Login";
+    }
+
+});
 
 
 /* =========================
    REGISTER
 ========================= */
 
-registerForm.addEventListener(
-    "submit",
-    async function (event) {
+registerForm.addEventListener("submit", async (event) => {
 
-        event.preventDefault();
+    event.preventDefault();
 
 
-        const name =
-            registerName.value.trim();
+    const name =
+        registerName.value.trim();
 
-        const email =
-            registerEmail.value.trim();
+    const email =
+        registerEmail.value.trim();
 
-        const password =
-            registerPassword.value;
+    const password =
+        registerPassword.value;
 
-        const confirm =
-            confirmPassword.value;
+    const confirm =
+        confirmPassword.value;
 
 
-        if (!name) {
+    if (!name) {
+
+        showToast(
+            "Please enter your full name.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    if (!email) {
+
+        showToast(
+            "Please enter your email.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    if (password.length < 6) {
+
+        showToast(
+            "Password must be at least 6 characters.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    if (password !== confirm) {
+
+        showToast(
+            "Passwords do not match.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    if (!terms.checked) {
+
+        showToast(
+            "Please accept Terms & Conditions.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    registerButton.disabled = true;
+
+    registerButton.textContent =
+        "Creating Account...";
+
+
+    try {
+
+        const result =
+            await createUserWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+
+        await updateProfile(
+            result.user,
+            {
+                displayName: name
+            }
+        );
+
+
+        console.log(
+            "Register Success:",
+            result.user
+        );
+
+
+        showToast(
+            "🎉 Account created successfully!"
+        );
+
+
+        registerForm.reset();
+
+
+        setTimeout(() => {
+
+            showLogin();
+
+        }, 1200);
+
+
+    } catch (error) {
+
+        console.error(
+            "Register Error:",
+            error
+        );
+
+
+        if (
+            error.code ===
+            "auth/email-already-in-use"
+        ) {
 
             showToast(
-                "Please enter your full name.",
+                "This email is already registered.",
                 "error"
             );
 
-            return;
-        }
-
-
-        if (!email) {
+        } else if (
+            error.code ===
+            "auth/invalid-email"
+        ) {
 
             showToast(
-                "Please enter your email.",
+                "Please enter a valid email.",
                 "error"
             );
 
-            return;
-        }
-
-
-        if (password.length < 6) {
+        } else if (
+            error.code ===
+            "auth/weak-password"
+        ) {
 
             showToast(
-                "Password must be at least 6 characters.",
+                "Password is too weak.",
                 "error"
             );
 
-            return;
-        }
-
-
-        if (password !== confirm) {
+        } else {
 
             showToast(
-                "Passwords do not match.",
+                error.message,
                 "error"
             );
-
-            return;
         }
 
+    } finally {
 
-        if (!terms.checked) {
-
-            showToast(
-                "Please accept Terms & Conditions.",
-                "error"
-            );
-
-            return;
-        }
-
-
-        registerButton.disabled = true;
+        registerButton.disabled = false;
 
         registerButton.textContent =
-            "Creating Account...";
+            "Create Account";
+    }
+
+});
 
 
-        try {
+/* =========================
+   FORGOT PASSWORD
+========================= */
 
-            const result =
-                await createUserWithEmailAndPassword(
-                    auth,
-                    email,
-                    password
-                );
+forgotButton.addEventListener("click", () => {
 
+    forgotModal.classList.add("show");
 
-            await updateProfile(
-                result.user,
-                {
-                    displayName: name
-                }
-            );
+});
 
 
-            console.log(
-                "REGISTER SUCCESS:",
-                result.user
-            );
+cancelForgot.addEventListener("click", () => {
+
+    forgotModal.classList.remove("show");
+
+});
 
 
-            showToast(
-                "🎉 Account created successfully!"
-            );
+forgotModal.addEventListener("click", (event) => {
 
+    if (event.target === forgotModal) {
 
-            registerForm.reset();
-
-
-            setTimeout(() => {
-
-                showLogin();
-
-            }, 1500);
-
-
-        } catch (error) {
-
-            console.error(
-                "REGISTER ERROR:",
-                error
-            );
-
-
-            if (
-                error.code ===
-                "auth/email-already-in-use"
-            ) {
-
-                showToast(
-                    "This email is already registered.",
-                    "error"
-                );
-
-            } else if (
-                error.code ===
-                "auth/invalid-email"
-            ) {
-
-                showToast(
-                    "Please enter a valid email.",
-                    "error"
-                );
-
-            } else if (
-                error.code ===
-                "auth/weak-password"
-            ) {
-
-                showToast(
-                    "Password is too weak.",
-                    "error"
-                );
-
-            } else {
-
-                showToast(
-                    error.code + " | " +
-                    error.message,
-                    "error"
-                );
-            }
-
-        } finally {
-
-            registerButton.disabled = false;
-
-            registerButton.textContent =
-                "Create Account";
-        }
+        forgotModal.classList.remove("show");
 
     }
+
+});
+
+
+/* =========================
+   PASSWORD RESET
+========================= */
+
+resetForm.addEventListener("submit", async (event) => {
+
+    event.preventDefault();
+
+
+    const email =
+        resetEmail.value.trim();
+
+
+    if (!email) {
+
+        showToast(
+            "Please enter your email.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    const resetButton =
+        resetForm.querySelector(".primary-btn");
+
+
+    resetButton.disabled = true;
+
+    resetButton.textContent =
+        "Sending...";
+
+
+    try {
+
+        await sendPasswordResetEmail(
+            auth,
+            email
+        );
+
+
+        showToast(
+            "📧 Password reset link sent!"
+        );
+
+
+        resetForm.reset();
+
+        forgotModal.classList.remove("show");
+
+
+    } catch (error) {
+
+        console.error(
+            "Password Reset Error:",
+            error
+        );
+
+
+        showToast(
+            error.message,
+            "error"
+        );
+
+
+    } finally {
+
+        resetButton.disabled = false;
+
+        resetButton.textContent =
+            "Send Reset Link";
+    }
+
+});
+
+
+/* =========================
+   LOADED
+========================= */
+
+console.log(
+    "FAST-TRACK Authentication Loaded ✅"
 );
