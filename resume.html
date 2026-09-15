@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FAST-TRACK | Resume Builder</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #070b14;
+            color: #f8fafc;
+            min-height: 100vh;
+        }
+
+        /* SIDEBAR */
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 245px;
+            padding: 24px 15px;
+            background: rgba(10, 14, 25, 0.94);
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-brand {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            padding: 5px 10px 25px;
+        }
+
+        .sidebar-brand img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+
+        .brand-text {
+            font-size: 19px;
+            font-weight: 800;
+            letter-spacing: .5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .nav-item {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding: 13px 14px;
+            border: none;
+            border-radius: 11px;
+            background: transparent;
+            color: #9ca3af;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 600;
+            text-align: left;
+            transition: .2s;
+        }
+
+        .nav-item:hover {
+            background: rgba(255, 255, 255, .06);
+            color: white;
+        }
+
+        .nav-item.active {
+            background: linear-gradient(135deg, rgba(37, 99, 235, .9), rgba(124, 58, 237, .9));
+            color: white;
+            box-shadow: 0 8px 25px rgba(37, 99, 235, .18);
+        }
+
+        .nav-icon {
+            width: 23px;
+            display: flex;
+            justify-content: center;
+            font-size: 17px;
+        }
+
+        /* MAIN */
+
+        .main {
+            margin-left: 245px;
+            padding: 25px 30px 50px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 35px;
+        }
+
+        .mobile-brand {
+            display: none;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .mobile-brand img {
+            width: 38px;
+            height: 38px;
+        }
+
+        .mobile-brand span {
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .dashboard-btn {
+            padding: 10px 17px;
+            border: 1px solid rgba(255,255,255,.1);
+            border-radius: 9px;
+            background: rgba(255,255,255,.04);
+            color: #cbd5e1;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 600;
+        }
+
+        .dashboard-btn:hover {
+            background: rgba(255,255,255,.08);
+            color: white;
+        }
+
+        .page-title h1 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .page-title p {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        /* BUILDER */
+
+        .builder {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-top: 28px;
+        }
+
+        .panel {
+            background: rgba(15, 23, 42, .75);
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 17px;
+            padding: 25px;
+        }
+
+        .panel h2 {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .section {
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-size: 13px;
+            color: #60a5fa;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .7px;
+            margin-bottom: 13px;
+        }
+
+        .input-group {
+            margin-bottom: 13px;
+        }
+
+        .input-group label {
+            display: block;
+            color: #cbd5e1;
+            font-size: 12px;
+            margin-bottom: 6px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            border: 1px solid rgba(255,255,255,.09);
+            background: rgba(255,255,255,.045);
+            color: white;
+            border-radius: 9px;
+            padding: 11px 12px;
+            outline: none;
+            font-family: inherit;
+            font-size: 13px;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: #3b82f6;
+            background: rgba(255,255,255,.06);
+        }
+
+        textarea {
+            min-height: 75px;
+            resize: vertical;
+        }
+
+        .two-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .save-btn {
+            width: 100%;
+            border: none;
+            padding: 13px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            color: white;
+            font-family: inherit;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+
+        .save-btn:hover {
+            opacity: .9;
+        }
+
+        /* RESUME PREVIEW */
+
+        .preview-panel {
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+        }
+
+        .resume-preview {
+            background: white;
+            color: #172033;
+            border-radius: 5px;
+            padding: 32px;
+            min-height: 650px;
+        }
+
+        .resume-header {
+            border-bottom: 2px solid #172033;
+            padding-bottom: 15px;
+            margin-bottom: 18px;
+        }
+
+        .resume-name {
+            font-size: 25px;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .resume-role {
+            font-size: 13px;
+            color: #475569;
+            margin-bottom: 7px;
+        }
+
+        .contact {
+            font-size: 10px;
+            color: #64748b;
+        }
+
+        .resume-section {
+            margin-bottom: 17px;
+        }
+
+        .resume-section h3 {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: .7px;
+            border-bottom: 1px solid #dbe2ea;
+            padding-bottom: 5px;
+            margin-bottom: 8px;
+        }
+
+        .resume-section p {
+            font-size: 10px;
+            line-height: 1.6;
+            color: #475569;
+        }
+
+        .resume-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .skill-tag {
+            background: #eef2ff;
+            padding: 5px 8px;
+            border-radius: 4px;
+            font-size: 9px;
+            color: #334155;
+        }
+
+        .empty-text {
+            color: #94a3b8;
+            font-style: italic;
+        }
+
+        .download-btn {
+            width: 100%;
+            margin-top: 15px;
+            padding: 12px;
+            border: 1px solid rgba(255,255,255,.1);
+            background: rgba(255,255,255,.05);
+            color: white;
+            border-radius: 10px;
+            font-family: inherit;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .download-btn:hover {
+            background: rgba(255,255,255,.1);
+        }
+
+        /* TOAST */
+
+        .toast {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            background: #111827;
+            border: 1px solid rgba(255,255,255,.1);
+            padding: 13px 18px;
+            border-radius: 10px;
+            font-size: 13px;
+            opacity: 0;
+            transform: translateY(15px);
+            pointer-events: none;
+            transition: .3s;
+            z-index: 2000;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* TABLET */
+
+        @media (max-width: 800px) {
+
+            .sidebar {
+                width: 70px;
+                padding: 20px 9px;
+            }
+
+            .sidebar-brand {
+                justify-content: center;
+                padding: 5px 0 25px;
+            }
+
+            .sidebar-brand img {
+                width: 38px;
+                height: 38px;
+            }
+
+            .brand-text {
+                display: none;
+            }
+
+            .nav-item {
+                justify-content: center;
+                padding: 13px 8px;
+            }
+
+            .nav-item span:last-child {
+                display: none;
+            }
+
+            .nav-icon {
+                width: auto;
+            }
+
+            .main {
+                margin-left: 70px;
+            }
+
+            .builder {
+                grid-template-columns: 1fr;
+            }
+
+            .preview-panel {
+                position: static;
+            }
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 500px) {
+
+            body {
+                padding-bottom: 72px;
+            }
+
+            .sidebar {
+                position: fixed;
+                left: 0;
+                right: 0;
+                top: auto;
+                bottom: 0;
+                width: 100%;
+                height: 65px;
+                padding: 7px 5px;
+                border-right: none;
+                border-top: 1px solid rgba(255,255,255,.08);
+                background: rgba(10,14,25,.97);
+                backdrop-filter: blur(15px);
+                display: block;
+            }
+
+            .sidebar-brand {
+                display: none;
+            }
+
+            .nav-menu {
+                height: 100%;
+                display: grid;
+                grid-template-columns: repeat(7,1fr);
+                gap: 2px;
+                align-items: center;
+            }
+
+            .nav-item {
+                height: 52px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2px;
+                padding: 4px 1px;
+                border-radius: 9px;
+                font-size: 8px;
+            }
+
+            .nav-item span:last-child {
+                display: block;
+                font-size: 8px;
+            }
+
+            .nav-icon {
+                font-size: 18px;
+                width: auto;
+            }
+
+            .main {
+                margin-left: 0;
+                padding: 18px 15px 30px;
+            }
+
+            .topbar {
+                margin-bottom: 25px;
+            }
+
+            .mobile-brand {
+                display: flex;
+            }
+
+            .dashboard-btn {
+                padding: 8px 11px;
+                font-size: 11px;
+            }
+
+            .page-title h1 {
+                font-size: 24px;
+            }
+
+            .builder {
+                margin-top: 20px;
+            }
+
+            .panel {
+                padding: 18px;
+            }
+
+            .two-inputs {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .resume-preview {
+                padding: 22px;
+                min-height: 550px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+            <img src="fast-track-logo.png" alt="FAST-TRACK Logo">
+            <div class="brand-text">FAST-TRACK</div>
+        </div>
+
+        <nav class="nav-menu">
+
+            <button class="nav-item" onclick="window.location.href='dashboard.html'">
+                <span class="nav-icon">🏠</span>
+                <span>Dashboard</span>
+            </button>
+
+            <button class="nav-item" onclick="window.location.href='jobs.html'">
+                <span class="nav-icon">💼</span>
+                <span>Jobs</span>
+            </button>
+
+            <button class="nav-item" onclick="window.location.href='skills.html'">
+                <span class="nav-icon">🧠</span>
+                <span>Skills</span>
+            </button>
+
+            <button class="nav-item" onclick="window.location.href='courses.html'">
+                <span class="nav-icon">📚</span>
+                <span>Courses</span>
+            </button>
+
+            <button class="nav-item active" onclick="window.location.href='resume.html'">
+                <span class="nav-icon">📄</span>
+                <span>Resume</span>
+            </button>
+
+            <button class="nav-item" onclick="window.location.href='progress.html'">
+                <span class="nav-icon">📈</span>
+                <span>Progress</span>
+            </button>
+
+            <button class="nav-item" onclick="window.location.href='profile.html'">
+                <span class="nav-icon">👤</span>
+                <span>My Profile</span>
+            </button>
+
+        </nav>
+    </aside>
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+        <div class="topbar">
+
+            <div class="mobile-brand">
+                <img src="fast-track-logo.png" alt="FAST-TRACK Logo">
+                <span>FAST-TRACK</span>
+            </div>
+
+            <button class="dashboard-btn"
+                onclick="window.location.href='dashboard.html'">
+                ← Dashboard
+            </button>
+
+        </div>
+
+        <div class="page-title">
+            <h1>Resume Builder 📄</h1>
+            <p>Create a professional resume and make your profile job-ready.</p>
+        </div>
+
+        <div class="builder">
+
+            <!-- FORM -->
+
+            <div class="panel">
+
+                <h2>Build Your Resume</h2>
+
+                <!-- PERSONAL -->
+
+                <div class="section">
+
+                    <div class="section-title">Personal Information</div>
+
+                    <div class="input-group">
+                        <label>Full Name</label>
+                        <input id="fullName" type="text"
+                            placeholder="Enter your full name">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Professional Title</label>
+                        <input id="role" type="text"
+                            placeholder="e.g. Data Scientist">
+                    </div>
+
+                    <div class="two-inputs">
+
+                        <div class="input-group">
+                            <label>Email</label>
+                            <input id="email" type="email"
+                                placeholder="your@email.com">
+                        </div>
+
+                        <div class="input-group">
+                            <label>Phone</label>
+                            <input id="phone" type="text"
+                                placeholder="+91 XXXXX XXXXX">
+                        </div>
+
+                    </div>
+
+                    <div class="input-group">
+                        <label>Location</label>
+                        <input id="location" type="text"
+                            placeholder="City, State">
+                    </div>
+
+                </div>
+
+                <!-- SUMMARY -->
+
+                <div class="section">
+
+                    <div class="section-title">Professional Summary</div>
+
+                    <textarea id="summary"
+                        placeholder="Write a short professional summary..."></textarea>
+
+                </div>
+
+                <!-- EDUCATION -->
+
+                <div class="section">
+
+                    <div class="section-title">Education</div>
+
+                    <div class="input-group">
+                        <label>Degree / Course</label>
+                        <input id="degree" type="text"
+                            placeholder="B.Tech Artificial Intelligence and Data Science">
+                    </div>
+
+                    <div class="input-group">
+                        <label>College / University</label>
+                        <input id="college" type="text"
+                            placeholder="College Name">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Year</label>
+                        <input id="year" type="text"
+                            placeholder="2023 - 2027">
+                    </div>
+
+                </div>
+
+                <!-- SKILLS -->
+
+                <div class="section">
+
+                    <div class="section-title">Skills</div>
+
+                    <textarea id="skills"
+                        placeholder="Python, SQL, Machine Learning, HTML, CSS..."></textarea>
+
+                </div>
+
+                <!-- EXPERIENCE -->
+
+                <div class="section">
+
+                    <div class="section-title">Experience</div>
+
+                    <textarea id="experience"
+                        placeholder="Internship / Work Experience..."></textarea>
+
+                </div>
+
+                <!-- PROJECTS -->
+
+                <div class="section">
+
+                    <div class="section-title">Projects</div>
+
+                    <textarea id="projects"
+                        placeholder="Describe your projects..."></textarea>
+
+                </div>
+
+                <button class="save-btn" onclick="updateResume()">
+                    Save & Update Resume
+                </button>
+
+            </div>
+
+            <!-- PREVIEW -->
+
+            <div class="panel preview-panel">
+
+                <h2>Live Preview</h2>
+
+                <div class="resume-preview" id="resumePreview">
+
+                    <div class="resume-header">
+
+                        <div class="resume-name" id="previewName">
+                            Your Name
+                        </div>
+
+                        <div class="resume-role" id="previewRole">
+                            Professional Title
+                        </div>
+
+                        <div class="contact" id="previewContact">
+                            Email • Phone • Location
+                        </div>
+
+                    </div>
+
+                    <div class="resume-section">
+
+                        <h3>Profile</h3>
+
+                        <p id="previewSummary" class="empty-text">
+                            Your professional summary will appear here.
+                        </p>
+
+                    </div>
+
+                    <div class="resume-section">
+
+                        <h3>Education</h3>
+
+                        <p id="previewEducation" class="empty-text">
+                            Add your education details.
+                        </p>
+
+                    </div>
+
+                    <div class="resume-section">
+
+                        <h3>Skills</h3>
+
+                        <div class="resume-skills" id="previewSkills">
+                            <span class="empty-text">Add your skills.</span>
+                        </div>
+
+                    </div>
+
+                    <div class="resume-section">
+
+                        <h3>Experience</h3>
+
+                        <p id="previewExperience" class="empty-text">
+                            Add your experience.
+                        </p>
+
+                    </div>
+
+                    <div class="resume-section">
+
+                        <h3>Projects</h3>
+
+                        <p id="previewProjects" class="empty-text">
+                            Add your projects.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <button class="download-btn" onclick=
