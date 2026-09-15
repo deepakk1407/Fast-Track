@@ -28,20 +28,15 @@
             box-sizing: border-box;
         }
 
-
         html,
         body {
             width: 100%;
             min-height: 100%;
         }
 
-
         body {
-
             font-family: "Inter", Arial, sans-serif;
-
             color: #172033;
-
             min-height: 100vh;
 
             background:
@@ -50,13 +45,11 @@
                     rgba(59, 130, 246, 0.22),
                     transparent 32%
                 ),
-
                 radial-gradient(
                     circle at 85% 80%,
                     rgba(124, 58, 237, 0.18),
                     transparent 32%
                 ),
-
                 linear-gradient(
                     135deg,
                     #e8f1ff,
@@ -73,9 +66,7 @@
         ========================= */
 
         .sidebar {
-
             position: fixed;
-
             left: 0;
             top: 0;
             bottom: 0;
@@ -87,14 +78,13 @@
             background:
                 linear-gradient(
                     180deg,
-                    rgba(235, 243, 255, 0.96),
-                    rgba(243, 240, 255, 0.96)
+                    rgba(235, 243, 255, 0.97),
+                    rgba(243, 240, 255, 0.97)
                 );
 
             backdrop-filter: blur(18px);
 
-            border-right:
-                1px solid #d2def0;
+            border-right: 1px solid #d2def0;
 
             box-shadow:
                 8px 0 35px
@@ -109,9 +99,7 @@
         ========================= */
 
         .sidebar-brand {
-
             display: flex;
-
             align-items: center;
 
             gap: 10px;
@@ -119,7 +107,6 @@
             padding: 5px 10px 28px;
 
             font-size: 19px;
-
             font-weight: 800;
 
             color: #172554;
@@ -127,11 +114,12 @@
 
 
         .sidebar-brand img {
-
-            width: 40px;
-            height: 40px;
+            width: 42px;
+            height: 42px;
 
             object-fit: contain;
+
+            display: block;
 
             filter:
                 drop-shadow(
@@ -141,24 +129,25 @@
         }
 
 
+        .sidebar-brand span {
+            display: block;
+            white-space: nowrap;
+        }
+
+
         /* =========================
            NAVIGATION
         ========================= */
 
         .nav-menu {
-
             display: flex;
-
             flex-direction: column;
-
             gap: 7px;
         }
 
 
         .nav-item {
-
             display: flex;
-
             align-items: center;
 
             gap: 12px;
@@ -168,7 +157,6 @@
             padding: 13px;
 
             border: 1px solid transparent;
-
             border-radius: 11px;
 
             background: transparent;
@@ -176,9 +164,7 @@
             color: #64748b;
 
             font-family: inherit;
-
             font-size: 13px;
-
             font-weight: 600;
 
             text-align: left;
@@ -190,19 +176,16 @@
 
 
         .nav-item:hover {
-
             color: #2563eb;
 
             background:
                 rgba(219, 234, 254, 0.75);
 
-            border-color:
-                #c7dbf7;
+            border-color: #c7dbf7;
         }
 
 
         .nav-item.active {
-
             color: #ffffff;
 
             background:
@@ -219,7 +202,6 @@
 
 
         .nav-icon {
-
             width: 22px;
 
             text-align: center;
@@ -233,7 +215,6 @@
         ========================= */
 
         .main {
-
             margin-left: 245px;
 
             min-height: 100vh;
@@ -245,24 +226,20 @@
         ========================= */
 
         .topbar {
-
             height: 72px;
 
             display: flex;
-
             align-items: center;
-
-            justify-content: flex-end;
+            justify-content: space-between;
 
             padding: 0 30px;
 
             background:
-                rgba(239, 245, 255, 0.88);
+                rgba(239, 245, 255, 0.90);
 
             backdrop-filter: blur(18px);
 
-            border-bottom:
-                1px solid #d5e1f2;
+            border-bottom: 1px solid #d5e1f2;
 
             box-shadow:
                 0 5px 25px
@@ -270,18 +247,44 @@
         }
 
 
-        .user-area {
+        /* MOBILE BRAND */
 
+        .mobile-brand {
+            display: none;
+
+            align-items: center;
+
+            gap: 8px;
+
+            color: #172554;
+
+            font-size: 17px;
+            font-weight: 800;
+        }
+
+
+        .mobile-brand img {
+            width: 34px;
+            height: 34px;
+
+            object-fit: contain;
+
+            display: block;
+        }
+
+
+        .user-area {
             display: flex;
 
             align-items: center;
 
             gap: 15px;
+
+            margin-left: auto;
         }
 
 
         #userName {
-
             font-size: 13px;
 
             font-weight: 700;
@@ -291,16 +294,14 @@
 
 
         #logoutButton {
-
-            border:
-                1px solid #fecaca;
+            border: 1px solid #fecaca;
 
             padding: 9px 17px;
 
             border-radius: 9px;
 
             background:
-                rgba(255, 245, 245, 0.90);
+                rgba(255, 245, 245, 0.95);
 
             color: #dc2626;
 
@@ -313,11 +314,14 @@
             cursor: pointer;
 
             transition: 0.2s;
+
+            position: relative;
+
+            z-index: 20;
         }
 
 
         #logoutButton:hover {
-
             background: #ef4444;
 
             color: #ffffff;
@@ -326,24 +330,28 @@
         }
 
 
+        #logoutButton:disabled {
+            opacity: 0.6;
+
+            cursor: not-allowed;
+        }
+
+
         /* =========================
            DASHBOARD
         ========================= */
 
         .dashboard {
-
             padding: 42px;
         }
 
 
         .welcome {
-
             margin-bottom: 32px;
         }
 
 
         .welcome h1 {
-
             font-size: 32px;
 
             font-weight: 800;
@@ -355,7 +363,6 @@
 
 
         .welcome h1 span {
-
             background:
                 linear-gradient(
                     90deg,
@@ -370,7 +377,6 @@
 
 
         .welcome p {
-
             color: #64748b;
 
             font-size: 14px;
@@ -382,7 +388,6 @@
         ========================= */
 
         .cards {
-
             display: grid;
 
             grid-template-columns:
@@ -393,7 +398,6 @@
 
 
         .card {
-
             position: relative;
 
             overflow: hidden;
@@ -411,8 +415,7 @@
 
             border-radius: 18px;
 
-            border:
-                1px solid #d7e2f2;
+            border: 1px solid #d7e2f2;
 
             box-shadow:
                 0 14px 38px
@@ -425,7 +428,6 @@
 
 
         .card::before {
-
             content: "";
 
             position: absolute;
@@ -446,7 +448,6 @@
 
 
         .card::after {
-
             content: "";
 
             position: absolute;
@@ -465,7 +466,6 @@
 
 
         .card:hover {
-
             transform:
                 translateY(-6px);
 
@@ -479,7 +479,6 @@
 
 
         .card-icon {
-
             font-size: 30px;
 
             margin-bottom: 18px;
@@ -491,7 +490,6 @@
 
 
         .card h3 {
-
             font-size: 17px;
 
             margin-bottom: 8px;
@@ -505,7 +503,6 @@
 
 
         .card p {
-
             color: #64748b;
 
             font-size: 12px;
@@ -525,10 +522,10 @@
         @media (max-width: 1000px) {
 
             .cards {
-
                 grid-template-columns:
                     repeat(2, 1fr);
             }
+
         }
 
 
@@ -539,7 +536,6 @@
         @media (max-width: 800px) {
 
             .sidebar {
-
                 width: 70px;
 
                 padding: 18px 8px;
@@ -547,21 +543,19 @@
 
 
             .sidebar-brand {
-
                 justify-content: center;
 
-                padding: 5px 0 25px;
+                padding:
+                    5px 0 25px;
             }
 
 
             .sidebar-brand span {
-
                 display: none;
             }
 
 
             .nav-item {
-
                 justify-content: center;
 
                 padding: 12px 5px;
@@ -569,33 +563,29 @@
 
 
             .nav-item span:not(.nav-icon) {
-
                 display: none;
             }
 
 
             .nav-icon {
-
                 font-size: 19px;
             }
 
 
             .main {
-
                 margin-left: 70px;
             }
 
 
             .topbar {
-
                 padding: 0 15px;
             }
 
 
             .dashboard {
-
                 padding: 28px 18px;
             }
+
         }
 
 
@@ -605,14 +595,13 @@
 
         @media (max-width: 500px) {
 
-            .sidebar {
+            /* Bottom Navigation */
 
+            .sidebar {
                 position: fixed;
 
                 top: auto;
-
                 bottom: 0;
-
                 left: 0;
 
                 width: 100%;
@@ -641,14 +630,14 @@
             }
 
 
-            .sidebar-brand {
+            /* Hide desktop sidebar brand only */
 
+            .sidebar-brand {
                 display: none;
             }
 
 
             .nav-menu {
-
                 height: 100%;
 
                 flex-direction: row;
@@ -663,7 +652,6 @@
 
 
             .nav-item {
-
                 flex: 1;
 
                 height: 58px;
@@ -683,13 +671,11 @@
 
 
             .nav-item span:not(.nav-icon) {
-
                 display: block;
             }
 
 
             .nav-item.active {
-
                 box-shadow:
                     0 4px 12px
                     rgba(37, 99, 235, 0.14);
@@ -697,62 +683,74 @@
 
 
             .nav-icon {
-
                 font-size: 17px;
             }
 
 
-            .main {
+            /* Main */
 
+            .main {
                 margin-left: 0;
 
                 padding-bottom: 75px;
             }
 
 
+            /* Topbar */
+
             .topbar {
+                height: 64px;
 
-                height: 62px;
-
-                padding: 0 14px;
+                padding: 0 12px;
 
                 background:
-                    rgba(239, 245, 255, 0.92);
+                    rgba(239, 245, 255, 0.94);
+            }
+
+
+            /* Show logo + text on mobile */
+
+            .mobile-brand {
+                display: flex;
             }
 
 
             #userName {
-
                 display: none;
             }
 
 
-            .dashboard {
+            #logoutButton {
+                padding:
+                    8px 12px;
 
+                font-size: 11px;
+            }
+
+
+            /* Dashboard */
+
+            .dashboard {
                 padding: 25px 14px;
             }
 
 
             .welcome {
-
                 margin-bottom: 24px;
             }
 
 
             .welcome h1 {
-
                 font-size: 24px;
             }
 
 
             .welcome p {
-
                 font-size: 12px;
             }
 
 
             .cards {
-
                 grid-template-columns: 1fr;
 
                 gap: 14px;
@@ -760,13 +758,13 @@
 
 
             .card {
-
                 min-height: 145px;
 
                 padding: 21px;
 
                 border-radius: 16px;
             }
+
         }
 
 
@@ -776,21 +774,29 @@
 
         @media (max-width: 380px) {
 
-            .dashboard {
+            .mobile-brand {
+                font-size: 15px;
+            }
 
+
+            .mobile-brand img {
+                width: 31px;
+                height: 31px;
+            }
+
+
+            .dashboard {
                 padding:
                     22px 12px;
             }
 
 
             .welcome h1 {
-
                 font-size: 22px;
             }
 
 
             .card {
-
                 padding: 19px;
 
                 min-height: 140px;
@@ -798,9 +804,9 @@
 
 
             .card h3 {
-
                 font-size: 16px;
             }
+
         }
 
     </style>
@@ -821,7 +827,7 @@
 
             <img
                 src="fast-track-logo.png"
-                alt="FAST-TRACK">
+                alt="FAST-TRACK Logo">
 
             <span>
                 FAST-TRACK
@@ -832,8 +838,8 @@
 
         <nav class="nav-menu">
 
-
             <button
+                type="button"
                 class="nav-item active">
 
                 <span class="nav-icon">
@@ -848,6 +854,7 @@
 
 
             <button
+                type="button"
                 class="nav-item">
 
                 <span class="nav-icon">
@@ -862,6 +869,7 @@
 
 
             <button
+                type="button"
                 class="nav-item">
 
                 <span class="nav-icon">
@@ -876,6 +884,7 @@
 
 
             <button
+                type="button"
                 class="nav-item">
 
                 <span class="nav-icon">
@@ -890,6 +899,7 @@
 
 
             <button
+                type="button"
                 class="nav-item">
 
                 <span class="nav-icon">
@@ -904,6 +914,7 @@
 
 
             <button
+                type="button"
                 class="nav-item">
 
                 <span class="nav-icon">
@@ -918,6 +929,7 @@
 
 
             <button
+                type="button"
                 class="nav-item">
 
                 <span class="nav-icon">
@@ -929,7 +941,6 @@
                 </span>
 
             </button>
-
 
         </nav>
 
@@ -947,14 +958,37 @@
 
         <header class="topbar">
 
+
+            <!-- MOBILE BRAND -->
+
+            <div class="mobile-brand">
+
+                <img
+                    src="fast-track-logo.png"
+                    alt="FAST-TRACK Logo">
+
+                <span>
+                    FAST-TRACK
+                </span>
+
+            </div>
+
+
+            <!-- USER -->
+
             <div class="user-area">
 
                 <span id="userName">
                     Loading...
                 </span>
 
-                <button id="logoutButton">
+
+                <button
+                    type="button"
+                    id="logoutButton">
+
                     Logout
+
                 </button>
 
             </div>
@@ -962,7 +996,9 @@
         </header>
 
 
-        <!-- DASHBOARD -->
+        <!-- =========================
+             DASHBOARD CONTENT
+        ========================= -->
 
         <section class="dashboard">
 
@@ -1093,92 +1129,4 @@
         "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
 
 
-        import {
-            getAuth,
-            onAuthStateChanged,
-            signOut
-        } from
-        "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
-
-
-        /* =========================
-           FIREBASE CONFIG
-        ========================= */
-
-        const firebaseConfig = {
-
-            apiKey:
-                "AIzaSyDJ84_tSgau334V60r17bqHHubaf5Lecto",
-
-            authDomain:
-                "fast-track-6d262.firebaseapp.com",
-
-            projectId:
-                "fast-track-6d262",
-
-            storageBucket:
-                "fast-track-6d262.firebasestorage.app",
-
-            messagingSenderId:
-                "338934873510",
-
-            appId:
-                "1:338934873510:web:1ad3791207107af183a367",
-
-            measurementId:
-                "G-M6FSRH2Y9H"
-
-        };
-
-
-        /* =========================
-           INITIALIZE FIREBASE
-        ========================= */
-
-        const app =
-            initializeApp(
-                firebaseConfig
-            );
-
-
-        const auth =
-            getAuth(app);
-
-
-        /* =========================
-           USER ELEMENTS
-        ========================= */
-
-        const userName =
-            document.getElementById(
-                "userName"
-            );
-
-
-        const welcomeName =
-            document.getElementById(
-                "welcomeName"
-            );
-
-
-        /* =========================
-           AUTH STATE
-        ========================= */
-
-        onAuthStateChanged(
-            auth,
-            (user) => {
-
-                if (user) {
-
-                    const name =
-                        user.displayName ||
-                        user.email.split("@")[0];
-
-
-                    userName.textContent =
-                        name;
-
-
-                    welcomeName.textContent =
-                       
+        
