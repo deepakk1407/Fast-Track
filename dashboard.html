@@ -508,16 +508,11 @@ body {
 }
 
 
-/* =================================================
+/* =========================
    MOBILE
-================================================= */
+========================= */
 
 @media (max-width: 500px) {
-
-
-    /* =========================
-       MOBILE SIDEBAR CONTAINER
-    ========================= */
 
     .sidebar {
 
@@ -554,20 +549,13 @@ body {
     }
 
 
-    /* =========================
-       HIDE SIDEBAR BRAND
-       ONLY FROM BOTTOM NAV
-    ========================= */
-
     .sidebar-brand {
 
         display: none;
     }
 
 
-    /* =========================
-       BOTTOM NAVIGATION
-    ========================= */
+    /* BOTTOM NAV */
 
     .nav-menu {
 
@@ -633,9 +621,7 @@ body {
     }
 
 
-    /* =========================
-       MAIN
-    ========================= */
+    /* MAIN */
 
     .main {
 
@@ -649,9 +635,7 @@ body {
     }
 
 
-    /* =========================
-       MOBILE TOPBAR
-    ========================= */
+    /* TOPBAR */
 
     .topbar {
 
@@ -681,11 +665,6 @@ body {
         z-index: 20;
     }
 
-
-    /*
-       CREATE LOGO + TEXT
-       USING EXISTING IMAGE
-    */
 
     .topbar::before {
 
@@ -732,9 +711,7 @@ body {
     }
 
 
-    /* =========================
-       USER AREA
-    ========================= */
+    /* USER */
 
     .user-area {
 
@@ -768,9 +745,7 @@ body {
     }
 
 
-    /* =========================
-       DASHBOARD CONTENT
-    ========================= */
+    /* CONTENT */
 
     .dashboard {
 
@@ -804,9 +779,7 @@ body {
     }
 
 
-    /* =========================
-       CARDS
-    ========================= */
+    /* CARDS */
 
     .cards {
 
@@ -971,7 +944,11 @@ body {
     <nav class="nav-menu">
 
 
-        <button class="nav-item active">
+        <!-- DASHBOARD -->
+
+        <button
+            class="nav-item active"
+            onclick="window.location.href='dashboard.html'">
 
             <span class="nav-icon">
                 🏠
@@ -984,7 +961,11 @@ body {
         </button>
 
 
-        <button class="nav-item">
+        <!-- JOBS -->
+
+        <button
+            class="nav-item"
+            onclick="window.location.href='jobs.html'">
 
             <span class="nav-icon">
                 💼
@@ -997,7 +978,11 @@ body {
         </button>
 
 
-        <button class="nav-item">
+        <!-- SKILLS -->
+
+        <button
+            class="nav-item"
+            onclick="window.location.href='skills.html'">
 
             <span class="nav-icon">
                 🧠
@@ -1010,7 +995,11 @@ body {
         </button>
 
 
-        <button class="nav-item">
+        <!-- COURSES -->
+
+        <button
+            class="nav-item"
+            onclick="window.location.href='courses.html'">
 
             <span class="nav-icon">
                 📚
@@ -1023,7 +1012,11 @@ body {
         </button>
 
 
-        <button class="nav-item">
+        <!-- RESUME -->
+
+        <button
+            class="nav-item"
+            onclick="window.location.href='resume.html'">
 
             <span class="nav-icon">
                 📄
@@ -1036,7 +1029,11 @@ body {
         </button>
 
 
-        <button class="nav-item">
+        <!-- PROGRESS -->
+
+        <button
+            class="nav-item"
+            onclick="window.location.href='progress.html'">
 
             <span class="nav-icon">
                 📈
@@ -1049,7 +1046,11 @@ body {
         </button>
 
 
-        <button class="nav-item">
+        <!-- PROFILE -->
+
+        <button
+            class="nav-item"
+            onclick="window.location.href='profile.html'">
 
             <span class="nav-icon">
                 👤
@@ -1091,6 +1092,10 @@ body {
     </header>
 
 
+    <!-- =========================
+         DASHBOARD CONTENT
+    ========================= -->
+
     <section class="dashboard">
 
 
@@ -1119,7 +1124,11 @@ body {
         <div class="cards">
 
 
-            <div class="card">
+            <!-- JOBS CARD -->
+
+            <div
+                class="card"
+                onclick="window.location.href='jobs.html'">
 
                 <div class="card-icon">
                     💼
@@ -1138,7 +1147,11 @@ body {
             </div>
 
 
-            <div class="card">
+            <!-- SKILLS CARD -->
+
+            <div
+                class="card"
+                onclick="window.location.href='skills.html'">
 
                 <div class="card-icon">
                     🧠
@@ -1157,7 +1170,11 @@ body {
             </div>
 
 
-            <div class="card">
+            <!-- RESUME CARD -->
+
+            <div
+                class="card"
+                onclick="window.location.href='resume.html'">
 
                 <div class="card-icon">
                     📄
@@ -1176,7 +1193,11 @@ body {
             </div>
 
 
-            <div class="card">
+            <!-- PROGRESS CARD -->
+
+            <div
+                class="card"
+                onclick="window.location.href='progress.html'">
 
                 <div class="card-icon">
                     📈
@@ -1268,6 +1289,10 @@ const welcomeName =
     );
 
 
+/* =========================
+   AUTH STATE
+========================= */
+
 onAuthStateChanged(
     auth,
     (user) => {
@@ -1327,46 +1352,8 @@ document
         }
     );
 
-
-/* =========================
-   NAVIGATION
-========================= */
-
-const navItems =
-    document.querySelectorAll(
-        ".nav-item"
-    );
-
-
-navItems.forEach(
-    (item) => {
-
-        item.addEventListener(
-            "click",
-            () => {
-
-                navItems.forEach(
-                    (nav) => {
-
-                        nav.classList.remove(
-                            "active"
-                        );
-
-                    }
-                );
-
-
-                item.classList.add(
-                    "active"
-                );
-
-            }
-        );
-
-    }
-);
-
 </script>
 
 </body>
+
 </html>
