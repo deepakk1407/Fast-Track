@@ -1,29 +1,78 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
+
+/* =========================================
+   RESET
+========================================= */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+
+html,
 body {
-    font-family: 'Inter', sans-serif;
-    background: #f8fafc;
-    min-height: 100vh;
+    width: 100%;
+    min-height: 100%;
 }
 
-/* =========================
+
+body {
+    font-family: "Inter", sans-serif;
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(37, 99, 235, 0.22),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(124, 58, 237, 0.24),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #020617 0%,
+            #0f172a 45%,
+            #111827 100%
+        );
+
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+
+/* =========================================
    MAIN CONTAINER
-========================= */
+========================================= */
 
 .auth-container {
+    width: 100%;
     min-height: 100vh;
+
     display: flex;
+
+    position: relative;
+
+    background:
+        radial-gradient(
+            circle at 25% 50%,
+            rgba(37, 99, 235, 0.12),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 80% 20%,
+            rgba(124, 58, 237, 0.12),
+            transparent 30%
+        );
 }
 
-/* =========================
+
+/* =========================================
    LEFT BRAND SIDE
-========================= */
+========================================= */
 
 .brand-side {
     width: 50%;
@@ -35,78 +84,206 @@ body {
 
     padding: 50px;
 
-    background: linear-gradient(
-        135deg,
-        #2563eb,
-        #4f46e5,
-        #7c3aed
-    );
+    position: relative;
 
-    color: white;
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 25% 30%,
+            rgba(37, 99, 235, 0.30),
+            transparent 38%
+        ),
+        radial-gradient(
+            circle at 75% 75%,
+            rgba(124, 58, 237, 0.30),
+            transparent 38%
+        ),
+        linear-gradient(
+            145deg,
+            #0b1220,
+            #111827
+        );
+
+    border-right: 1px solid rgba(255,255,255,0.08);
 }
+
+
+/* Decorative glow */
+
+.brand-side::before {
+    content: "";
+
+    position: absolute;
+
+    width: 320px;
+    height: 320px;
+
+    border-radius: 50%;
+
+    background: rgba(37, 99, 235, 0.18);
+
+    filter: blur(80px);
+
+    top: -120px;
+    left: -100px;
+}
+
+
+.brand-side::after {
+    content: "";
+
+    position: absolute;
+
+    width: 320px;
+    height: 320px;
+
+    border-radius: 50%;
+
+    background: rgba(124, 58, 237, 0.18);
+
+    filter: blur(80px);
+
+    bottom: -130px;
+    right: -100px;
+}
+
+
+/* =========================================
+   BRAND CONTENT
+========================================= */
 
 .brand-content {
     width: 100%;
-    max-width: 500px;
+    max-width: 480px;
+
     text-align: center;
+
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 20px;
 }
 
+
+/* =========================================
+   LOGO
+========================================= */
+
 .logo {
-    width: 105px;
-    height: 105px;
+    width: 120px;
+    height: 120px;
 
     object-fit: contain;
 
     display: block;
-    margin: 0 auto 22px;
 
-    border-radius: 22px;
+    margin-bottom: 22px;
+
+    flex-shrink: 0;
+
+    filter:
+        drop-shadow(0 15px 30px rgba(0,0,0,0.35));
 }
+
+
+/* =========================================
+   BADGE
+========================================= */
 
 .brand-badge {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 
     padding: 8px 15px;
-    margin-bottom: 18px;
 
-    border: 1px solid rgba(255,255,255,0.35);
-    border-radius: 30px;
+    margin-bottom: 14px;
 
-    font-size: 11px;
+    border-radius: 999px;
+
+    background:
+        rgba(37, 99, 235, 0.12);
+
+    border: 1px solid
+        rgba(96, 165, 250, 0.35);
+
+    color: #93c5fd;
+
+    font-size: 10px;
     font-weight: 700;
-    letter-spacing: 1.5px;
 
-    background: rgba(255,255,255,0.12);
+    letter-spacing: 1.8px;
+
+    backdrop-filter: blur(10px);
 }
+
+
+/* =========================================
+   FAST-TRACK TITLE
+========================================= */
 
 .brand-content h1 {
-    font-size: 48px;
+    display: block;
+
+    font-size: 52px;
+
+    line-height: 1.05;
+
     font-weight: 800;
+
     letter-spacing: 2px;
 
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+
+    color: #ffffff;
+
+    text-shadow:
+        0 5px 30px rgba(37, 99, 235, 0.30);
 }
+
+
+/* =========================================
+   TAGLINE
+========================================= */
 
 .tagline {
-    font-size: 20px;
+    display: block;
+
+    font-size: 18px;
+
     font-weight: 600;
 
-    margin-bottom: 18px;
+    color: #c4b5fd;
+
+    margin-bottom: 16px;
 }
+
+
+/* =========================================
+   DESCRIPTION
+========================================= */
 
 .description {
-    max-width: 430px;
-    margin: 0 auto;
+    display: block;
 
-    font-size: 15px;
+    max-width: 410px;
+
+    font-size: 13px;
+
     line-height: 1.7;
 
-    color: rgba(255,255,255,0.85);
+    color: #94a3b8;
 }
 
-/* =========================
+
+/* =========================================
    RIGHT FORM SIDE
-========================= */
+========================================= */
 
 .form-side {
     width: 50%;
@@ -118,235 +295,329 @@ body {
 
     padding: 40px;
 
-    background: #f8fafc;
-
-    position: relative;
-    z-index: 10;
+    background:
+        radial-gradient(
+            circle at 80% 20%,
+            rgba(124, 58, 237, 0.12),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 20% 80%,
+            rgba(37, 99, 235, 0.10),
+            transparent 35%
+        );
 }
+
+
+/* =========================================
+   AUTH CARD
+========================================= */
 
 .auth-card {
     width: 100%;
     max-width: 470px;
 
-    background: white;
+    padding: 34px;
 
-    border-radius: 22px;
+    border-radius: 24px;
 
-    padding: 32px;
+    background:
+        rgba(15, 23, 42, 0.82);
+
+    border:
+        1px solid rgba(255,255,255,0.10);
 
     box-shadow:
-        0 20px 60px rgba(15, 23, 42, 0.10);
+        0 30px 80px rgba(0,0,0,0.45),
+        inset 0 1px 0 rgba(255,255,255,0.04);
 
-    position: relative;
-    z-index: 10;
+    backdrop-filter: blur(25px);
 }
 
-/* =========================
+
+/* =========================================
    TABS
-========================= */
+========================================= */
 
 .auth-tabs {
-    display: flex;
+    width: 100%;
 
-    background: #f1f5f9;
+    display: flex;
 
     padding: 5px;
 
+    margin-bottom: 28px;
+
     border-radius: 12px;
 
-    margin-bottom: 28px;
+    background:
+        rgba(255,255,255,0.05);
+
+    border:
+        1px solid rgba(255,255,255,0.06);
 }
 
+
 .auth-tab {
-    width: 50%;
+    flex: 1;
 
     border: none;
-    background: transparent;
 
     padding: 12px;
 
     border-radius: 9px;
 
-    font-family: inherit;
-    font-size: 14px;
-    font-weight: 600;
+    background: transparent;
 
-    color: #64748b;
+    color: #94a3b8;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    font-weight: 600;
 
     cursor: pointer;
 
     transition: 0.25s;
 }
 
+
 .auth-tab.active {
-    background: white;
+    color: #ffffff;
 
-    color: #2563eb;
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #7c3aed
+        );
 
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    box-shadow:
+        0 8px 25px
+        rgba(37,99,235,0.25);
 }
 
-/* =========================
+
+/* =========================================
    FORM BOX
-========================= */
+========================================= */
 
 .form-box {
     display: none;
-
-    position: relative;
 }
+
 
 .form-box.active {
     display: block;
 }
 
+
 .form-box h2 {
-    font-size: 26px;
+    color: #ffffff;
 
-    color: #0f172a;
+    font-size: 25px;
 
-    margin-bottom: 8px;
+    margin-bottom: 7px;
 }
+
 
 .form-subtitle {
-    font-size: 13px;
+    color: #94a3b8;
 
-    color: #64748b;
-
-    margin-bottom: 22px;
+    font-size: 12px;
 
     line-height: 1.5;
+
+    margin-bottom: 22px;
 }
 
-/* =========================
+
+/* =========================================
    GOOGLE BUTTON
-========================= */
+========================================= */
 
 .google-btn {
     width: 100%;
 
+    min-height: 48px;
+
     display: flex;
+
     align-items: center;
     justify-content: center;
+
     gap: 10px;
 
-    padding: 13px;
+    border-radius: 11px;
 
-    border: 1px solid #e2e8f0;
-    border-radius: 10px;
+    border:
+        1px solid rgba(255,255,255,0.12);
 
-    background: white;
+    background:
+        rgba(255,255,255,0.06);
 
-    color: #334155;
+    color: #ffffff;
 
     font-family: inherit;
-    font-size: 14px;
+
+    font-size: 13px;
+
     font-weight: 600;
 
     cursor: pointer;
 
-    transition: 0.2s;
+    transition: 0.25s;
 }
+
 
 .google-btn:hover {
-    background: #f8fafc;
-    border-color: #cbd5e1;
+    background:
+        rgba(255,255,255,0.10);
+
+    border-color:
+        rgba(255,255,255,0.20);
+
+    transform: translateY(-1px);
 }
+
 
 .google-btn span {
-    font-size: 18px;
-    font-weight: 700;
+    width: 24px;
+    height: 24px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
     color: #4285f4;
+
+    font-weight: 800;
+
+    font-size: 14px;
 }
 
-/* =========================
+
+/* =========================================
    DIVIDER
-========================= */
+========================================= */
 
 .divider {
     display: flex;
+
     align-items: center;
 
     gap: 12px;
 
     margin: 22px 0;
 
-    color: #94a3b8;
+    color: #64748b;
 
-    font-size: 11px;
+    font-size: 10px;
+
     font-weight: 600;
 }
+
 
 .divider::before,
 .divider::after {
     content: "";
 
-    flex: 1;
-
     height: 1px;
 
-    background: #e2e8f0;
+    flex: 1;
+
+    background:
+        rgba(255,255,255,0.08);
 }
 
-/* =========================
-   INPUT
-========================= */
+
+/* =========================================
+   INPUT GROUP
+========================================= */
 
 .input-group {
-    margin-bottom: 17px;
+    margin-bottom: 16px;
 }
+
 
 .input-group label {
     display: block;
 
-    margin-bottom: 7px;
+    color: #cbd5e1;
 
-    font-size: 13px;
+    font-size: 11px;
+
     font-weight: 600;
 
-    color: #334155;
+    margin-bottom: 7px;
 }
 
-.input-group input[type="text"],
+
 .input-group input[type="email"],
+.input-group input[type="text"],
 .input-group input[type="password"] {
     width: 100%;
 
-    padding: 13px 14px;
+    height: 46px;
 
-    border: 1px solid #dbe3ee;
+    padding: 0 13px;
+
     border-radius: 10px;
+
+    border:
+        1px solid rgba(255,255,255,0.10);
+
+    background:
+        rgba(255,255,255,0.045);
+
+    color: #ffffff;
 
     outline: none;
 
     font-family: inherit;
-    font-size: 14px;
 
-    color: #0f172a;
+    font-size: 12px;
 
-    background: white;
-
-    transition: 0.2s;
+    transition: 0.25s;
 }
+
+
+.input-group input::placeholder {
+    color: #64748b;
+}
+
 
 .input-group input:focus {
-    border-color: #2563eb;
+    border-color: #3b82f6;
+
+    background:
+        rgba(255,255,255,0.07);
 
     box-shadow:
-        0 0 0 3px rgba(37,99,235,0.10);
+        0 0 0 3px
+        rgba(59,130,246,0.10);
 }
 
-/* =========================
+
+/* =========================================
    PASSWORD
-========================= */
+========================================= */
 
 .password-wrapper {
     position: relative;
 }
 
+
 .password-wrapper input {
-    padding-right: 48px !important;
+    padding-right: 45px !important;
 }
+
 
 .password-toggle {
     position: absolute;
@@ -357,20 +628,20 @@ body {
     transform: translateY(-50%);
 
     border: none;
+
     background: transparent;
 
-    font-size: 17px;
+    color: #94a3b8;
 
     cursor: pointer;
 
-    padding: 5px;
-
-    z-index: 5;
+    font-size: 16px;
 }
 
-/* =========================
+
+/* =========================================
    FORM OPTIONS
-========================= */
+========================================= */
 
 .form-options {
     display: flex;
@@ -378,164 +649,205 @@ body {
     align-items: center;
     justify-content: space-between;
 
-    margin: 4px 0 20px;
+    margin: 5px 0 20px;
 }
+
 
 .remember {
     display: flex;
+
     align-items: center;
 
     gap: 7px;
 
-    font-size: 12px;
+    color: #94a3b8;
 
-    color: #64748b;
+    font-size: 10px;
 
     cursor: pointer;
 }
 
+
 .remember input {
-    accent-color: #2563eb;
+    accent-color: #3b82f6;
 }
+
 
 .forgot {
     border: none;
+
     background: transparent;
 
-    color: #2563eb;
+    color: #60a5fa;
 
     font-family: inherit;
-    font-size: 12px;
-    font-weight: 600;
+
+    font-size: 10px;
 
     cursor: pointer;
 }
 
-/* =========================
+
+/* =========================================
    PRIMARY BUTTON
-========================= */
+========================================= */
 
 .primary-btn {
     width: 100%;
 
+    min-height: 48px;
+
     border: none;
-    border-radius: 10px;
 
-    padding: 14px;
+    border-radius: 11px;
 
-    background: linear-gradient(
-        135deg,
-        #2563eb,
-        #7c3aed
-    );
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #7c3aed
+        );
 
-    color: white;
+    color: #ffffff;
 
     font-family: inherit;
-    font-size: 14px;
+
+    font-size: 13px;
+
     font-weight: 700;
 
     cursor: pointer;
 
-    transition: 0.2s;
+    box-shadow:
+        0 12px 30px
+        rgba(37,99,235,0.20);
 
-    position: relative;
-    z-index: 9999;
-
-    pointer-events: auto !important;
+    transition: 0.25s;
 }
+
 
 .primary-btn:hover {
     transform: translateY(-1px);
 
     box-shadow:
-        0 8px 20px rgba(37,99,235,0.20);
+        0 15px 35px
+        rgba(37,99,235,0.30);
 }
 
-.primary-btn:disabled {
+
+.primary-btn:disabled,
+.google-btn:disabled {
     opacity: 0.65;
+
     cursor: not-allowed;
+
+    transform: none;
 }
 
-/* =========================
+
+/* =========================================
    SWITCH TEXT
-========================= */
+========================================= */
 
 .switch-text {
     text-align: center;
 
     margin-top: 22px;
 
-    font-size: 12px;
-
     color: #64748b;
+
+    font-size: 11px;
 }
+
 
 .switch-text button {
     border: none;
+
     background: transparent;
 
-    color: #2563eb;
+    color: #60a5fa;
 
     font-family: inherit;
+
+    font-size: 11px;
+
     font-weight: 700;
 
     cursor: pointer;
 }
 
-/* =========================
+
+/* =========================================
    ROLE SELECTOR
-========================= */
+========================================= */
 
 .role-selector {
-    display: flex;
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
     gap: 10px;
 }
 
+
 .role-option {
-    flex: 1;
+    position: relative;
 
     cursor: pointer;
 }
 
+
 .role-option input {
-    display: none;
+    position: absolute;
+
+    opacity: 0;
 }
 
+
 .role-label {
+    min-height: 43px;
+
     display: flex;
 
     align-items: center;
     justify-content: center;
 
-    min-height: 45px;
-
-    padding: 10px;
-
-    border: 1px solid #dbe3ee;
     border-radius: 10px;
 
-    font-size: 12px;
+    border:
+        1px solid rgba(255,255,255,0.10);
+
+    background:
+        rgba(255,255,255,0.04);
+
+    color: #94a3b8;
+
+    font-size: 10px;
+
     font-weight: 600;
 
-    color: #64748b;
-
-    text-align: center;
-
-    transition: 0.2s;
+    transition: 0.25s;
 }
+
 
 .role-option input:checked + .role-label {
-    border-color: #2563eb;
+    color: #ffffff;
 
-    background: #eff6ff;
+    border-color:
+        rgba(96,165,250,0.55);
 
-    color: #2563eb;
+    background:
+        rgba(37,99,235,0.14);
+
+    box-shadow:
+        0 0 0 2px
+        rgba(37,99,235,0.08);
 }
 
-/* =========================
+
+/* =========================================
    TERMS
-========================= */
+========================================= */
 
 .terms {
     display: flex;
@@ -544,26 +856,28 @@ body {
 
     gap: 8px;
 
-    margin: 5px 0 18px;
+    margin: 5px 0 17px;
 
-    font-size: 11px;
+    color: #94a3b8;
 
-    color: #64748b;
+    font-size: 10px;
 
     line-height: 1.5;
 
     cursor: pointer;
 }
 
+
 .terms input {
     margin-top: 2px;
 
-    accent-color: #2563eb;
+    accent-color: #3b82f6;
 }
 
-/* =========================
+
+/* =========================================
    MODAL
-========================= */
+========================================= */
 
 .modal-overlay {
     position: fixed;
@@ -571,32 +885,47 @@ body {
     inset: 0;
 
     display: none;
+
     align-items: center;
     justify-content: center;
 
     padding: 20px;
 
-    background: rgba(15,23,42,0.55);
+    background:
+        rgba(2,6,23,0.78);
 
-    z-index: 99999;
+    backdrop-filter: blur(10px);
+
+    z-index: 1000;
 }
+
 
 .modal-overlay.show {
     display: flex;
 }
 
+
 .modal {
     width: 100%;
-    max-width: 400px;
 
-    background: white;
+    max-width: 390px;
 
-    padding: 28px;
-
-    border-radius: 18px;
+    padding: 30px;
 
     position: relative;
+
+    border-radius: 20px;
+
+    background:
+        #0f172a;
+
+    border:
+        1px solid rgba(255,255,255,0.10);
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,0.55);
 }
+
 
 .modal-close {
     position: absolute;
@@ -605,457 +934,389 @@ body {
     right: 15px;
 
     border: none;
+
     background: transparent;
+
+    color: #94a3b8;
 
     font-size: 25px;
 
     cursor: pointer;
-
-    color: #64748b;
 }
 
-.modal h3 {
-    font-size: 22px;
 
-    color: #0f172a;
+.modal h3 {
+    color: #ffffff;
+
+    font-size: 21px;
 
     margin-bottom: 8px;
 }
 
-.modal p {
-    font-size: 13px;
 
-    color: #64748b;
+.modal p {
+    color: #94a3b8;
+
+    font-size: 11px;
 
     margin-bottom: 18px;
 }
 
+
 .modal input {
     width: 100%;
 
-    padding: 13px;
+    height: 46px;
 
-    border: 1px solid #dbe3ee;
-    border-radius: 10px;
-
-    outline: none;
+    padding: 0 12px;
 
     margin-bottom: 14px;
+
+    border-radius: 10px;
+
+    border:
+        1px solid rgba(255,255,255,0.10);
+
+    background:
+        rgba(255,255,255,0.05);
+
+    color: #ffffff;
+
+    outline: none;
 
     font-family: inherit;
 }
 
-/* =========================
+
+/* =========================================
    TOAST
-========================= */
+========================================= */
 
 .toast {
     position: fixed;
 
     left: 50%;
+
     bottom: 25px;
 
     transform:
-        translateX(-50%)
-        translateY(100px);
+        translate(-50%, 120px);
 
-    min-width: 280px;
-    max-width: 90%;
+    min-width: 260px;
 
-    padding: 14px 18px;
+    max-width: calc(100% - 30px);
 
-    border-radius: 10px;
+    padding: 13px 18px;
 
-    color: white;
+    border-radius: 11px;
 
-    font-size: 13px;
-    font-weight: 600;
+    background: #111827;
+
+    color: #ffffff;
 
     text-align: center;
 
-    opacity: 0;
+    font-size: 12px;
 
-    pointer-events: none;
+    font-weight: 600;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.40);
+
+    opacity: 0;
 
     transition: 0.3s;
 
-    z-index: 999999;
+    z-index: 2000;
 }
+
 
 .toast.show {
-    opacity: 1;
-
     transform:
-        translateX(-50%)
-        translateY(0);
+        translate(-50%, 0);
+
+    opacity: 1;
 }
 
-/* =========================
+
+/* =========================================
    TABLET
-========================= */
+========================================= */
 
-@media (max-width: 850px) {
-
-    .auth-container {
-        flex-direction: column;
-    }
+@media (max-width: 900px) {
 
     .brand-side {
-        width: 100%;
-        min-height: auto;
-
-        padding: 35px 25px;
-    }
-
-    .brand-content {
-        max-width: 600px;
-    }
-
-    .logo {
-        width: 85px;
-        height: 85px;
-
-        margin-bottom: 16px;
-    }
-
-    .brand-content h1 {
-        font-size: 38px;
-    }
-
-    .tagline {
-        font-size: 17px;
-    }
-
-    .description {
-        font-size: 13px;
+        padding: 30px;
     }
 
     .form-side {
-        width: 100%;
-        min-height: auto;
+        padding: 25px;
+    }
 
-        padding: 35px 20px;
+    .brand-content h1 {
+        font-size: 42px;
+    }
+
+    .logo {
+        width: 100px;
+        height: 100px;
     }
 
     .auth-card {
-        max-width: 520px;
+        padding: 28px;
     }
 }
 
-/* =========================
-   MOBILE — FIXED BRAND AREA
-========================= */
 
-@media (max-width: 500px) {
+/* =========================================
+   MOBILE
+========================================= */
 
-    body {
-        background: #f8fafc;
-    }
+@media (max-width: 700px) {
 
     .auth-container {
-        min-height: 100vh;
-        display: flex;
         flex-direction: column;
+
+        min-height: 100vh;
     }
 
-    /* BRAND SIDE */
+
+    /* BRAND */
 
     .brand-side {
         width: 100%;
 
-        min-height: 275px;
+        min-height: 310px;
+
         height: auto;
 
-        padding: 18px 16px 22px;
+        padding: 30px 18px 28px;
 
         display: flex;
 
-        align-items: flex-start;
+        align-items: center;
+
         justify-content: center;
 
         overflow: visible;
+
+        border-right: none;
+
+        border-bottom:
+            1px solid rgba(255,255,255,0.08);
     }
+
 
     .brand-content {
         width: 100%;
-        max-width: 360px;
+
+        max-width: 390px;
+
+        padding: 5px;
 
         display: flex;
+
         flex-direction: column;
 
         align-items: center;
-        justify-content: flex-start;
+
+        justify-content: center;
 
         text-align: center;
     }
 
-    /* LOGO */
 
     .logo {
-        width: 68px;
-        height: 68px;
+        width: 90px;
 
-        object-fit: contain;
+        height: 90px;
 
         display: block;
 
-        margin: 0 auto 10px;
-
-        border-radius: 16px;
+        object-fit: contain;
 
         flex-shrink: 0;
+
+        margin: 0 auto 14px;
     }
 
-    /* BADGE */
 
     .brand-badge {
-        display: inline-block;
+        display: inline-flex;
 
-        padding: 6px 12px;
+        margin: 0 auto 10px;
 
-        margin: 0 auto 8px;
+        padding: 7px 12px;
 
-        font-size: 9px;
+        font-size: 8px;
 
-        letter-spacing: 1.1px;
+        letter-spacing: 1.4px;
     }
 
-    /* FAST-TRACK */
 
     .brand-content h1 {
         display: block;
 
         visibility: visible;
+
         opacity: 1;
 
-        font-size: 30px;
+        font-size: 34px;
 
-        line-height: 1.1;
+        line-height: 1.05;
 
         letter-spacing: 1.5px;
 
-        margin: 0 0 5px;
+        margin-bottom: 6px;
     }
 
-    /* TAGLINE */
 
     .tagline {
         display: block;
 
-        visibility: visible;
-        opacity: 1;
-
         font-size: 14px;
 
-        line-height: 1.4;
-
-        margin: 0 0 8px;
+        margin-bottom: 9px;
     }
 
-    /* DESCRIPTION */
 
     .description {
         display: block;
 
         visibility: visible;
+
         opacity: 1;
 
-        max-width: 330px;
+        max-width: 340px;
 
-        font-size: 11px;
+        font-size: 10px;
 
-        line-height: 1.5;
-
-        margin: 0 auto;
+        line-height: 1.55;
     }
 
-    /* FORM SIDE */
+
+    /* FORM */
 
     .form-side {
         width: 100%;
 
         min-height: auto;
 
-        padding: 20px 14px 30px;
-
-        display: flex;
+        padding: 22px 15px 35px;
 
         align-items: flex-start;
+
         justify-content: center;
     }
+
 
     .auth-card {
         width: 100%;
 
-        max-width: 470px;
+        max-width: 480px;
 
-        padding: 22px 18px;
+        padding: 23px 18px;
 
-        border-radius: 18px;
+        border-radius: 20px;
     }
 
-    .auth-tabs {
-        margin-bottom: 22px;
-    }
-
-    .auth-tab {
-        padding: 11px 8px;
-
-        font-size: 13px;
-    }
 
     .form-box h2 {
         font-size: 22px;
     }
 
+
     .form-subtitle {
-        font-size: 12px;
-
-        margin-bottom: 18px;
-    }
-
-    .google-btn {
-        padding: 12px;
-
-        font-size: 13px;
-    }
-
-    .divider {
-        margin: 18px 0;
-    }
-
-    .input-group {
-        margin-bottom: 14px;
-    }
-
-    .input-group label {
-        font-size: 12px;
-    }
-
-    .input-group input[type="text"],
-    .input-group input[type="email"],
-    .input-group input[type="password"] {
-        padding: 12px;
-
-        font-size: 13px;
-    }
-
-    .password-wrapper input {
-        padding-right: 45px !important;
-    }
-
-    .form-options {
-        margin-bottom: 17px;
-    }
-
-    .remember,
-    .forgot {
-        font-size: 11px;
-    }
-
-    .primary-btn {
-        padding: 13px;
-
-        font-size: 13px;
-    }
-
-    .switch-text {
-        margin-top: 18px;
-
-        font-size: 11px;
-    }
-
-    /* ROLE */
-
-    .role-selector {
-        gap: 7px;
-    }
-
-    .role-label {
-        min-height: 42px;
-
-        padding: 8px 5px;
-
-        font-size: 10px;
-    }
-
-    /* TERMS */
-
-    .terms {
-        font-size: 10px;
-
-        margin-bottom: 15px;
-    }
-
-    /* MODAL */
-
-    .modal {
-        padding: 24px 18px;
-
-        border-radius: 16px;
-    }
-
-    .modal h3 {
-        font-size: 20px;
-    }
-
-    /* TOAST */
-
-    .toast {
-        bottom: 18px;
-
-        min-width: 250px;
-
-        padding: 12px 14px;
-
         font-size: 11px;
     }
 }
 
-/* =========================
-   VERY SMALL PHONES
-========================= */
 
-@media (max-width: 360px) {
+/* =========================================
+   SMALL PHONES
+========================================= */
+
+@media (max-width: 380px) {
 
     .brand-side {
-        min-height: 255px;
+        min-height: 285px;
 
-        padding: 15px 14px 20px;
+        padding:
+            22px 14px 25px;
     }
 
+
     .logo {
-        width: 60px;
-        height: 60px;
+        width: 76px;
+
+        height: 76px;
+
+        margin-bottom: 11px;
+    }
+
+
+    .brand-badge {
+        font-size: 7px;
+
+        padding: 6px 10px;
+
+        letter-spacing: 1.2px;
 
         margin-bottom: 8px;
     }
 
-    .brand-content h1 {
-        font-size: 27px;
 
-        letter-spacing: 1px;
+    .brand-content h1 {
+        font-size: 29px;
+
+        letter-spacing: 1.2px;
+
+        margin-bottom: 5px;
     }
+
 
     .tagline {
         font-size: 12px;
+
+        margin-bottom: 8px;
     }
+
 
     .description {
-        font-size: 10px;
+        max-width: 300px;
 
-        line-height: 1.45;
+        font-size: 9px;
+
+        line-height: 1.5;
     }
+
+
+    .form-side {
+        padding:
+            18px 12px 30px;
+    }
+
 
     .auth-card {
-        padding: 19px 15px;
+        padding:
+            20px 15px;
+
+        border-radius: 18px;
     }
+
+
+    .auth-tabs {
+        margin-bottom: 22px;
+    }
+
 
     .form-box h2 {
         font-size: 20px;
     }
 
-    .role-label {
-        font-size: 9px;
+
+    .google-btn,
+    .primary-btn {
+        min-height: 45px;
     }
-   }
+}
