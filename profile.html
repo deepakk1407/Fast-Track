@@ -7,8 +7,14 @@
 
     <title>FAST-TRACK | My Profile</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
         * {
             margin: 0;
@@ -16,657 +22,1255 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: "Inter", sans-serif;
             background: #070b14;
-            color: #f8fafc;
+            color: #ffffff;
             min-height: 100vh;
         }
 
-        /* SIDEBAR */
+        input,
+        textarea,
+        select,
+        button {
+            font-family: inherit;
+        }
+
+
+        /* =========================
+           SIDEBAR
+        ========================= */
 
         .sidebar {
             position: fixed;
             left: 0;
             top: 0;
-            bottom: 0;
             width: 245px;
+            height: 100vh;
+
+            background: #0b1020;
+
+            border-right:
+                1px solid rgba(255,255,255,0.07);
+
             padding: 24px 15px;
-            background: rgba(10, 14, 25, 0.94);
-            border-right: 1px solid rgba(255, 255, 255, 0.08);
+
             z-index: 1000;
+
             display: flex;
             flex-direction: column;
         }
 
-        .sidebar-brand {
+
+        .brand {
             display: flex;
             align-items: center;
+
             gap: 11px;
-            padding: 5px 10px 25px;
+
+            padding: 0 10px 28px;
         }
 
-        .sidebar-brand img {
-            width: 40px;
-            height: 40px;
+
+        .brand img {
+            width: 42px;
+            height: 42px;
+
             object-fit: contain;
+
+            border-radius: 10px;
         }
+
 
         .brand-text {
-            font-size: 19px;
-            font-weight: 800;
-            letter-spacing: .5px;
+            line-height: 1.1;
         }
 
-        .nav-menu {
+
+        .brand-text h2 {
+            font-size: 18px;
+            font-weight: 800;
+
+            letter-spacing: 0.5px;
+        }
+
+
+        .brand-text span {
+            display: block;
+
+            color: #8d98b5;
+
+            font-size: 9px;
+
+            margin-top: 4px;
+
+            letter-spacing: 1px;
+        }
+
+
+        /* =========================
+           NAV
+        ========================= */
+
+        .nav {
             display: flex;
             flex-direction: column;
             gap: 7px;
         }
 
-        .nav-item {
-            width: 100%;
+
+        .nav a {
+            text-decoration: none;
+
+            color: #aab3ca;
+
             display: flex;
             align-items: center;
+
             gap: 13px;
-            padding: 13px 14px;
-            border: none;
+
+            padding: 12px 14px;
+
             border-radius: 11px;
-            background: transparent;
-            color: #9ca3af;
-            cursor: pointer;
-            font-family: inherit;
-            font-size: 14px;
+
+            font-size: 13px;
             font-weight: 600;
-            text-align: left;
-            transition: .2s;
+
+            transition: 0.25s;
         }
 
-        .nav-item:hover {
-            background: rgba(255, 255, 255, .06);
-            color: white;
+
+        .nav a:hover {
+            color: #ffffff;
+
+            background:
+                rgba(255,255,255,0.05);
+
+            transform:
+                translateX(2px);
         }
 
-        .nav-item.active {
-            background: linear-gradient(
-                135deg,
-                rgba(37, 99, 235, .9),
-                rgba(124, 58, 237, .9)
-            );
-            color: white;
-            box-shadow: 0 8px 25px rgba(37, 99, 235, .18);
+
+        .nav a.active {
+            color: #ffffff;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(37,99,235,0.9),
+                    rgba(124,58,237,0.9)
+                );
+
+            box-shadow:
+                0 8px 25px rgba(37,99,235,0.18);
         }
+
 
         .nav-icon {
-            width: 23px;
-            display: flex;
-            justify-content: center;
+            width: 22px;
+
+            text-align: center;
+
             font-size: 17px;
         }
 
-        /* MAIN */
+
+        /* =========================
+           SIDEBAR BOTTOM
+        ========================= */
+
+        .sidebar-bottom {
+            margin-top: auto;
+
+            padding: 12px 10px;
+        }
+
+
+        .career-card {
+            padding: 15px;
+
+            border-radius: 14px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(37,99,235,0.12),
+                    rgba(124,58,237,0.10)
+                );
+
+            border:
+                1px solid rgba(124,58,237,0.18);
+        }
+
+
+        .career-card small {
+            color: #7f8aa5;
+
+            font-size: 10px;
+        }
+
+
+        .career-card strong {
+            display: block;
+
+            margin-top: 5px;
+
+            font-size: 13px;
+        }
+
+
+        /* =========================
+           MAIN
+        ========================= */
 
         .main {
             margin-left: 245px;
-            padding: 25px 30px 50px;
+
+            min-height: 100vh;
+
+            padding:
+                28px 32px 50px;
         }
+
 
         .topbar {
             display: flex;
+
             justify-content: space-between;
+
             align-items: center;
-            margin-bottom: 35px;
+
+            margin-bottom: 28px;
         }
 
-        .mobile-brand {
-            display: none;
-            align-items: center;
-            gap: 10px;
-        }
 
-        .mobile-brand img {
-            width: 38px;
-            height: 38px;
-        }
+        .topbar-left h1 {
+            font-size: 28px;
 
-        .mobile-brand span {
-            font-size: 18px;
             font-weight: 800;
         }
+
+
+        .topbar-left p {
+            color: #8d98b5;
+
+            font-size: 13px;
+
+            margin-top: 7px;
+        }
+
 
         .dashboard-btn {
-            padding: 10px 17px;
-            border: 1px solid rgba(255, 255, 255, .1);
-            border-radius: 9px;
-            background: rgba(255, 255, 255, .04);
-            color: #cbd5e1;
+            border:
+                1px solid rgba(255,255,255,0.1);
+
+            background: #0d1425;
+
+            color: #dce3f5;
+
+            padding: 11px 16px;
+
+            border-radius: 10px;
+
             cursor: pointer;
-            font-family: inherit;
+
+            font-size: 12px;
+
             font-weight: 600;
+
+            transition: 0.25s;
         }
+
 
         .dashboard-btn:hover {
-            background: rgba(255, 255, 255, .08);
-            color: white;
+            border-color:
+                rgba(124,58,237,0.5);
+
+            transform:
+                translateY(-1px);
         }
 
-        .page-title h1 {
-            font-size: 30px;
-            margin-bottom: 8px;
-        }
 
-        .page-title p {
-            color: #94a3b8;
-            font-size: 14px;
-        }
+        /* =========================
+           PROFILE HERO
+        ========================= */
 
-        /* PROFILE HEADER */
+        .profile-hero {
+            background:
+                linear-gradient(
+                    135deg,
+                    #111b38,
+                    #17122f
+                );
 
-        .profile-header {
-            margin-top: 28px;
+            border:
+                1px solid rgba(255,255,255,0.07);
+
+            border-radius: 20px;
+
             padding: 25px;
-            border-radius: 17px;
-            background: linear-gradient(
-                135deg,
-                rgba(37, 99, 235, .16),
-                rgba(124, 58, 237, .13)
-            );
-            border: 1px solid rgba(96, 165, 250, .18);
+
             display: flex;
+
+            justify-content: space-between;
+
             align-items: center;
+
             gap: 20px;
+
+            margin-bottom: 22px;
         }
+
+
+        .profile-main {
+            display: flex;
+
+            align-items: center;
+
+            gap: 18px;
+        }
+
 
         .avatar {
-            width: 85px;
-            height: 85px;
-            border-radius: 50%;
-            background: linear-gradient(
-                135deg,
-                #2563eb,
-                #7c3aed
-            );
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
-            font-weight: 800;
+            width: 82px;
+            height: 82px;
+
             flex-shrink: 0;
-            box-shadow: 0 10px 30px rgba(37, 99, 235, .25);
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #7c3aed
+                );
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 29px;
+
+            font-weight: 800;
+
+            border:
+                4px solid rgba(255,255,255,0.07);
+
+            overflow: hidden;
         }
 
-        .profile-header-info h2 {
-            font-size: 23px;
-            margin-bottom: 6px;
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            display: none;
         }
 
-        .profile-header-info p {
-            color: #94a3b8;
-            font-size: 13px;
-        }
 
-        .completion {
-            margin-left: auto;
-            text-align: right;
-        }
+        .profile-main h2 {
+            font-size: 21px;
 
-        .completion strong {
-            display: block;
-            font-size: 24px;
             margin-bottom: 5px;
         }
 
-        .completion span {
-            color: #94a3b8;
-            font-size: 11px;
+
+        .profile-role {
+            color: #a5b4fc;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            margin-bottom: 8px;
         }
 
-        /* GRID */
+
+        .profile-email {
+            color: #7f8aa4;
+
+            font-size: 10px;
+        }
+
+
+        .profile-score {
+            text-align: center;
+
+            min-width: 130px;
+        }
+
+
+        .score-number {
+            font-size: 31px;
+
+            font-weight: 800;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #60a5fa,
+                    #a78bfa
+                );
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+        }
+
+
+        .score-label {
+            color: #7f8aa4;
+
+            font-size: 9px;
+
+            margin-top: 3px;
+        }
+
+
+        /* =========================
+           GRID
+        ========================= */
 
         .profile-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+
+            grid-template-columns:
+                1.2fr 0.8fr;
+
             gap: 20px;
-            margin-top: 22px;
+
+            align-items: start;
         }
 
-        .card {
-            background: rgba(15, 23, 42, .75);
-            border: 1px solid rgba(255, 255, 255, .08);
+
+        .panel {
+            background: #0b1120;
+
+            border:
+                1px solid rgba(255,255,255,0.07);
+
             border-radius: 17px;
-            padding: 23px;
-        }
 
-        .card h2 {
-            font-size: 17px;
+            padding: 22px;
+
             margin-bottom: 20px;
         }
 
-        /* FORM */
 
-        .input-group {
-            margin-bottom: 15px;
+        .panel-title {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 20px;
         }
 
-        .input-group label {
+
+        .panel-title h2 {
+            font-size: 16px;
+        }
+
+
+        .panel-title span {
+            color: #707c98;
+
+            font-size: 10px;
+        }
+
+
+        /* =========================
+           FORM
+        ========================= */
+
+        .form-grid {
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 13px;
+        }
+
+
+        .field {
+            margin-bottom: 2px;
+        }
+
+
+        .field.full {
+            grid-column:
+                1 / -1;
+        }
+
+
+        .field label {
             display: block;
-            color: #94a3b8;
-            font-size: 11px;
+
+            color: #8994ad;
+
+            font-size: 10px;
+
             margin-bottom: 7px;
         }
 
-        input,
-        textarea,
-        select {
+
+        .field input,
+        .field textarea,
+        .field select {
             width: 100%;
-            border: 1px solid rgba(255, 255, 255, .09);
-            background: rgba(255, 255, 255, .045);
-            color: white;
-            border-radius: 9px;
-            padding: 11px 12px;
+
+            background: #080e1c;
+
+            border:
+                1px solid rgba(255,255,255,0.08);
+
             outline: none;
-            font-family: inherit;
-            font-size: 13px;
+
+            color: #ffffff;
+
+            border-radius: 9px;
+
+            padding: 11px 12px;
+
+            font-size: 11px;
+
+            transition: 0.2s;
         }
 
-        input:focus,
-        textarea:focus,
-        select:focus {
-            border-color: #3b82f6;
+
+        .field input:focus,
+        .field textarea:focus,
+        .field select:focus {
+            border-color:
+                rgba(99,102,241,0.8);
+
+            box-shadow:
+                0 0 0 3px
+                rgba(99,102,241,0.08);
         }
 
-        select option {
-            background: #111827;
-            color: white;
-        }
 
-        textarea {
-            min-height: 90px;
+        .field textarea {
+            min-height: 80px;
+
             resize: vertical;
+
+            line-height: 1.5;
         }
 
-        .two-inputs {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-        }
 
-        .save-btn {
-            width: 100%;
-            padding: 13px;
-            border: none;
-            border-radius: 10px;
-            background: linear-gradient(
-                135deg,
-                #2563eb,
-                #7c3aed
-            );
-            color: white;
-            font-family: inherit;
-            font-weight: 700;
+        .field select {
             cursor: pointer;
         }
 
-        .save-btn:hover {
-            opacity: .9;
+
+        .field select option {
+            background: #0b1120;
+
+            color: white;
         }
 
-        /* CAREER INFORMATION */
 
-        .info-row {
+        /* =========================
+           BUTTONS
+        ========================= */
+
+        .form-actions {
             display: flex;
+
+            gap: 10px;
+
+            margin-top: 20px;
+        }
+
+
+        .save-btn,
+        .reset-btn {
+            flex: 1;
+
+            padding: 12px;
+
+            border-radius: 10px;
+
+            cursor: pointer;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            transition: 0.25s;
+        }
+
+
+        .save-btn {
+            border: none;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #7c3aed
+                );
+        }
+
+
+        .save-btn:hover {
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 10px 25px
+                rgba(79,70,229,0.22);
+        }
+
+
+        .reset-btn {
+            background: #11192b;
+
+            color: #c5ccdd;
+
+            border:
+                1px solid rgba(255,255,255,0.08);
+        }
+
+
+        .reset-btn:hover {
+            background: #171f33;
+        }
+
+
+        /* =========================
+           INFO CARDS
+        ========================= */
+
+        .info-list {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 10px;
+        }
+
+
+        .info-card {
+            display: flex;
+
+            align-items: center;
+
+            gap: 11px;
+
+            padding: 12px;
+
+            background: #0e1627;
+
+            border:
+                1px solid rgba(255,255,255,0.05);
+
+            border-radius: 10px;
+        }
+
+
+        .info-icon {
+            width: 32px;
+            height: 32px;
+
+            flex-shrink: 0;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 8px;
+
+            background:
+                rgba(99,102,241,0.1);
+
+            font-size: 15px;
+        }
+
+
+        .info-text {
+            min-width: 0;
+        }
+
+
+        .info-text small {
+            display: block;
+
+            color: #68748e;
+
+            font-size: 8px;
+
+            margin-bottom: 3px;
+        }
+
+
+        .info-text strong {
+            display: block;
+
+            color: #dce3f5;
+
+            font-size: 10px;
+
+            word-break: break-word;
+        }
+
+
+        /* =========================
+           SKILLS
+        ========================= */
+
+        .skill-summary {
+            display: flex;
+
             justify-content: space-between;
-            gap: 20px;
-            padding: 13px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, .06);
+
+            align-items: center;
+
+            margin-bottom: 15px;
         }
 
-        .info-row:last-child {
-            border-bottom: none;
+
+        .skill-total {
+            font-size: 11px;
+
+            color: #8994ad;
         }
 
-        .info-label {
-            color: #64748b;
-            font-size: 12px;
+
+        .skill-total strong {
+            color: #ffffff;
+
+            font-size: 20px;
+
+            margin-right: 4px;
         }
 
-        .info-value {
-            color: #e2e8f0;
-            font-size: 12px;
+
+        .skill-link {
+            border: none;
+
+            background: transparent;
+
+            color: #818cf8;
+
+            font-size: 10px;
+
             font-weight: 600;
-            text-align: right;
+
+            cursor: pointer;
         }
 
-        /* SKILLS */
 
         .skill-list {
             display: flex;
+
             flex-wrap: wrap;
-            gap: 8px;
+
+            gap: 7px;
         }
 
-        .skill {
+
+        .skill-tag {
             padding: 7px 10px;
-            border-radius: 7px;
-            background: rgba(37, 99, 235, .12);
-            border: 1px solid rgba(59, 130, 246, .18);
-            color: #93c5fd;
-            font-size: 11px;
+
+            border-radius: 6px;
+
+            background:
+                rgba(99,102,241,0.11);
+
+            border:
+                1px solid rgba(99,102,241,0.13);
+
+            color: #a5b4fc;
+
+            font-size: 9px;
+
+            font-weight: 600;
         }
 
-        .empty {
-            color: #64748b;
-            font-size: 12px;
-            font-style: italic;
+
+        .empty-skills {
+            color: #68748e;
+
+            font-size: 10px;
+
+            padding: 8px 0;
         }
 
-        /* PROFILE TIPS */
 
-        .tip-row {
+        /* =========================
+           CAREER CARD
+        ========================= */
+
+        .career-info {
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 10px;
+        }
+
+
+        .career-item {
+            background: #0e1627;
+
+            border:
+                1px solid rgba(255,255,255,0.05);
+
+            border-radius: 10px;
+
+            padding: 13px;
+        }
+
+
+        .career-item span {
+            display: block;
+
+            color: #68748e;
+
+            font-size: 8px;
+
+            margin-bottom: 5px;
+        }
+
+
+        .career-item strong {
+            color: #dce3f5;
+
+            font-size: 10px;
+
+            word-break: break-word;
+        }
+
+
+        /* =========================
+           RESUME STATUS
+        ========================= */
+
+        .resume-status {
             display: flex;
+
+            align-items: center;
+
             justify-content: space-between;
-            gap: 20px;
-            padding: 13px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, .06);
+
+            padding: 14px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(37,99,235,0.08),
+                    rgba(124,58,237,0.08)
+                );
+
+            border:
+                1px solid rgba(99,102,241,0.12);
+
+            border-radius: 11px;
         }
 
-        .tip-row:last-child {
-            border-bottom: none;
+
+        .resume-left {
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
         }
 
-        /* TOAST */
+
+        .resume-icon {
+            width: 35px;
+            height: 35px;
+
+            border-radius: 9px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+                rgba(99,102,241,0.12);
+
+            font-size: 16px;
+        }
+
+
+        .resume-left strong {
+            display: block;
+
+            font-size: 10px;
+
+            margin-bottom: 3px;
+        }
+
+
+        .resume-left span {
+            color: #68748e;
+
+            font-size: 8px;
+        }
+
+
+        .resume-open {
+            border: none;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #7c3aed
+                );
+
+            color: white;
+
+            padding: 8px 11px;
+
+            border-radius: 7px;
+
+            cursor: pointer;
+
+            font-size: 9px;
+
+            font-weight: 700;
+        }
+
+
+        /* =========================
+           TOAST
+        ========================= */
 
         .toast {
             position: fixed;
+
             right: 25px;
+
             bottom: 25px;
+
             background: #111827;
-            border: 1px solid rgba(255, 255, 255, .1);
+
+            color: #ffffff;
+
             padding: 13px 18px;
+
             border-radius: 10px;
-            font-size: 13px;
+
+            font-size: 11px;
+
+            font-weight: 600;
+
+            border:
+                1px solid rgba(255,255,255,0.09);
+
+            box-shadow:
+                0 15px 35px
+                rgba(0,0,0,0.3);
+
             opacity: 0;
-            transform: translateY(15px);
+
+            transform:
+                translateY(15px);
+
             pointer-events: none;
-            transition: .3s;
-            z-index: 2000;
+
+            transition: 0.3s;
+
+            z-index: 3000;
         }
+
 
         .toast.show {
             opacity: 1;
-            transform: translateY(0);
+
+            transform:
+                translateY(0);
         }
 
-        /* TABLET */
+
+        /* =========================
+           MOBILE NAV
+        ========================= */
+
+        .mobile-nav {
+            display: none;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 1000px) {
+
+            .profile-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
 
         @media (max-width: 800px) {
 
             .sidebar {
                 width: 70px;
-                padding: 20px 9px;
+
+                padding: 20px 8px;
             }
 
-            .sidebar-brand {
+
+            .brand {
                 justify-content: center;
-                padding: 5px 0 25px;
+
+                padding:
+                    0 0 25px;
             }
 
-            .sidebar-brand img {
-                width: 38px;
-                height: 38px;
+
+            .brand img {
+                width: 40px;
+                height: 40px;
             }
 
-            .brand-text {
+
+            .brand-text,
+            .nav a span:not(.nav-icon),
+            .career-card {
                 display: none;
             }
 
-            .nav-item {
+
+            .nav a {
                 justify-content: center;
-                padding: 13px 8px;
+
+                padding: 12px 5px;
             }
 
-            .nav-item span:last-child {
-                display: none;
-            }
 
             .nav-icon {
                 width: auto;
             }
+
 
             .main {
                 margin-left: 70px;
+
+                padding:
+                    25px 20px 40px;
             }
 
-            .profile-grid {
-                grid-template-columns: 1fr;
+
+            .profile-hero {
+                padding: 20px;
             }
+
         }
 
-        /* MOBILE */
 
-        @media (max-width: 500px) {
-
-            body {
-                padding-bottom: 72px;
-            }
+        @media (max-width: 650px) {
 
             .sidebar {
-                position: fixed;
-                left: 0;
-                right: 0;
-                top: auto;
-                bottom: 0;
-                width: 100%;
-                height: 65px;
-                padding: 7px 5px;
-                border-right: none;
-                border-top: 1px solid rgba(255, 255, 255, .08);
-                background: rgba(10, 14, 25, .97);
-                backdrop-filter: blur(15px);
-                display: block;
-            }
-
-            .sidebar-brand {
                 display: none;
             }
 
-            .nav-menu {
-                height: 100%;
-                display: grid;
-                grid-template-columns: repeat(7, 1fr);
-                gap: 2px;
-                align-items: center;
-            }
-
-            .nav-item {
-                height: 52px;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                gap: 2px;
-                padding: 4px 1px;
-                border-radius: 9px;
-                font-size: 8px;
-            }
-
-            .nav-item span:last-child {
-                display: block;
-                font-size: 8px;
-            }
-
-            .nav-icon {
-                font-size: 18px;
-                width: auto;
-            }
 
             .main {
                 margin-left: 0;
-                padding: 18px 15px 30px;
+
+                padding:
+                    20px 14px 90px;
             }
+
 
             .topbar {
-                margin-bottom: 25px;
+                align-items: flex-start;
+
+                gap: 12px;
             }
 
-            .mobile-brand {
-                display: flex;
+
+            .topbar-left h1 {
+                font-size: 22px;
             }
 
-            .dashboard-btn {
-                padding: 8px 11px;
+
+            .topbar-left p {
                 font-size: 11px;
             }
 
-            .page-title h1 {
-                font-size: 24px;
+
+            .dashboard-btn {
+                padding:
+                    9px 11px;
+
+                font-size: 10px;
             }
 
-            .profile-header {
+
+            .profile-hero {
                 flex-direction: column;
-                text-align: center;
-                padding: 22px 15px;
-            }
 
-            .completion {
-                margin-left: 0;
-                text-align: center;
-            }
+                align-items: flex-start;
 
-            .profile-grid {
-                margin-top: 15px;
-            }
-
-            .card {
                 padding: 18px;
             }
 
-            .two-inputs {
-                grid-template-columns: 1fr;
-                gap: 0;
+
+            .profile-score {
+                text-align: left;
+
+                padding-left: 100px;
             }
+
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .field.full {
+                grid-column:
+                    auto;
+            }
+
+
+            .career-info {
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .panel {
+                padding: 17px;
+            }
+
+
+            .mobile-nav {
+                position: fixed;
+
+                display: grid;
+
+                grid-template-columns:
+                    repeat(7, 1fr);
+
+                bottom: 0;
+
+                left: 0;
+
+                right: 0;
+
+                height: 65px;
+
+                background: #0b1020;
+
+                border-top:
+                    1px solid rgba(255,255,255,0.08);
+
+                z-index: 2000;
+
+                padding: 5px 3px;
+            }
+
+
+            .mobile-nav a {
+                text-decoration: none;
+
+                color: #78849f;
+
+                display: flex;
+
+                flex-direction: column;
+
+                justify-content: center;
+
+                align-items: center;
+
+                gap: 3px;
+
+                border-radius: 9px;
+
+                font-size: 8px;
+
+                font-weight: 600;
+            }
+
+
+            .mobile-nav a.active {
+                color: #ffffff;
+
+                background:
+                    linear-gradient(
+                        135deg,
+                        rgba(37,99,235,0.9),
+                        rgba(124,58,237,0.9)
+                    );
+            }
+
+
+            .mobile-nav .m-icon {
+                font-size: 15px;
+            }
+
+
+            .toast {
+                right: 15px;
+
+                left: 15px;
+
+                bottom: 80px;
+
+                text-align: center;
+            }
+
         }
+
     </style>
+
 </head>
+
 
 <body>
 
-    <!-- SIDEBAR -->
+
+    <!-- =========================
+         SIDEBAR
+    ========================= -->
 
     <aside class="sidebar">
 
-        <div class="sidebar-brand">
-            <img src="fast-track-logo.png" alt="FAST-TRACK Logo">
-            <div class="brand-text">FAST-TRACK</div>
-        </div>
 
-        <nav class="nav-menu">
+        <div class="brand">
 
-            <button class="nav-item"
-                onclick="window.location.href='dashboard.html'">
-                <span class="nav-icon">🏠</span>
-                <span>Dashboard</span>
-            </button>
+            <img
+                src="fast-track-logo.png"
+                alt="FAST-TRACK Logo">
 
-            <button class="nav-item"
-                onclick="window.location.href='jobs.html'">
-                <span class="nav-icon">💼</span>
-                <span>Jobs</span>
-            </button>
+            <div class="brand-text">
 
-            <button class="nav-item"
-                onclick="window.location.href='skills.html'">
-                <span class="nav-icon">🧠</span>
-                <span>Skills</span>
-            </button>
-
-            <button class="nav-item"
-                onclick="window.location.href='courses.html'">
-                <span class="nav-icon">📚</span>
-                <span>Courses</span>
-            </button>
-
-            <button class="nav-item"
-                onclick="window.location.href='resume.html'">
-                <span class="nav-icon">📄</span>
-                <span>Resume</span>
-            </button>
-
-            <button class="nav-item"
-                onclick="window.location.href='progress.html'">
-                <span class="nav-icon">📈</span>
-                <span>Progress</span>
-            </button>
-
-            <button class="nav-item active"
-                onclick="window.location.href='profile.html'">
-                <span class="nav-icon">👤</span>
-                <span>My Profile</span>
-            </button>
-
-        </nav>
-
-    </aside>
-
-
-    <!-- MAIN -->
-
-    <main class="main">
-
-        <div class="topbar">
-
-            <div class="mobile-brand">
-                <img src="fast-track-logo.png" alt="FAST-TRACK Logo">
-                <span>FAST-TRACK</span>
-            </div>
-
-            <button class="dashboard-btn"
-                onclick="window.location.href='dashboard.html'">
-                ← Dashboard
-            </button>
-
-        </div>
-
-
-        <div class="page-title">
-
-            <h1>My Profile 👤</h1>
-
-            <p>
-                Manage your personal information and career profile.
-            </p>
-
-        </div>
-
-
-        <!-- PROFILE HEADER -->
-
-        <div class="profile-header">
-
-            <div class="avatar" id="avatar">
-                U
-            </div>
-
-            <div class="profile-header-info">
-
-                <h2 id="profileName">
-                    Your Name
+                <h2>
+                    FAST-TRACK
                 </h2>
 
-                <p id="profileRole">
-                    Add your professional title
-                </p>
-
-            </div>
-
-            <div class="completion">
-
-                <strong id="completionValue">
-                    0%
-                </strong>
-
                 <span>
-                    Profile Complete
+                    SMART CAREER PLATFORM
                 </span>
 
             </div>
@@ -674,186 +1278,2270 @@
         </div>
 
 
-        <!-- PROFILE GRID -->
+        <nav class="nav">
+
+
+            <a href="dashboard.html">
+
+                <span class="nav-icon">
+                    🏠
+                </span>
+
+                <span>
+                    Dashboard
+                </span>
+
+            </a>
+
+
+            <a href="jobs.html">
+
+                <span class="nav-icon">
+                    💼
+                </span>
+
+                <span>
+                    Jobs
+                </span>
+
+            </a>
+
+
+            <a href="skills.html">
+
+                <span class="nav-icon">
+                    🧠
+                </span>
+
+                <span>
+                    Skills
+                </span>
+
+            </a>
+
+
+            <a href="courses.html">
+
+                <span class="nav-icon">
+                    📚
+                </span>
+
+                <span>
+                    Courses
+                </span>
+
+            </a>
+
+
+            <a href="resume.html">
+
+                <span class="nav-icon">
+                    📄
+                </span>
+
+                <span>
+                    Resume
+                </span>
+
+            </a>
+
+
+            <a href="progress.html">
+
+                <span class="nav-icon">
+                    📊
+                </span>
+
+                <span>
+                    Progress
+                </span>
+
+            </a>
+
+
+            <a
+                href="profile.html"
+                class="active">
+
+                <span class="nav-icon">
+                    👤
+                </span>
+
+                <span>
+                    My Profile
+                </span>
+
+            </a>
+
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="career-card">
+
+                <small>
+                    YOUR CAREER
+                </small>
+
+                <strong>
+                    Keep moving forward 🚀
+                </strong>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =========================
+         MAIN
+    ========================= -->
+
+    <main class="main">
+
+
+        <!-- TOPBAR -->
+
+        <div class="topbar">
+
+
+            <div class="topbar-left">
+
+                <h1>
+                    My Profile 👤
+                </h1>
+
+                <p>
+                    Manage your personal and career information.
+                </p>
+
+            </div>
+
+
+            <button
+                class="dashboard-btn"
+                onclick="window.location.href='dashboard.html'">
+
+                ← Dashboard
+
+            </button>
+
+
+        </div>
+
+
+        <!-- =========================
+             PROFILE HERO
+        ========================= -->
+
+        <section class="profile-hero">
+
+
+            <div class="profile-main">
+
+
+                <div
+                    class="avatar"
+                    id="avatar">
+
+                    <span id="avatarText">
+                        U
+                    </span>
+
+                    <img
+                        id="avatarImage"
+                        alt="Profile Photo">
+
+                </div>
+
+
+                <div>
+
+                    <h2 id="heroName">
+                        Your Name
+                    </h2>
+
+
+                    <div
+                        class="profile-role"
+                        id="heroRole">
+
+                        Add your career role
+
+                    </div>
+
+
+                    <div
+                        class="profile-email"
+                        id="heroEmail">
+
+                        Add your email address
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="profile-score">
+
+                <div
+                    class="score-number"
+                    id="profileScore">
+
+                    0%
+
+                </div>
+
+
+                <div class="score-label">
+
+                    Profile Completion
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- =========================
+             PROFILE GRID
+        ========================= -->
 
         <div class="profile-grid">
 
 
-            <!-- PERSONAL INFORMATION -->
+            <!-- =========================
+                 LEFT COLUMN
+            ========================= -->
 
-            <div class="card">
-
-                <h2>Personal Information</h2>
-
-                <div class="input-group">
-
-                    <label>Full Name</label>
-
-                    <input
-                        id="fullName"
-                        type="text"
-                        placeholder="Enter your full name">
-
-                </div>
+            <div>
 
 
-                <div class="input-group">
+                <!-- PERSONAL INFORMATION -->
 
-                    <label>Email</label>
-
-                    <input
-                        id="email"
-                        type="email"
-                        placeholder="your@email.com">
-
-                </div>
+                <section class="panel">
 
 
-                <div class="two-inputs">
+                    <div class="panel-title">
 
-                    <div class="input-group">
+                        <h2>
+                            Personal Information
+                        </h2>
 
-                        <label>Phone</label>
-
-                        <input
-                            id="phone"
-                            type="text"
-                            placeholder="+91 XXXXX XXXXX">
+                        <span>
+                            Edit your details
+                        </span>
 
                     </div>
 
 
-                    <div class="input-group">
+                    <div class="form-grid">
 
-                        <label>Location</label>
 
-                        <input
-                            id="location"
-                            type="text"
-                            placeholder="City">
+                        <!-- FULL NAME -->
+
+                        <div class="field">
+
+                            <label for="fullName">
+                                Full Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="fullName"
+                                placeholder="Enter your full name">
+
+                        </div>
+
+
+                        <!-- EMAIL -->
+
+                        <div class="field">
+
+                            <label for="email">
+                                Email
+                            </label>
+
+                            <input
+                                type="email"
+                                id="email"
+                                placeholder="Enter your email">
+
+                        </div>
+
+
+                        <!-- PHONE -->
+
+                        <div class="field">
+
+                            <label for="phone">
+                                Phone
+                            </label>
+
+                            <input
+                                type="text"
+                                id="phone"
+                                placeholder="+91 XXXXX XXXXX">
+
+                        </div>
+
+
+                        <!-- LOCATION -->
+
+                        <div class="field">
+
+                            <label for="location">
+                                Location
+                            </label>
+
+                            <input
+                                type="text"
+                                id="location"
+                                placeholder="City, State">
+
+                        </div>
+
+
+                        <!-- DATE OF BIRTH -->
+
+                        <div class="field">
+
+                            <label for="dob">
+                                Date of Birth
+                            </label>
+
+                            <input
+                                type="date"
+                                id="dob">
+
+                        </div>
+
+
+                        <!-- GENDER -->
+
+                        <div class="field">
+
+                            <label for="gender">
+                                Gender
+                            </label>
+
+                            <select id="gender">
+
+                                <option value="">
+                                    Select
+                                </option>
+
+                                <option value="Male">
+                                    Male
+                                </option>
+
+                                <option value="Female">
+                                    Female
+                                </option>
+
+                                <option value="Other">
+                                    Other
+                                </option>
+
+                                <option value="Prefer not to say">
+                                    Prefer not to say
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- BIO -->
+
+                        <div class="field full">
+
+                            <label for="bio">
+                                About Me
+                            </label>
+
+                            <textarea
+                                id="bio"
+                                placeholder="Write a short introduction about yourself..."></textarea>
+
+                        </div>
+
 
                     </div>
 
-                </div>
+
+                    <div class="form-actions">
 
 
-                <div class="input-group">
+                        <button
+                            class="save-btn"
+                            onclick="saveProfile()">
 
-                    <label>Professional Title</label>
+                            💾 Save Profile
 
-                    <input
-                        id="role"
-                        type="text"
-                        placeholder="e.g. Data Scientist">
-
-                </div>
+                        </button>
 
 
-                <div class="input-group">
+                        <button
+                            class="reset-btn"
+                            onclick="resetProfile()">
 
-                    <label>About Me</label>
+                            🗑 Clear
 
-                    <textarea
-                        id="about"
-                        placeholder="Tell recruiters about yourself..."></textarea>
-
-                </div>
+                        </button>
 
 
-                <button class="save-btn"
-                    onclick="saveProfile()">
+                    </div>
 
-                    Save Profile
 
-                </button>
+                </section>
+
+
+                <!-- =========================
+                     CAREER INFORMATION
+                ========================= -->
+
+                <section class="panel">
+
+
+                    <div class="panel-title">
+
+                        <h2>
+                            Career Information
+                        </h2>
+
+                        <span>
+                            Your professional goals
+                        </span>
+
+                    </div>
+
+
+                    <div class="form-grid">
+
+
+                        <!-- ROLE -->
+
+                        <div class="field">
+
+                            <label for="careerRole">
+                                Career Role
+                            </label>
+
+                            <input
+                                type="text"
+                                id="careerRole"
+                                placeholder="e.g. Data Scientist">
+
+                        </div>
+
+
+                        <!-- EXPERIENCE -->
+
+                        <div class="field">
+
+                            <label for="experienceLevel">
+                                Experience Level
+                            </label>
+
+                            <select id="experienceLevel">
+
+                                <option value="">
+                                    Select
+                                </option>
+
+                                <option value="Fresher">
+                                    Fresher
+                                </option>
+
+                                <option value="Intern">
+                                    Intern
+                                </option>
+
+                                <option value="0-1 Years">
+                                    0 - 1 Years
+                                </option>
+
+                                <option value="1-3 Years">
+                                    1 - 3 Years
+                                </option>
+
+                                <option value="3+ Years">
+                                    3+ Years
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- DEGREE -->
+
+                        <div class="field">
+
+                            <label for="degree">
+                                Degree
+                            </label>
+
+                            <input
+                                type="text"
+                                id="degree"
+                                placeholder="e.g. B.Tech AI & DS">
+
+                        </div>
+
+
+                        <!-- COLLEGE -->
+
+                        <div class="field">
+
+                            <label for="college">
+                                College / University
+                            </label>
+
+                            <input
+                                type="text"
+                                id="college"
+                                placeholder="College Name">
+
+                        </div>
+
+
+                        <!-- GRADUATION YEAR -->
+
+                        <div class="field">
+
+                            <label for="graduationYear">
+                                Graduation Year
+                            </label>
+
+                            <input
+                                type="text"
+                                id="graduationYear"
+                                placeholder="2028">
+
+                        </div>
+
+
+                        <!-- CAREER GOAL -->
+
+                        <div class="field">
+
+                            <label for="careerGoal">
+                                Career Goal
+                            </label>
+
+                            <input
+                                type="text"
+                                id="careerGoal"
+                                placeholder="e.g. Become a Data Scientist">
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="form-actions">
+
+                        <button
+                            class="save-btn"
+                            onclick="saveProfile()">
+
+                            💾 Save Career Information
+
+                        </button>
+
+                    </div>
+
+
+                </section>
+
+
+                <!-- =========================
+                     SKILLS
+                ========================= -->
+
+                <section class="panel">
+
+
+                    <div class="panel-title">
+
+                        <h2>
+                            My Skills
+                        </h2>
+
+                        <button
+                            class="skill-link"
+                            onclick="window.location.href='skills.html'">
+
+                            Manage Skills →
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="skill-summary">
+
+                        <div class="skill-total">
+
+                            <strong id="skillCount">
+                                0
+                            </strong>
+
+                            skills added
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="skill-list"
+                        id="skillList">
+
+                        <div class="empty-skills">
+
+                            No skills added yet.
+                            Go to Skills and add your skills.
+
+                        </div>
+
+                    </div>
+
+
+                </section>
+
 
             </div>
 
 
-            <!-- CAREER INFORMATION -->
+            <!-- =========================
+                 RIGHT COLUMN
+            ========================= -->
 
-            <div class="card">
+            <div>
 
-                <h2>Career Information 🚀</h2>
 
-                <div class="info-row">
-                    <span class="info-label">Career Goal</span>
-                    <span class="info-value" id="careerGoal">0</span>
-                </div>
+                <!-- PROFILE INFORMATION -->
 
-                <div class="info-row">
-                    <span class="info-label">Preferred Role</span>
-                    <span class="info-value" id="preferredRole">0</span>
-                </div>
+                <section class="panel">
 
-                <div class="info-row">
-                    <span class="info-label">Experience</span>
-                    <span class="info-value" id="experience">0</span>
-                </div>
 
-                <div class="info-row">
-                    <span class="info-label">Job Preference</span>
-                    <span class="info-value" id="jobPreference">0</span>
-                </div>
+                    <div class="panel-title">
 
-                <div class="info-row">
-                    <span class="info-label">Work Mode</span>
-                    <span class="info-value" id="workMode">0</span>
-                </div>
+                        <h2>
+                            Profile Overview
+                        </h2>
 
-                <div class="info-row">
-                    <span class="info-label">Profile Status</span>
-                    <span class="info-value" id="profileStatus">0</span>
-                </div>
+                    </div>
+
+
+                    <div class="info-list">
+
+
+                        <div class="info-card">
+
+                            <div class="info-icon">
+                                👤
+                            </div>
+
+                            <div class="info-text">
+
+                                <small>
+                                    FULL NAME
+                                </small>
+
+                                <strong id="infoName">
+                                    Not added
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="info-card">
+
+                            <div class="info-icon">
+                                📧
+                            </div>
+
+                            <div class="info-text">
+
+                                <small>
+                                    EMAIL
+                                </small>
+
+                                <strong id="infoEmail">
+                                    Not added
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="info-card">
+
+                            <div class="info-icon">
+                                📱
+                            </div>
+
+                            <div class="info-text">
+
+                                <small>
+                                    PHONE
+                                </small>
+
+                                <strong id="infoPhone">
+                                    Not added
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="info-card">
+
+                            <div class="info-icon">
+                                📍
+                            </div>
+
+                            <div class="info-text">
+
+                                <small>
+                                    LOCATION
+                                </small>
+
+                                <strong id="infoLocation">
+                                    Not added
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                </section>
+
+
+                <!-- =========================
+                     CAREER OVERVIEW
+                ========================= -->
+
+                <section class="panel">
+
+
+                    <div class="panel-title">
+
+                        <h2>
+                            Career Overview
+                        </h2>
+
+                    </div>
+
+
+                    <div class="career-info">
+
+
+                        <div class="career-item">
+
+                            <span>
+                                TARGET ROLE
+                            </span>
+
+                            <strong id="careerRoleView">
+                                Not added
+                            </strong>
+
+                        </div>
+
+
+                        <div class="career-item">
+
+                            <span>
+                                EXPERIENCE
+                            </span>
+
+                            <strong id="experienceView">
+                                Not added
+                            </strong>
+
+                        </div>
+
+
+                        <div class="career-item">
+
+                            <span>
+                                DEGREE
+                            </span>
+
+                            <strong id="degreeView">
+                                Not added
+                            </strong>
+
+                        </div>
+
+
+                        <div class="career-item">
+
+                            <span>
+                                GRADUATION
+                            </span>
+
+                            <strong id="yearView">
+                                Not added
+                            </strong>
+
+                        </div>
+
+
+                        <div
+                            class="career-item"
+                            style="grid-column:1 / -1;">
+
+                            <span>
+                                CAREER GOAL
+                            </span>
+
+                            <strong id="goalView">
+                                Not added
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+
+                </section>
+
+
+                <!-- =========================
+                     RESUME STATUS
+                ========================= -->
+
+                <section class="panel">
+
+
+                    <div class="panel-title">
+
+                        <h2>
+                            Resume
+                        </h2>
+
+                        <span>
+                            Career profile
+                        </span>
+
+                    </div>
+
+
+                    <div class="resume-status">
+
+
+                        <div class="resume-left">
+
+
+                            <div class="resume-icon">
+                                📄
+                            </div>
+
+
+                            <div>
+
+                                <strong>
+                                    Resume Completion
+                                </strong>
+
+                                <span
+                                    id="resumeCompletionText">
+
+                                    0% completed
+
+                                </span>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <button
+                            class="resume-open"
+                            onclick="window.location.href='resume.html'">
+
+                            Open Resume
+
+                        </button>
+
+
+                    </div>
+
+
+                </section>
+
+
+                <!-- =========================
+                     PROGRESS
+                ========================= -->
+
+                <section class="panel">
+
+
+                    <div class="panel-title">
+
+                        <h2>
+                            Career Progress
+                        </h2>
+
+                        <span>
+                            Overall readiness
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        class="resume-status">
+
+
+                        <div class="resume-left">
+
+                            <div class="resume-icon">
+                                📊
+                            </div>
+
+
+                            <div>
+
+                                <strong>
+                                    Career Readiness
+                                </strong>
+
+                                <span
+                                    id="progressText">
+
+                                    0% overall progress
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            class="resume-open"
+                            onclick="window.location.href='progress.html'">
+
+                            View Progress
+
+                        </button>
+
+
+                    </div>
+
+
+                </section>
+
 
             </div>
 
 
-            <!-- SKILLS -->
-
-            <div class="card">
-
-                <h2>My Skills 🧠</h2>
-
-                <div class="skill-list" id="profileSkills">
-
-                    <span class="empty">
-                        0
-                    </span>
-
-                </div>
-
-            </div>
+        </div>
 
 
-            <!-- IMPROVE PROFILE -->
-
-            <div class="card">
-
-                <h2>Improve Your Profile 💡</h2>
-
-                <div class="tip-row">
-
-                    <span class="info-label">
-                        Profile Photo
-                    </span>
-
-                    <span class="info-value"
-                        id="photoStatus">
-                        0
-                    </span>
-
-                </div>
+    </main>
 
 
-                <div class="tip-row">
+    <!-- =========================
+         MOBILE NAV
+    ========================= -->
 
-                    <span class="info-label">
-                        Personal Info
-                    </span>
+    <nav class="mobile-nav">
 
-                    <span class="info-value"
-                        id="personalStatus">
-                        0
-                    </span>
-                    
+
+        <a href="dashboard.html">
+
+            <span class="m-icon">
+                🏠
+            </span>
+
+            <span>
+                Home
+            </span>
+
+        </a>
+
+
+        <a href="jobs.html">
+
+            <span class="m-icon">
+                💼
+            </span>
+
+            <span>
+                Jobs
+            </span>
+
+        </a>
+
+
+        <a href="skills.html">
+
+            <span class="m-icon">
+                🧠
+            </span>
+
+            <span>
+                Skills
+            </span>
+
+        </a>
+
+
+        <a href="courses.html">
+
+            <span class="m-icon">
+                📚
+            </span>
+
+            <span>
+                Courses
+            </span>
+
+        </a>
+
+
+        <a href="resume.html">
+
+            <span class="m-icon">
+                📄
+            </span>
+
+            <span>
+                Resume
+            </span>
+
+        </a>
+
+
+        <a href="progress.html">
+
+            <span class="m-icon">
+                📊
+            </span>
+
+            <span>
+                Progress
+            </span>
+
+        </a>
+
+
+        <a
+            href="profile.html"
+            class="active">
+
+            <span class="m-icon">
+                👤
+            </span>
+
+            <span>
+                Profile
+            </span>
+
+        </a>
+
+
+    </nav>
+
+
+    <!-- =========================
+         TOAST
+    ========================= -->
+
+    <div
+        class="toast"
+        id="toast">
+
+        Profile saved successfully!
+
+    </div>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+
+        const PROFILE_KEY =
+            "fastTrackProfile";
+
+
+        const SKILLS_KEY =
+            "fastTrackSkills";
+
+
+        const RESUME_KEY =
+            "fastTrackResume";
+
+
+        const USER_KEY =
+            "userName";
+
+
+        /* =========================
+           HELPER
+        ========================= */
+
+        function get(id) {
+
+            return document.getElementById(id);
+
+        }
+
+
+        function readJSON(
+            key,
+            fallback
+        ) {
+
+            try {
+
+                const value =
+                    localStorage.getItem(key);
+
+                if (!value) {
+
+                    return fallback;
+
+                }
+
+
+                return JSON.parse(value);
+
+            } catch {
+
+                return fallback;
+
+            }
+
+        }
+
+
+        /* =========================
+           PROFILE FIELDS
+        ========================= */
+
+        const profileFields = [
+
+            "fullName",
+            "email",
+            "phone",
+            "location",
+            "dob",
+            "gender",
+            "bio",
+            "careerRole",
+            "experienceLevel",
+            "degree",
+            "college",
+            "graduationYear",
+            "careerGoal"
+
+        ];
+
+
+        /* =========================
+           LOAD PROFILE
+        ========================= */
+
+        function loadProfile() {
+
+
+            const profile =
+                readJSON(
+                    PROFILE_KEY,
+                    {}
+                );
+
+
+            profileFields.forEach(
+                field => {
+
+                    if (
+                        profile[field] !==
+                        undefined &&
+                        get(field)
+                    ) {
+
+                        get(field).value =
+                            profile[field] || "";
+
+                    }
+
+                }
+            );
+
+
+            /*
+                If profile is empty,
+                use the saved username
+                from login/register.
+            */
+
+            if (
+                !get("fullName").value
+            ) {
+
+                const userName =
+                    localStorage.getItem(
+                        USER_KEY
+                    );
+
+
+                if (userName) {
+
+                    get("fullName").value =
+                        userName;
+
+                }
+
+            }
+
+
+            updateProfileUI();
+
+        }
+
+
+        /* =========================
+           SAVE PROFILE
+        ========================= */
+
+        function saveProfile(
+            showMessage = true
+        ) {
+
+
+            const profile = {};
+
+
+            profileFields.forEach(
+                field => {
+
+                    profile[field] =
+                        get(field).value.trim();
+
+                }
+            );
+
+
+            localStorage.setItem(
+                PROFILE_KEY,
+                JSON.stringify(profile)
+            );
+
+
+            /*
+                Also keep username
+                updated for dashboard.
+            */
+
+            if (
+                profile.fullName
+            ) {
+
+                localStorage.setItem(
+                    USER_KEY,
+                    profile.fullName
+                );
+
+            }
+
+
+            updateProfileUI();
+
+
+            if (showMessage) {
+
+                showToast(
+                    "Profile saved successfully! ✓"
+                );
+
+            }
+
+        }
+
+
+        /* =========================
+           UPDATE PROFILE UI
+        ========================= */
+
+        function updateProfileUI() {
+
+
+            const fullName =
+                get("fullName").value.trim();
+
+
+            const email =
+                get("email").value.trim();
+
+
+            const phone =
+                get("phone").value.trim();
+
+
+            const location =
+                get("location").value.trim();
+
+
+            const careerRole =
+                get("careerRole").value.trim();
+
+
+            const experience =
+                get("experienceLevel").value.trim();
+
+
+            const degree =
+                get("degree").value.trim();
+
+
+            const college =
+                get("college").value.trim();
+
+
+            const graduationYear =
+                get("graduationYear").value.trim();
+
+
+            const careerGoal =
+                get("careerGoal").value.trim();
+
+
+            /* =====================
+               HERO
+            ===================== */
+
+            get("heroName").textContent =
+                fullName ||
+                "Your Name";
+
+
+            get("heroRole").textContent =
+                careerRole ||
+                "Add your career role";
+
+
+            get("heroEmail").textContent =
+                email ||
+                "Add your email address";
+
+
+            /* =====================
+               AVATAR
+            ===================== */
+
+            const avatarText =
+                get("avatarText");
+
+
+            if (fullName) {
+
+                const words =
+                    fullName
+                        .split(/\s+/)
+                        .filter(Boolean);
+
+
+                let initials = "";
+
+
+                if (words.length >= 2) {
+
+                    initials =
+                        words[0][0] +
+                        words[1][0];
+
+                } else {
+
+                    initials =
+                        words[0][0];
+
+                }
+
+
+                avatarText.textContent =
+                    initials
+                        .toUpperCase();
+
+            } else {
+
+                avatarText.textContent =
+                    "U";
+
+            }
+
+
+            /* =====================
+               PROFILE OVERVIEW
+            ===================== */
+
+            get("infoName").textContent =
+                fullName ||
+                "Not added";
+
+
+            get("infoEmail").textContent =
+                email ||
+                "Not added";
+
+
+            get("infoPhone").textContent =
+                phone ||
+                "Not added";
+
+
+            get("infoLocation").textContent =
+                location ||
+                "Not added";
+
+
+            /* =====================
+               CAREER OVERVIEW
+            ===================== */
+
+            get("careerRoleView").textContent =
+                careerRole ||
+                "Not added";
+
+
+            get("experienceView").textContent =
+                experience ||
+                "Not added";
+
+
+            get("degreeView").textContent =
+                degree ||
+                "Not added";
+
+
+            get("yearView").textContent =
+                graduationYear ||
+                "Not added";
+
+
+            get("goalView").textContent =
+                careerGoal ||
+                "Not added";
+
+
+            /* =====================
+               PROFILE COMPLETION
+            ===================== */
+
+            const importantFields = [
+
+                fullName,
+                email,
+                phone,
+                location,
+                careerRole,
+                degree,
+                college,
+                graduationYear,
+                careerGoal
+
+            ];
+
+
+            const completed =
+                importantFields.filter(
+                    value =>
+                        value &&
+                        value.trim() !== ""
+                ).length;
+
+
+            const percentage =
+                Math.round(
+                    (
+                        completed /
+                        importantFields.length
+                    ) * 100
+                );
+
+
+            get(
+                "profileScore"
+            ).textContent =
+                percentage + "%";
+
+
+            /* =====================
+               RESUME
+            ===================== */
+
+            updateResumeStatus();
+
+
+            /* =====================
+               PROGRESS
+            ===================== */
+
+            updateProgress();
+
+        }
+
+
+        /* =========================
+           SKILLS
+        ========================= */
+
+        function updateSkills() {
+
+
+            const skills =
+                readJSON(
+                    SKILLS_KEY,
+                    []
+                );
+
+
+            const skillList =
+                get("skillList");
+
+
+            if (
+                !Array.isArray(skills) ||
+                skills.length === 0
+            ) {
+
+                get(
+                    "skillCount"
+                ).textContent =
+                    "0";
+
+
+                skillList.innerHTML = `
+
+                    <div class="empty-skills">
+
+                        No skills added yet.
+                        Go to Skills and add your skills.
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            get(
+                "skillCount"
+            ).textContent =
+                skills.length;
+
+
+            skillList.innerHTML =
+                skills
+                    .map(
+                        skill => `
+
+                            <span class="skill-tag">
+
+                                ${escapeHTML(
+                                    skill.name ||
+                                    "Skill"
+                                )}
+
+                            </span>
+
+                        `
+                    )
+                    .join("");
+
+        }
+
+
+        /* =========================
+           ESCAPE HTML
+        ========================= */
+
+        function escapeHTML(value) {
+
+            if (!value) {
+
+                return "";
+
+            }
+
+
+            return String(value)
+                .replace(
+                    /&/g,
+                    "&amp;"
+                )
+                .replace(
+                    /</g,
+                    "&lt;"
+                )
+                .replace(
+                    />/g,
+                    "&gt;"
+                )
+                .replace(
+                    /"/g,
+                    "&quot;"
+                )
+                .replace(
+                    /'/g,
+                    "&#039;"
+                );
+
+        }
+
+
+        /* =========================
+           RESUME STATUS
+        ========================= */
+
+        function updateResumeStatus() {
+
+
+            const resume =
+                readJSON(
+                    RESUME_KEY,
+                    {}
+                );
+
+
+            const fields = [
+
+                "fullName",
+                "role",
+                "email",
+                "phone",
+                "location",
+                "summary",
+                "degree",
+                "college",
+                "year",
+                "skills",
+                "experience",
+                "projects",
+                "linkedin",
+                "github"
+
+            ];
+
+
+            let completed = 0;
+
+
+            fields.forEach(
+                field => {
+
+                    if (
+                        resume &&
+                        resume[field] &&
+                        String(
+                            resume[field]
+                        ).trim()
+                    ) {
+
+                        completed++;
+
+                    }
+
+                }
+            );
+
+
+            const percentage =
+                Math.round(
+                    (
+                        completed /
+                        fields.length
+                    ) * 100
+                );
+
+
+            get(
+                "resumeCompletionText"
+            ).textContent =
+                percentage +
+                "% completed";
+
+        }
+
+
+        /* =========================
+           OVERALL PROGRESS
+        ========================= */
+
+        function updateProgress() {
+
+
+            const skills =
+                readJSON(
+                    SKILLS_KEY,
+                    []
+                );
+
+
+            const resume =
+                readJSON(
+                    RESUME_KEY,
+                    {}
+                );
+
+
+            const skillProgress =
+                Math.min(
+                    100,
+                    (
+                        (
+                            Array.isArray(skills)
+                                ? skills.length
+                                : 0
+                        ) / 10
+                    ) * 100
+                );
+
+
+            const resumeFields = [
+
+                "fullName",
+                "role",
+                "email",
+                "phone",
+                "location",
+                "summary",
+                "degree",
+                "college",
+                "year",
+                "skills",
+                "experience",
+                "projects",
+                "linkedin",
+                "github"
+
+            ];
+
+
+            let resumeCompleted = 0;
+
+
+            resumeFields.forEach(
+                field => {
+
+                    if (
+                        resume &&
+                        resume[field] &&
+                        String(
+                            resume[field]
+                        ).trim()
+                    ) {
+
+                        resumeCompleted++;
+
+                    }
+
+                }
+            );
+
+
+            const resumeProgress =
+                (
+                    resumeCompleted /
+                    resumeFields.length
+                ) * 100;
+
+
+            /*
+                Course progress
+            */
+
+            const courses =
+                readJSON(
+                    "fastTrackCourseLessons",
+                    {}
+                );
+
+
+            let totalLessons = 0;
+
+            let completedLessons = 0;
+
+
+            Object.values(courses)
+                .forEach(course => {
+
+                    if (
+                        !course ||
+                        typeof course !== "object"
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    totalLessons += 5;
+
+
+                    if (
+                        Array.isArray(
+                            course.completedLessons
+                        )
+                    ) {
+
+                        completedLessons +=
+                            Math.min(
+                                course.completedLessons.length,
+                                5
+                            );
+
+                    }
+
+                });
+
+
+            const courseProgress =
+                totalLessons > 0
+                    ? (
+                        completedLessons /
+                        totalLessons
+                    ) * 100
+                    : 0;
+
+
+            /*
+                Jobs
+            */
+
+            const jobs =
+                getJobApplications();
+
+
+            const jobProgress =
+                Math.min(
+                    100,
+                    (
+                        jobs / 5
+                    ) * 100
+                );
+
+
+            const overall =
+                Math.round(
+                    (
+                        skillProgress +
+                        courseProgress +
+                        resumeProgress +
+                        jobProgress
+                    ) / 4
+                );
+
+
+            get(
+                "progressText"
+            ).textContent =
+                overall +
+                "% overall progress";
+
+        }
+
+
+        /* =========================
+           JOB APPLICATION COUNT
+        ========================= */
+
+        function getJobApplications() {
+
+
+            const keys = [
+
+                "fastTrackAppliedJobs",
+
+                "appliedJobs",
+
+                "fastTrackApplications",
+
+                "jobApplications",
+
+                "fastTrackJobApplications"
+
+            ];
+
+
+            for (
+                const key of keys
+            ) {
+
+                const value =
+                    localStorage.getItem(
+                        key
+                    );
+
+
+                if (!value) {
+
+                    continue;
+
+                }
+
+
+                try {
+
+                    const parsed =
+                        JSON.parse(value);
+
+
+                    if (
+                        Array.isArray(parsed)
+                    ) {
+
+                        return parsed.length;
+
+                    }
+
+
+                    if (
+                        parsed &&
+                        typeof parsed ===
+                        "object"
+                    ) {
+
+                        if (
+                            Array.isArray(
+                                parsed.applications
+                            )
+                        ) {
+
+                            return parsed
+                                .applications
+                                .length;
+
+                        }
+
+
+                        if (
+                            typeof parsed.count ===
+                            "number"
+                        ) {
+
+                            return parsed.count;
+
+                        }
+
+                    }
+
+                } catch {
+
+                    const number =
+                        Number(value);
+
+
+                    if (
+                        !Number.isNaN(number)
+                    ) {
+
+                        return number;
+
+                    }
+
+                }
+
+            }
+
+
+            return 0;
+
+        }
+
+
+        /* =========================
+           RESET
+        ========================= */
+
+        function resetProfile() {
+
+
+            const confirmReset =
+                confirm(
+                    "Are you sure you want to clear your profile information?"
+                );
+
+
+            if (!confirmReset) {
+
+                return;
+
+            }
+
+
+            profileFields.forEach(
+                field => {
+
+                    get(field).value = "";
+
+                }
+            );
+
+
+            localStorage.removeItem(
+                PROFILE_KEY
+            );
+
+
+            updateProfileUI();
+
+
+            showToast(
+                "Profile information cleared."
+            );
+
+        }
+
+
+        /* =========================
+           TOAST
+        ========================= */
+
+        function showToast(message) {
+
+
+            const toast =
+                get("toast");
+
+
+            toast.textContent =
+                message;
+
+
+            toast.classList.add(
+                "show"
+            );
+
+
+            clearTimeout(
+                window.toastTimer
+            );
+
+
+            window.toastTimer =
+                setTimeout(
+                    () => {
+
+                        toast.classList.remove(
+                            "show"
+                        );
+
+                    },
+                    2500
+                );
+
+        }
+
+
+        /* =========================
+           LIVE PREVIEW
+        ========================= */
+
+        profileFields.forEach(
+            field => {
+
+                get(field)
+                    .addEventListener(
+                        "input",
+                        () => {
+
+                            updateProfileUI();
+
+                        }
+                    );
+
+
+                get(field)
+                    .addEventListener(
+                        "change",
+                        () => {
+
+                            updateProfileUI();
+
+                        }
+                    );
+
+            }
+        );
+
+
+        /* =========================
+           AUTO SAVE
+        ========================= */
+
+        let autoSaveTimer;
+
+
+        profileFields.forEach(
+            field => {
+
+                get(field)
+                    .addEventListener(
+                        "input",
+                        () => {
+
+                            clearTimeout(
+                                autoSaveTimer
+                            );
+
+
+                            autoSaveTimer =
+                                setTimeout(
+                                    () => {
+
+                                        saveProfile(
+                                            false
+                                        );
+
+                                    },
+                                    1000
+                                );
+
+                        }
+                    );
+
+            }
+        );
+
+
+        /* =========================
+           CTRL + S
+        ========================= */
+
+        document.addEventListener(
+            "keydown",
+            event => {
+
+                if (
+                    (
+                        event.ctrlKey ||
+                        event.metaKey
+                    ) &&
+                    event.key.toLowerCase() ===
+                    "s"
+                ) {
+
+                    event.preventDefault();
+
+                    saveProfile();
+
+                }
+
+            }
+        );
+
+
+        /* =========================
+           INITIAL LOAD
+        ========================= */
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            () => {
+
+                loadProfile();
+
+                updateSkills();
+
+            }
+        );
+
+
+        /* =========================
+           PAGE SHOW
+        ========================= */
+
+        window.addEventListener(
+            "pageshow",
+            () => {
+
+                loadProfile();
+
+                updateSkills();
+
+            }
+        );
+
+
+        /* =========================
+           STORAGE CHANGES
+        ========================= */
+
+        window.addEventListener(
+            "storage",
+            event => {
+
+                if (
+                    event.key === null ||
+                    event.key === PROFILE_KEY ||
+                    event.key === SKILLS_KEY ||
+                    event.key === RESUME_KEY ||
+                    event.key ===
+                    "fastTrackCourseLessons"
+                ) {
+
+                    loadProfile();
+
+                    updateSkills();
+
+                }
+
+            }
+        );
+
+
+        /* =========================
+           REFRESH
+        ========================= */
+
+        setInterval(
+            () => {
+
+                updateProfileUI();
+
+                updateSkills();
+
+            },
+            3000
+        );
+
+
+    </script>
+
+</body>
+
+</html>
