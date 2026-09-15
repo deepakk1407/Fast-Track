@@ -4,16 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>FAST-TRACK | Jobs</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet">
-
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
         * {
             margin: 0;
             padding: 0;
@@ -21,405 +16,484 @@
         }
 
         body {
-            font-family: "Inter", sans-serif;
-            background:
-                radial-gradient(circle at 80% 10%, rgba(37, 99, 235, 0.18), transparent 30%),
-                radial-gradient(circle at 20% 80%, rgba(124, 58, 237, 0.15), transparent 30%),
-                #07111f;
-            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            background: #070b14;
+            color: white;
             min-height: 100vh;
         }
 
-        /* TOP BAR */
+        /* ================= SIDEBAR ================= */
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 245px;
+            padding: 24px 15px;
+            background: rgba(10, 14, 25, 0.96);
+            border-right: 1px solid rgba(255,255,255,0.08);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-brand {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            padding: 5px 10px 25px;
+        }
+
+        .sidebar-brand img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+
+        .brand-text {
+            font-size: 19px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .nav-item {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding: 13px 14px;
+            border: none;
+            border-radius: 11px;
+            background: transparent;
+            color: #9ca3af;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 600;
+            text-align: left;
+            transition: 0.2s;
+        }
+
+        .nav-item:hover {
+            background: rgba(255,255,255,0.06);
+            color: white;
+        }
+
+        .nav-item.active {
+            background: linear-gradient(
+                135deg,
+                rgba(37,99,235,0.95),
+                rgba(124,58,237,0.95)
+            );
+            color: white;
+            box-shadow: 0 8px 25px rgba(37,99,235,0.18);
+        }
+
+        .nav-icon {
+            width: 23px;
+            display: flex;
+            justify-content: center;
+            font-size: 17px;
+        }
+
+        /* ================= MAIN ================= */
+
+        .main {
+            margin-left: 245px;
+            padding: 25px 30px;
+            min-height: 100vh;
+        }
+
+        /* ================= TOPBAR ================= */
 
         .topbar {
-            height: 70px;
-            padding: 0 30px;
+            height: 65px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-
-            background: rgba(7, 17, 31, 0.88);
-            backdrop-filter: blur(18px);
-
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            margin-bottom: 25px;
         }
 
-        .brand {
-            display: flex;
+        .mobile-brand {
+            display: none;
             align-items: center;
-            gap: 10px;
+            gap: 9px;
         }
 
-        .brand img {
+        .mobile-brand img {
             width: 38px;
             height: 38px;
             object-fit: contain;
         }
 
-        .brand span {
+        .mobile-brand span {
             font-size: 18px;
             font-weight: 800;
-            letter-spacing: 0.5px;
         }
 
-        .back-btn {
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            background: rgba(255, 255, 255, 0.06);
-            color: #ffffff;
-
-            padding: 9px 16px;
+        .dashboard-btn {
+            margin-left: auto;
+            padding: 9px 14px;
             border-radius: 9px;
-
-            font-size: 13px;
-            font-weight: 600;
-
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.05);
+            color: #d1d5db;
             cursor: pointer;
-            transition: 0.2s;
+            font-family: inherit;
+            font-size: 12px;
+            font-weight: 600;
         }
 
-        .back-btn:hover {
-            background: rgba(37, 99, 235, 0.25);
-            border-color: rgba(96, 165, 250, 0.4);
+        .dashboard-btn:hover {
+            background: rgba(255,255,255,0.1);
+            color: white;
         }
 
-        /* MAIN */
+        /* ================= HEADER ================= */
 
-        .container {
-            width: min(1200px, 92%);
-            margin: auto;
-            padding: 45px 0 60px;
+        .page-header {
+            margin-bottom: 25px;
         }
 
-        .heading {
-            margin-bottom: 28px;
-        }
-
-        .heading h1 {
-            font-size: 32px;
+        .page-header h1 {
+            font-size: 30px;
             font-weight: 800;
             margin-bottom: 8px;
         }
 
-        .heading p {
-            color: #94a3b8;
+        .page-header p {
+            color: #8b93a5;
             font-size: 14px;
         }
 
-        /* SEARCH */
+        /* ================= SEARCH ================= */
 
-        .search-box {
+        .search-area {
             display: grid;
-            grid-template-columns: 1fr 1fr auto;
+            grid-template-columns: 1.5fr 1fr;
             gap: 12px;
-
-            padding: 18px;
-
-            background: rgba(255, 255, 255, 0.045);
-            border: 1px solid rgba(255, 255, 255, 0.09);
-
-            border-radius: 16px;
-
-            margin-bottom: 32px;
+            margin-bottom: 25px;
         }
 
         .search-input {
-            height: 46px;
-
-            background: rgba(0, 0, 0, 0.2);
-
-            border: 1px solid rgba(255, 255, 255, 0.1);
-
-            border-radius: 9px;
-
-            padding: 0 15px;
-
-            color: #ffffff;
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: 11px;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: #101725;
+            color: white;
             outline: none;
-
-            font-size: 13px;
-        }
-
-        .search-input::placeholder {
-            color: #64748b;
-        }
-
-        .search-input:focus {
-            border-color: #3b82f6;
-        }
-
-        .search-btn {
-            height: 46px;
-
-            border: none;
-            border-radius: 9px;
-
-            padding: 0 24px;
-
-            background: linear-gradient(135deg, #2563eb, #7c3aed);
-
-            color: #ffffff;
-
-            font-weight: 700;
-            font-size: 13px;
-
-            cursor: pointer;
-
-            transition: 0.2s;
-        }
-
-        .search-btn:hover {
-            transform: translateY(-1px);
-        }
-
-        /* JOB HEADER */
-
-        .jobs-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            margin-bottom: 18px;
-        }
-
-        .jobs-header h2 {
-            font-size: 18px;
-            font-weight: 700;
-        }
-
-        .jobs-count {
-            color: #94a3b8;
+            font-family: inherit;
             font-size: 12px;
         }
 
-        /* JOB GRID */
+        .search-input:focus {
+            border-color: rgba(96,165,250,0.5);
+        }
 
-        .jobs-grid {
+        /* ================= JOB GRID ================= */
+
+        .job-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(2,1fr);
             gap: 18px;
         }
 
-        /* JOB CARD */
-
         .job-card {
             padding: 22px;
-
-            background: rgba(255, 255, 255, 0.045);
-
-            border: 1px solid rgba(255, 255, 255, 0.09);
-
-            border-radius: 16px;
-
+            border-radius: 17px;
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(20,27,45,0.95),
+                    rgba(12,17,29,0.95)
+                );
+            border: 1px solid rgba(255,255,255,0.07);
             transition: 0.25s;
         }
 
         .job-card:hover {
-            transform: translateY(-3px);
-
-            border-color: rgba(96, 165, 250, 0.35);
-
-            background: rgba(255, 255, 255, 0.065);
+            transform: translateY(-4px);
+            border-color: rgba(96,165,250,0.25);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
         }
 
         .job-top {
             display: flex;
             justify-content: space-between;
             gap: 15px;
+            margin-bottom: 15px;
         }
 
-        .company-logo {
-            width: 46px;
-            height: 46px;
-
+        .job-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            background: rgba(59,130,246,0.12);
             display: flex;
             align-items: center;
             justify-content: center;
-
-            border-radius: 11px;
-
-            background: linear-gradient(
-                135deg,
-                rgba(37, 99, 235, 0.25),
-                rgba(124, 58, 237, 0.25)
-            );
-
-            font-size: 18px;
-            font-weight: 800;
+            font-size: 21px;
         }
 
         .save-btn {
-            width: 34px;
             height: 34px;
-
+            padding: 0 10px;
             border-radius: 8px;
-
-            border: 1px solid rgba(255, 255, 255, 0.1);
-
-            background: rgba(255, 255, 255, 0.04);
-
-            color: #94a3b8;
-
+            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.04);
+            color: #9ca3af;
             cursor: pointer;
+            font-family: inherit;
+            font-size: 10px;
         }
 
-        .save-btn:hover {
-            color: #60a5fa;
-            border-color: #3b82f6;
+        .save-btn.saved {
+            color: #93c5fd;
+            border-color: rgba(59,130,246,0.35);
+            background: rgba(59,130,246,0.1);
         }
 
-        .job-info {
-            margin-top: 18px;
-        }
-
-        .job-info h3 {
+        .job-card h2 {
             font-size: 17px;
             margin-bottom: 7px;
         }
 
         .company {
-            color: #94a3b8;
-            font-size: 13px;
+            color: #9ca3af;
+            font-size: 11px;
             margin-bottom: 15px;
         }
 
-        .tags {
+        .job-info {
             display: flex;
             flex-wrap: wrap;
             gap: 7px;
-
-            margin-bottom: 17px;
+            margin-bottom: 15px;
         }
 
         .tag {
             padding: 6px 9px;
-
-            background: rgba(37, 99, 235, 0.1);
-
-            border: 1px solid rgba(96, 165, 250, 0.15);
-
-            border-radius: 6px;
-
-            color: #bfdbfe;
-
-            font-size: 11px;
-        }
-
-        .job-details {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 14px;
-
-            color: #94a3b8;
-
-            font-size: 11px;
-
-            padding-bottom: 17px;
-
-            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-        }
-
-        .job-bottom {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            margin-top: 17px;
+            border-radius: 7px;
+            background: rgba(255,255,255,0.05);
+            color: #aeb6c5;
+            font-size: 9px;
         }
 
         .salary {
-            color: #e2e8f0;
+            color: #86efac;
             font-size: 12px;
-            font-weight: 600;
+            font-weight: 700;
+            margin-bottom: 15px;
         }
 
         .apply-btn {
+            width: 100%;
+            padding: 11px;
             border: none;
-
-            padding: 9px 16px;
-
-            border-radius: 8px;
-
-            background: #2563eb;
-
-            color: #ffffff;
-
+            border-radius: 9px;
+            background: linear-gradient(135deg,#2563eb,#7c3aed);
+            color: white;
+            cursor: pointer;
+            font-family: inherit;
             font-size: 11px;
             font-weight: 700;
-
-            cursor: pointer;
         }
 
         .apply-btn:hover {
-            background: #1d4ed8;
+            opacity: 0.9;
         }
 
-        /* MOBILE */
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 50px 20px;
+            border: 1px dashed rgba(255,255,255,0.12);
+            border-radius: 16px;
+            background: #101725;
+            color: #8b93a5;
+            font-size: 12px;
+        }
 
-        @media (max-width: 700px) {
+        /* ================= TOAST ================= */
+
+        .toast {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            background: #111827;
+            border: 1px solid rgba(255,255,255,0.1);
+            color: white;
+            padding: 13px 18px;
+            border-radius: 10px;
+            font-size: 12px;
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
+            transition: 0.3s;
+            z-index: 3000;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ================= TABLET ================= */
+
+        @media (max-width:800px) {
+
+            .sidebar {
+                width: 70px;
+                padding: 20px 9px;
+            }
+
+            .sidebar-brand {
+                justify-content: center;
+                padding: 5px 0 25px;
+            }
+
+            .sidebar-brand img {
+                width: 38px;
+                height: 38px;
+            }
+
+            .brand-text {
+                display: none;
+            }
+
+            .nav-item {
+                justify-content: center;
+                padding: 13px 8px;
+            }
+
+            .nav-item span:last-child {
+                display: none;
+            }
+
+            .nav-icon {
+                width: auto;
+            }
+
+            .main {
+                margin-left: 70px;
+            }
+
+            .job-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width:500px) {
+
+            body {
+                padding-bottom: 72px;
+            }
+
+            .sidebar {
+                position: fixed;
+                left: 0;
+                right: 0;
+                top: auto;
+                bottom: 0;
+                width: 100%;
+                height: 65px;
+                padding: 7px 5px;
+                border-right: none;
+                border-top: 1px solid rgba(255,255,255,0.08);
+                background: rgba(10,14,25,0.98);
+                backdrop-filter: blur(15px);
+                display: block;
+            }
+
+            .sidebar-brand {
+                display: none;
+            }
+
+            .nav-menu {
+                height: 100%;
+                display: grid;
+                grid-template-columns: repeat(7,1fr);
+                gap: 2px;
+                align-items: center;
+            }
+
+            .nav-item {
+                height: 52px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2px;
+                padding: 4px 1px;
+                border-radius: 9px;
+                font-size: 8px;
+            }
+
+            .nav-item span:last-child {
+                display: block;
+                font-size: 8px;
+            }
+
+            .nav-icon {
+                font-size: 18px;
+                width: auto;
+            }
+
+            .main {
+                margin-left: 0;
+                padding: 18px 15px;
+            }
 
             .topbar {
-                height: 62px;
-                padding: 0 15px;
+                height: 50px;
+                margin-bottom: 20px;
             }
 
-            .brand img {
-                width: 34px;
-                height: 34px;
+            .mobile-brand {
+                display: flex;
             }
 
-            .brand span {
-                font-size: 16px;
+            .dashboard-btn {
+                padding: 8px 10px;
+                font-size: 10px;
             }
 
-            .container {
-                width: 92%;
-                padding: 30px 0 40px;
+            .page-header h1 {
+                font-size: 24px;
             }
 
-            .heading h1 {
-                font-size: 26px;
+            .page-header p {
+                font-size: 12px;
+                line-height: 1.5;
             }
 
-            .search-box {
+            .search-area {
                 grid-template-columns: 1fr;
-                padding: 14px;
             }
 
-            .search-btn {
-                width: 100%;
-            }
-
-            .jobs-grid {
+            .job-grid {
                 grid-template-columns: 1fr;
+                gap: 14px;
             }
 
             .job-card {
                 padding: 18px;
             }
 
-            .back-btn {
-                padding: 8px 12px;
-                font-size: 11px;
-            }
-        }
-
-        @media (max-width: 400px) {
-
-            .heading h1 {
-                font-size: 23px;
-            }
-
-            .brand span {
-                font-size: 14px;
-            }
-
-            .job-info h3 {
-                font-size: 15px;
+            .toast {
+                left: 15px;
+                right: 15px;
+                bottom: 80px;
+                text-align: center;
             }
         }
     </style>
@@ -427,32 +501,93 @@
 
 <body>
 
-    <!-- TOP BAR -->
+    <!-- ================= SIDEBAR ================= -->
 
-    <header class="topbar">
+    <aside class="sidebar">
 
-        <div class="brand">
+        <div class="sidebar-brand">
             <img src="fast-track-logo.png" alt="FAST-TRACK Logo">
-            <span>FAST-TRACK</span>
+            <div class="brand-text">FAST-TRACK</div>
         </div>
 
-        <button class="back-btn" onclick="goDashboard()">
-            ← Dashboard
-        </button>
+        <nav class="nav-menu">
 
-    </header>
+            <button class="nav-item"
+                onclick="window.location.href='dashboard.html'">
+                <span class="nav-icon">🏠</span>
+                <span>Dashboard</span>
+            </button>
+
+            <button class="nav-item active"
+                onclick="window.location.href='jobs.html'">
+                <span class="nav-icon">💼</span>
+                <span>Jobs</span>
+            </button>
+
+            <button class="nav-item"
+                onclick="window.location.href='skills.html'">
+                <span class="nav-icon">🧠</span>
+                <span>Skills</span>
+            </button>
+
+            <button class="nav-item"
+                onclick="window.location.href='courses.html'">
+                <span class="nav-icon">📚</span>
+                <span>Courses</span>
+            </button>
+
+            <button class="nav-item"
+                onclick="window.location.href='resume.html'">
+                <span class="nav-icon">📄</span>
+                <span>Resume</span>
+            </button>
+
+            <button class="nav-item"
+                onclick="window.location.href='progress.html'">
+                <span class="nav-icon">📈</span>
+                <span>Progress</span>
+            </button>
+
+            <button class="nav-item"
+                onclick="window.location.href='profile.html'">
+                <span class="nav-icon">👤</span>
+                <span>My Profile</span>
+            </button>
+
+        </nav>
+
+    </aside>
 
 
-    <!-- MAIN CONTENT -->
+    <!-- ================= MAIN ================= -->
 
-    <main class="container">
+    <main class="main">
 
-        <section class="heading">
+        <header class="topbar">
 
-            <h1>Find Your Next Opportunity 🚀</h1>
+            <div class="mobile-brand">
+                <img src="fast-track-logo.png" alt="FAST-TRACK Logo">
+                <span>FAST-TRACK</span>
+            </div>
+
+            <button class="dashboard-btn"
+                onclick="window.location.href='dashboard.html'">
+                ← Dashboard
+            </button>
+
+        </header>
+
+
+        <!-- HEADER -->
+
+        <section class="page-header">
+
+            <h1>
+                Find Your Next Opportunity 🚀
+            </h1>
 
             <p>
-                Discover jobs that match your skills, interests and career goals.
+                Discover jobs and internships that match your career goals.
             </p>
 
         </section>
@@ -460,409 +595,209 @@
 
         <!-- SEARCH -->
 
-        <section class="search-box">
+        <div class="search-area">
 
             <input
                 type="text"
-                class="search-input"
                 id="jobSearch"
-                placeholder="🔍  Job title, skills or company"
-            >
+                class="search-input"
+                placeholder="Search job title, skills or company..."
+                oninput="filterJobs()">
 
             <input
                 type="text"
-                class="search-input"
                 id="locationSearch"
-                placeholder="📍  Location"
-            >
-
-            <button class="search-btn" onclick="searchJobs()">
-                Search Jobs
-            </button>
-
-        </section>
-
-
-        <!-- JOBS -->
-
-        <div class="jobs-header">
-
-            <h2>Recommended Jobs</h2>
-
-            <span class="jobs-count">
-                6 opportunities
-            </span>
+                class="search-input"
+                placeholder="Search location..."
+                oninput="filterJobs()">
 
         </div>
 
 
-        <section class="jobs-grid" id="jobsGrid">
+        <!-- JOBS -->
 
+        <section class="job-grid" id="jobGrid">
 
             <!-- JOB 1 -->
 
-            <article class="job-card">
+            <div class="job-card"
+                data-title="Data Scientist"
+                data-company="Tech Innovations"
+                data-location="Bangalore"
+                data-skills="Python Machine Learning SQL">
 
                 <div class="job-top">
 
-                    <div class="company-logo">
-                        T
+                    <div class="job-icon">
+                        📊
                     </div>
 
-                    <button class="save-btn">
-                        ♡
+                    <button
+                        class="save-btn"
+                        onclick="saveJob(this)">
+                        ♡ Save
                     </button>
 
                 </div>
 
-                <div class="job-info">
+                <h2>
+                    Data Scientist
+                </h2>
 
-                    <h3>Data Scientist</h3>
-
-                    <p class="company">
-                        Tech Innovations
-                    </p>
-
-                    <div class="tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">Machine Learning</span>
-                        <span class="tag">SQL</span>
-                    </div>
-
-                    <div class="job-details">
-                        <span>📍 Bangalore</span>
-                        <span>💼 Full Time</span>
-                        <span>🕐 2 days ago</span>
-                    </div>
-
-                    <div class="job-bottom">
-
-                        <span class="salary">
-                            ₹6 - ₹10 LPA
-                        </span>
-
-                        <button class="apply-btn">
-                            Apply Now
-                        </button>
-
-                    </div>
-
+                <div class="company">
+                    Tech Innovations
                 </div>
 
-            </article>
+                <div class="job-info">
+                    <span class="tag">📍 Bangalore</span>
+                    <span class="tag">Python</span>
+                    <span class="tag">ML</span>
+                    <span class="tag">SQL</span>
+                </div>
+
+                <div class="salary">
+                    ₹6 - 10 LPA
+                </div>
+
+                <button
+                    class="apply-btn"
+                    onclick="applyJob('Data Scientist')">
+                    Apply Now
+                </button>
+
+            </div>
 
 
             <!-- JOB 2 -->
 
-            <article class="job-card">
+            <div class="job-card"
+                data-title="AI ML Engineer"
+                data-company="AI Solutions Pvt Ltd"
+                data-location="Chennai"
+                data-skills="Python TensorFlow Deep Learning">
 
                 <div class="job-top">
 
-                    <div class="company-logo">
-                        A
+                    <div class="job-icon">
+                        🤖
                     </div>
 
-                    <button class="save-btn">
-                        ♡
+                    <button
+                        class="save-btn"
+                        onclick="saveJob(this)">
+                        ♡ Save
                     </button>
 
                 </div>
 
-                <div class="job-info">
+                <h2>
+                    AI/ML Engineer
+                </h2>
 
-                    <h3>AI/ML Engineer</h3>
-
-                    <p class="company">
-                        AI Solutions Pvt Ltd
-                    </p>
-
-                    <div class="tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">TensorFlow</span>
-                        <span class="tag">Deep Learning</span>
-                    </div>
-
-                    <div class="job-details">
-                        <span>📍 Chennai</span>
-                        <span>💼 Full Time</span>
-                        <span>🕐 3 days ago</span>
-                    </div>
-
-                    <div class="job-bottom">
-
-                        <span class="salary">
-                            ₹5 - ₹9 LPA
-                        </span>
-
-                        <button class="apply-btn">
-                            Apply Now
-                        </button>
-
-                    </div>
-
+                <div class="company">
+                    AI Solutions Pvt Ltd
                 </div>
 
-            </article>
+                <div class="job-info">
+                    <span class="tag">📍 Chennai</span>
+                    <span class="tag">Python</span>
+                    <span class="tag">TensorFlow</span>
+                    <span class="tag">Deep Learning</span>
+                </div>
+
+                <div class="salary">
+                    ₹5 - 9 LPA
+                </div>
+
+                <button
+                    class="apply-btn"
+                    onclick="applyJob('AI/ML Engineer')">
+                    Apply Now
+                </button>
+
+            </div>
 
 
             <!-- JOB 3 -->
 
-            <article class="job-card">
+            <div class="job-card"
+                data-title="Data Analyst"
+                data-company="DataWorks"
+                data-location="Hyderabad"
+                data-skills="SQL Excel Power BI">
 
                 <div class="job-top">
 
-                    <div class="company-logo">
-                        D
+                    <div class="job-icon">
+                        📈
                     </div>
 
-                    <button class="save-btn">
-                        ♡
+                    <button
+                        class="save-btn"
+                        onclick="saveJob(this)">
+                        ♡ Save
                     </button>
 
                 </div>
 
-                <div class="job-info">
+                <h2>
+                    Data Analyst
+                </h2>
 
-                    <h3>Data Analyst</h3>
-
-                    <p class="company">
-                        DataWorks
-                    </p>
-
-                    <div class="tags">
-                        <span class="tag">SQL</span>
-                        <span class="tag">Excel</span>
-                        <span class="tag">Power BI</span>
-                    </div>
-
-                    <div class="job-details">
-                        <span>📍 Hyderabad</span>
-                        <span>💼 Full Time</span>
-                        <span>🕐 4 days ago</span>
-                    </div>
-
-                    <div class="job-bottom">
-
-                        <span class="salary">
-                            ₹4 - ₹7 LPA
-                        </span>
-
-                        <button class="apply-btn">
-                            Apply Now
-                        </button>
-
-                    </div>
-
+                <div class="company">
+                    DataWorks
                 </div>
 
-            </article>
+                <div class="job-info">
+                    <span class="tag">📍 Hyderabad</span>
+                    <span class="tag">SQL</span>
+                    <span class="tag">Excel</span>
+                    <span class="tag">Power BI</span>
+                </div>
+
+                <div class="salary">
+                    ₹4 - 7 LPA
+                </div>
+
+                <button
+                    class="apply-btn"
+                    onclick="applyJob('Data Analyst')">
+                    Apply Now
+                </button>
+
+            </div>
 
 
             <!-- JOB 4 -->
 
-            <article class="job-card">
+            <div class="job-card"
+                data-title="Software Engineer"
+                data-company="SoftTech Solutions"
+                data-location="Coimbatore"
+                data-skills="Java Python SQL">
 
                 <div class="job-top">
 
-                    <div class="company-logo">
-                        S
+                    <div class="job-icon">
+                        💻
                     </div>
 
-                    <button class="save-btn">
-                        ♡
+                    <button
+                        class="save-btn"
+                        onclick="saveJob(this)">
+                        ♡ Save
                     </button>
 
                 </div>
 
-                <div class="job-info">
+                <h2>
+                    Software Engineer
+                </h2>
 
-                    <h3>Software Engineer</h3>
-
-                    <p class="company">
-                        SoftTech Solutions
-                    </p>
-
-                    <div class="tags">
-                        <span class="tag">Java</span>
-                        <span class="tag">Python</span>
-                        <span class="tag">SQL</span>
-                    </div>
-
-                    <div class="job-details">
-                        <span>📍 Coimbatore</span>
-                        <span>💼 Full Time</span>
-                        <span>🕐 1 week ago</span>
-                    </div>
-
-                    <div class="job-bottom">
-
-                        <span class="salary">
-                            ₹4 - ₹8 LPA
-                        </span>
-
-                        <button class="apply-btn">
-                            Apply Now
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </article>
-
-
-            <!-- JOB 5 -->
-
-            <article class="job-card">
-
-                <div class="job-top">
-
-                    <div class="company-logo">
-                        C
-                    </div>
-
-                    <button class="save-btn">
-                        ♡
-                    </button>
-
+                <div class="company">
+                    SoftTech Solutions
                 </div>
 
                 <div class="job-info">
-
-                    <h3>Frontend Developer</h3>
-
-                    <p class="company">
-                        Creative Technologies
-                    </p>
-
-                    <div class="tags">
-                        <span class="tag">HTML</span>
-                        <span class="tag">CSS</span>
-                        <span class="tag">JavaScript</span>
-                    </div>
-
-                    <div class="job-details">
-                        <span>📍 Chennai</span>
-                        <span>💼 Full Time</span>
-                        <span>🕐 5 days ago</span>
-                    </div>
-
-                    <div class="job-bottom">
-
-                        <span class="salary">
-                            ₹3 - ₹6 LPA
-                        </span>
-
-                        <button class="apply-btn">
-                            Apply Now
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </article>
-
-
-            <!-- JOB 6 -->
-
-            <article class="job-card">
-
-                <div class="job-top">
-
-                    <div class="company-logo">
-                        M
-                    </div>
-
-                    <button class="save-btn">
-                        ♡
-                    </button>
-
-                </div>
-
-                <div class="job-info">
-
-                    <h3>Machine Learning Intern</h3>
-
-                    <p class="company">
-                        MachineMind
-                    </p>
-
-                    <div class="tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">ML</span>
-                        <span class="tag">Pandas</span>
-                    </div>
-
-                    <div class="job-details">
-                        <span>📍 Remote</span>
-                        <span>💼 Internship</span>
-                        <span>🕐 Today</span>
-                    </div>
-
-                    <div class="job-bottom">
-
-                        <span class="salary">
-                            ₹15K - ₹25K / month
-                        </span>
-
-                        <button class="apply-btn">
-                            Apply Now
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </article>
-
-
-        </section>
-
-    </main>
-
-
-    <script>
-
-        function goDashboard() {
-            window.location.href = "dashboard.html";
-        }
-
-
-        function searchJobs() {
-
-            const keyword =
-                document.getElementById("jobSearch").value.toLowerCase();
-
-            const location =
-                document.getElementById("locationSearch").value.toLowerCase();
-
-            const cards =
-                document.querySelectorAll(".job-card");
-
-            cards.forEach(card => {
-
-                const text =
-                    card.innerText.toLowerCase();
-
-                const keywordMatch =
-                    keyword === "" || text.includes(keyword);
-
-                const locationMatch =
-                    location === "" || text.includes(location);
-
-                if (keywordMatch && locationMatch) {
-                    card.style.display = "";
-                } else {
-                    card.style.display = "none";
-                }
-
-            });
-
-        }
-
-    </script>
-
-</body>
-
-</html>
+                    <span class="tag">📍 Coimbatore</span>
+                    <span class="tag">Java</s
