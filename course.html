@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>FAST-TRACK | Courses</title>
 
     <style>
@@ -18,322 +17,324 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background:
-                radial-gradient(circle at 10% 10%, rgba(37, 99, 235, 0.18), transparent 30%),
-                radial-gradient(circle at 90% 90%, rgba(124, 58, 237, 0.18), transparent 30%),
-                #080b14;
-            color: #ffffff;
+            background: #070b14;
+            color: #fff;
             min-height: 100vh;
         }
 
-        .page {
-            min-height: 100vh;
-            padding: 25px;
+        /* SIDEBAR */
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 245px;
+            padding: 24px 15px;
+            background: rgba(10, 14, 25, 0.96);
+            border-right: 1px solid rgba(255,255,255,0.08);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
         }
 
-        /* TOPBAR */
-
-        .topbar {
-            height: 70px;
-            max-width: 1200px;
-            margin: auto;
+        .sidebar-brand {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            padding: 0 22px;
-            background: rgba(17, 24, 39, 0.75);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 18px;
-            backdrop-filter: blur(15px);
+            gap: 11px;
+            padding: 5px 10px 25px;
         }
 
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .brand img {
-            width: 42px;
-            height: 42px;
+        .sidebar-brand img {
+            width: 40px;
+            height: 40px;
             object-fit: contain;
         }
 
-        .brand-name {
-            font-size: 20px;
+        .brand-text {
+            font-size: 19px;
             font-weight: 800;
-            letter-spacing: 0.5px;
         }
 
-        .dashboard-btn {
+        .nav-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .nav-item {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding: 13px 14px;
             border: none;
-            padding: 11px 18px;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.08);
-            color: white;
+            border-radius: 11px;
+            background: transparent;
+            color: #9ca3af;
             cursor: pointer;
+            font-family: inherit;
+            font-size: 14px;
             font-weight: 600;
+            text-align: left;
             transition: 0.2s;
         }
 
-        .dashboard-btn:hover {
-            background: rgba(255, 255, 255, 0.15);
+        .nav-item:hover {
+            background: rgba(255,255,255,0.06);
+            color: white;
+        }
+
+        .nav-item.active {
+            background: linear-gradient(
+                135deg,
+                rgba(37,99,235,0.95),
+                rgba(124,58,237,0.95)
+            );
+            color: white;
+            box-shadow: 0 8px 25px rgba(37,99,235,0.18);
+        }
+
+        .nav-icon {
+            width: 23px;
+            display: flex;
+            justify-content: center;
+            font-size: 17px;
         }
 
         /* MAIN */
 
         .main {
-            max-width: 1200px;
-            margin: 35px auto;
+            margin-left: 245px;
+            padding: 25px 30px;
+            min-height: 100vh;
         }
 
-        .heading h1 {
-            font-size: 32px;
+        /* TOPBAR */
+
+        .topbar {
+            height: 65px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 25px;
+        }
+
+        .mobile-brand {
+            display: none;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .mobile-brand img {
+            width: 38px;
+            height: 38px;
+            object-fit: contain;
+        }
+
+        .mobile-brand span {
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .dashboard-btn {
+            margin-left: auto;
+            padding: 9px 14px;
+            border-radius: 9px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.05);
+            color: #d1d5db;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .dashboard-btn:hover {
+            background: rgba(255,255,255,0.1);
+            color: white;
+        }
+
+        /* HEADER */
+
+        .page-header {
+            margin-bottom: 25px;
+        }
+
+        .page-header h1 {
+            font-size: 30px;
+            font-weight: 800;
             margin-bottom: 8px;
         }
 
-        .heading p {
-            color: #9ca3af;
-            font-size: 15px;
+        .page-header p {
+            color: #8b93a5;
+            font-size: 14px;
         }
 
         /* SEARCH */
 
-        .search-section {
-            margin-top: 28px;
-            padding: 20px;
-            border-radius: 18px;
-            background: rgba(17, 24, 39, 0.78);
-            border: 1px solid rgba(255, 255, 255, 0.07);
-        }
-
         .search-box {
-            width: 100%;
-            padding: 14px 16px;
-            border-radius: 11px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: #0b1120;
-            color: white;
-            outline: none;
-            font-size: 14px;
+            margin-bottom: 20px;
         }
 
-        .search-box:focus {
-            border-color: #6366f1;
+        .search-box input {
+            width: 100%;
+            padding: 15px 18px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.08);
+            outline: none;
+            background: #101725;
+            color: white;
+            font-family: inherit;
+            font-size: 13px;
         }
+
+        .search-box input:focus {
+            border-color: rgba(96,165,250,0.5);
+        }
+
+        /* FILTERS */
 
         .filters {
             display: flex;
-            gap: 10px;
-            margin-top: 15px;
             flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 25px;
         }
 
         .filter-btn {
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(255, 255, 255, 0.05);
-            color: #d1d5db;
-            padding: 9px 15px;
-            border-radius: 9px;
+            padding: 9px 14px;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 20px;
+            background: #101725;
+            color: #9ca3af;
             cursor: pointer;
-            font-size: 13px;
+            font-family: inherit;
+            font-size: 11px;
             font-weight: 600;
-            transition: 0.2s;
         }
 
-        .filter-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
+        .filter-btn:hover,
         .filter-btn.active {
-            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            background: linear-gradient(135deg,#2563eb,#7c3aed);
             color: white;
             border-color: transparent;
         }
 
-        /* COURSE STATS */
+        /* STATS */
 
         .stats {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 18px;
-            margin-top: 28px;
+            grid-template-columns: repeat(3,1fr);
+            gap: 15px;
+            margin-bottom: 25px;
         }
 
         .stat-card {
-            padding: 20px;
-            border-radius: 16px;
-            background: rgba(17, 24, 39, 0.78);
-            border: 1px solid rgba(255, 255, 255, 0.07);
+            padding: 18px;
+            border-radius: 14px;
+            background: #101725;
+            border: 1px solid rgba(255,255,255,0.07);
         }
 
-        .stat-number {
-            font-size: 28px;
-            font-weight: 800;
-            margin-bottom: 5px;
+        .stat-card span {
+            color: #8b93a5;
+            font-size: 11px;
         }
 
-        .stat-label {
-            color: #9ca3af;
-            font-size: 13px;
-        }
-
-        /* COURSE HEADER */
-
-        .courses-header {
-            margin-top: 35px;
-            margin-bottom: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .courses-header h2 {
-            font-size: 21px;
-        }
-
-        .course-count {
-            color: #9ca3af;
-            font-size: 13px;
+        .stat-card h2 {
+            margin-top: 8px;
+            font-size: 23px;
         }
 
         /* COURSES */
 
-        .courses-grid {
+        .course-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(3,1fr);
             gap: 18px;
         }
 
         .course-card {
-            background: rgba(17, 24, 39, 0.78);
-            border: 1px solid rgba(255, 255, 255, 0.07);
-            border-radius: 18px;
-            overflow: hidden;
+            padding: 20px;
+            border-radius: 16px;
+            background: linear-gradient(
+                145deg,
+                rgba(20,27,45,0.95),
+                rgba(12,17,29,0.95)
+            );
+            border: 1px solid rgba(255,255,255,0.07);
             transition: 0.25s;
         }
 
         .course-card:hover {
             transform: translateY(-4px);
-            border-color: rgba(99, 102, 241, 0.4);
+            border-color: rgba(96,165,250,0.25);
         }
 
-        .course-banner {
-            height: 125px;
+        .course-icon {
+            width: 45px;
+            height: 45px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 45px;
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(37, 99, 235, 0.35),
-                    rgba(124, 58, 237, 0.35)
-                );
+            border-radius: 12px;
+            background: rgba(59,130,246,0.12);
+            font-size: 21px;
+            margin-bottom: 15px;
         }
 
-        .course-content {
-            padding: 20px;
-        }
-
-        .course-category {
-            display: inline-block;
-            padding: 5px 9px;
-            border-radius: 7px;
-            background: rgba(96, 165, 250, 0.12);
-            color: #60a5fa;
-            font-size: 11px;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-
-        .course-content h3 {
-            font-size: 17px;
-            line-height: 1.4;
-            margin-bottom: 8px;
-        }
-
-        .course-description {
-            color: #9ca3af;
-            font-size: 13px;
-            line-height: 1.5;
-            min-height: 40px;
-        }
-
-        .course-info {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 16px;
-            color: #9ca3af;
-            font-size: 12px;
-        }
-
-        .level {
-            color: #d1d5db;
-        }
-
-        .progress-area {
-            margin-top: 16px;
-        }
-
-        .progress-top {
-            display: flex;
-            justify-content: space-between;
+        .course-card h3 {
+            font-size: 16px;
             margin-bottom: 7px;
+        }
+
+        .course-card p {
+            color: #8b93a5;
             font-size: 11px;
+            line-height: 1.6;
+            min-height: 36px;
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            margin: 15px 0;
             color: #9ca3af;
+            font-size: 10px;
         }
 
         .progress-bar {
-            height: 5px;
-            background: rgba(255, 255, 255, 0.08);
+            width: 100%;
+            height: 6px;
             border-radius: 10px;
+            background: #202938;
             overflow: hidden;
+            margin-bottom: 12px;
         }
 
         .progress-fill {
             width: 0%;
             height: 100%;
-            background: linear-gradient(90deg, #2563eb, #7c3aed);
-            border-radius: 10px;
+            background: linear-gradient(90deg,#2563eb,#7c3aed);
         }
 
         .start-btn {
             width: 100%;
-            margin-top: 18px;
-            padding: 11px;
+            padding: 10px;
             border: none;
-            border-radius: 10px;
-            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            border-radius: 9px;
+            background: linear-gradient(135deg,#2563eb,#7c3aed);
             color: white;
             cursor: pointer;
+            font-family: inherit;
+            font-size: 11px;
             font-weight: 700;
-            transition: 0.2s;
         }
 
         .start-btn:hover {
             opacity: 0.9;
-        }
-
-        /* NO RESULTS */
-
-        .no-results {
-            display: none;
-            text-align: center;
-            padding: 50px 20px;
-            border-radius: 18px;
-            background: rgba(17, 24, 39, 0.78);
-            border: 1px dashed rgba(255, 255, 255, 0.12);
-        }
-
-        .no-results div {
-            font-size: 40px;
-            margin-bottom: 10px;
-        }
-
-        .no-results p {
-            color: #9ca3af;
-            font-size: 14px;
         }
 
         /* TOAST */
@@ -343,10 +344,11 @@
             right: 25px;
             bottom: 25px;
             background: #111827;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 14px 18px;
-            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
             color: white;
+            padding: 13px 18px;
+            border-radius: 10px;
+            font-size: 12px;
             opacity: 0;
             transform: translateY(20px);
             pointer-events: none;
@@ -361,466 +363,462 @@
 
         /* TABLET */
 
-        @media (max-width: 950px) {
+        @media (max-width:800px) {
 
-            .courses-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .sidebar {
+                width: 70px;
+                padding: 20px 9px;
             }
 
+            .sidebar-brand {
+                justify-content: center;
+                padding: 5px 0 25px;
+            }
+
+            .sidebar-brand img {
+                width: 38px;
+                height: 38px;
+            }
+
+            .brand-text {
+                display: none;
+            }
+
+            .nav-item {
+                justify-content: center;
+                padding: 13px 8px;
+            }
+
+            .nav-item span:last-child {
+                display: none;
+            }
+
+            .nav-icon {
+                width: auto;
+            }
+
+            .main {
+                margin-left: 70px;
+            }
+
+            .course-grid {
+                grid-template-columns: repeat(2,1fr);
+            }
         }
 
         /* MOBILE */
 
-        @media (max-width: 700px) {
+        @media (max-width:500px) {
+
+            body {
+                padding-bottom: 72px;
+            }
+
+            .sidebar {
+                position: fixed;
+                left: 0;
+                right: 0;
+                top: auto;
+                bottom: 0;
+                width: 100%;
+                height: 65px;
+                padding: 7px 5px;
+                border-right: none;
+                border-top: 1px solid rgba(255,255,255,0.08);
+                background: rgba(10,14,25,0.98);
+                backdrop-filter: blur(15px);
+                display: block;
+            }
+
+            .sidebar-brand {
+                display: none;
+            }
+
+            .nav-menu {
+                height: 100%;
+                display: grid;
+                grid-template-columns: repeat(7,1fr);
+                gap: 2px;
+                align-items: center;
+            }
+
+            .nav-item {
+                height: 52px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2px;
+                padding: 4px 1px;
+                border-radius: 9px;
+                font-size: 8px;
+            }
+
+            .nav-item span:last-child {
+                display: block;
+                font-size: 8px;
+            }
+
+            .nav-icon {
+                font-size: 18px;
+                width: auto;
+            }
+
+            .main {
+                margin-left: 0;
+                padding: 18px 15px;
+            }
+
+            .topbar {
+                height: 50px;
+                margin-bottom: 20px;
+            }
+
+            .mobile-brand {
+                display: flex;
+            }
+
+            .dashboard-btn {
+                padding: 8px 10px;
+                font-size: 10px;
+            }
+
+            .page-header h1 {
+                font-size: 24px;
+            }
+
+            .page-header p {
+                font-size: 12px;
+            }
 
             .stats {
                 grid-template-columns: 1fr;
             }
 
-            .courses-grid {
+            .course-grid {
                 grid-template-columns: 1fr;
-            }
-
-        }
-
-        @media (max-width: 500px) {
-
-            .page {
-                padding: 12px;
-            }
-
-            .topbar {
-                height: 62px;
-                padding: 0 14px;
-                border-radius: 14px;
-            }
-
-            .brand img {
-                width: 35px;
-                height: 35px;
-            }
-
-            .brand-name {
-                font-size: 17px;
-            }
-
-            .dashboard-btn {
-                padding: 9px 12px;
-                font-size: 12px;
-            }
-
-            .main {
-                margin-top: 25px;
-            }
-
-            .heading h1 {
-                font-size: 25px;
-            }
-
-            .search-section {
-                padding: 15px;
-            }
-
-            .filters {
-                gap: 7px;
-            }
-
-            .filter-btn {
-                padding: 8px 11px;
-                font-size: 12px;
-            }
-
-            .courses-header {
-                margin-top: 28px;
-            }
-
-            .courses-header h2 {
-                font-size: 19px;
             }
 
             .toast {
                 left: 15px;
                 right: 15px;
-                bottom: 15px;
+                bottom: 80px;
                 text-align: center;
             }
-
         }
     </style>
 </head>
 
-
 <body>
 
-    <div class="page">
+    <!-- SIDEBAR -->
 
-        <!-- TOPBAR -->
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+            <img src="fast-track-logo.png" alt="FAST-TRACK Logo">
+            <div class="brand-text">FAST-TRACK</div>
+        </div>
+
+        <nav class="nav-menu">
+
+            <button class="nav-item"
+                onclick="window.location.href='dashboard.html'">
+                <span class="nav-icon">🏠</span>
+                <span>Dashboard</span>
+            </button>
+
+            <button class="nav-item"
+                onclick="window.location.href='jobs.html'">
+                <span class="nav-icon">💼</span>
+                <span>Jobs</span>
+            </button>
+
+            <button class="nav-item"
+                onclick="window.location.href='skills.html'">
+                <span class="nav-icon">🧠</span>
+                <span>Skills</span>
+            </button>
+
+            <button class="nav-item active"
+                onclick="window.location.href='courses.html'">
+                <span class="nav-icon">📚</span>
+                <span>Courses</span>
+            </button>
+
+            <button class="nav-item"
+                onclick="window.location.href='resume.html'">
+                <span class="nav-icon">📄</span>
+                <span>Resume</span>
+            </button>
+
+            <button class="nav-item"
+                onclick="window.location.href='progress.html'">
+                <span class="nav-icon">📈</span>
+                <span>Progress</span>
+            </button>
+
+            <button class="nav-item"
+                onclick="window.location.href='profile.html'">
+                <span class="nav-icon">👤</span>
+                <span>My Profile</span>
+            </button>
+
+        </nav>
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="main">
 
         <header class="topbar">
 
-            <div class="brand">
-
-                <img src="fast-track-logo.png"
-                     alt="FAST-TRACK Logo">
-
-                <div class="brand-name">
-                    FAST-TRACK
-                </div>
-
+            <div class="mobile-brand">
+                <img src="fast-track-logo.png" alt="FAST-TRACK Logo">
+                <span>FAST-TRACK</span>
             </div>
 
-
             <button class="dashboard-btn"
-                    onclick="window.location.href='dashboard.html'">
-
+                onclick="window.location.href='dashboard.html'">
                 ← Dashboard
-
             </button>
 
         </header>
 
 
-        <!-- MAIN -->
+        <!-- HEADER -->
 
-        <main class="main">
+        <section class="page-header">
 
-            <div class="heading">
+            <h1>Learn & Grow 📚</h1>
 
-                <h1>
-                    Explore Courses 📚
-                </h1>
+            <p>
+                Improve your skills with courses designed for your career.
+            </p>
+
+        </section>
+
+
+        <!-- SEARCH -->
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search courses..."
+                oninput="filterCourses()">
+
+        </div>
+
+
+        <!-- FILTERS -->
+
+        <div class="filters">
+
+            <button class="filter-btn active"
+                onclick="setCategory('All', this)">
+                All
+            </button>
+
+            <button class="filter-btn"
+                onclick="setCategory('Programming', this)">
+                Programming
+            </button>
+
+            <button class="filter-btn"
+                onclick="setCategory('AI & ML', this)">
+                AI & ML
+            </button>
+
+            <button class="filter-btn"
+                onclick="setCategory('Data', this)">
+                Data
+            </button>
+
+            <button class="filter-btn"
+                onclick="setCategory('Web Development', this)">
+                Web Development
+            </button>
+
+            <button class="filter-btn"
+                onclick="setCategory('Cloud', this)">
+                Cloud
+            </button>
+
+        </div>
+
+
+        <!-- STATS -->
+
+        <section class="stats">
+
+            <div class="stat-card">
+                <span>Courses Started</span>
+                <h2 id="startedCount">0</h2>
+            </div>
+
+            <div class="stat-card">
+                <span>Learning Progress</span>
+                <h2 id="progressCount">0%</h2>
+            </div>
+
+            <div class="stat-card">
+                <span>Courses Completed</span>
+                <h2 id="completedCount">0</h2>
+            </div>
+
+        </section>
+
+
+        <!-- COURSE GRID -->
+
+        <section class="course-grid" id="courseGrid">
+
+            <div class="course-card"
+                data-category="Programming"
+                data-title="Python Programming">
+
+                <div class="course-icon">🐍</div>
+
+                <h3>Python Programming</h3>
 
                 <p>
-                    Learn new skills and move closer to your career goals.
+                    Learn Python fundamentals and build a strong programming foundation.
                 </p>
 
-            </div>
-
-
-            <!-- SEARCH + FILTER -->
-
-            <section class="search-section">
-
-                <input
-                    type="text"
-                    id="searchInput"
-                    class="search-box"
-                    placeholder="Search courses, skills or technologies..."
-                    oninput="filterCourses()">
-
-
-                <div class="filters">
-
-                    <button
-                        class="filter-btn active"
-                        data-category="All"
-                        onclick="setCategory('All', this)">
-                        All
-                    </button>
-
-                    <button
-                        class="filter-btn"
-                        data-category="Programming"
-                        onclick="setCategory('Programming', this)">
-                        Programming
-                    </button>
-
-                    <button
-                        class="filter-btn"
-                        data-category="AI & ML"
-                        onclick="setCategory('AI & ML', this)">
-                        AI & ML
-                    </button>
-
-                    <button
-                        class="filter-btn"
-                        data-category="Data"
-                        onclick="setCategory('Data', this)">
-                        Data
-                    </button>
-
-                    <button
-                        class="filter-btn"
-                        data-category="Web Development"
-                        onclick="setCategory('Web Development', this)">
-                        Web Development
-                    </button>
-
-                    <button
-                        class="filter-btn"
-                        data-category="Cloud"
-                        onclick="setCategory('Cloud', this)">
-                        Cloud
-                    </button>
-
+                <div class="course-meta">
+                    <span>Programming</span>
+                    <span>Beginner</span>
                 </div>
 
-            </section>
-
-
-            <!-- STATS -->
-
-            <section class="stats">
-
-                <div class="stat-card">
-
-                    <div class="stat-number">
-                        0
-                    </div>
-
-                    <div class="stat-label">
-                        Courses Started
-                    </div>
-
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
                 </div>
 
-
-                <div class="stat-card">
-
-                    <div class="stat-number">
-                        0%
-                    </div>
-
-                    <div class="stat-label">
-                        Learning Progress
-                    </div>
-
-                </div>
-
-
-                <div class="stat-card">
-
-                    <div class="stat-number">
-                        0
-                    </div>
-
-                    <div class="stat-label">
-                        Courses Completed
-                    </div>
-
-                </div>
-
-            </section>
-
-
-            <!-- COURSE LIST -->
-
-            <div class="courses-header">
-
-                <h2>
-                    Available Courses
-                </h2>
-
-                <span
-                    class="course-count"
-                    id="courseCount">
-                    9 Courses
-                </span>
+                <button class="start-btn"
+                    onclick="startCourse('Python Programming')">
+                    Start Course
+                </button>
 
             </div>
 
 
-            <section class="courses-grid"
-                     id="coursesGrid">
+            <div class="course-card"
+                data-category="AI & ML"
+                data-title="Machine Learning">
 
+                <div class="course-icon">🤖</div>
 
-                <!-- COURSE 1 -->
+                <h3>Machine Learning</h3>
 
-                <div class="course-card"
-                     data-category="Programming"
-                     data-search="python programming coding">
+                <p>
+                    Understand machine learning algorithms and real-world applications.
+                </p>
 
-                    <div class="course-banner">
-                        🐍
-                    </div>
-
-                    <div class="course-content">
-
-                        <span class="course-category">
-                            Programming
-                        </span>
-
-                        <h3>
-                            Python Programming
-                        </h3>
-
-                        <p class="course-description">
-                            Learn Python from basics to practical programming.
-                        </p>
-
-                        <div class="course-info">
-
-                            <span>
-                                ⏱ 8 Weeks
-                            </span>
-
-                            <span class="level">
-                                Beginner
-                            </span>
-
-                        </div>
-
-                        <div class="progress-area">
-
-                            <div class="progress-top">
-
-                                <span>
-                                    Progress
-                                </span>
-
-                                <span>
-                                    0%
-                                </span>
-
-                            </div>
-
-                            <div class="progress-bar">
-                                <div class="progress-fill"></div>
-                            </div>
-
-                        </div>
-
-                        <button class="start-btn"
-                                onclick="startCourse('Python Programming')">
-
-                            Start Course
-
-                        </button>
-
-                    </div>
-
+                <div class="course-meta">
+                    <span>AI & ML</span>
+                    <span>Intermediate</span>
                 </div>
 
-
-                <!-- COURSE 2 -->
-
-                <div class="course-card"
-                     data-category="AI & ML"
-                     data-search="machine learning artificial intelligence ml">
-
-                    <div class="course-banner">
-                        🤖
-                    </div>
-
-                    <div class="course-content">
-
-                        <span class="course-category">
-                            AI & ML
-                        </span>
-
-                        <h3>
-                            Machine Learning
-                        </h3>
-
-                        <p class="course-description">
-                            Understand ML algorithms and build intelligent models.
-                        </p>
-
-                        <div class="course-info">
-
-                            <span>
-                                ⏱ 10 Weeks
-                            </span>
-
-                            <span class="level">
-                                Intermediate
-                            </span>
-
-                        </div>
-
-                        <div class="progress-area">
-
-                            <div class="progress-top">
-
-                                <span>
-                                    Progress
-                                </span>
-
-                                <span>
-                                    0%
-                                </span>
-
-                            </div>
-
-                            <div class="progress-bar">
-                                <div class="progress-fill"></div>
-                            </div>
-
-                        </div>
-
-                        <button class="start-btn"
-                                onclick="startCourse('Machine Learning')">
-
-                            Start Course
-
-                        </button>
-
-                    </div>
-
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
                 </div>
 
+                <button class="start-btn"
+                    onclick="startCourse('Machine Learning')">
+                    Start Course
+                </button>
 
-                <!-- COURSE 3 -->
+            </div>
 
-                <div class="course-card"
-                     data-category="Data"
-                     data-search="sql database data">
 
-                    <div class="course-banner">
-                        🗄️
-                    </div>
+            <div class="course-card"
+                data-category="Data"
+                data-title="SQL & Databases">
 
-                    <div class="course-content">
+                <div class="course-icon">🗄️</div>
 
-                        <span class="course-category">
-                            Data
-                        </span>
+                <h3>SQL & Databases</h3>
 
-                        <h3>
-                            SQL & Databases
-                        </h3>
+                <p>
+                    Learn SQL queries, database concepts and data management.
+                </p>
 
-                        <p class="course-description">
-                            Master SQL queries and database fundamentals.
-                        </p>
+                <div class="course-meta">
+                    <span>Data</span>
+                    <span>Beginner</span>
+                </div>
 
-                        <div class="course-info">
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
 
-                            <span>
-                                ⏱ 6 Weeks
-                            </span>
+                <button class="start-btn"
+                    onclick="startCourse('SQL & Databases')">
+                    Start Course
+                </button>
 
-                            <span class="level">
-                                Beginner
-                            </span>
+            </div>
 
-                        </div>
 
-                        <div class="progress-area">
+            <div class="course-card"
+                data-category="Web Development"
+                data-title="HTML & CSS">
 
-                            <div class="progress-top">
+                <div class="course-icon">🌐</div>
 
-                                <span>
-                                    Progress
-                                </span>
+                <h3>HTML & CSS</h3>
 
-                                <span>
-                                    0%
-                                </span>
+                <p>
+                    Build beautiful and responsive websites from scratch.
+                </p>
 
-                            </div>
+                <div class="course-meta">
+                    <span>Web Development</span>
+                    <span>Beginner</span>
+                </div>
 
-                            <div class="progress-bar">
-                                <div class="progress-fill"></div>
-                            </div>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
 
-                        </div>
+                <button class="start-btn"
+                    onclick="startCourse('HTML & CSS')">
+                    Start Course
+                </button>
 
-                        <button class="start-btn"
-                                onclick="startCourse('SQL & Databases')">
+            </div>
 
-                            Start Course
 
-                        </button>
+            <div class="course-card"
+                data-category="Web Development"
+                data-title="JavaScript">
 
-   
+                <div class="course-icon">⚡</div>
+
+                <h3>JavaScript</h3>
+
+                <p>
+                    Learn JavaScript and create interactive web applications.
+                </p>
+
+                <div class="course-meta">
+                    <span>Web Development</span>
+                    <span>Intermediate</span>
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+
+                <button class="start-btn"
+                    onclick="startCourse('JavaScript')">
+                    Start Course
+                </button>
+
+            </div>
+
+
+          
