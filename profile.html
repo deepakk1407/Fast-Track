@@ -33,7 +33,7 @@
             width: 245px;
             padding: 24px 15px;
             background: rgba(10, 14, 25, 0.94);
-            border-right: 1px solid rgba(255,255,255,.08);
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
             z-index: 1000;
             display: flex;
             flex-direction: column;
@@ -83,18 +83,18 @@
         }
 
         .nav-item:hover {
-            background: rgba(255,255,255,.06);
+            background: rgba(255, 255, 255, .06);
             color: white;
         }
 
         .nav-item.active {
             background: linear-gradient(
                 135deg,
-                rgba(37,99,235,.9),
-                rgba(124,58,237,.9)
+                rgba(37, 99, 235, .9),
+                rgba(124, 58, 237, .9)
             );
             color: white;
-            box-shadow: 0 8px 25px rgba(37,99,235,.18);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, .18);
         }
 
         .nav-icon {
@@ -136,9 +136,9 @@
 
         .dashboard-btn {
             padding: 10px 17px;
-            border: 1px solid rgba(255,255,255,.1);
+            border: 1px solid rgba(255, 255, 255, .1);
             border-radius: 9px;
-            background: rgba(255,255,255,.04);
+            background: rgba(255, 255, 255, .04);
             color: #cbd5e1;
             cursor: pointer;
             font-family: inherit;
@@ -146,7 +146,7 @@
         }
 
         .dashboard-btn:hover {
-            background: rgba(255,255,255,.08);
+            background: rgba(255, 255, 255, .08);
             color: white;
         }
 
@@ -168,10 +168,10 @@
             border-radius: 17px;
             background: linear-gradient(
                 135deg,
-                rgba(37,99,235,.16),
-                rgba(124,58,237,.13)
+                rgba(37, 99, 235, .16),
+                rgba(124, 58, 237, .13)
             );
-            border: 1px solid rgba(96,165,250,.18);
+            border: 1px solid rgba(96, 165, 250, .18);
             display: flex;
             align-items: center;
             gap: 20px;
@@ -192,7 +192,7 @@
             font-size: 30px;
             font-weight: 800;
             flex-shrink: 0;
-            box-shadow: 0 10px 30px rgba(37,99,235,.25);
+            box-shadow: 0 10px 30px rgba(37, 99, 235, .25);
         }
 
         .profile-header-info h2 {
@@ -231,8 +231,8 @@
         }
 
         .card {
-            background: rgba(15,23,42,.75);
-            border: 1px solid rgba(255,255,255,.08);
+            background: rgba(15, 23, 42, .75);
+            border: 1px solid rgba(255, 255, 255, .08);
             border-radius: 17px;
             padding: 23px;
         }
@@ -259,8 +259,8 @@
         textarea,
         select {
             width: 100%;
-            border: 1px solid rgba(255,255,255,.09);
-            background: rgba(255,255,255,.045);
+            border: 1px solid rgba(255, 255, 255, .09);
+            background: rgba(255, 255, 255, .045);
             color: white;
             border-radius: 9px;
             padding: 11px 12px;
@@ -311,14 +311,14 @@
             opacity: .9;
         }
 
-        /* CAREER CARD */
+        /* CAREER INFORMATION */
 
         .info-row {
             display: flex;
             justify-content: space-between;
             gap: 20px;
             padding: 13px 0;
-            border-bottom: 1px solid rgba(255,255,255,.06);
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
         }
 
         .info-row:last-child {
@@ -348,8 +348,8 @@
         .skill {
             padding: 7px 10px;
             border-radius: 7px;
-            background: rgba(37,99,235,.12);
-            border: 1px solid rgba(59,130,246,.18);
+            background: rgba(37, 99, 235, .12);
+            border: 1px solid rgba(59, 130, 246, .18);
             color: #93c5fd;
             font-size: 11px;
         }
@@ -360,6 +360,20 @@
             font-style: italic;
         }
 
+        /* PROFILE TIPS */
+
+        .tip-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 13px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+        }
+
+        .tip-row:last-child {
+            border-bottom: none;
+        }
+
         /* TOAST */
 
         .toast {
@@ -367,7 +381,7 @@
             right: 25px;
             bottom: 25px;
             background: #111827;
-            border: 1px solid rgba(255,255,255,.1);
+            border: 1px solid rgba(255, 255, 255, .1);
             padding: 13px 18px;
             border-radius: 10px;
             font-size: 13px;
@@ -385,7 +399,7 @@
 
         /* TABLET */
 
-        @media (max-width:800px) {
+        @media (max-width: 800px) {
 
             .sidebar {
                 width: 70px;
@@ -430,7 +444,7 @@
 
         /* MOBILE */
 
-        @media (max-width:500px) {
+        @media (max-width: 500px) {
 
             body {
                 padding-bottom: 72px;
@@ -446,8 +460,8 @@
                 height: 65px;
                 padding: 7px 5px;
                 border-right: none;
-                border-top: 1px solid rgba(255,255,255,.08);
-                background: rgba(10,14,25,.97);
+                border-top: 1px solid rgba(255, 255, 255, .08);
+                background: rgba(10, 14, 25, .97);
                 backdrop-filter: blur(15px);
                 display: block;
             }
@@ -459,7 +473,7 @@
             .nav-menu {
                 height: 100%;
                 display: grid;
-                grid-template-columns: repeat(7,1fr);
+                grid-template-columns: repeat(7, 1fr);
                 gap: 2px;
                 align-items: center;
             }
@@ -537,7 +551,7 @@
 
 <body>
 
-    <!-- NAVIGATION -->
+    <!-- SIDEBAR -->
 
     <aside class="sidebar">
 
@@ -591,6 +605,7 @@
             </button>
 
         </nav>
+
     </aside>
 
 
@@ -659,7 +674,7 @@
         </div>
 
 
-        <!-- PROFILE CONTENT -->
+        <!-- PROFILE GRID -->
 
         <div class="profile-grid">
 
@@ -706,6 +721,7 @@
                             placeholder="+91 XXXXX XXXXX">
 
                     </div>
+
 
                     <div class="input-group">
 
@@ -761,80 +777,33 @@
                 <h2>Career Information 🚀</h2>
 
                 <div class="info-row">
-
-                    <span class="info-label">
-                        Career Goal
-                    </span>
-
-                    <span class="info-value">
-                        Data Scientist
-                    </span>
-
+                    <span class="info-label">Career Goal</span>
+                    <span class="info-value" id="careerGoal">0</span>
                 </div>
 
-
                 <div class="info-row">
-
-                    <span class="info-label">
-                        Preferred Role
-                    </span>
-
-                    <span class="info-value">
-                        AI / Data Science
-                    </span>
-
+                    <span class="info-label">Preferred Role</span>
+                    <span class="info-value" id="preferredRole">0</span>
                 </div>
 
-
                 <div class="info-row">
-
-                    <span class="info-label">
-                        Experience
-                    </span>
-
-                    <span class="info-value">
-                        Fresher
-                    </span>
-
+                    <span class="info-label">Experience</span>
+                    <span class="info-value" id="experience">0</span>
                 </div>
 
-
                 <div class="info-row">
-
-                    <span class="info-label">
-                        Job Preference
-                    </span>
-
-                    <span class="info-value">
-                        Full Time
-                    </span>
-
+                    <span class="info-label">Job Preference</span>
+                    <span class="info-value" id="jobPreference">0</span>
                 </div>
 
-
                 <div class="info-row">
-
-                    <span class="info-label">
-                        Work Mode
-                    </span>
-
-                    <span class="info-value">
-                        Hybrid / Remote
-                    </span>
-
+                    <span class="info-label">Work Mode</span>
+                    <span class="info-value" id="workMode">0</span>
                 </div>
 
-
                 <div class="info-row">
-
-                    <span class="info-label">
-                        Profile Status
-                    </span>
-
-                    <span class="info-value">
-                        🟡 Getting Started
-                    </span>
-
+                    <span class="info-label">Profile Status</span>
+                    <span class="info-value" id="profileStatus">0</span>
                 </div>
 
             </div>
@@ -846,37 +815,45 @@
 
                 <h2>My Skills 🧠</h2>
 
-                <div class="skill-list">
+                <div class="skill-list" id="profileSkills">
 
-                    <span class="skill">Python</span>
-
-                    <span class="skill">SQL</span>
-
-                    <span class="skill">Machine Learning</span>
-
-                    <span class="skill">Data Analysis</span>
-
-                    <span class="skill">HTML</span>
-
-                    <span class="skill">CSS</span>
+                    <span class="empty">
+                        0
+                    </span>
 
                 </div>
 
             </div>
 
 
-            <!-- PROFILE TIPS -->
+            <!-- IMPROVE PROFILE -->
 
             <div class="card">
 
                 <h2>Improve Your Profile 💡</h2>
 
-                <div class="info-row">
+                <div class="tip-row">
 
                     <span class="info-label">
                         Profile Photo
                     </span>
 
-                    <span class="info-value">
-                        ⚪ Add
-          
+                    <span class="info-value"
+                        id="photoStatus">
+                        0
+                    </span>
+
+                </div>
+
+
+                <div class="tip-row">
+
+                    <span class="info-label">
+                        Personal Info
+                    </span>
+
+                    <span class="info-value"
+                        id="personalStatus">
+                        0
+                    </span>
+                    
