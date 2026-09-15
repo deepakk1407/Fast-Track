@@ -1,1132 +1,1126 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>  <html lang="en">  <head>  <meta charset="UTF-8">  
 
-<head>
+<meta name="viewport"  
+      content="width=device-width, initial-scale=1.0">  
 
-    <meta charset="UTF-8">
+<title>FAST-TRACK | Dashboard</title>  
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+<style>  
 
-    <title>FAST-TRACK | Dashboard</title>
+    * {  
+        margin: 0;  
+        padding: 0;  
+        box-sizing: border-box;  
+    }  
 
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
 
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
+    body {  
+        font-family: Arial, sans-serif;  
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-          rel="stylesheet">
+        background:  
+            radial-gradient(  
+                circle at 15% 15%,  
+                rgba(59, 130, 246, 0.28),  
+                transparent 28%  
+            ),  
+            radial-gradient(  
+                circle at 85% 80%,  
+                rgba(139, 92, 246, 0.24),  
+                transparent 30%  
+            ),  
+            linear-gradient(  
+                135deg,  
+                #07111f,  
+                #0b1730,  
+                #111827  
+            );  
 
-    <style>
+        color: #f8fafc;  
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        min-height: 100vh;  
+    }  
 
-        html,
-        body {
-            width: 100%;
-            min-height: 100%;
-        }
 
-        body {
-            font-family: "Inter", Arial, sans-serif;
-            color: #172033;
-            min-height: 100vh;
+    /* =========================  
+       SIDEBAR  
+    ========================= */  
 
-            background:
-                radial-gradient(
-                    circle at 15% 10%,
-                    rgba(59, 130, 246, 0.22),
-                    transparent 32%
-                ),
-                radial-gradient(
-                    circle at 85% 80%,
-                    rgba(124, 58, 237, 0.18),
-                    transparent 32%
-                ),
-                linear-gradient(
-                    135deg,
-                    #e8f1ff,
-                    #eef2ff 45%,
-                    #f3efff
-                );
+    .sidebar {  
 
-            overflow-x: hidden;
-        }
+        position: fixed;  
 
+        left: 0;  
+        top: 0;  
+        bottom: 0;  
 
-        /* =========================
-           SIDEBAR
-        ========================= */
+        width: 245px;  
 
-        .sidebar {
-            position: fixed;
-            left: 0;
-            top: 0;
-            bottom: 0;
+        padding: 22px 15px;  
 
-            width: 245px;
+        background:  
+            rgba(8, 18, 35, 0.88);  
 
-            padding: 22px 15px;
+        backdrop-filter: blur(18px);  
 
-            background:
-                linear-gradient(
-                    180deg,
-                    rgba(235, 243, 255, 0.97),
-                    rgba(243, 240, 255, 0.97)
-                );
+        border-right:  
+            1px solid rgba(255,255,255,0.08);  
 
-            backdrop-filter: blur(18px);
+        box-shadow:  
+            10px 0 40px rgba(0,0,0,0.18);  
 
-            border-right: 1px solid #d2def0;
+        z-index: 100;  
+    }  
 
-            box-shadow:
-                8px 0 35px
-                rgba(37, 99, 235, 0.10);
 
-            z-index: 100;
-        }
+    .sidebar-brand {  
 
+        display: flex;  
 
-        /* =========================
-           SIDEBAR BRAND
-        ========================= */
+        align-items: center;  
 
-        .sidebar-brand {
-            display: flex;
-            align-items: center;
+        gap: 10px;  
 
-            gap: 10px;
+        padding: 5px 10px 28px;  
 
-            padding: 5px 10px 28px;
+        font-size: 19px;  
 
-            font-size: 19px;
-            font-weight: 800;
+        font-weight: 800;  
 
-            color: #172554;
-        }
+        color: #ffffff;  
+    }  
 
 
-        .sidebar-brand img {
-            width: 42px;
-            height: 42px;
+    .sidebar-brand img {  
 
-            object-fit: contain;
+        width: 40px;  
+        height: 40px;  
 
-            display: block;
+        object-fit: contain;  
+    }  
 
-            filter:
-                drop-shadow(
-                    0 6px 12px
-                    rgba(37, 99, 235, 0.16)
-                );
-        }
 
+    /* =========================  
+       NAVIGATION  
+    ========================= */  
 
-        .sidebar-brand span {
-            display: block;
-            white-space: nowrap;
-        }
+    .nav-menu {  
 
+        display: flex;  
 
-        /* =========================
-           NAVIGATION
-        ========================= */
+        flex-direction: column;  
 
-        .nav-menu {
-            display: flex;
-            flex-direction: column;
-            gap: 7px;
-        }
+        gap: 7px;  
+    }  
 
 
-        .nav-item {
-            display: flex;
-            align-items: center;
+    .nav-item {  
 
-            gap: 12px;
+        display: flex;  
 
-            width: 100%;
+        align-items: center;  
 
-            padding: 13px;
+        gap: 12px;  
 
-            border: 1px solid transparent;
-            border-radius: 11px;
+        width: 100%;  
 
-            background: transparent;
+        padding: 13px;  
 
-            color: #64748b;
+        border: 1px solid transparent;  
 
-            font-family: inherit;
-            font-size: 13px;
-            font-weight: 600;
+        border-radius: 11px;  
 
-            text-align: left;
+        background: transparent;  
 
-            cursor: pointer;
+        color: #94a3b8;  
 
-            transition: 0.25s;
-        }
+        font-size: 13px;  
 
+        font-weight: 600;  
 
-        .nav-item:hover {
-            color: #2563eb;
+        text-align: left;  
 
-            background:
-                rgba(219, 234, 254, 0.75);
+        cursor: pointer;  
 
-            border-color: #c7dbf7;
-        }
+        transition: 0.25s;  
+    }  
 
 
-        .nav-item.active {
-            color: #ffffff;
+    .nav-item:hover {  
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #2563eb,
-                    #7c3aed
-                );
+        color: #ffffff;  
 
-            box-shadow:
-                0 9px 25px
-                rgba(37, 99, 235, 0.22);
-        }
+        background:  
+            rgba(59,130,246,0.13);  
 
+        border-color:  
+            rgba(96,165,250,0.15);  
+    }  
 
-        .nav-icon {
-            width: 22px;
 
-            text-align: center;
+    .nav-item.active {  
 
-            font-size: 17px;
-        }
+        color: #ffffff;  
 
+        background:  
+            linear-gradient(  
+                135deg,  
+                rgba(37,99,235,0.85),  
+                rgba(124,58,237,0.85)  
+            );  
 
-        /* =========================
-           MAIN
-        ========================= */
+        box-shadow:  
+            0 8px 25px  
+            rgba(37,99,235,0.25);  
+    }  
 
-        .main {
-            margin-left: 245px;
 
-            min-height: 100vh;
-        }
+    .nav-icon {  
 
+        width: 22px;  
 
-        /* =========================
-           TOPBAR
-        ========================= */
+        text-align: center;  
 
-        .topbar {
-            height: 72px;
+        font-size: 17px;  
+    }  
 
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
 
-            padding: 0 30px;
+    /* =========================  
+       MAIN  
+    ========================= */  
 
-            background:
-                rgba(239, 245, 255, 0.90);
+    .main {  
 
-            backdrop-filter: blur(18px);
+        margin-left: 245px;  
 
-            border-bottom: 1px solid #d5e1f2;
+        min-height: 100vh;  
+    }  
 
-            box-shadow:
-                0 5px 25px
-                rgba(37, 99, 235, 0.07);
-        }
 
+    /* =========================  
+       TOPBAR  
+    ========================= */  
 
-        /* MOBILE BRAND */
+    .topbar {  
 
-        .mobile-brand {
-            display: none;
+        height: 72px;  
 
-            align-items: center;
+        display: flex;  
 
-            gap: 8px;
+        align-items: center;  
 
-            color: #172554;
+        justify-content: flex-end;  
 
-            font-size: 17px;
-            font-weight: 800;
-        }
+        padding: 0 30px;  
 
+        background:  
+            rgba(7,17,31,0.65);  
 
-        .mobile-brand img {
-            width: 34px;
-            height: 34px;
+        backdrop-filter: blur(18px);  
 
-            object-fit: contain;
+        border-bottom:  
+            1px solid rgba(255,255,255,0.08);  
+    }  
 
-            display: block;
-        }
 
+    .user-area {  
 
-        .user-area {
-            display: flex;
+        display: flex;  
 
-            align-items: center;
+        align-items: center;  
 
-            gap: 15px;
+        gap: 15px;  
+    }  
 
-            margin-left: auto;
-        }
 
+    #userName {  
 
-        #userName {
-            font-size: 13px;
+        font-size: 13px;  
 
-            font-weight: 700;
+        font-weight: 700;  
 
-            color: #334155;
-        }
+        color: #e2e8f0;  
+    }  
 
 
-        #logoutButton {
-            border: 1px solid #fecaca;
+    #logoutButton {  
 
-            padding: 9px 17px;
+        border:  
+            1px solid rgba(255,255,255,0.12);  
 
-            border-radius: 9px;
+        padding: 9px 17px;  
 
-            background:
-                rgba(255, 245, 245, 0.95);
+        border-radius: 9px;  
 
-            color: #dc2626;
+        background:  
+            rgba(239,68,68,0.15);  
 
-            font-family: inherit;
+        color: #fca5a5;  
 
-            font-size: 12px;
+        font-size: 12px;  
 
-            font-weight: 700;
+        font-weight: 700;  
 
-            cursor: pointer;
+        cursor: pointer;  
 
-            transition: 0.2s;
+        transition: 0.2s;  
+    }  
 
-            position: relative;
 
-            z-index: 20;
-        }
+    #logoutButton:hover {  
 
+        background: #ef4444;  
 
-        #logoutButton:hover {
-            background: #ef4444;
+        color: white;  
+    }  
 
-            color: #ffffff;
 
-            border-color: #ef4444;
-        }
+    /* =========================  
+       DASHBOARD CONTENT  
+    ========================= */  
 
+    .dashboard {  
 
-        #logoutButton:disabled {
-            opacity: 0.6;
+        padding: 42px;  
+    }  
 
-            cursor: not-allowed;
-        }
 
+    .welcome {  
 
-        /* =========================
-           DASHBOARD
-        ========================= */
+        margin-bottom: 32px;  
+    }  
 
-        .dashboard {
-            padding: 42px;
-        }
 
+    .welcome h1 {  
 
-        .welcome {
-            margin-bottom: 32px;
-        }
+        font-size: 32px;  
 
+        font-weight: 800;  
 
-        .welcome h1 {
-            font-size: 32px;
+        margin-bottom: 9px;  
 
-            font-weight: 800;
+        color: #ffffff;  
+    }  
 
-            margin-bottom: 9px;
 
-            color: #172033;
-        }
+    .welcome h1 span {  
 
+        background:  
+            linear-gradient(  
+                90deg,  
+                #60a5fa,  
+                #a78bfa  
+            );  
 
-        .welcome h1 span {
-            background:
-                linear-gradient(
-                    90deg,
-                    #2563eb,
-                    #7c3aed
-                );
+        -webkit-background-clip: text;  
 
-            -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;  
+    }  
 
-            -webkit-text-fill-color: transparent;
-        }
 
+    .welcome p {  
 
-        .welcome p {
-            color: #64748b;
+        color: #94a3b8;  
 
-            font-size: 14px;
-        }
+        font-size: 14px;  
+    }  
 
 
-        /* =========================
-           CARDS
-        ========================= */
+    /* =========================  
+       CARDS  
+    ========================= */  
 
-        .cards {
-            display: grid;
+    .cards {  
 
-            grid-template-columns:
-                repeat(4, 1fr);
+        display: grid;  
 
-            gap: 20px;
-        }
+        grid-template-columns:  
+            repeat(4, 1fr);  
 
+        gap: 20px;  
+    }  
 
-        .card {
-            position: relative;
 
-            overflow: hidden;
+    .card {  
 
-            background:
-                linear-gradient(
-                    145deg,
-                    #ffffff,
-                    #f4f7ff
-                );
+        position: relative;  
 
-            padding: 26px;
+        overflow: hidden;  
 
-            min-height: 170px;
+        background:  
+            linear-gradient(  
+                145deg,  
+                rgba(255,255,255,0.10),  
+                rgba(255,255,255,0.04)  
+            );  
 
-            border-radius: 18px;
+        backdrop-filter: blur(15px);  
 
-            border: 1px solid #d7e2f2;
+        padding: 26px;  
 
-            box-shadow:
-                0 14px 38px
-                rgba(37, 99, 235, 0.10);
+        min-height: 170px;  
 
-            transition: 0.3s;
+        border-radius: 18px;  
 
-            cursor: pointer;
-        }
+        border:  
+            1px solid rgba(255,255,255,0.10);  
 
+        box-shadow:  
+            0 15px 40px  
+            rgba(0,0,0,0.20);  
 
-        .card::before {
-            content: "";
+        transition: 0.3s;  
 
-            position: absolute;
+        cursor: pointer;  
+    }  
 
-            width: 130px;
-            height: 130px;
 
-            top: -65px;
-            right: -45px;
+    .card::before {  
 
-            background:
-                rgba(59, 130, 246, 0.10);
+        content: "";  
 
-            border-radius: 50%;
+        position: absolute;  
 
-            filter: blur(4px);
-        }
+        width: 100px;  
+        height: 100px;  
 
+        top: -50px;  
+        right: -40px;  
 
-        .card::after {
-            content: "";
+        background:  
+            rgba(59,130,246,0.18);  
 
-            position: absolute;
+        border-radius: 50%;  
 
-            width: 90px;
-            height: 90px;
+        filter: blur(5px);  
+    }  
 
-            left: -45px;
-            bottom: -45px;
 
-            background:
-                rgba(124, 58, 237, 0.07);
+    .card:hover {  
 
-            border-radius: 50%;
-        }
+        transform:  
+            translateY(-6px);  
 
+        border-color:  
+            rgba(96,165,250,0.30);  
 
-        .card:hover {
-            transform:
-                translateY(-6px);
+        box-shadow:  
+            0 20px 50px  
+            rgba(0,0,0,0.30);  
+    }  
 
-            border-color:
-                #b9cef0;
 
-            box-shadow:
-                0 22px 48px
-                rgba(37, 99, 235, 0.15);
-        }
+    .card-icon {  
 
+        font-size: 30px;  
 
-        .card-icon {
-            font-size: 30px;
+        margin-bottom: 18px;  
+    }  
 
-            margin-bottom: 18px;
 
-            position: relative;
+    .card h3 {  
 
-            z-index: 2;
-        }
+        font-size: 17px;  
 
+        margin-bottom: 8px;  
 
-        .card h3 {
-            font-size: 17px;
+        color: #ffffff;  
+    }  
 
-            margin-bottom: 8px;
 
-            color: #172033;
+    .card p {  
 
-            position: relative;
+        color: #94a3b8;  
 
-            z-index: 2;
-        }
+        font-size: 12px;  
 
+        line-height: 1.6;  
+    }  
 
-        .card p {
-            color: #64748b;
 
-            font-size: 12px;
+    /* =========================  
+       TABLET  
+    ========================= */  
 
-            line-height: 1.6;
+    @media (max-width: 1000px) {  
 
-            position: relative;
+        .cards {  
 
-            z-index: 2;
-        }
+            grid-template-columns:  
+                repeat(2, 1fr);  
+        }  
+    }  
 
 
-        /* =========================
-           TABLET
-        ========================= */
+    /* =========================  
+       TABLET / SMALL LAPTOP  
+    ========================= */  
 
-        @media (max-width: 1000px) {
+    @media (max-width: 800px) {  
 
-            .cards {
-                grid-template-columns:
-                    repeat(2, 1fr);
-            }
+        .sidebar {  
 
-        }
+            width: 70px;  
 
+            padding: 18px 8px;  
+        }  
 
-        /* =========================
-           SMALL LAPTOP
-        ========================= */
 
-        @media (max-width: 800px) {
+        .sidebar-brand {  
 
-            .sidebar {
-                width: 70px;
+            justify-content: center;  
 
-                padding: 18px 8px;
-            }
+            padding: 5px 0 25px;  
+        }  
 
 
-            .sidebar-brand {
-                justify-content: center;
+        .sidebar-brand span {  
 
-                padding:
-                    5px 0 25px;
-            }
+            display: none;  
+        }  
 
 
-            .sidebar-brand span {
-                display: none;
-            }
+        .nav-item {  
 
+            justify-content: center;  
 
-            .nav-item {
-                justify-content: center;
+            padding: 12px 5px;  
+        }  
 
-                padding: 12px 5px;
-            }
 
+        .nav-item span:not(.nav-icon) {  
 
-            .nav-item span:not(.nav-icon) {
-                display: none;
-            }
+            display: none;  
+        }  
 
 
-            .nav-icon {
-                font-size: 19px;
-            }
+        .nav-icon {  
 
+            font-size: 19px;  
+        }  
 
-            .main {
-                margin-left: 70px;
-            }
 
+        .main {  
 
-            .topbar {
-                padding: 0 15px;
-            }
+            margin-left: 70px;  
+        }  
 
 
-            .dashboard {
-                padding: 28px 18px;
-            }
+        .topbar {  
 
-        }
+            padding: 0 15px;  
+        }  
 
 
-        /* =========================
-           MOBILE
-        ========================= */
+        .dashboard {  
 
-        @media (max-width: 500px) {
+            padding: 28px 18px;  
+        }  
 
-            /* Bottom Navigation */
+    }  
 
-            .sidebar {
-                position: fixed;
 
-                top: auto;
-                bottom: 0;
-                left: 0;
+    /* =========================  
+       MOBILE  
+    ========================= */  
 
-                width: 100%;
+    @media (max-width: 500px) {  
 
-                height: 68px;
+        .sidebar {  
 
-                padding: 5px 4px;
+            position: fixed;  
 
-                border-right: none;
+            top: auto;  
 
-                border-top:
-                    1px solid #d5e1f2;
+            bottom: 0;  
 
-                background:
-                    linear-gradient(
-                        135deg,
-                        rgba(235, 243, 255, 0.98),
-                        rgba(244, 241, 255, 0.98)
-                    );
+            left: 0;  
 
-                backdrop-filter: blur(20px);
+            width: 100%;  
 
-                box-shadow:
-                    0 -8px 25px
-                    rgba(37, 99, 235, 0.10);
-            }
+            height: 68px;  
 
+            padding: 5px 4px;  
 
-            /* Hide desktop sidebar brand only */
+            border-right: none;  
 
-            .sidebar-brand {
-                display: none;
-            }
+            border-top:  
+                1px solid  
+                rgba(255,255,255,0.10);  
 
+            background:  
+                rgba(5,13,26,0.94);  
 
-            .nav-menu {
-                height: 100%;
+            backdrop-filter: blur(20px);  
+        }  
 
-                flex-direction: row;
 
-                justify-content:
-                    space-around;
+        .sidebar-brand {  
 
-                align-items: center;
+            display: none;  
+        }  
 
-                gap: 0;
-            }
 
+        .nav-menu {  
 
-            .nav-item {
-                flex: 1;
+            height: 100%;  
 
-                height: 58px;
+            flex-direction: row;  
 
-                flex-direction: column;
+            justify-content:  
+                space-around;  
 
-                justify-content: center;
+            align-items: center;  
 
-                gap: 3px;
+            gap: 0;  
+        }  
 
-                padding: 4px 2px;
 
-                border-radius: 9px;
+        .nav-item {  
 
-                font-size: 8px;
-            }
+            flex: 1;  
 
+            height: 58px;  
 
-            .nav-item span:not(.nav-icon) {
-                display: block;
-            }
+            flex-direction: column;  
 
+            justify-content: center;  
 
-            .nav-item.active {
-                box-shadow:
-                    0 4px 12px
-                    rgba(37, 99, 235, 0.14);
-            }
+            gap: 3px;  
 
+            padding: 4px 2px;  
 
-            .nav-icon {
-                font-size: 17px;
-            }
+            border-radius: 9px;  
 
+            font-size: 8px;  
+        }  
 
-            /* Main */
 
-            .main {
-                margin-left: 0;
+        .nav-item span:not(.nav-icon) {  
 
-                padding-bottom: 75px;
-            }
+            display: block;  
+        }  
 
 
-            /* Topbar */
+        .nav-icon {  
 
-            .topbar {
-                height: 64px;
+            font-size: 17px;  
+        }  
 
-                padding: 0 12px;
 
-                background:
-                    rgba(239, 245, 255, 0.94);
-            }
+        .main {  
 
+            margin-left: 0;  
 
-            /* Show logo + text on mobile */
+            padding-bottom: 75px;  
+        }  
 
-            .mobile-brand {
-                display: flex;
-            }
 
+        .topbar {  
 
-            #userName {
-                display: none;
-            }
+            height: 62px;  
 
+            background:  
+                rgba(7,17,31,0.80);  
+        }  
 
-            #logoutButton {
-                padding:
-                    8px 12px;
 
-                font-size: 11px;
-            }
+        #userName {  
 
+            display: none;  
+        }  
 
-            /* Dashboard */
 
-            .dashboard {
-                padding: 25px 14px;
-            }
+        .dashboard {  
 
+            padding: 25px 14px;  
+        }  
 
-            .welcome {
-                margin-bottom: 24px;
-            }
 
+        .welcome h1 {  
 
-            .welcome h1 {
-                font-size: 24px;
-            }
+            font-size: 24px;  
+        }  
 
 
-            .welcome p {
-                font-size: 12px;
-            }
+        .welcome p {  
 
+            font-size: 12px;  
+        }  
 
-            .cards {
-                grid-template-columns: 1fr;
 
-                gap: 14px;
-            }
+        .cards {  
 
+            grid-template-columns: 1fr;  
 
-            .card {
-                min-height: 145px;
+            gap: 14px;  
+        }  
 
-                padding: 21px;
 
-                border-radius: 16px;
-            }
+        .card {  
 
-        }
+            min-height: 145px;  
 
+            padding: 21px;  
+        }  
 
-        /* =========================
-           SMALL PHONES
-        ========================= */
+    }  
 
-        @media (max-width: 380px) {
+</style>
 
-            .mobile-brand {
-                font-size: 15px;
-            }
+</head>  <body>  <!-- =========================  
+     SIDEBAR  
+========================= -->  
 
+<aside class="sidebar">  
 
-            .mobile-brand img {
-                width: 31px;
-                height: 31px;
-            }
+    <div class="sidebar-brand">  
 
+        <img  
+            src="fast-track-logo.png"  
+            alt="FAST-TRACK">  
 
-            .dashboard {
-                padding:
-                    22px 12px;
-            }
+        <span>  
+            FAST-TRACK  
+        </span>  
 
+    </div>  
 
-            .welcome h1 {
-                font-size: 22px;
-            }
 
+    <nav class="nav-menu">  
 
-            .card {
-                padding: 19px;
 
-                min-height: 140px;
-            }
+        <button  
+            class="nav-item active">  
 
+            <span class="nav-icon">  
+                🏠  
+            </span>  
 
-            .card h3 {
-                font-size: 16px;
-            }
+            <span>  
+                Dashboard  
+            </span>  
 
-        }
+        </button>  
 
-    </style>
 
-</head>
+        <button  
+            class="nav-item">  
 
+            <span class="nav-icon">  
+                💼  
+            </span>  
 
-<body>
+            <span>  
+                Jobs  
+            </span>  
 
+        </button>  
 
-    <!-- =========================
-         SIDEBAR
-    ========================= -->
 
-    <aside class="sidebar">
+        <button  
+            class="nav-item">  
 
-        <div class="sidebar-brand">
+            <span class="nav-icon">  
+                🧠  
+            </span>  
 
-            <img
-                src="fast-track-logo.png"
-                alt="FAST-TRACK Logo">
+            <span>  
+                Skills  
+            </span>  
 
-            <span>
-                FAST-TRACK
-            </span>
+        </button>  
 
-        </div>
 
+        <button  
+            class="nav-item">  
 
-        <nav class="nav-menu">
+            <span class="nav-icon">  
+                📚  
+            </span>  
 
-            <button
-                type="button"
-                class="nav-item active">
+            <span>  
+                Courses  
+            </span>  
 
-                <span class="nav-icon">
-                    🏠
-                </span>
+        </button>  
 
-                <span>
-                    Dashboard
-                </span>
 
-            </button>
+        <button  
+            class="nav-item">  
 
+            <span class="nav-icon">  
+                📄  
+            </span>  
 
-            <button
-                type="button"
-                class="nav-item">
+            <span>  
+                Resume  
+            </span>  
 
-                <span class="nav-icon">
-                    💼
-                </span>
+        </button>  
 
-                <span>
-                    Jobs
-                </span>
 
-            </button>
+        <button  
+            class="nav-item">  
 
+            <span class="nav-icon">  
+                📈  
+            </span>  
 
-            <button
-                type="button"
-                class="nav-item">
+            <span>  
+                Progress  
+            </span>  
 
-                <span class="nav-icon">
-                    🧠
-                </span>
+        </button>  
 
-                <span>
-                    Skills
-                </span>
 
-            </button>
+        <button  
+            class="nav-item">  
 
+            <span class="nav-icon">  
+                👤  
+            </span>  
 
-            <button
-                type="button"
-                class="nav-item">
+            <span>  
+                Profile  
+            </span>  
 
-                <span class="nav-icon">
-                    📚
-                </span>
+        </button>  
 
-                <span>
-                    Courses
-                </span>
 
-            </button>
+    </nav>  
 
+</aside>  
 
-            <button
-                type="button"
-                class="nav-item">
 
-                <span class="nav-icon">
-                    📄
-                </span>
+<!-- =========================  
+     MAIN  
+========================= -->  
 
-                <span>
-                    Resume
-                </span>
+<main class="main">  
 
-            </button>
 
+    <!-- TOPBAR -->  
 
-            <button
-                type="button"
-                class="nav-item">
+    <header class="topbar">  
 
-                <span class="nav-icon">
-                    📈
-                </span>
+        <div class="user-area">  
 
-                <span>
-                    Progress
-                </span>
+            <span id="userName">  
+                Loading...  
+            </span>  
 
-            </button>
+            <button id="logoutButton">  
+                Logout  
+            </button>  
 
+        </div>  
 
-            <button
-                type="button"
-                class="nav-item">
+    </header>  
 
-                <span class="nav-icon">
-                    👤
-                </span>
 
-                <span>
-                    Profile
-                </span>
+    <!-- DASHBOARD -->  
 
-            </button>
+    <section class="dashboard">  
 
-        </nav>
 
-    </aside>
+        <div class="welcome">  
 
+            <h1>  
 
-    <!-- =========================
-         MAIN
-    ========================= -->
+                Welcome,  
+                <span id="welcomeName">  
+                    User  
+                </span>  
 
-    <main class="main">
+                👋  
 
+            </h1>  
 
-        <!-- TOPBAR -->
 
-        <header class="topbar">
+            <p>  
+                Your career journey starts here.  
+            </p>  
 
+        </div>  
 
-            <!-- MOBILE BRAND -->
 
-            <div class="mobile-brand">
+        <div class="cards">  
 
-                <img
-                    src="fast-track-logo.png"
-                    alt="FAST-TRACK Logo">
 
-                <span>
-                    FAST-TRACK
-                </span>
+            <!-- JOBS -->  
 
-            </div>
+            <div class="card">  
 
+                <div class="card-icon">  
+                    💼  
+                </div>  
 
-            <!-- USER -->
+                <h3>  
+                    Jobs  
+                </h3>  
 
-            <div class="user-area">
+                <p>  
+                    Discover career  
+                    opportunities and  
+                    find your next role.  
+                </p>  
 
-                <span id="userName">
-                    Loading...
-                </span>
+            </div>  
 
 
-                <button
-                    type="button"
-                    id="logoutButton">
+            <!-- SKILLS -->  
 
-                    Logout
+            <div class="card">  
 
-                </button>
+                <div class="card-icon">  
+                    🧠  
+                </div>  
 
-            </div>
+                <h3>  
+                    Skills  
+                </h3>  
 
-        </header>
+                <p>  
+                    Track your skills  
+                    and identify areas  
+                    to improve.  
+                </p>  
 
+            </div>  
 
-        <!-- =========================
-             DASHBOARD CONTENT
-        ========================= -->
 
-        <section class="dashboard">
+            <!-- RESUME -->  
 
+            <div class="card">  
 
-            <div class="welcome">
+                <div class="card-icon">  
+                    📄  
+                </div>  
 
-                <h1>
+                <h3>  
+                    Resume Builder  
+                </h3>  
 
-                    Welcome,
-                    <span id="welcomeName">
-                        User
-                    </span>
+                <p>  
+                    Create a professional  
+                    resume for your  
+                    career.  
+                </p>  
 
-                    👋
+            </div>  
 
-                </h1>
 
+            <!-- PROGRESS -->  
 
-                <p>
-                    Your career journey starts here.
-                </p>
+            <div class="card">  
 
-            </div>
+                <div class="card-icon">  
+                    📈  
+                </div>  
 
+                <h3>  
+                    Career Progress  
+                </h3>  
 
-            <div class="cards">
+                <p>  
+                    Monitor your career  
+                    growth and achievements.  
+                </p>  
 
+            </div>  
 
-                <!-- JOBS -->
 
-                <div class="card">
+        </div>  
 
-                    <div class="card-icon">
-                        💼
-                    </div>
+    </section>  
 
-                    <h3>
-                        Jobs
-                    </h3>
+</main>  
 
-                    <p>
-                        Discover career
-                        opportunities and
-                        find your next role.
-                    </p>
 
-                </div>
+<!-- =========================  
+     FIREBASE  
+========================= -->  
 
+<script type="module">  
 
-                <!-- SKILLS -->
 
-                <div class="card">
+    import {  
+        initializeApp  
+    } from  
+    "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";  
 
-                    <div class="card-icon">
-                        🧠
-                    </div>
 
-                    <h3>
-                        Skills
-                    </h3>
+    import {  
+        getAuth,  
+        onAuthStateChanged,  
+        signOut  
+    } from  
+    "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";  
 
-                    <p>
-                        Track your skills
-                        and identify areas
-                        to improve.
-                    </p>
 
-                </div>
+    /* =========================  
+       FIREBASE CONFIG  
+    ========================= */  
 
+    const firebaseConfig = {  
 
-                <!-- RESUME -->
+        apiKey:  
+            "AIzaSyDJ84_tSgau334V60r17bqHHubaf5Lecto",  
 
-                <div class="card">
+        authDomain:  
+            "fast-track-6d262.firebaseapp.com",  
 
-                    <div class="card-icon">
-                        📄
-                    </div>
+        projectId:  
+            "fast-track-6d262",  
 
-                    <h3>
-                        Resume Builder
-                    </h3>
+        storageBucket:  
+            "fast-track-6d262.firebasestorage.app",  
 
-                    <p>
-                        Create a professional
-                        resume for your
-                        career.
-                    </p>
+        messagingSenderId:  
+            "338934873510",  
 
-                </div>
+        appId:  
+            "1:338934873510:web:1ad3791207107af183a367",  
 
+        measurementId:  
+            "G-M6FSRH2Y9H"  
 
-                <!-- PROGRESS -->
+    };  
 
-                <div class="card">
 
-                    <div class="card-icon">
-                        📈
-                    </div>
+    /* =========================  
+       INITIALIZE FIREBASE  
+    ========================= */  
 
-                    <h3>
-                        Career Progress
-                    </h3>
+    const app =  
+        initializeApp(  
+            firebaseConfig  
+        );  
 
-                    <p>
-                        Monitor your career
-                        growth and achievements.
-                    </p>
 
-                </div>
+    const auth =  
+        getAuth(app);  
 
 
-            </div>
+    /* =========================  
+       USER ELEMENTS  
+    ========================= */  
 
-        </section>
+    const userName =  
+        document.getElementById(  
+            "userName"  
+        );  
 
-    </main>
 
+    const welcomeName =  
+        document.getElementById(  
+            "welcomeName"  
+        );  
 
-    <!-- =========================
-         FIREBASE
-    ========================= -->
 
-    <script type="module">
+    /* =========================  
+       AUTH STATE  
+    ========================= */  
 
-        import {
-            initializeApp
-        } from
-        "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+    onAuthStateChanged(  
+        auth,  
+        (user) => {  
 
+            if (user) {  
 
-        
+                const name =  
+                    user.displayName ||  
+                    user.email.split("@")[0];  
+
+
+                userName.textContent =  
+                    name;  
+
+
+                welcomeName.textContent =  
+                    name;  
+
+            } else {  
+
+                window.location.href =  
+                    "index.html";  
+
+            }  
+
+        }  
+    );  
+
+
+    /* =========================  
+       LOGOUT  
+    ========================= */  
+
+    document  
+        .getElementById(  
+            "logoutButton"  
+        )  
+        .addEventListener(  
+            "click",  
+            async () => {  
+
+                try {  
+
+                    await signOut(auth);  
+
+                    window.location.href =  
+                        "index.html";  
+
+                } catch (error) {  
+
+                    console.error(  
+                        "Logout Error:",  
+                        error  
+                    );  
+
+                }  
+
+            }  
+        );  
+
+
+    /* =========================  
+       NAVIGATION ACTIVE STATE  
+    ========================= */  
+
+    const navItems =  
+        document.querySelectorAll(  
+            ".nav-item"  
+        );  
+
+
+    navItems.forEach(  
+        (item) => {  
+
+            item.addEventListener(  
+                "click",  
+                () => {  
+
+                    navItems.forEach(  
+                        (nav) => {  
+
+                            nav.classList.remove(  
+                                "active"  
+                            );  
+
+                        }  
+                    );  
+
+
+                    item.classList.add(  
+                        "active"  
+                    );  
+
+                }  
+            );  
+
+        }  
+    );  
+
+</script>
+
+</body>  </html>
