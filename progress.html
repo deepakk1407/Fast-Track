@@ -7,8 +7,14 @@
 
     <title>FAST-TRACK | Progress</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
         * {
             margin: 0;
@@ -16,857 +22,3790 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: "Inter", sans-serif;
             background: #070b14;
-            color: #f8fafc;
+            color: #ffffff;
             min-height: 100vh;
         }
 
-        /* SIDEBAR */
+        button {
+            font-family: inherit;
+        }
+
+
+        /* =========================
+           SIDEBAR
+        ========================= */
 
         .sidebar {
             position: fixed;
             left: 0;
             top: 0;
-            bottom: 0;
             width: 245px;
+            height: 100vh;
+
+            background: #0b1020;
+
+            border-right: 1px solid rgba(255,255,255,0.07);
+
             padding: 24px 15px;
-            background: rgba(10, 14, 25, 0.94);
-            border-right: 1px solid rgba(255,255,255,.08);
+
             z-index: 1000;
+
             display: flex;
             flex-direction: column;
         }
 
-        .sidebar-brand {
+
+        .brand {
             display: flex;
             align-items: center;
+
             gap: 11px;
-            padding: 5px 10px 25px;
+
+            padding: 0 10px 28px;
         }
 
-        .sidebar-brand img {
-            width: 40px;
-            height: 40px;
+
+        .brand img {
+            width: 42px;
+            height: 42px;
+
             object-fit: contain;
+
+            border-radius: 10px;
         }
+
 
         .brand-text {
-            font-size: 19px;
-            font-weight: 800;
-            letter-spacing: .5px;
+            line-height: 1.1;
         }
 
-        .nav-menu {
+
+        .brand-text h2 {
+            font-size: 18px;
+
+            font-weight: 800;
+
+            letter-spacing: 0.5px;
+        }
+
+
+        .brand-text span {
+            display: block;
+
+            color: #8d98b5;
+
+            font-size: 9px;
+
+            margin-top: 4px;
+
+            letter-spacing: 1px;
+        }
+
+
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        .nav {
             display: flex;
+
             flex-direction: column;
+
             gap: 7px;
         }
 
-        .nav-item {
-            width: 100%;
+
+        .nav a {
+            text-decoration: none;
+
+            color: #aab3ca;
+
             display: flex;
+
             align-items: center;
+
             gap: 13px;
-            padding: 13px 14px;
-            border: none;
+
+            padding: 12px 14px;
+
             border-radius: 11px;
-            background: transparent;
-            color: #9ca3af;
-            cursor: pointer;
-            font-family: inherit;
-            font-size: 14px;
+
+            font-size: 13px;
+
             font-weight: 600;
-            text-align: left;
-            transition: .2s;
+
+            transition: 0.25s;
         }
 
-        .nav-item:hover {
-            background: rgba(255,255,255,.06);
-            color: white;
+
+        .nav a:hover {
+            color: #ffffff;
+
+            background: rgba(255,255,255,0.05);
+
+            transform: translateX(2px);
         }
 
-        .nav-item.active {
-            background: linear-gradient(
-                135deg,
-                rgba(37,99,235,.9),
-                rgba(124,58,237,.9)
-            );
-            color: white;
-            box-shadow: 0 8px 25px rgba(37,99,235,.18);
+
+        .nav a.active {
+            color: #ffffff;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(37,99,235,0.9),
+                    rgba(124,58,237,0.9)
+                );
+
+            box-shadow:
+                0 8px 25px rgba(37,99,235,0.18);
         }
+
 
         .nav-icon {
-            width: 23px;
-            display: flex;
-            justify-content: center;
+            width: 22px;
+
+            text-align: center;
+
             font-size: 17px;
         }
 
-        /* MAIN */
+
+        /* =========================
+           SIDEBAR BOTTOM
+        ========================= */
+
+        .sidebar-bottom {
+            margin-top: auto;
+
+            padding: 12px 10px;
+        }
+
+
+        .career-card {
+            padding: 15px;
+
+            border-radius: 14px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(37,99,235,0.12),
+                    rgba(124,58,237,0.10)
+                );
+
+            border:
+                1px solid rgba(124,58,237,0.18);
+        }
+
+
+        .career-card small {
+            color: #7f8aa5;
+
+            font-size: 10px;
+        }
+
+
+        .career-card strong {
+            display: block;
+
+            margin-top: 5px;
+
+            font-size: 13px;
+        }
+
+
+        /* =========================
+           MAIN
+        ========================= */
 
         .main {
             margin-left: 245px;
-            padding: 25px 30px 50px;
+
+            min-height: 100vh;
+
+            padding: 28px 32px 50px;
         }
+
 
         .topbar {
             display: flex;
+
             justify-content: space-between;
+
             align-items: center;
-            margin-bottom: 35px;
+
+            margin-bottom: 30px;
         }
 
-        .mobile-brand {
-            display: none;
-            align-items: center;
-            gap: 10px;
-        }
 
-        .mobile-brand img {
-            width: 38px;
-            height: 38px;
-        }
+        .topbar-left h1 {
+            font-size: 28px;
 
-        .mobile-brand span {
-            font-size: 18px;
             font-weight: 800;
         }
 
-        .dashboard-btn {
-            padding: 10px 17px;
-            border: 1px solid rgba(255,255,255,.1);
-            border-radius: 9px;
-            background: rgba(255,255,255,.04);
-            color: #cbd5e1;
-            cursor: pointer;
-            font-family: inherit;
-            font-weight: 600;
+
+        .topbar-left p {
+            color: #8d98b5;
+
+            font-size: 13px;
+
+            margin-top: 7px;
         }
+
+
+        .dashboard-btn {
+            border:
+                1px solid rgba(255,255,255,0.1);
+
+            background: #0d1425;
+
+            color: #dce3f5;
+
+            padding: 11px 16px;
+
+            border-radius: 10px;
+
+            cursor: pointer;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            transition: 0.25s;
+        }
+
 
         .dashboard-btn:hover {
-            background: rgba(255,255,255,.08);
-            color: white;
+            border-color:
+                rgba(124,58,237,0.5);
+
+            transform: translateY(-1px);
         }
 
-        .page-title h1 {
-            font-size: 30px;
-            margin-bottom: 8px;
-        }
 
-        .page-title p {
-            color: #94a3b8;
-            font-size: 14px;
-        }
-
-        /* OVERALL */
+        /* =========================
+           OVERALL PROGRESS
+        ========================= */
 
         .overall-card {
-            margin-top: 28px;
+            background:
+                linear-gradient(
+                    135deg,
+                    #101a35,
+                    #15112d
+                );
+
+            border:
+                1px solid rgba(255,255,255,0.07);
+
+            border-radius: 20px;
+
             padding: 25px;
-            border-radius: 17px;
-            background: linear-gradient(
-                135deg,
-                rgba(37,99,235,.16),
-                rgba(124,58,237,.13)
-            );
-            border: 1px solid rgba(96,165,250,.18);
-            display: flex;
-            align-items: center;
+
+            margin-bottom: 22px;
+
+            display: grid;
+
+            grid-template-columns: 190px 1fr;
+
             gap: 25px;
+
+            align-items: center;
         }
+
 
         .progress-circle {
-            width: 105px;
-            height: 105px;
+            position: relative;
+
+            width: 155px;
+
+            height: 155px;
+
+            margin: auto;
+
             border-radius: 50%;
-            background: conic-gradient(
-                #3b82f6 0deg,
-                #7c3aed 0deg,
-                rgba(255,255,255,.08) 0deg
-            );
+
+            background:
+                conic-gradient(
+                    #6366f1 0deg,
+                    #8b5cf6 0deg,
+                    #1a2235 0deg
+                );
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
-            flex-shrink: 0;
         }
 
-        .progress-circle::after {
+
+        .progress-circle::before {
             content: "";
-            width: 83px;
-            height: 83px;
+
+            width: 117px;
+
+            height: 117px;
+
+            background: #0d1425;
+
             border-radius: 50%;
-            background: #0d1422;
+
             position: absolute;
         }
 
-        .circle-value {
+
+        .circle-content {
             position: relative;
+
             z-index: 2;
-            font-size: 22px;
+
+            text-align: center;
+        }
+
+
+        .circle-content strong {
+            display: block;
+
+            font-size: 32px;
+
             font-weight: 800;
         }
 
-        .overall-info h2 {
-            font-size: 20px;
-            margin-bottom: 8px;
+
+        .circle-content span {
+            color: #8994ad;
+
+            font-size: 10px;
         }
 
-        .overall-info p {
-            color: #94a3b8;
-            font-size: 13px;
-            line-height: 1.6;
+
+        .overall-content h2 {
+            font-size: 21px;
+
+            margin-bottom: 9px;
         }
 
-        /* STATS */
+
+        .overall-content p {
+            color: #929db6;
+
+            font-size: 12px;
+
+            line-height: 1.7;
+
+            max-width: 620px;
+        }
+
+
+        .overall-status {
+            display: inline-flex;
+
+            margin-top: 15px;
+
+            padding: 7px 12px;
+
+            border-radius: 20px;
+
+            background:
+                rgba(99,102,241,0.12);
+
+            border:
+                1px solid rgba(99,102,241,0.2);
+
+            color: #a5b4fc;
+
+            font-size: 10px;
+
+            font-weight: 700;
+        }
+
+
+        /* =========================
+           STAT CARDS
+        ========================= */
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(4,1fr);
-            gap: 17px;
-            margin-top: 22px;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 16px;
+
+            margin-bottom: 22px;
         }
+
 
         .stat-card {
-            background: rgba(15,23,42,.75);
-            border: 1px solid rgba(255,255,255,.08);
+            background: #0b1120;
+
+            border:
+                1px solid rgba(255,255,255,0.07);
+
             border-radius: 15px;
-            padding: 20px;
+
+            padding: 18px;
+
+            transition: 0.25s;
         }
+
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+
+            border-color:
+                rgba(124,58,237,0.25);
+        }
+
+
+        .stat-top {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 15px;
+        }
+
 
         .stat-icon {
-            font-size: 23px;
-            margin-bottom: 12px;
+            width: 38px;
+
+            height: 38px;
+
+            border-radius: 10px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+                rgba(99,102,241,0.12);
+
+            font-size: 18px;
         }
 
-        .stat-value {
-            font-size: 24px;
-            font-weight: 800;
+
+        .stat-percent {
+            color: #a5b4fc;
+
+            font-size: 12px;
+
+            font-weight: 700;
+        }
+
+
+        .stat-card h3 {
+            font-size: 12px;
+
+            color: #8994ad;
+
             margin-bottom: 5px;
         }
 
-        .stat-label {
-            color: #94a3b8;
-            font-size: 12px;
+
+        .stat-card strong {
+            font-size: 22px;
+
+            font-weight: 800;
         }
 
-        /* PROGRESS SECTIONS */
 
-        .section-grid {
+        /* =========================
+           PROGRESS SECTIONS
+        ========================= */
+
+        .content-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+
+            grid-template-columns:
+                1.3fr 0.7fr;
+
             gap: 20px;
-            margin-top: 22px;
         }
 
-        .card {
-            background: rgba(15,23,42,.75);
-            border: 1px solid rgba(255,255,255,.08);
+
+        .panel {
+            background: #0b1120;
+
+            border:
+                1px solid rgba(255,255,255,0.07);
+
             border-radius: 17px;
-            padding: 23px;
-        }
 
-        .card h2 {
-            font-size: 17px;
+            padding: 22px;
+
             margin-bottom: 20px;
         }
+
+
+        .panel-title {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 20px;
+        }
+
+
+        .panel-title h2 {
+            font-size: 16px;
+        }
+
+
+        .panel-title span {
+            color: #707c98;
+
+            font-size: 10px;
+        }
+
+
+        /* =========================
+           PROGRESS ITEM
+        ========================= */
 
         .progress-item {
             margin-bottom: 20px;
         }
 
+
         .progress-item:last-child {
             margin-bottom: 0;
         }
 
-        .progress-header {
+
+        .progress-head {
             display: flex;
+
             justify-content: space-between;
+
             align-items: center;
+
             margin-bottom: 8px;
         }
 
+
         .progress-name {
-            font-size: 13px;
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            font-size: 12px;
+
             font-weight: 600;
         }
 
-        .progress-percent {
-            font-size: 12px;
-            color: #60a5fa;
+
+        .progress-name-icon {
+            width: 27px;
+
+            height: 27px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 7px;
+
+            background:
+                rgba(99,102,241,0.1);
+
+            font-size: 13px;
+        }
+
+
+        .progress-value {
+            color: #a5b4fc;
+
+            font-size: 11px;
+
             font-weight: 700;
         }
 
-        .progress-bar {
+
+        .bar {
             width: 100%;
-            height: 8px;
-            background: rgba(255,255,255,.07);
+
+            height: 7px;
+
+            background: #171f31;
+
             border-radius: 20px;
+
             overflow: hidden;
         }
 
-        .progress-fill {
+
+        .bar-fill {
             height: 100%;
+
+            width: 0%;
+
             border-radius: 20px;
-            background: linear-gradient(90deg,#2563eb,#7c3aed);
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #2563eb,
+                    #7c3aed
+                );
+
+            transition:
+                width 0.7s ease;
         }
 
-        /* ACTIVITY */
 
-        .activity-list {
+        .progress-sub {
             display: flex;
-            flex-direction: column;
-            gap: 14px;
+
+            justify-content: space-between;
+
+            margin-top: 7px;
+
+            color: #69758f;
+
+            font-size: 9px;
         }
 
-        .activity {
+
+        /* =========================
+           MILESTONES
+        ========================= */
+
+        .milestone {
             display: flex;
+
+            gap: 12px;
+
+            padding: 13px 0;
+
+            border-bottom:
+                1px solid rgba(255,255,255,0.05);
+        }
+
+
+        .milestone:last-child {
+            border-bottom: none;
+        }
+
+
+        .milestone-icon {
+            width: 34px;
+
+            height: 34px;
+
+            flex-shrink: 0;
+
+            display: flex;
+
             align-items: center;
-            gap: 13px;
-            padding: 13px;
-            border-radius: 11px;
-            background: rgba(255,255,255,.035);
-        }
 
-        .activity-icon {
-            width: 38px;
-            height: 38px;
-            display: flex;
-            align-items: center;
             justify-content: center;
-            background: rgba(37,99,235,.13);
+
             border-radius: 9px;
-            font-size: 17px;
+
+            background:
+                rgba(99,102,241,0.11);
+
+            font-size: 16px;
         }
 
-        .activity-text {
+
+        .milestone-info {
             flex: 1;
         }
 
-        .activity-text strong {
+
+        .milestone-info strong {
             display: block;
-            font-size: 12px;
+
+            font-size: 11px;
+
             margin-bottom: 4px;
         }
 
-        .activity-text span {
-            font-size: 10px;
-            color: #64748b;
+
+        .milestone-info span {
+            color: #68748e;
+
+            font-size: 9px;
+
+            line-height: 1.5;
         }
 
-        .empty {
+
+        .milestone-badge {
+            align-self: center;
+
+            padding: 5px 8px;
+
+            border-radius: 15px;
+
+            font-size: 8px;
+
+            font-weight: 700;
+        }
+
+
+        .completed {
+            color: #86efac;
+
+            background:
+                rgba(34,197,94,0.1);
+        }
+
+
+        .pending {
+            color: #fbbf24;
+
+            background:
+                rgba(245,158,11,0.1);
+        }
+
+
+        /* =========================
+           CAREER READINESS
+        ========================= */
+
+        .readiness-box {
             text-align: center;
-            padding: 20px 10px;
-            color: #64748b;
-            font-size: 12px;
+
+            padding: 8px 0 18px;
         }
 
-        /* TABLET */
 
-        @media (max-width:800px) {
+        .readiness-number {
+            font-size: 38px;
+
+            font-weight: 800;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #60a5fa,
+                    #a78bfa
+                );
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+        }
+
+
+        .readiness-label {
+            color: #78849e;
+
+            font-size: 10px;
+
+            margin-top: 3px;
+        }
+
+
+        .readiness-message {
+            margin-top: 13px;
+
+            color: #8d98b5;
+
+            font-size: 10px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           QUICK ACTIONS
+        ========================= */
+
+        .quick-actions {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 9px;
+        }
+
+
+        .quick-btn {
+            border:
+                1px solid rgba(255,255,255,0.07);
+
+            background: #0e1627;
+
+            color: #d5dced;
+
+            padding: 12px 8px;
+
+            border-radius: 9px;
+
+            cursor: pointer;
+
+            font-size: 10px;
+
+            font-weight: 600;
+
+            transition: 0.2s;
+        }
+
+
+        .quick-btn:hover {
+            background: #151e33;
+
+            border-color:
+                rgba(124,58,237,0.35);
+        }
+
+
+        /* =========================
+           RECENT ACTIVITY
+        ========================= */
+
+        .activity {
+            display: flex;
+
+            gap: 11px;
+
+            padding: 11px 0;
+
+            border-bottom:
+                1px solid rgba(255,255,255,0.05);
+        }
+
+
+        .activity:last-child {
+            border-bottom: none;
+        }
+
+
+        .activity-icon {
+            width: 31px;
+
+            height: 31px;
+
+            flex-shrink: 0;
+
+            border-radius: 8px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+                rgba(37,99,235,0.1);
+
+            font-size: 14px;
+        }
+
+
+        .activity-text strong {
+            display: block;
+
+            font-size: 10px;
+
+            margin-bottom: 3px;
+        }
+
+
+        .activity-text span {
+            color: #69758e;
+
+            font-size: 8px;
+
+            line-height: 1.5;
+        }
+
+
+        /* =========================
+           EMPTY STATE
+        ========================= */
+
+        .empty-state {
+            text-align: center;
+
+            padding: 18px 5px;
+
+            color: #66728b;
+
+            font-size: 10px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           MOBILE NAV
+        ========================= */
+
+        .mobile-nav {
+            display: none;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 1050px) {
+
+            .stats-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 800px) {
 
             .sidebar {
                 width: 70px;
-                padding: 20px 9px;
+
+                padding: 20px 8px;
             }
 
-            .sidebar-brand {
+
+            .brand {
                 justify-content: center;
-                padding: 5px 0 25px;
+
+                padding: 0 0 25px;
             }
 
-            .sidebar-brand img {
-                width: 38px;
-                height: 38px;
+
+            .brand img {
+                width: 40px;
+
+                height: 40px;
             }
 
-            .brand-text {
+
+            .brand-text,
+            .nav a span:not(.nav-icon),
+            .career-card {
                 display: none;
             }
 
-            .nav-item {
+
+            .nav a {
                 justify-content: center;
-                padding: 13px 8px;
+
+                padding: 12px 5px;
             }
 
-            .nav-item span:last-child {
-                display: none;
-            }
 
             .nav-icon {
                 width: auto;
             }
+
 
             .main {
                 margin-left: 70px;
+
+                padding: 25px 20px 40px;
             }
 
-            .stats-grid {
-                grid-template-columns: repeat(2,1fr);
+
+            .overall-card {
+                grid-template-columns: 160px 1fr;
             }
 
-            .section-grid {
-                grid-template-columns: 1fr;
-            }
         }
 
-        /* MOBILE */
 
-        @media (max-width:500px) {
-
-            body {
-                padding-bottom: 72px;
-            }
+        @media (max-width: 650px) {
 
             .sidebar {
-                position: fixed;
-                left: 0;
-                right: 0;
-                top: auto;
-                bottom: 0;
-                width: 100%;
-                height: 65px;
-                padding: 7px 5px;
-                border-right: none;
-                border-top: 1px solid rgba(255,255,255,.08);
-                background: rgba(10,14,25,.97);
-                backdrop-filter: blur(15px);
-                display: block;
-            }
-
-            .sidebar-brand {
                 display: none;
             }
 
-            .nav-menu {
-                height: 100%;
-                display: grid;
-                grid-template-columns: repeat(7,1fr);
-                gap: 2px;
-                align-items: center;
-            }
-
-            .nav-item {
-                height: 52px;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                gap: 2px;
-                padding: 4px 1px;
-                border-radius: 9px;
-                font-size: 8px;
-            }
-
-            .nav-item span:last-child {
-                display: block;
-                font-size: 8px;
-            }
-
-            .nav-icon {
-                font-size: 18px;
-                width: auto;
-            }
 
             .main {
                 margin-left: 0;
-                padding: 18px 15px 30px;
+
+                padding:
+                    20px 14px 90px;
             }
+
 
             .topbar {
-                margin-bottom: 25px;
+                align-items: flex-start;
+
+                gap: 12px;
             }
 
-            .mobile-brand {
-                display: flex;
+
+            .topbar-left h1 {
+                font-size: 22px;
             }
 
-            .dashboard-btn {
-                padding: 8px 11px;
+
+            .topbar-left p {
                 font-size: 11px;
             }
 
-            .page-title h1 {
-                font-size: 24px;
+
+            .dashboard-btn {
+                padding: 9px 11px;
+
+                font-size: 10px;
             }
 
+
             .overall-card {
-                flex-direction: column;
+                grid-template-columns: 1fr;
+
                 text-align: center;
+
                 padding: 22px 17px;
             }
 
+
+            .overall-content p {
+                margin: auto;
+            }
+
+
             .stats-grid {
                 grid-template-columns: 1fr 1fr;
+
                 gap: 10px;
             }
 
+
             .stat-card {
-                padding: 16px;
+                padding: 14px;
             }
 
-            .stat-value {
-                font-size: 21px;
+
+            .stat-card strong {
+                font-size: 19px;
             }
 
-            .card {
-                padding: 18px;
+
+            .content-grid {
+                display: block;
             }
+
+
+            .panel {
+                padding: 17px;
+            }
+
+
+            .mobile-nav {
+                position: fixed;
+
+                display: grid;
+
+                grid-template-columns:
+                    repeat(7, 1fr);
+
+                bottom: 0;
+
+                left: 0;
+
+                right: 0;
+
+                height: 65px;
+
+                background: #0b1020;
+
+                border-top:
+                    1px solid rgba(255,255,255,0.08);
+
+                z-index: 2000;
+
+                padding: 5px 3px;
+            }
+
+
+            .mobile-nav a {
+                text-decoration: none;
+
+                color: #78849f;
+
+                display: flex;
+
+                flex-direction: column;
+
+                justify-content: center;
+
+                align-items: center;
+
+                gap: 3px;
+
+                border-radius: 9px;
+
+                font-size: 8px;
+
+                font-weight: 600;
+            }
+
+
+            .mobile-nav a.active {
+                color: #ffffff;
+
+                background:
+                    linear-gradient(
+                        135deg,
+                        rgba(37,99,235,0.9),
+                        rgba(124,58,237,0.9)
+                    );
+            }
+
+
+            .mobile-nav .m-icon {
+                font-size: 15px;
+            }
+
         }
+
     </style>
 </head>
 
+
 <body>
 
-    <!-- NAVIGATION -->
+
+    <!-- =========================
+         SIDEBAR
+    ========================= -->
 
     <aside class="sidebar">
 
-        <div class="sidebar-brand">
-            <img src="fast-track-logo.png" alt="FAST-TRACK Logo">
-            <div class="brand-text">FAST-TRACK</div>
-        </div>
+        <div class="brand">
 
-        <nav class="nav-menu">
+            <img
+                src="fast-track-logo.png"
+                alt="FAST-TRACK Logo">
 
-            <button class="nav-item"
-                onclick="window.location.href='dashboard.html'">
-                <span class="nav-icon">🏠</span>
-                <span>Dashboard</span>
-            </button>
+            <div class="brand-text">
 
-            <button class="nav-item"
-                onclick="window.location.href='jobs.html'">
-                <span class="nav-icon">💼</span>
-                <span>Jobs</span>
-            </button>
+                <h2>FAST-TRACK</h2>
 
-            <button class="nav-item"
-                onclick="window.location.href='skills.html'">
-                <span class="nav-icon">🧠</span>
-                <span>Skills</span>
-            </button>
-
-            <button class="nav-item"
-                onclick="window.location.href='courses.html'">
-                <span class="nav-icon">📚</span>
-                <span>Courses</span>
-            </button>
-
-            <button class="nav-item"
-                onclick="window.location.href='resume.html'">
-                <span class="nav-icon">📄</span>
-                <span>Resume</span>
-            </button>
-
-            <button class="nav-item active"
-                onclick="window.location.href='progress.html'">
-                <span class="nav-icon">📈</span>
-                <span>Progress</span>
-            </button>
-
-            <button class="nav-item"
-                onclick="window.location.href='profile.html'">
-                <span class="nav-icon">👤</span>
-                <span>My Profile</span>
-            </button>
-
-        </nav>
-    </aside>
-
-
-    <!-- MAIN -->
-
-    <main class="main">
-
-        <div class="topbar">
-
-            <div class="mobile-brand">
-                <img src="fast-track-logo.png" alt="FAST-TRACK Logo">
-                <span>FAST-TRACK</span>
-            </div>
-
-            <button class="dashboard-btn"
-                onclick="window.location.href='dashboard.html'">
-                ← Dashboard
-            </button>
-
-        </div>
-
-
-        <div class="page-title">
-
-            <h1>Your Progress 📈</h1>
-
-            <p>
-                Track your learning journey and career readiness.
-            </p>
-
-        </div>
-
-
-        <!-- OVERALL PROGRESS -->
-
-        <div class="overall-card">
-
-            <div class="progress-circle" id="overallCircle">
-
-                <span class="circle-value" id="overallValue">
-                    0%
+                <span>
+                    SMART CAREER PLATFORM
                 </span>
 
             </div>
 
-            <div class="overall-info">
+        </div>
 
-                <h2>Overall Career Progress</h2>
+
+        <nav class="nav">
+
+            <a href="dashboard.html">
+                <span class="nav-icon">🏠</span>
+                <span>Dashboard</span>
+            </a>
+
+
+            <a href="jobs.html">
+                <span class="nav-icon">💼</span>
+                <span>Jobs</span>
+            </a>
+
+
+            <a href="skills.html">
+                <span class="nav-icon">🧠</span>
+                <span>Skills</span>
+            </a>
+
+
+            <a href="courses.html">
+                <span class="nav-icon">📚</span>
+                <span>Courses</span>
+            </a>
+
+
+            <a href="resume.html">
+                <span class="nav-icon">📄</span>
+                <span>Resume</span>
+            </a>
+
+
+            <a
+                href="progress.html"
+                class="active">
+
+                <span class="nav-icon">📊</span>
+                <span>Progress</span>
+
+            </a>
+
+
+            <a href="profile.html">
+
+                <span class="nav-icon">👤</span>
+                <span>My Profile</span>
+
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="career-card">
+
+                <small>
+                    YOUR CAREER
+                </small>
+
+                <strong>
+                    Keep moving forward 🚀
+                </strong>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =========================
+         MAIN
+    ========================= -->
+
+    <main class="main">
+
+
+        <!-- TOPBAR -->
+
+        <div class="topbar">
+
+            <div class="topbar-left">
+
+                <h1>
+                    My Progress 📊
+                </h1>
 
                 <p>
-                    Keep building your skills, completing courses,
-                    improving your resume and applying for opportunities.
+                    Track your career growth and become job-ready.
                 </p>
 
             </div>
 
+
+            <button
+                class="dashboard-btn"
+                onclick="window.location.href='dashboard.html'">
+
+                ← Dashboard
+
+            </button>
+
         </div>
 
 
-        <!-- STATS -->
+        <!-- =========================
+             OVERALL PROGRESS
+        ========================= -->
 
-        <div class="stats-grid">
-
-            <div class="stat-card">
-
-                <div class="stat-icon">🧠</div>
-
-                <div class="stat-value" id="skillCount">
-                    0
-                </div>
-
-                <div class="stat-label">
-                    Skills Added
-                </div>
-
-            </div>
+        <section class="overall-card">
 
 
-            <div class="stat-card">
+            <div>
 
-                <div class="stat-icon">📚</div>
+                <div
+                    class="progress-circle"
+                    id="overallCircle">
 
-                <div class="stat-value" id="courseCount">
-                    0
-                </div>
+                    <div class="circle-content">
 
-                <div class="stat-label">
-                    Courses Completed
+                        <strong id="overallPercent">
+                            0%
+                        </strong>
+
+                        <span>
+                            Overall
+                        </span>
+
+                    </div>
+
                 </div>
 
             </div>
 
 
-            <div class="stat-card">
+            <div class="overall-content">
 
-                <div class="stat-icon">💼</div>
+                <h2>
+                    Your Career Readiness
+                </h2>
 
-                <div class="stat-value" id="jobCount">
-                    0
-                </div>
+                <p id="overallMessage">
 
-                <div class="stat-label">
-                    Jobs Applied
+                    Start building your skills, completing courses,
+                    creating your resume and applying for jobs.
+                    Your progress will appear here automatically.
+
+                </p>
+
+
+                <div
+                    class="overall-status"
+                    id="overallStatus">
+
+                    🚀 Getting Started
+
                 </div>
 
             </div>
 
+        </section>
+
+
+        <!-- =========================
+             STAT CARDS
+        ========================= -->
+
+        <section class="stats-grid">
+
+
+            <!-- SKILLS -->
 
             <div class="stat-card">
 
-                <div class="stat-icon">📄</div>
+                <div class="stat-top">
 
-                <div class="stat-value" id="resumeStatus">
-                    0%
+                    <div class="stat-icon">
+                        🧠
+                    </div>
+
+                    <span
+                        class="stat-percent"
+                        id="skillsPercent">
+
+                        0%
+
+                    </span>
+
                 </div>
 
-                <div class="stat-label">
+
+                <h3>
+                    Skills Progress
+                </h3>
+
+                <strong id="skillsCount">
+                    0
+                </strong>
+
+            </div>
+
+
+            <!-- COURSES -->
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <div class="stat-icon">
+                        📚
+                    </div>
+
+                    <span
+                        class="stat-percent"
+                        id="coursesPercent">
+
+                        0%
+
+                    </span>
+
+                </div>
+
+
+                <h3>
+                    Course Progress
+                </h3>
+
+                <strong id="coursesCount">
+                    0
+                </strong>
+
+            </div>
+
+
+            <!-- RESUME -->
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <div class="stat-icon">
+                        📄
+                    </div>
+
+                    <span
+                        class="stat-percent"
+                        id="resumePercent">
+
+                        0%
+
+                    </span>
+
+                </div>
+
+
+                <h3>
                     Resume Completion
+                </h3>
+
+                <strong id="resumeStatus">
+                    0%
+                </strong>
+
+            </div>
+
+
+            <!-- JOBS -->
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <div class="stat-icon">
+                        💼
+                    </div>
+
+                    <span
+                        class="stat-percent"
+                        id="jobsPercent">
+
+                        0%
+
+                    </span>
+
                 </div>
+
+
+                <h3>
+                    Job Applications
+                </h3>
+
+                <strong id="jobsCount">
+                    0
+                </strong>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CONTENT GRID
+        ========================= -->
+
+        <div class="content-grid">
+
+
+            <!-- LEFT COLUMN -->
+
+            <div>
+
+
+                <!-- DETAILED PROGRESS -->
+
+                <section class="panel">
+
+                    <div class="panel-title">
+
+                        <h2>
+                            Detailed Progress
+                        </h2>
+
+                        <span>
+                            Updated automatically
+                        </span>
+
+                    </div>
+
+
+                    <!-- SKILLS -->
+
+                    <div class="progress-item">
+
+                        <div class="progress-head">
+
+                            <div class="progress-name">
+
+                                <div class="progress-name-icon">
+                                    🧠
+                                </div>
+
+                                <span>
+                                    Skills Development
+                                </span>
+
+                            </div>
+
+                            <span
+                                class="progress-value"
+                                id="skillBarValue">
+
+                                0%
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="bar">
+
+                            <div
+                                class="bar-fill"
+                                id="skillBar">
+                            </div>
+
+                        </div>
+
+
+                        <div class="progress-sub">
+
+                            <span id="skillBarLeft">
+                                0 skills added
+                            </span>
+
+                            <span>
+                                Target: 10 skills
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- COURSES -->
+
+                    <div class="progress-item">
+
+                        <div class="progress-head">
+
+                            <div class="progress-name">
+
+                                <div class="progress-name-icon">
+                                    📚
+                                </div>
+
+                                <span>
+                                    Learning & Courses
+                                </span>
+
+                            </div>
+
+                            <span
+                                class="progress-value"
+                                id="courseBarValue">
+
+                                0%
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="bar">
+
+                            <div
+                                class="bar-fill"
+                                id="courseBar">
+                            </div>
+
+                        </div>
+
+
+                        <div class="progress-sub">
+
+                            <span id="courseBarLeft">
+                                0 lessons completed
+                            </span>
+
+                            <span>
+                                Complete your courses
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- RESUME -->
+
+                    <div class="progress-item">
+
+                        <div class="progress-head">
+
+                            <div class="progress-name">
+
+                                <div class="progress-name-icon">
+                                    📄
+                                </div>
+
+                                <span>
+                                    Resume Readiness
+                                </span>
+
+                            </div>
+
+                            <span
+                                class="progress-value"
+                                id="resumeBarValue">
+
+                                0%
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="bar">
+
+                            <div
+                                class="bar-fill"
+                                id="resumeBar">
+                            </div>
+
+                        </div>
+
+
+                        <div class="progress-sub">
+
+                            <span id="resumeBarLeft">
+                                Resume not started
+                            </span>
+
+                            <span>
+                                Complete all sections
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- JOBS -->
+
+                    <div class="progress-item">
+
+                        <div class="progress-head">
+
+                            <div class="progress-name">
+
+                                <div class="progress-name-icon">
+                                    💼
+                                </div>
+
+                                <span>
+                                    Job Applications
+                                </span>
+
+                            </div>
+
+                            <span
+                                class="progress-value"
+                                id="jobBarValue">
+
+                                0%
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="bar">
+
+                            <div
+                                class="bar-fill"
+                                id="jobBar">
+                            </div>
+
+                        </div>
+
+
+                        <div class="progress-sub">
+
+                            <span id="jobBarLeft">
+                                0 applications
+                            </span>
+
+                            <span>
+                                Target: 5 applications
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- SKILL CATEGORY -->
+
+                <section class="panel">
+
+                    <div class="panel-title">
+
+                        <h2>
+                            Learning Areas
+                        </h2>
+
+                        <span>
+                            Course completion
+                        </span>
+
+                    </div>
+
+
+                    <div class="progress-item">
+
+                        <div class="progress-head">
+
+                            <div class="progress-name">
+
+                                <div class="progress-name-icon">
+                                    🐍
+                                </div>
+
+                                <span>
+                                    Programming
+                                </span>
+
+                            </div>
+
+                            <span
+                                class="progress-value"
+                                id="programmingValue">
+
+                                0%
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="bar">
+
+                            <div
+                                class="bar-fill"
+                                id="programmingBar">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="progress-item">
+
+                        <div class="progress-head">
+
+                            <div class="progress-name">
+
+                                <div class="progress-name-icon">
+                                    🤖
+                                </div>
+
+                                <span>
+                                    AI & Machine Learning
+                                </span>
+
+                            </div>
+
+                            <span
+                                class="progress-value"
+                                id="aiValue">
+
+                                0%
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="bar">
+
+                            <div
+                                class="bar-fill"
+                                id="aiBar">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="progress-item">
+
+                        <div class="progress-head">
+
+                            <div class="progress-name">
+
+                                <div class="progress-name-icon">
+                                    🗄️
+                                </div>
+
+                                <span>
+                                    Data Analytics
+                                </span>
+
+                            </div>
+
+                            <span
+                                class="progress-value"
+                                id="analyticsValue">
+
+                                0%
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="bar">
+
+                            <div
+                                class="bar-fill"
+                                id="analyticsBar">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="progress-item">
+
+                        <div class="progress-head">
+
+                            <div class="progress-name">
+
+                                <div class="progress-name-icon">
+                                    🌐
+                                </div>
+
+                                <span>
+                                    Web Development
+                                </span>
+
+                            </div>
+
+                            <span
+                                class="progress-value"
+                                id="webValue">
+
+                                0%
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="bar">
+
+                            <div
+                                class="bar-fill"
+                                id="webBar">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+
+            <!-- RIGHT COLUMN -->
+
+            <div>
+
+
+                <!-- READINESS -->
+
+                <section class="panel">
+
+                    <div class="panel-title">
+
+                        <h2>
+                            Career Readiness
+                        </h2>
+
+                    </div>
+
+
+                    <div class="readiness-box">
+
+                        <div
+                            class="readiness-number"
+                            id="readinessNumber">
+
+                            0%
+
+                        </div>
+
+                        <div class="readiness-label">
+
+                            Job Ready Score
+
+                        </div>
+
+
+                        <div
+                            class="readiness-message"
+                            id="readinessMessage">
+
+                            Keep working on your profile
+                            to improve your career readiness.
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- MILESTONES -->
+
+                <section class="panel">
+
+                    <div class="panel-title">
+
+                        <h2>
+                            Career Milestones
+                        </h2>
+
+                        <span>
+                            Your journey
+                        </span>
+
+                    </div>
+
+
+                    <div id="milestones">
+
+
+                        <div class="milestone">
+
+                            <div class="milestone-icon">
+                                👤
+                            </div>
+
+                            <div class="milestone-info">
+
+                                <strong>
+                                    Complete Your Profile
+                                </strong>
+
+                                <span>
+                                    Add your personal and career information.
+                                </span>
+
+                            </div>
+
+                            <span
+                                class="milestone-badge pending"
+                                id="profileMilestone">
+
+                                Pending
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="milestone">
+
+                            <div class="milestone-icon">
+                                🧠
+                            </div>
+
+                            <div class="milestone-info">
+
+                                <strong>
+                                    Build Your Skills
+                                </strong>
+
+                                <span>
+                                    Add at least 5 relevant skills.
+                                </span>
+
+                            </div>
+
+                            <span
+                                class="milestone-badge pending"
+                                id="skillMilestone">
+
+                                Pending
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="milestone">
+
+                            <div class="milestone-icon">
+                                📚
+                            </div>
+
+                            <div class="milestone-info">
+
+                                <strong>
+                                    Complete a Course
+                                </strong>
+
+                                <span>
+                                    Finish lessons and pass the final quiz.
+                                </span>
+
+                            </div>
+
+                            <span
+                                class="milestone-badge pending"
+                                id="courseMilestone">
+
+                                Pending
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="milestone">
+
+                            <div class="milestone-icon">
+                                📄
+                            </div>
+
+                            <div class="milestone-info">
+
+                                <strong>
+                                    Build Your Resume
+                                </strong>
+
+                                <span>
+                                    Complete all important resume sections.
+                                </span>
+
+                            </div>
+
+                            <span
+                                class="milestone-badge pending"
+                                id="resumeMilestone">
+
+                                Pending
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="milestone">
+
+                            <div class="milestone-icon">
+                                💼
+                            </div>
+
+                            <div class="milestone-info">
+
+                                <strong>
+                                    Apply for Jobs
+                                </strong>
+
+                                <span>
+                                    Submit your first job application.
+                                </span>
+
+                            </div>
+
+                            <span
+                                class="milestone-badge pending"
+                                id="jobMilestone">
+
+                                Pending
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="milestone">
+
+                            <div class="milestone-icon">
+                                🏆
+                            </div>
+
+                            <div class="milestone-info">
+
+                                <strong>
+                                    Become Job Ready
+                                </strong>
+
+                                <span>
+                                    Reach 80% career readiness.
+                                </span>
+
+                            </div>
+
+                            <span
+                                class="milestone-badge pending"
+                                id="readyMilestone">
+
+                                Pending
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- QUICK ACTIONS -->
+
+                <section class="panel">
+
+                    <div class="panel-title">
+
+                        <h2>
+                            Quick Actions
+                        </h2>
+
+                    </div>
+
+
+                    <div class="quick-actions">
+
+                        <button
+                            class="quick-btn"
+                            onclick="goTo('skills.html')">
+
+                            🧠 Add Skills
+
+                        </button>
+
+
+                        <button
+                            class="quick-btn"
+                            onclick="goTo('courses.html')">
+
+                            📚 Learn
+
+                        </button>
+
+
+                        <button
+                            class="quick-btn"
+                            onclick="goTo('resume.html')">
+
+                            📄 Resume
+
+                        </button>
+
+
+                        <button
+                            class="quick-btn"
+                            onclick="goTo('jobs.html')">
+
+                            💼 Find Jobs
+
+                        </button>
+
+                    </div>
+
+                </section>
 
             </div>
 
         </div>
 
 
-        <!-- PROGRESS DETAILS -->
+        <!-- =========================
+             RECENT ACTIVITY
+        ========================= -->
 
-        <div class="section-grid">
+        <section class="panel">
 
+            <div class="panel-title">
 
-            <!-- LEARNING -->
+                <h2>
+                    Recent Activity
+                </h2>
 
-            <div class="card">
+                <span>
+                    Based on your progress
+                </span>
 
-                <h2>Learning Progress 📚</h2>
-
-                <div class="progress-item">
-
-                    <div class="progress-header">
-
-                        <span class="progress-name">
-                            Programming
-                        </span>
-
-                        <span class="progress-percent">
-                            0%
-                        </span>
-
-                    </div>
-
-                    <div class="progress-bar">
-
-                        <div class="progress-fill"
-                            style="width:0%">
-                        </div>
-
-                    </div>
-
-                </div>
+            </div>
 
 
-                <div class="progress-item">
+            <div id="activityList">
 
-                    <div class="progress-header">
+                <div class="empty-state">
 
-                        <span class="progress-name">
-                            AI & Machine Learning
-                        </span>
-
-                        <span class="progress-percent">
-                            0%
-                        </span>
-
-                    </div>
-
-                    <div class="progress-bar">
-
-                        <div class="progress-fill"
-                            style="width:0%">
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="progress-item">
-
-                    <div class="progress-header">
-
-                        <span class="progress-name">
-                            Data Analytics
-                        </span>
-
-                        <span class="progress-percent">
-                            0%
-                        </span>
-
-                    </div>
-
-                    <div class="progress-bar">
-
-                        <div class="progress-fill"
-                            style="width:0%">
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="progress-item">
-
-                    <div class="progress-header">
-
-                        <span class="progress-name">
-                            Web Development
-                        </span>
-
-                        <span class="progress-percent">
-                            0%
-                        </span>
-
-                    </div>
-
-                    <div class="progress-bar">
-
-                        <div class="progress-fill"
-                            style="width:0%">
-                        </div>
-
-                    </div>
+                    🚀 Start using FAST-TRACK to see your
+                    career activity here.
 
                 </div>
 
             </div>
 
+        </section>
 
-            <!-- CAREER READINESS -->
 
-            <div class="card">
+    </main>
 
-                <h2>Career Readiness 🚀</h2>
 
-                <div class="progress-item">
+    <!-- =========================
+         MOBILE NAV
+    ========================= -->
 
-                    <div class="progress-header">
+    <nav class="mobile-nav">
 
-                        <span class="progress-name">
-                            Skills
-                        </span>
 
-                        <span class="progress-percent">
-                            0%
-                        </span>
+        <a href="dashboard.html">
+
+            <span class="m-icon">🏠</span>
+
+            <span>Home</span>
+
+        </a>
+
+
+        <a href="jobs.html">
+
+            <span class="m-icon">💼</span>
+
+            <span>Jobs</span>
+
+        </a>
+
+
+        <a href="skills.html">
+
+            <span class="m-icon">🧠</span>
+
+            <span>Skills</span>
+
+        </a>
+
+
+        <a href="courses.html">
+
+            <span class="m-icon">📚</span>
+
+            <span>Courses</span>
+
+        </a>
+
+
+        <a href="resume.html">
+
+            <span class="m-icon">📄</span>
+
+            <span>Resume</span>
+
+        </a>
+
+
+        <a
+            href="progress.html"
+            class="active">
+
+            <span class="m-icon">📊</span>
+
+            <span>Progress</span>
+
+        </a>
+
+
+        <a href="profile.html">
+
+            <span class="m-icon">👤</span>
+
+            <span>Profile</span>
+
+        </a>
+
+
+    </nav>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+
+        /* =========================
+           LOCAL STORAGE KEYS
+        ========================= */
+
+        const SKILLS_KEY =
+            "fastTrackSkills";
+
+        const RESUME_KEY =
+            "fastTrackResume";
+
+        const COURSES_KEY =
+            "fastTrackCourseLessons";
+
+
+        /* =========================
+           HELPER
+        ========================= */
+
+        function readJSON(key, fallback) {
+
+            try {
+
+                const data =
+                    localStorage.getItem(key);
+
+                if (!data) {
+                    return fallback;
+                }
+
+                return JSON.parse(data);
+
+            } catch (error) {
+
+                console.error(
+                    "Storage error:",
+                    key,
+                    error
+                );
+
+                return fallback;
+            }
+
+        }
+
+
+        function clamp(value, min = 0, max = 100) {
+
+            return Math.max(
+                min,
+                Math.min(max, value)
+            );
+
+        }
+
+
+        function setBar(barId, valueId, value) {
+
+            value =
+                Math.round(clamp(value));
+
+            const bar =
+                document.getElementById(barId);
+
+            const text =
+                document.getElementById(valueId);
+
+            if (bar) {
+                bar.style.width =
+                    value + "%";
+            }
+
+            if (text) {
+                text.textContent =
+                    value + "%";
+            }
+        }
+
+
+        /* =========================
+           SKILLS
+        ========================= */
+
+        function getSkillsData() {
+
+            const data =
+                readJSON(
+                    SKILLS_KEY,
+                    []
+                );
+
+            return Array.isArray(data)
+                ? data
+                : [];
+
+        }
+
+
+        function calculateSkills() {
+
+            const skills =
+                getSkillsData();
+
+            const count =
+                skills.length;
+
+
+            /*
+                Target = 10 skills
+            */
+
+            const percentage =
+                clamp(
+                    (count / 10) * 100
+                );
+
+
+            document.getElementById(
+                "skillsCount"
+            ).textContent = count;
+
+
+            document.getElementById(
+                "skillsPercent"
+            ).textContent =
+                Math.round(percentage) + "%";
+
+
+            setBar(
+                "skillBar",
+                "skillBarValue",
+                percentage
+            );
+
+
+            document.getElementById(
+                "skillBarLeft"
+            ).textContent =
+                count +
+                (count === 1
+                    ? " skill added"
+                    : " skills added");
+
+
+            return percentage;
+        }
+
+
+        /* =========================
+           COURSES
+        ========================= */
+
+        function getCourseData() {
+
+            const data =
+                readJSON(
+                    COURSES_KEY,
+                    {}
+                );
+
+            return data &&
+                typeof data === "object"
+                ? data
+                : {};
+
+        }
+
+
+        function calculateCourses() {
+
+            const courses =
+                getCourseData();
+
+
+            let totalLessons = 0;
+
+            let completedLessons = 0;
+
+            let completedCourses = 0;
+
+
+            /*
+                Existing courses page
+                contains 5 lessons
+                per course.
+            */
+
+            const COURSE_COUNT = 6;
+
+            const LESSONS_PER_COURSE = 5;
+
+
+            for (
+                let i = 1;
+                i <= COURSE_COUNT;
+                i++
+            ) {
+
+                const course =
+                    courses[i] ||
+                    courses[String(i)];
+
+
+                if (!course) {
+                    continue;
+                }
+
+
+                const completed =
+                    Array.isArray(
+                        course.completedLessons
+                    )
+                        ? course.completedLessons.length
+                        : 0;
+
+
+                totalLessons +=
+                    LESSONS_PER_COURSE;
+
+
+                completedLessons +=
+                    Math.min(
+                        completed,
+                        LESSONS_PER_COURSE
+                    );
+
+
+                if (
+                    course.quizPassed === true &&
+                    completed >= LESSONS_PER_COURSE
+                ) {
+
+                    completedCourses++;
+
+                }
+
+            }
+
+
+            /*
+                If course data uses
+                course IDs instead of
+                numeric IDs, scan it.
+            */
+
+            if (
+                Object.keys(courses).length > 0 &&
+                totalLessons === 0
+            ) {
+
+                Object.values(courses)
+                    .forEach(course => {
+
+                        if (
+                            !course ||
+                            typeof course !== "object"
+                        ) {
+                            return;
+                        }
+
+
+                        const completed =
+                            Array.isArray(
+                                course.completedLessons
+                            )
+                                ? course.completedLessons.length
+                                : 0;
+
+
+                        totalLessons += 5;
+
+
+                        completedLessons +=
+                            Math.min(
+                                completed,
+                                5
+                            );
+
+
+                        if (
+                            course.quizPassed === true &&
+                            completed >= 5
+                        ) {
+
+                            completedCourses++;
+
+                        }
+
+                    });
+
+            }
+
+
+            /*
+                If no course has been
+                started yet, show 0%.
+            */
+
+            const percentage =
+                totalLessons > 0
+                    ? (
+                        completedLessons /
+                        totalLessons
+                    ) * 100
+                    : 0;
+
+
+            document.getElementById(
+                "coursesCount"
+            ).textContent =
+                completedCourses;
+
+
+            document.getElementById(
+                "coursesPercent"
+            ).textContent =
+                Math.round(percentage) + "%";
+
+
+            setBar(
+                "courseBar",
+                "courseBarValue",
+                percentage
+            );
+
+
+            document.getElementById(
+                "courseBarLeft"
+            ).textContent =
+                completedLessons +
+                " lessons completed";
+
+
+            return {
+                percentage,
+                completedLessons,
+                completedCourses
+            };
+
+        }
+
+
+        /* =========================
+           RESUME
+        ========================= */
+
+        function getResumeData() {
+
+            return readJSON(
+                RESUME_KEY,
+                {}
+            );
+
+        }
+
+
+        function calculateResume() {
+
+            const resume =
+                getResumeData();
+
+
+            const fields = [
+
+                "fullName",
+                "role",
+                "email",
+                "phone",
+                "location",
+                "summary",
+                "degree",
+                "college",
+                "year",
+                "skills",
+                "experience",
+                "projects",
+                "linkedin",
+                "github"
+
+            ];
+
+
+            let completed = 0;
+
+
+            fields.forEach(field => {
+
+                if (
+                    resume &&
+                    resume[field] &&
+                    String(
+                        resume[field]
+                    ).trim()
+                ) {
+
+                    completed++;
+
+                }
+
+            });
+
+
+            const percentage =
+                (
+                    completed /
+                    fields.length
+                ) * 100;
+
+
+            document.getElementById(
+                "resumeStatus"
+            ).textContent =
+                Math.round(percentage) + "%";
+
+
+            document.getElementById(
+                "resumePercent"
+            ).textContent =
+                Math.round(percentage) + "%";
+
+
+            setBar(
+                "resumeBar",
+                "resumeBarValue",
+                percentage
+            );
+
+
+            if (completed === 0) {
+
+                document.getElementById(
+                    "resumeBarLeft"
+                ).textContent =
+                    "Resume not started";
+
+            } else {
+
+                document.getElementById(
+                    "resumeBarLeft"
+                ).textContent =
+                    completed +
+                    " of " +
+                    fields.length +
+                    " sections completed";
+
+            }
+
+
+            return percentage;
+
+        }
+
+
+        /* =========================
+           JOB APPLICATIONS
+        ========================= */
+
+        function getJobApplications() {
+
+            const possibleKeys = [
+
+                "fastTrackAppliedJobs",
+
+                "appliedJobs",
+
+                "fastTrackApplications",
+
+                "jobApplications",
+
+                "fastTrackJobApplications"
+
+            ];
+
+
+            for (
+                const key of possibleKeys
+            ) {
+
+                const value =
+                    localStorage.getItem(key);
+
+
+                if (!value) {
+                    continue;
+                }
+
+
+                try {
+
+                    const parsed =
+                        JSON.parse(value);
+
+
+                    if (
+                        Array.isArray(parsed)
+                    ) {
+
+                        return parsed.length;
+
+                    }
+
+
+                    if (
+                        parsed &&
+                        typeof parsed === "object"
+                    ) {
+
+                        if (
+                            Array.isArray(
+                                parsed.applications
+                            )
+                        ) {
+
+                            return parsed
+                                .applications
+                                .length;
+
+                        }
+
+
+                        if (
+                            typeof parsed.count ===
+                            "number"
+                        ) {
+
+                            return parsed.count;
+
+                        }
+
+                    }
+
+                } catch {
+
+                    const number =
+                        Number(value);
+
+                    if (
+                        !Number.isNaN(number)
+                    ) {
+
+                        return number;
+
+                    }
+
+                }
+
+            }
+
+
+            /*
+                Also check common
+                localStorage names.
+            */
+
+            let total = 0;
+
+
+            for (
+                let i = 0;
+                i < localStorage.length;
+                i++
+            ) {
+
+                const key =
+                    localStorage.key(i);
+
+
+                if (!key) {
+                    continue;
+                }
+
+
+                const lower =
+                    key.toLowerCase();
+
+
+                if (
+                    lower.includes("appliedjob")
+                    ||
+                    lower.includes("jobapplication")
+                ) {
+
+                    try {
+
+                        const value =
+                            JSON.parse(
+                                localStorage.getItem(key)
+                            );
+
+
+                        if (
+                            Array.isArray(value)
+                        ) {
+
+                            total +=
+                                value.length;
+
+                        }
+
+                    } catch {
+
+                        /* ignore */
+
+                    }
+
+                }
+
+            }
+
+
+            return total;
+
+        }
+
+
+        function calculateJobs() {
+
+            const count =
+                getJobApplications();
+
+
+            /*
+                Target = 5 applications
+            */
+
+            const percentage =
+                clamp(
+                    (count / 5) * 100
+                );
+
+
+            document.getElementById(
+                "jobsCount"
+            ).textContent =
+                count;
+
+
+            document.getElementById(
+                "jobsPercent"
+            ).textContent =
+                Math.round(percentage) + "%";
+
+
+            setBar(
+                "jobBar",
+                "jobBarValue",
+                percentage
+            );
+
+
+            document.getElementById(
+                "jobBarLeft"
+            ).textContent =
+                count +
+                (
+                    count === 1
+                        ? " application"
+                        : " applications"
+                );
+
+
+            return percentage;
+
+        }
+
+
+        /* =========================
+           PROFILE
+        ========================= */
+
+        function getProfileData() {
+
+            const possibleKeys = [
+
+                "fastTrackProfile",
+
+                "userProfile",
+
+                "profileData"
+
+            ];
+
+
+            for (
+                const key of possibleKeys
+            ) {
+
+                const data =
+                    readJSON(
+                        key,
+                        null
+                    );
+
+
+                if (
+                    data &&
+                    typeof data === "object"
+                ) {
+
+                    return data;
+
+                }
+
+            }
+
+
+            return null;
+
+        }
+
+
+        function calculateProfile() {
+
+            const profile =
+                getProfileData();
+
+
+            if (!profile) {
+                return false;
+            }
+
+
+            const values =
+                Object.values(profile);
+
+
+            return values.some(
+                value =>
+                    value !== null &&
+                    value !== undefined &&
+                    String(value).trim() !== ""
+            );
+
+        }
+
+
+        /* =========================
+           COURSE CATEGORY
+        ========================= */
+
+        function calculateLearningAreas() {
+
+            const courses =
+                getCourseData();
+
+
+            /*
+                These IDs support both
+                numeric IDs and common
+                course-name IDs.
+            */
+
+            let programming = 0;
+
+            let ai = 0;
+
+            let analytics = 0;
+
+            let web = 0;
+
+
+            Object.entries(courses)
+                .forEach(
+                    ([id, course]) => {
+
+                        if (
+                            !course ||
+                            typeof course !== "object"
+                        ) {
+                            return;
+                        }
+
+
+                        const completed =
+                            Array.isArray(
+                                course.completedLessons
+                            )
+                                ? course.completedLessons.length
+                                : 0;
+
+
+                        const percentage =
+                            clamp(
+                                (completed / 5) *
+                                100
+                            );
+
+
+                        const key =
+                            String(id)
+                                .toLowerCase();
+
+
+                        /*
+                            Course mapping:
+                            1 = Python
+                            2 = ML
+                            3 = SQL
+                            4 = Web
+                            5 = Data Structures
+                            6 = Communication
+                        */
+
+                        if (
+                            key === "1" ||
+                            key.includes("python") ||
+                            key.includes("program")
+                        ) {
+
+                            programming =
+                                Math.max(
+                                    programming,
+                                    percentage
+                                );
+
+                        }
+
+
+                        if (
+                            key === "2" ||
+                            key.includes("machine") ||
+                            key.includes("ml") ||
+                            key.includes("ai")
+                        ) {
+
+                            ai =
+                                Math.max(
+                                    ai,
+                                    percentage
+                                );
+
+                        }
+
+
+                        if (
+                            key === "3" ||
+                            key.includes("sql") ||
+                            key.includes("analytics")
+                        ) {
+
+                            analytics =
+                                Math.max(
+                                    analytics,
+                                    percentage
+                                );
+
+                        }
+
+
+                        if (
+                            key === "4" ||
+                            key.includes("web")
+                        ) {
+
+                            web =
+                                Math.max(
+                                    web,
+                                    percentage
+                                );
+
+                        }
+
+                    }
+                );
+
+
+            setBar(
+                "programmingBar",
+                "programmingValue",
+                programming
+            );
+
+
+            setBar(
+                "aiBar",
+                "aiValue",
+                ai
+            );
+
+
+            setBar(
+                "analyticsBar",
+                "analyticsValue",
+                analytics
+            );
+
+
+            setBar(
+                "webBar",
+                "webValue",
+                web
+            );
+
+        }
+
+
+        /* =========================
+           OVERALL SCORE
+        ========================= */
+
+        function calculateOverall(
+            skills,
+            courses,
+            resume,
+            jobs
+        ) {
+
+
+            const overall =
+                (
+                    skills +
+                    courses +
+                    resume +
+                    jobs
+                ) / 4;
+
+
+            const score =
+                Math.round(
+                    clamp(overall)
+                );
+
+
+            document.getElementById(
+                "overallPercent"
+            ).textContent =
+                score + "%";
+
+
+            document.getElementById(
+                "readinessNumber"
+            ).textContent =
+                score + "%";
+
+
+            /* Circle */
+
+            const degrees =
+                score * 3.6;
+
+
+            document.getElementById(
+                "overallCircle"
+            ).style.background =
+                `
+                conic-gradient(
+                    #6366f1 0deg,
+                    #8b5cf6 ${degrees}deg,
+                    #1a2235 ${degrees}deg
+                )
+                `;
+
+
+            /* Message */
+
+            let message =
+                "";
+
+            let status =
+                "";
+
+
+            if (score === 0) {
+
+                message =
+                    "Start building your skills, completing courses, creating your resume and applying for jobs.";
+
+                status =
+                    "🚀 Getting Started";
+
+            } else if (score < 25) {
+
+                message =
+                    "Good start! Add more skills and begin learning courses to improve your career readiness.";
+
+                status =
+                    "🌱 Building Foundation";
+
+            } else if (score < 50) {
+
+                message =
+                    "You're making progress. Keep learning and complete your resume to move closer to your goal.";
+
+                status =
+                    "📈 Making Progress";
+
+            } else if (score < 70) {
+
+                message =
+                    "Great progress! Strengthen your skills, finish courses and start applying for suitable jobs.";
+
+                status =
+                    "🔥 On the Right Track";
+
+            } else if (score < 80) {
+
+                message =
+                    "You're getting close to being job-ready. Focus on the remaining weak areas.";
+
+                status =
+                    "⭐ Almost Job Ready";
+
+            } else {
+
+                message =
+                    "Excellent! Your FAST-TRACK profile is highly prepared for your career journey.";
+
+                status =
+                    "🏆 Job Ready";
+
+            }
+
+
+            document.getElementById(
+                "overallMessage"
+            ).textContent =
+                message;
+
+
+            document.getElementById(
+                "overallStatus"
+            ).textContent =
+                status;
+
+
+            document.getElementById(
+                "readinessMessage"
+            ).textContent =
+                message;
+
+
+            return score;
+
+        }
+
+
+        /* =========================
+           MILESTONES
+        ========================= */
+
+        function setMilestone(
+            id,
+            completed
+        ) {
+
+            const element =
+                document.getElementById(id);
+
+
+            if (!element) {
+                return;
+            }
+
+
+            if (completed) {
+
+                element.textContent =
+                    "Completed";
+
+                element.classList.remove(
+                    "pending"
+                );
+
+                element.classList.add(
+                    "completed"
+                );
+
+            } else {
+
+                element.textContent =
+                    "Pending";
+
+                element.classList.remove(
+                    "completed"
+                );
+
+                element.classList.add(
+                    "pending"
+                );
+
+            }
+
+        }
+
+
+        function updateMilestones(
+            skills,
+            courseData,
+            resume,
+            jobs,
+            overall
+        ) {
+
+
+            const profile =
+                calculateProfile();
+
+
+            setMilestone(
+                "profileMilestone",
+                profile
+            );
+
+
+            setMilestone(
+                "skillMilestone",
+                skills >= 50
+            );
+
+
+            setMilestone(
+                "courseMilestone",
+                courseData.completedCourses > 0
+            );
+
+
+            setMilestone(
+                "resumeMilestone",
+                resume >= 80
+            );
+
+
+            setMilestone(
+                "jobMilestone",
+                jobs > 0
+            );
+
+
+            setMilestone(
+                "readyMilestone",
+                overall >= 80
+            );
+
+        }
+
+
+        /* =========================
+           ACTIVITY
+        ========================= */
+
+        function updateActivity(
+            skillCount,
+            courseData,
+            resume,
+            jobs
+        ) {
+
+            const activities = [];
+
+
+            if (skillCount > 0) {
+
+                activities.push({
+
+                    icon: "🧠",
+
+                    title:
+                        skillCount +
+                        (
+                            skillCount === 1
+                                ? " skill added"
+                                : " skills added"
+                        ),
+
+                    text:
+                        "Your skill profile is growing."
+
+                });
+
+            }
+
+
+            if (
+                courseData.completedLessons > 0
+            ) {
+
+                activities.push({
+
+                    icon: "📚",
+
+                    title:
+                        courseData.completedLessons +
+                        " lessons completed",
+
+                    text:
+                        "Keep learning to complete your courses."
+
+                });
+
+            }
+
+
+            if (
+                courseData.completedCourses > 0
+            ) {
+
+                activities.push({
+
+                    icon: "🏆",
+
+                    title:
+                        courseData.completedCourses +
+                        (
+                            courseData.completedCourses === 1
+                                ? " course completed"
+                                : " courses completed"
+                        ),
+
+                    text:
+                        "Great job! Your learning progress is improving."
+
+                });
+
+            }
+
+
+            if (resume > 0) {
+
+                activities.push({
+
+                    icon: "📄",
+
+                    title:
+                        "Resume " +
+                        Math.round(resume) +
+                        "% complete",
+
+                    text:
+                        "Continue improving your professional profile."
+
+                });
+
+            }
+
+
+            if (jobs > 0) {
+
+                activities.push({
+
+                    icon: "💼",
+
+                    title:
+                        jobs +
+                        (
+                            jobs === 1
+                                ? " job application"
+                                : " job applications"
+                        ),
+
+                    text:
+                        "Keep applying to suitable opportunities."
+
+                });
+
+            }
+
+
+            const container =
+                document.getElementById(
+                    "activityList"
+                );
+
+
+            if (activities.length === 0) {
+
+                container.innerHTML = `
+
+                    <div class="empty-state">
+
+                        🚀 Start using FAST-TRACK to see
+                        your career activity here.
 
                     </div>
 
-                    <div class="progress-bar">
+                `;
 
-                        <div class="progress-fill"
-                            style="width:0%">
+                return;
+
+            }
+
+
+            container.innerHTML =
+                activities
+                    .slice(0, 5)
+                    .map(activity => `
+
+                        <div class="activity">
+
+                            <div class="activity-icon">
+                                ${activity.icon}
+                            </div>
+
+                            <div class="activity-text">
+
+                                <strong>
+                                    ${activity.title}
+                                </strong>
+
+                                <span>
+                                    ${activity.text}
+                                </span>
+
+                            </div>
+
                         </div>
 
-                    </div>
+                    `)
+                    .join("");
 
-                </div>
-
-
-                <div class="progress-item">
-
-                    <div class="progress-header">
-
-                        <span class="progress-name">
-                            Resume
-                        </span>
-
-                        <span class="progress-percent">
-                            0%
-                        </span>
-
-                    </div>
-
-                    <div class="progress-bar">
-
-                        <div class="progress-fill"
-                            style="width:0%">
-                        </div>
-
-                    </div>
-
-                </div>
+        }
 
 
-                <div class="progress-item">
+        /* =========================
+           REFRESH EVERYTHING
+        ========================= */
 
-                    <div class="progress-head
+        function refreshProgress() {
+
+
+            const skills =
+                calculateSkills();
+
+
+            const courseData =
+                calculateCourses();
+
+
+            const resume =
+                calculateResume();
+
+
+            const jobs =
+                calculateJobs();
+
+
+            calculateLearningAreas();
+
+
+            const overall =
+                calculateOverall(
+                    skills,
+                    courseData.percentage,
+                    resume,
+                    jobs
+                );
+
+
+            updateMilestones(
+                skills,
+                courseData,
+                resume,
+                jobs,
+                overall
+            );
+
+
+            updateActivity(
+                getSkillsData().length,
+                courseData,
+                resume,
+                jobs
+            );
+
+        }
+
+
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        function goTo(page) {
+
+            window.location.href =
+                page;
+
+        }
+
+
+        /* =========================
+           PAGE LOAD
+        ========================= */
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            () => {
+
+                refreshProgress();
+
+            }
+        );
+
+
+        /* =========================
+           WHEN RETURNING TO PAGE
+        ========================= */
+
+        window.addEventListener(
+            "pageshow",
+            () => {
+
+                refreshProgress();
+
+            }
+        );
+
+
+        /* =========================
+           LOCAL STORAGE UPDATE
+        ========================= */
+
+        window.addEventListener(
+            "storage",
+            event => {
+
+                if (
+                    event.key === null ||
+                    event.key === SKILLS_KEY ||
+                    event.key === RESUME_KEY ||
+                    event.key === COURSES_KEY
+                ) {
+
+                    refreshProgress();
+
+                }
+
+            }
+        );
+
+
+        /* =========================
+           REFRESH EVERY FEW SECONDS
+           FOR SAME-TAB UPDATES
+        ========================= */
+
+        setInterval(
+            refreshProgress,
+            3000
+        );
+
+
+    </script>
+
+</body>
+
+</html>
