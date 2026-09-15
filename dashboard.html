@@ -1,1126 +1,1222 @@
-<!DOCTYPE html>  <html lang="en">  <head>  <meta charset="UTF-8">  
+<!DOCTYPE html>
+<html lang="en">
 
-<meta name="viewport"  
-      content="width=device-width, initial-scale=1.0">  
+<head>
+    <meta charset="UTF-8">
 
-<title>FAST-TRACK | Dashboard</title>  
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-<style>  
+    <title>FAST-TRACK | Dashboard</title>
 
-    * {  
-        margin: 0;  
-        padding: 0;  
-        box-sizing: border-box;  
-    }  
+    <style>
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {  
-        font-family: Arial, sans-serif;  
+        body {
+            font-family: Arial, sans-serif;
 
-        background:  
-            radial-gradient(  
-                circle at 15% 15%,  
-                rgba(59, 130, 246, 0.28),  
-                transparent 28%  
-            ),  
-            radial-gradient(  
-                circle at 85% 80%,  
-                rgba(139, 92, 246, 0.24),  
-                transparent 30%  
-            ),  
-            linear-gradient(  
-                135deg,  
-                #07111f,  
-                #0b1730,  
-                #111827  
-            );  
+            background:
+                radial-gradient(
+                    circle at 15% 15%,
+                    rgba(59, 130, 246, 0.28),
+                    transparent 28%
+                ),
+                radial-gradient(
+                    circle at 85% 80%,
+                    rgba(139, 92, 246, 0.24),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #07111f,
+                    #0b1730,
+                    #111827
+                );
 
-        color: #f8fafc;  
+            color: #f8fafc;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
 
-        min-height: 100vh;  
-    }  
 
+        /* =========================
+           SIDEBAR
+        ========================= */
 
-    /* =========================  
-       SIDEBAR  
-    ========================= */  
+        .sidebar {
 
-    .sidebar {  
+            position: fixed;
 
-        position: fixed;  
+            left: 0;
+            top: 0;
+            bottom: 0;
 
-        left: 0;  
-        top: 0;  
-        bottom: 0;  
+            width: 245px;
 
-        width: 245px;  
+            padding: 22px 15px;
 
-        padding: 22px 15px;  
+            background:
+                rgba(8, 18, 35, 0.88);
 
-        background:  
-            rgba(8, 18, 35, 0.88);  
+            backdrop-filter: blur(18px);
 
-        backdrop-filter: blur(18px);  
+            border-right:
+                1px solid rgba(255,255,255,0.08);
 
-        border-right:  
-            1px solid rgba(255,255,255,0.08);  
+            box-shadow:
+                10px 0 40px rgba(0,0,0,0.18);
 
-        box-shadow:  
-            10px 0 40px rgba(0,0,0,0.18);  
+            z-index: 100;
+        }
 
-        z-index: 100;  
-    }  
 
+        .sidebar-brand {
 
-    .sidebar-brand {  
+            display: flex;
 
-        display: flex;  
+            align-items: center;
 
-        align-items: center;  
+            gap: 10px;
 
-        gap: 10px;  
+            padding: 5px 10px 28px;
 
-        padding: 5px 10px 28px;  
+            font-size: 19px;
 
-        font-size: 19px;  
+            font-weight: 800;
 
-        font-weight: 800;  
+            color: #ffffff;
+        }
 
-        color: #ffffff;  
-    }  
 
+        .sidebar-brand img {
 
-    .sidebar-brand img {  
+            width: 40px;
+            height: 40px;
 
-        width: 40px;  
-        height: 40px;  
+            object-fit: contain;
 
-        object-fit: contain;  
-    }  
+            flex-shrink: 0;
+        }
 
 
-    /* =========================  
-       NAVIGATION  
-    ========================= */  
+        .sidebar-brand span {
+            white-space: nowrap;
+        }
 
-    .nav-menu {  
 
-        display: flex;  
+        /* =========================
+           NAVIGATION
+        ========================= */
 
-        flex-direction: column;  
+        .nav-menu {
 
-        gap: 7px;  
-    }  
+            display: flex;
 
+            flex-direction: column;
 
-    .nav-item {  
+            gap: 7px;
+        }
 
-        display: flex;  
 
-        align-items: center;  
+        .nav-item {
 
-        gap: 12px;  
+            display: flex;
 
-        width: 100%;  
+            align-items: center;
 
-        padding: 13px;  
+            gap: 12px;
 
-        border: 1px solid transparent;  
+            width: 100%;
 
-        border-radius: 11px;  
+            padding: 13px;
 
-        background: transparent;  
+            border: 1px solid transparent;
 
-        color: #94a3b8;  
+            border-radius: 11px;
 
-        font-size: 13px;  
+            background: transparent;
 
-        font-weight: 600;  
+            color: #94a3b8;
 
-        text-align: left;  
+            font-size: 13px;
 
-        cursor: pointer;  
+            font-weight: 600;
 
-        transition: 0.25s;  
-    }  
+            text-align: left;
 
+            cursor: pointer;
 
-    .nav-item:hover {  
+            transition: 0.25s;
+        }
 
-        color: #ffffff;  
 
-        background:  
-            rgba(59,130,246,0.13);  
+        .nav-item:hover {
 
-        border-color:  
-            rgba(96,165,250,0.15);  
-    }  
+            color: #ffffff;
 
+            background:
+                rgba(59,130,246,0.13);
 
-    .nav-item.active {  
+            border-color:
+                rgba(96,165,250,0.15);
+        }
 
-        color: #ffffff;  
 
-        background:  
-            linear-gradient(  
-                135deg,  
-                rgba(37,99,235,0.85),  
-                rgba(124,58,237,0.85)  
-            );  
+        .nav-item.active {
 
-        box-shadow:  
-            0 8px 25px  
-            rgba(37,99,235,0.25);  
-    }  
+            color: #ffffff;
 
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(37,99,235,0.85),
+                    rgba(124,58,237,0.85)
+                );
 
-    .nav-icon {  
+            box-shadow:
+                0 8px 25px
+                rgba(37,99,235,0.25);
+        }
 
-        width: 22px;  
 
-        text-align: center;  
+        .nav-icon {
 
-        font-size: 17px;  
-    }  
+            width: 22px;
 
+            text-align: center;
 
-    /* =========================  
-       MAIN  
-    ========================= */  
+            font-size: 17px;
 
-    .main {  
+            flex-shrink: 0;
+        }
 
-        margin-left: 245px;  
 
-        min-height: 100vh;  
-    }  
+        /* =========================
+           MAIN
+        ========================= */
 
+        .main {
 
-    /* =========================  
-       TOPBAR  
-    ========================= */  
+            margin-left: 245px;
 
-    .topbar {  
+            min-height: 100vh;
+        }
 
-        height: 72px;  
 
-        display: flex;  
+        /* =========================
+           TOPBAR
+        ========================= */
 
-        align-items: center;  
+        .topbar {
 
-        justify-content: flex-end;  
+            height: 72px;
 
-        padding: 0 30px;  
+            display: flex;
 
-        background:  
-            rgba(7,17,31,0.65);  
+            align-items: center;
 
-        backdrop-filter: blur(18px);  
+            justify-content: flex-end;
 
-        border-bottom:  
-            1px solid rgba(255,255,255,0.08);  
-    }  
+            padding: 0 30px;
 
+            background:
+                rgba(7,17,31,0.65);
 
-    .user-area {  
+            backdrop-filter: blur(18px);
 
-        display: flex;  
+            border-bottom:
+                1px solid rgba(255,255,255,0.08);
+        }
 
-        align-items: center;  
 
-        gap: 15px;  
-    }  
+        .user-area {
 
+            display: flex;
 
-    #userName {  
+            align-items: center;
 
-        font-size: 13px;  
+            gap: 15px;
+        }
 
-        font-weight: 700;  
 
-        color: #e2e8f0;  
-    }  
+        #userName {
 
+            font-size: 13px;
 
-    #logoutButton {  
+            font-weight: 700;
 
-        border:  
-            1px solid rgba(255,255,255,0.12);  
+            color: #e2e8f0;
+        }
 
-        padding: 9px 17px;  
 
-        border-radius: 9px;  
+        #logoutButton {
 
-        background:  
-            rgba(239,68,68,0.15);  
+            border:
+                1px solid rgba(255,255,255,0.12);
 
-        color: #fca5a5;  
+            padding: 9px 17px;
 
-        font-size: 12px;  
+            border-radius: 9px;
 
-        font-weight: 700;  
+            background:
+                rgba(239,68,68,0.15);
 
-        cursor: pointer;  
+            color: #fca5a5;
 
-        transition: 0.2s;  
-    }  
+            font-size: 12px;
 
+            font-weight: 700;
 
-    #logoutButton:hover {  
+            cursor: pointer;
 
-        background: #ef4444;  
+            transition: 0.2s;
+        }
 
-        color: white;  
-    }  
 
+        #logoutButton:hover {
 
-    /* =========================  
-       DASHBOARD CONTENT  
-    ========================= */  
+            background: #ef4444;
 
-    .dashboard {  
+            color: white;
+        }
 
-        padding: 42px;  
-    }  
 
+        /* =========================
+           DASHBOARD CONTENT
+        ========================= */
 
-    .welcome {  
+        .dashboard {
 
-        margin-bottom: 32px;  
-    }  
+            padding: 42px;
+        }
 
 
-    .welcome h1 {  
+        .welcome {
 
-        font-size: 32px;  
+            margin-bottom: 32px;
+        }
 
-        font-weight: 800;  
 
-        margin-bottom: 9px;  
+        .welcome h1 {
 
-        color: #ffffff;  
-    }  
+            font-size: 32px;
 
+            font-weight: 800;
 
-    .welcome h1 span {  
+            margin-bottom: 9px;
 
-        background:  
-            linear-gradient(  
-                90deg,  
-                #60a5fa,  
-                #a78bfa  
-            );  
+            color: #ffffff;
+        }
 
-        -webkit-background-clip: text;  
 
-        -webkit-text-fill-color: transparent;  
-    }  
+        .welcome h1 span {
 
+            background:
+                linear-gradient(
+                    90deg,
+                    #60a5fa,
+                    #a78bfa
+                );
 
-    .welcome p {  
+            -webkit-background-clip: text;
 
-        color: #94a3b8;  
+            -webkit-text-fill-color: transparent;
+        }
 
-        font-size: 14px;  
-    }  
 
+        .welcome p {
 
-    /* =========================  
-       CARDS  
-    ========================= */  
+            color: #94a3b8;
 
-    .cards {  
+            font-size: 14px;
+        }
 
-        display: grid;  
 
-        grid-template-columns:  
-            repeat(4, 1fr);  
+        /* =========================
+           CARDS
+        ========================= */
 
-        gap: 20px;  
-    }  
+        .cards {
 
+            display: grid;
 
-    .card {  
+            grid-template-columns:
+                repeat(4, 1fr);
 
-        position: relative;  
+            gap: 20px;
+        }
 
-        overflow: hidden;  
 
-        background:  
-            linear-gradient(  
-                145deg,  
-                rgba(255,255,255,0.10),  
-                rgba(255,255,255,0.04)  
-            );  
+        .card {
 
-        backdrop-filter: blur(15px);  
+            position: relative;
 
-        padding: 26px;  
+            overflow: hidden;
 
-        min-height: 170px;  
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.10),
+                    rgba(255,255,255,0.04)
+                );
 
-        border-radius: 18px;  
+            backdrop-filter: blur(15px);
 
-        border:  
-            1px solid rgba(255,255,255,0.10);  
+            padding: 26px;
 
-        box-shadow:  
-            0 15px 40px  
-            rgba(0,0,0,0.20);  
+            min-height: 170px;
 
-        transition: 0.3s;  
+            border-radius: 18px;
 
-        cursor: pointer;  
-    }  
+            border:
+                1px solid rgba(255,255,255,0.10);
 
+            box-shadow:
+                0 15px 40px
+                rgba(0,0,0,0.20);
 
-    .card::before {  
+            transition: 0.3s;
 
-        content: "";  
+            cursor: pointer;
+        }
 
-        position: absolute;  
 
-        width: 100px;  
-        height: 100px;  
+        .card::before {
 
-        top: -50px;  
-        right: -40px;  
+            content: "";
 
-        background:  
-            rgba(59,130,246,0.18);  
+            position: absolute;
 
-        border-radius: 50%;  
+            width: 100px;
+            height: 100px;
 
-        filter: blur(5px);  
-    }  
+            top: -50px;
+            right: -40px;
 
+            background:
+                rgba(59,130,246,0.18);
 
-    .card:hover {  
+            border-radius: 50%;
 
-        transform:  
-            translateY(-6px);  
+            filter: blur(5px);
+        }
 
-        border-color:  
-            rgba(96,165,250,0.30);  
 
-        box-shadow:  
-            0 20px 50px  
-            rgba(0,0,0,0.30);  
-    }  
+        .card:hover {
 
+            transform:
+                translateY(-6px);
 
-    .card-icon {  
+            border-color:
+                rgba(96,165,250,0.30);
 
-        font-size: 30px;  
+            box-shadow:
+                0 20px 50px
+                rgba(0,0,0,0.30);
+        }
 
-        margin-bottom: 18px;  
-    }  
 
+        .card-icon {
 
-    .card h3 {  
+            font-size: 30px;
 
-        font-size: 17px;  
+            margin-bottom: 18px;
+        }
 
-        margin-bottom: 8px;  
 
-        color: #ffffff;  
-    }  
+        .card h3 {
 
+            font-size: 17px;
 
-    .card p {  
+            margin-bottom: 8px;
 
-        color: #94a3b8;  
+            color: #ffffff;
+        }
 
-        font-size: 12px;  
 
-        line-height: 1.6;  
-    }  
+        .card p {
 
+            color: #94a3b8;
 
-    /* =========================  
-       TABLET  
-    ========================= */  
+            font-size: 12px;
 
-    @media (max-width: 1000px) {  
+            line-height: 1.6;
+        }
 
-        .cards {  
 
-            grid-template-columns:  
-                repeat(2, 1fr);  
-        }  
-    }  
+        /* =========================
+           TABLET
+        ========================= */
 
+        @media (max-width: 1000px) {
 
-    /* =========================  
-       TABLET / SMALL LAPTOP  
-    ========================= */  
+            .cards {
 
-    @media (max-width: 800px) {  
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+        }
 
-        .sidebar {  
 
-            width: 70px;  
+        /* =========================
+           TABLET / SMALL LAPTOP
+        ========================= */
 
-            padding: 18px 8px;  
-        }  
+        @media (max-width: 800px) {
 
+            .sidebar {
 
-        .sidebar-brand {  
+                width: 70px;
 
-            justify-content: center;  
+                padding: 18px 8px;
+            }
 
-            padding: 5px 0 25px;  
-        }  
 
+            .sidebar-brand {
 
-        .sidebar-brand span {  
+                justify-content: center;
 
-            display: none;  
-        }  
+                padding: 5px 0 25px;
+            }
 
 
-        .nav-item {  
+            .sidebar-brand span {
 
-            justify-content: center;  
+                display: none;
+            }
 
-            padding: 12px 5px;  
-        }  
 
+            .nav-item {
 
-        .nav-item span:not(.nav-icon) {  
+                justify-content: center;
 
-            display: none;  
-        }  
+                padding: 12px 5px;
+            }
 
 
-        .nav-icon {  
+            .nav-item span:not(.nav-icon) {
 
-            font-size: 19px;  
-        }  
+                display: none;
+            }
 
 
-        .main {  
+            .nav-icon {
 
-            margin-left: 70px;  
-        }  
+                font-size: 19px;
+            }
 
 
-        .topbar {  
+            .main {
 
-            padding: 0 15px;  
-        }  
+                margin-left: 70px;
+            }
 
 
-        .dashboard {  
+            .topbar {
 
-            padding: 28px 18px;  
-        }  
+                padding: 0 15px;
+            }
 
-    }  
 
+            .dashboard {
 
-    /* =========================  
-       MOBILE  
-    ========================= */  
+                padding: 28px 18px;
+            }
 
-    @media (max-width: 500px) {  
+        }
 
-        .sidebar {  
 
-            position: fixed;  
+        /* =========================
+           MOBILE
+        ========================= */
 
-            top: auto;  
+        @media (max-width: 500px) {
 
-            bottom: 0;  
+            body {
 
-            left: 0;  
+                min-width: 0;
 
-            width: 100%;  
+                overflow-x: hidden;
+            }
 
-            height: 68px;  
 
-            padding: 5px 4px;  
+            /* =====================
+               MOBILE TOP BRAND
+            ===================== */
 
-            border-right: none;  
+            .sidebar {
 
-            border-top:  
-                1px solid  
-                rgba(255,255,255,0.10);  
+                position: fixed;
 
-            background:  
-                rgba(5,13,26,0.94);  
+                top: 0;
+                left: 0;
 
-            backdrop-filter: blur(20px);  
-        }  
+                bottom: auto;
 
+                width: 100%;
 
-        .sidebar-brand {  
+                height: 62px;
 
-            display: none;  
-        }  
+                padding: 0 14px;
 
+                display: flex;
 
-        .nav-menu {  
+                align-items: center;
 
-            height: 100%;  
+                background:
+                    rgba(7,17,31,0.96);
 
-            flex-direction: row;  
+                backdrop-filter: blur(20px);
 
-            justify-content:  
-                space-around;  
+                border-right: none;
 
-            align-items: center;  
+                border-bottom:
+                    1px solid
+                    rgba(255,255,255,0.10);
 
-            gap: 0;  
-        }  
+                box-shadow:
+                    0 5px 25px
+                    rgba(0,0,0,0.20);
 
+                z-index: 200;
+            }
 
-        .nav-item {  
 
-            flex: 1;  
+            .sidebar-brand {
 
-            height: 58px;  
+                display: flex;
 
-            flex-direction: column;  
+                align-items: center;
 
-            justify-content: center;  
+                justify-content: flex-start;
 
-            gap: 3px;  
+                gap: 9px;
 
-            padding: 4px 2px;  
+                width: auto;
 
-            border-radius: 9px;  
+                padding: 0;
 
-            font-size: 8px;  
-        }  
+                font-size: 17px;
+            }
 
 
-        .nav-item span:not(.nav-icon) {  
+            .sidebar-brand img {
 
-            display: block;  
-        }  
+                width: 38px;
+                height: 38px;
 
+                display: block;
+            }
 
-        .nav-icon {  
 
-            font-size: 17px;  
-        }  
+            .sidebar-brand span {
 
+                display: block;
 
-        .main {  
+                color: #ffffff;
 
-            margin-left: 0;  
+                font-size: 17px;
 
-            padding-bottom: 75px;  
-        }  
+                font-weight: 800;
 
+                letter-spacing: 0.5px;
 
-        .topbar {  
+                white-space: nowrap;
+            }
 
-            height: 62px;  
 
-            background:  
-                rgba(7,17,31,0.80);  
-        }  
+            /* =====================
+               MOBILE NAV
+            ===================== */
 
+            .nav-menu {
 
-        #userName {  
+                position: fixed;
 
-            display: none;  
-        }  
+                left: 0;
+                bottom: 0;
 
+                width: 100%;
 
-        .dashboard {  
+                height: 68px;
 
-            padding: 25px 14px;  
-        }  
+                padding: 5px 4px;
 
+                display: flex;
 
-        .welcome h1 {  
+                flex-direction: row;
 
-            font-size: 24px;  
-        }  
+                justify-content: space-around;
 
+                align-items: center;
 
-        .welcome p {  
+                gap: 0;
 
-            font-size: 12px;  
-        }  
+                background:
+                    rgba(5,13,26,0.97);
 
+                backdrop-filter: blur(20px);
 
-        .cards {  
+                border-top:
+                    1px solid
+                    rgba(255,255,255,0.10);
 
-            grid-template-columns: 1fr;  
+                z-index: 300;
+            }
 
-            gap: 14px;  
-        }  
 
+            .nav-item {
 
-        .card {  
+                flex: 1;
 
-            min-height: 145px;  
+                width: auto;
 
-            padding: 21px;  
-        }  
+                height: 58px;
 
-    }  
+                display: flex;
 
-</style>
+                flex-direction: column;
 
-</head>  <body>  <!-- =========================  
-     SIDEBAR  
-========================= -->  
+                align-items: center;
 
-<aside class="sidebar">  
+                justify-content: center;
 
-    <div class="sidebar-brand">  
+                gap: 3px;
 
-        <img  
-            src="fast-track-logo.png"  
-            alt="FAST-TRACK">  
+                padding: 4px 2px;
 
-        <span>  
-            FAST-TRACK  
-        </span>  
+                border-radius: 9px;
 
-    </div>  
+                font-size: 8px;
 
+                text-align: center;
+            }
 
-    <nav class="nav-menu">  
 
+            .nav-item span:not(.nav-icon) {
 
-        <button  
-            class="nav-item active">  
+                display: block;
 
-            <span class="nav-icon">  
-                🏠  
-            </span>  
+                white-space: nowrap;
+            }
 
-            <span>  
-                Dashboard  
-            </span>  
 
-        </button>  
+            .nav-icon {
 
+                width: auto;
 
-        <button  
-            class="nav-item">  
+                font-size: 17px;
+            }
 
-            <span class="nav-icon">  
-                💼  
-            </span>  
 
-            <span>  
-                Jobs  
-            </span>  
+            /* =====================
+               MOBILE MAIN
+            ===================== */
 
-        </button>  
+            .main {
 
+                margin-left: 0;
 
-        <button  
-            class="nav-item">  
+                width: 100%;
 
-            <span class="nav-icon">  
-                🧠  
-            </span>  
+                min-height: 100vh;
 
-            <span>  
-                Skills  
-            </span>  
+                padding-top: 62px;
 
-        </button>  
+                padding-bottom: 78px;
+            }
 
 
-        <button  
-            class="nav-item">  
+            /* =====================
+               MOBILE TOPBAR
+            ===================== */
 
-            <span class="nav-icon">  
-                📚  
-            </span>  
+            .topbar {
 
-            <span>  
-                Courses  
-            </span>  
+                height: 55px;
 
-        </button>  
+                padding: 0 14px;
 
+                display: flex;
 
-        <button  
-            class="nav-item">  
+                justify-content: flex-end;
 
-            <span class="nav-icon">  
-                📄  
-            </span>  
+                align-items: center;
 
-            <span>  
-                Resume  
-            </span>  
+                background:
+                    rgba(7,17,31,0.70);
 
-        </button>  
+                backdrop-filter: blur(15px);
 
+                border-bottom:
+                    1px solid
+                    rgba(255,255,255,0.06);
+            }
 
-        <button  
-            class="nav-item">  
 
-            <span class="nav-icon">  
-                📈  
-            </span>  
+            .user-area {
 
-            <span>  
-                Progress  
-            </span>  
+                gap: 0;
+            }
 
-        </button>  
 
+            #userName {
 
-        <button  
-            class="nav-item">  
+                display: none;
+            }
 
-            <span class="nav-icon">  
-                👤  
-            </span>  
 
-            <span>  
-                Profile  
-            </span>  
+            #logoutButton {
 
-        </button>  
+                padding: 8px 13px;
 
+                font-size: 11px;
 
-    </nav>  
+                border-radius: 8px;
+            }
 
-</aside>  
 
+            /* =====================
+               MOBILE DASHBOARD
+            ===================== */
 
-<!-- =========================  
-     MAIN  
-========================= -->  
+            .dashboard {
 
-<main class="main">  
+                width: 100%;
 
+                padding: 24px 14px 30px;
+            }
 
-    <!-- TOPBAR -->  
 
-    <header class="topbar">  
+            .welcome {
 
-        <div class="user-area">  
+                margin-bottom: 24px;
+            }
 
-            <span id="userName">  
-                Loading...  
-            </span>  
 
-            <button id="logoutButton">  
-                Logout  
-            </button>  
+            .welcome h1 {
 
-        </div>  
+                font-size: 24px;
 
-    </header>  
+                line-height: 1.3;
 
+                margin-bottom: 7px;
+            }
 
-    <!-- DASHBOARD -->  
 
-    <section class="dashboard">  
+            .welcome p {
 
+                font-size: 12px;
 
-        <div class="welcome">  
+                line-height: 1.5;
+            }
 
-            <h1>  
 
-                Welcome,  
-                <span id="welcomeName">  
-                    User  
-                </span>  
+            /* =====================
+               MOBILE CARDS
+            ===================== */
 
-                👋  
+            .cards {
 
-            </h1>  
+                width: 100%;
 
+                grid-template-columns: 1fr;
 
-            <p>  
-                Your career journey starts here.  
-            </p>  
+                gap: 14px;
+            }
 
-        </div>  
 
+            .card {
 
-        <div class="cards">  
+                width: 100%;
 
+                min-height: 140px;
 
-            <!-- JOBS -->  
+                padding: 20px;
 
-            <div class="card">  
+                border-radius: 16px;
+            }
 
-                <div class="card-icon">  
-                    💼  
-                </div>  
 
-                <h3>  
-                    Jobs  
-                </h3>  
+            .card-icon {
 
-                <p>  
-                    Discover career  
-                    opportunities and  
-                    find your next role.  
-                </p>  
+                font-size: 27px;
 
-            </div>  
+                margin-bottom: 13px;
+            }
 
 
-            <!-- SKILLS -->  
+            .card h3 {
 
-            <div class="card">  
+                font-size: 16px;
 
-                <div class="card-icon">  
-                    🧠  
-                </div>  
+                margin-bottom: 7px;
+            }
 
-                <h3>  
-                    Skills  
-                </h3>  
 
-                <p>  
-                    Track your skills  
-                    and identify areas  
-                    to improve.  
-                </p>  
+            .card p {
 
-            </div>  
+                font-size: 11px;
 
+                line-height: 1.6;
+            }
 
-            <!-- RESUME -->  
+        }
 
-            <div class="card">  
 
-                <div class="card-icon">  
-                    📄  
-                </div>  
+        /* =========================
+           VERY SMALL PHONES
+        ========================= */
 
-                <h3>  
-                    Resume Builder  
-                </h3>  
+        @media (max-width: 360px) {
 
-                <p>  
-                    Create a professional  
-                    resume for your  
-                    career.  
-                </p>  
+            .sidebar {
 
-            </div>  
+                height: 59px;
 
+                padding: 0 11px;
+            }
 
-            <!-- PROGRESS -->  
 
-            <div class="card">  
+            .sidebar-brand img {
 
-                <div class="card-icon">  
-                    📈  
-                </div>  
+                width: 35px;
+                height: 35px;
+            }
 
-                <h3>  
-                    Career Progress  
-                </h3>  
 
-                <p>  
-                    Monitor your career  
-                    growth and achievements.  
-                </p>  
+            .sidebar-brand span {
 
-            </div>  
+                font-size: 15px;
+            }
 
 
-        </div>  
+            .main {
 
-    </section>  
+                padding-top: 59px;
 
-</main>  
+                padding-bottom: 76px;
+            }
 
 
-<!-- =========================  
-     FIREBASE  
-========================= -->  
+            .topbar {
 
-<script type="module">  
+                height: 52px;
 
+                padding: 0 11px;
+            }
 
-    import {  
-        initializeApp  
-    } from  
-    "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";  
 
+            #logoutButton {
 
-    import {  
-        getAuth,  
-        onAuthStateChanged,  
-        signOut  
-    } from  
-    "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";  
+                padding: 7px 11px;
 
+                font-size: 10px;
+            }
 
-    /* =========================  
-       FIREBASE CONFIG  
-    ========================= */  
 
-    const firebaseConfig = {  
+            .dashboard {
 
-        apiKey:  
-            "AIzaSyDJ84_tSgau334V60r17bqHHubaf5Lecto",  
+                padding: 21px 12px 25px;
+            }
 
-        authDomain:  
-            "fast-track-6d262.firebaseapp.com",  
 
-        projectId:  
-            "fast-track-6d262",  
+            .welcome h1 {
 
-        storageBucket:  
-            "fast-track-6d262.firebasestorage.app",  
+                font-size: 21px;
+            }
 
-        messagingSenderId:  
-            "338934873510",  
 
-        appId:  
-            "1:338934873510:web:1ad3791207107af183a367",  
+            .welcome p {
 
-        measurementId:  
-            "G-M6FSRH2Y9H"  
+                font-size: 11px;
+            }
 
-    };  
 
+            .nav-menu {
 
-    /* =========================  
-       INITIALIZE FIREBASE  
-    ========================= */  
+                height: 66px;
+            }
 
-    const app =  
-        initializeApp(  
-            firebaseConfig  
-        );  
 
+            .nav-item {
 
-    const auth =  
-        getAuth(app);  
+                height: 56px;
 
+                font-size: 7px;
+            }
 
-    /* =========================  
-       USER ELEMENTS  
-    ========================= */  
 
-    const userName =  
-        document.getElementById(  
-            "userName"  
-        );  
+            .nav-icon {
 
+                font-size: 16px;
+            }
 
-    const welcomeName =  
-        document.getElementById(  
-            "welcomeName"  
-        );  
 
+            .card {
 
-    /* =========================  
-       AUTH STATE  
-    ========================= */  
+                min-height: 135px;
 
-    onAuthStateChanged(  
-        auth,  
-        (user) => {  
+                padding: 18px;
+            }
 
-            if (user) {  
+        }
 
-                const name =  
-                    user.displayName ||  
-                    user.email.split("@")[0];  
+    </style>
 
+</head>
 
-                userName.textContent =  
-                    name;  
 
+<body>
 
-                welcomeName.textContent =  
-                    name;  
 
-            } else {  
+    <!-- =========================
+         SIDEBAR
+    ========================= -->
 
-                window.location.href =  
-                    "index.html";  
+    <aside class="sidebar">
 
-            }  
+        <div class="sidebar-brand">
 
-        }  
-    );  
+            <img
+                src="fast-track-logo.png"
+                alt="FAST-TRACK">
 
+            <span>
+                FAST-TRACK
+            </span>
 
-    /* =========================  
-       LOGOUT  
-    ========================= */  
+        </div>
 
-    document  
-        .getElementById(  
-            "logoutButton"  
-        )  
-        .addEventListener(  
-            "click",  
-            async () => {  
 
-                try {  
+        <nav class="nav-menu">
 
-                    await signOut(auth);  
 
-                    window.location.href =  
-                        "index.html";  
+            <button
+                class="nav-item active">
 
-                } catch (error) {  
+                <span class="nav-icon">
+                    🏠
+                </span>
 
-                    console.error(  
-                        "Logout Error:",  
-                        error  
-                    );  
+                <span>
+                    Dashboard
+                </span>
 
-                }  
+            </button>
 
-            }  
-        );  
 
+            <button
+                class="nav-item">
 
-    /* =========================  
-       NAVIGATION ACTIVE STATE  
-    ========================= */  
+                <span class="nav-icon">
+                    💼
+                </span>
 
-    const navItems =  
-        document.querySelectorAll(  
-            ".nav-item"  
-        );  
+                <span>
+                    Jobs
+                </span>
 
+            </button>
 
-    navItems.forEach(  
-        (item) => {  
 
-            item.addEventListener(  
-                "click",  
-                () => {  
+            <button
+                class="nav-item">
 
-                    navItems.forEach(  
-                        (nav) => {  
+                <span class="nav-icon">
+                    🧠
+                </span>
 
-                            nav.classList.remove(  
-                                "active"  
-                            );  
+                <span>
+                    Skills
+                </span>
 
-                        }  
-                    );  
+            </button>
 
 
-                    item.classList.add(  
-                        "active"  
-                    );  
+            <button
+                class="nav-item">
 
-                }  
-            );  
+                <span class="nav-icon">
+                    📚
+                </span>
 
-        }  
-    );  
+                <span>
+                    Courses
+                </span>
 
-</script>
+            </button>
 
-</body>  </html>
+
+            <button
+                class="nav-item">
+
+                <span class="nav-icon">
+                    📄
+                </span>
+
+                <span>
+                    Resume
+                </span>
+
+            </button>
+
+
+            <button
+                class="nav-item">
+
+                <span class="nav-icon">
+                    📈
+                </span>
+
+                <span>
+                    Progress
+                </span>
+
+            </button>
+
+
+            <button
+                class="nav-item">
+
+                <span class="nav-icon">
+                    👤
+                </span>
+
+                <span>
+                    Profile
+                </span>
+
+            </button>
+
+
+        </nav>
+
+    </aside>
+
+
+    <!-- =========================
+         MAIN
+    ========================= -->
+
+    <main class="main">
+
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div class="user-area">
+
+                <span id="userName">
+                    Loading...
+                </span>
+
+                <button id="logoutButton">
+                    Logout
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- DASHBOARD -->
+
+        <section class="dashboard">
+
+
+            <div class="welcome">
+
+                <h1>
+
+                    Welcome,
+
+                    <span id="welcomeName">
+                        User
+                    </span>
+
+                    👋
+
+                </h1>
+
+
+                <p>
+                    Your career journey starts here.
+                </p>
+
+            </div>
+
+
+            <div class="cards">
+
+
+                <!-- JOBS -->
+
+                <div class="card">
+
+                    <div class="card-icon">
+                        💼
+                    </div>
+
+                    <h3>
+                        Jobs
+                    </h3>
+
+                    <p>
+                        Discover career
+                        opportunities and
+                        find your next role.
+                    </p>
+
+                </div>
+
+
+                <!-- SKILLS -->
+
+                <div class="card">
+
+                    <div class="card-icon">
+                        🧠
+                    </div>
+
+                    <h3>
+                        Skills
+                    </h3>
+
+                    <p>
+                        Track your skills
+                        and identify areas
+                        to improve.
+                    </p>
+
+                </div>
+
+
+                <!-- RESUME -->
+
+                <div class="card">
+
+                    <div class="card-icon">
+                        📄
+                    </div>
+
+                    <h3>
+                        Resume Builder
+                    </h3>
+
+                    <p>
+                        Create a professional
+                        resume for your
+                        career.
+                    </p>
+
+                </div>
+
+
+                <!-- PROGRESS -
