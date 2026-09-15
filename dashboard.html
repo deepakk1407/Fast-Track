@@ -2,972 +2,946 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-    <title>FAST-TRACK | Dashboard</title>
+<title>FAST-TRACK | Dashboard</title>
 
-    <style>
+<style>
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        body {
-            font-family: Arial, sans-serif;
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
 
-            background:
-                radial-gradient(
-                    circle at 15% 15%,
-                    rgba(59, 130, 246, 0.28),
-                    transparent 28%
-                ),
-                radial-gradient(
-                    circle at 85% 80%,
-                    rgba(139, 92, 246, 0.24),
-                    transparent 30%
-                ),
-                linear-gradient(
-                    135deg,
-                    #07111f,
-                    #0b1730,
-                    #111827
-                );
+body {
+    font-family: Arial, sans-serif;
 
-            color: #f8fafc;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
+    background:
+        radial-gradient(
+            circle at 15% 15%,
+            rgba(59,130,246,0.28),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(139,92,246,0.24),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #07111f,
+            #0b1730,
+            #111827
+        );
 
+    color: #f8fafc;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
 
-        /* =========================
-           SIDEBAR
-        ========================= */
 
-        .sidebar {
+/* =========================
+   SIDEBAR
+========================= */
 
-            position: fixed;
+.sidebar {
 
-            left: 0;
-            top: 0;
-            bottom: 0;
+    position: fixed;
 
-            width: 245px;
+    left: 0;
+    top: 0;
+    bottom: 0;
 
-            padding: 22px 15px;
+    width: 245px;
 
-            background:
-                rgba(8, 18, 35, 0.88);
+    padding: 22px 15px;
 
-            backdrop-filter: blur(18px);
+    background:
+        rgba(8,18,35,0.90);
 
-            border-right:
-                1px solid rgba(255,255,255,0.08);
+    backdrop-filter: blur(18px);
 
-            box-shadow:
-                10px 0 40px rgba(0,0,0,0.18);
+    border-right:
+        1px solid rgba(255,255,255,0.08);
 
-            z-index: 100;
-        }
+    box-shadow:
+        10px 0 40px rgba(0,0,0,0.18);
 
+    z-index: 100;
+}
 
-        .sidebar-brand {
 
-            display: flex;
+/* =========================
+   SIDEBAR BRAND
+========================= */
 
-            align-items: center;
+.sidebar-brand {
 
-            gap: 10px;
+    display: flex;
 
-            padding: 5px 10px 28px;
+    align-items: center;
 
-            font-size: 19px;
+    gap: 10px;
 
-            font-weight: 800;
+    padding: 5px 10px 28px;
 
-            color: #ffffff;
-        }
+    font-size: 19px;
 
+    font-weight: 800;
 
-        .sidebar-brand img {
+    color: #ffffff;
+}
 
-            width: 40px;
-            height: 40px;
+.sidebar-brand img {
 
-            object-fit: contain;
+    width: 40px;
+    height: 40px;
 
-            flex-shrink: 0;
-        }
+    object-fit: contain;
 
+    flex-shrink: 0;
+}
 
-        .sidebar-brand span {
-            white-space: nowrap;
-        }
+.sidebar-brand span {
+    display: block;
+    white-space: nowrap;
+}
 
 
-        /* =========================
-           NAVIGATION
-        ========================= */
+/* =========================
+   NAVIGATION
+========================= */
 
-        .nav-menu {
+.nav-menu {
 
-            display: flex;
+    display: flex;
 
-            flex-direction: column;
+    flex-direction: column;
 
-            gap: 7px;
-        }
+    gap: 7px;
+}
 
+.nav-item {
 
-        .nav-item {
+    display: flex;
 
-            display: flex;
+    align-items: center;
 
-            align-items: center;
+    gap: 12px;
 
-            gap: 12px;
+    width: 100%;
 
-            width: 100%;
+    padding: 13px;
 
-            padding: 13px;
+    border: 1px solid transparent;
 
-            border: 1px solid transparent;
+    border-radius: 11px;
 
-            border-radius: 11px;
+    background: transparent;
 
-            background: transparent;
+    color: #94a3b8;
 
-            color: #94a3b8;
+    font-size: 13px;
 
-            font-size: 13px;
+    font-weight: 600;
 
-            font-weight: 600;
+    text-align: left;
 
-            text-align: left;
+    cursor: pointer;
 
-            cursor: pointer;
+    transition: 0.25s;
+}
 
-            transition: 0.25s;
-        }
+.nav-item:hover {
 
+    color: #ffffff;
 
-        .nav-item:hover {
+    background:
+        rgba(59,130,246,0.13);
 
-            color: #ffffff;
+    border-color:
+        rgba(96,165,250,0.15);
+}
 
-            background:
-                rgba(59,130,246,0.13);
+.nav-item.active {
 
-            border-color:
-                rgba(96,165,250,0.15);
-        }
+    color: #ffffff;
 
+    background:
+        linear-gradient(
+            135deg,
+            rgba(37,99,235,0.85),
+            rgba(124,58,237,0.85)
+        );
 
-        .nav-item.active {
+    box-shadow:
+        0 8px 25px
+        rgba(37,99,235,0.25);
+}
 
-            color: #ffffff;
+.nav-icon {
 
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(37,99,235,0.85),
-                    rgba(124,58,237,0.85)
-                );
+    width: 22px;
 
-            box-shadow:
-                0 8px 25px
-                rgba(37,99,235,0.25);
-        }
+    text-align: center;
 
+    font-size: 17px;
 
-        .nav-icon {
+    flex-shrink: 0;
+}
 
-            width: 22px;
 
-            text-align: center;
+/* =========================
+   MAIN
+========================= */
 
-            font-size: 17px;
+.main {
 
-            flex-shrink: 0;
-        }
+    margin-left: 245px;
 
+    min-height: 100vh;
+}
 
-        /* =========================
-           MAIN
-        ========================= */
 
-        .main {
+/* =========================
+   TOPBAR
+========================= */
 
-            margin-left: 245px;
+.topbar {
 
-            min-height: 100vh;
-        }
+    height: 72px;
 
+    display: flex;
 
-        /* =========================
-           TOPBAR
-        ========================= */
+    align-items: center;
 
-        .topbar {
+    justify-content: flex-end;
 
-            height: 72px;
+    padding: 0 30px;
 
-            display: flex;
+    background:
+        rgba(7,17,31,0.65);
 
-            align-items: center;
+    backdrop-filter: blur(18px);
 
-            justify-content: flex-end;
+    border-bottom:
+        1px solid rgba(255,255,255,0.08);
+}
 
-            padding: 0 30px;
+.user-area {
 
-            background:
-                rgba(7,17,31,0.65);
+    display: flex;
 
-            backdrop-filter: blur(18px);
+    align-items: center;
 
-            border-bottom:
-                1px solid rgba(255,255,255,0.08);
-        }
+    gap: 15px;
+}
 
+#userName {
 
-        .user-area {
+    font-size: 13px;
 
-            display: flex;
+    font-weight: 700;
 
-            align-items: center;
+    color: #e2e8f0;
+}
 
-            gap: 15px;
-        }
+#logoutButton {
 
+    border:
+        1px solid rgba(255,255,255,0.12);
 
-        #userName {
+    padding: 9px 17px;
 
-            font-size: 13px;
+    border-radius: 9px;
 
-            font-weight: 700;
+    background:
+        rgba(239,68,68,0.15);
 
-            color: #e2e8f0;
-        }
+    color: #fca5a5;
 
+    font-size: 12px;
 
-        #logoutButton {
+    font-weight: 700;
 
-            border:
-                1px solid rgba(255,255,255,0.12);
+    cursor: pointer;
 
-            padding: 9px 17px;
+    transition: 0.2s;
+}
 
-            border-radius: 9px;
+#logoutButton:hover {
 
-            background:
-                rgba(239,68,68,0.15);
+    background: #ef4444;
 
-            color: #fca5a5;
+    color: white;
+}
 
-            font-size: 12px;
 
-            font-weight: 700;
+/* =========================
+   DASHBOARD
+========================= */
 
-            cursor: pointer;
+.dashboard {
 
-            transition: 0.2s;
-        }
+    padding: 42px;
+}
 
+.welcome {
 
-        #logoutButton:hover {
+    margin-bottom: 32px;
+}
 
-            background: #ef4444;
+.welcome h1 {
 
-            color: white;
-        }
+    font-size: 32px;
 
+    font-weight: 800;
 
-        /* =========================
-           DASHBOARD CONTENT
-        ========================= */
+    margin-bottom: 9px;
 
-        .dashboard {
+    color: #ffffff;
+}
 
-            padding: 42px;
-        }
+.welcome h1 span {
 
+    background:
+        linear-gradient(
+            90deg,
+            #60a5fa,
+            #a78bfa
+        );
 
-        .welcome {
+    -webkit-background-clip: text;
 
-            margin-bottom: 32px;
-        }
+    -webkit-text-fill-color: transparent;
+}
 
+.welcome p {
 
-        .welcome h1 {
+    color: #94a3b8;
 
-            font-size: 32px;
+    font-size: 14px;
+}
 
-            font-weight: 800;
 
-            margin-bottom: 9px;
+/* =========================
+   CARDS
+========================= */
 
-            color: #ffffff;
-        }
+.cards {
 
+    display: grid;
 
-        .welcome h1 span {
+    grid-template-columns:
+        repeat(4, 1fr);
 
-            background:
-                linear-gradient(
-                    90deg,
-                    #60a5fa,
-                    #a78bfa
-                );
+    gap: 20px;
+}
 
-            -webkit-background-clip: text;
+.card {
 
-            -webkit-text-fill-color: transparent;
-        }
+    position: relative;
 
+    overflow: hidden;
 
-        .welcome p {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.10),
+            rgba(255,255,255,0.04)
+        );
 
-            color: #94a3b8;
+    backdrop-filter: blur(15px);
 
-            font-size: 14px;
-        }
+    padding: 26px;
 
+    min-height: 170px;
 
-        /* =========================
-           CARDS
-        ========================= */
+    border-radius: 18px;
 
-        .cards {
+    border:
+        1px solid rgba(255,255,255,0.10);
 
-            display: grid;
+    box-shadow:
+        0 15px 40px
+        rgba(0,0,0,0.20);
 
-            grid-template-columns:
-                repeat(4, 1fr);
+    transition: 0.3s;
 
-            gap: 20px;
-        }
+    cursor: pointer;
+}
 
+.card::before {
 
-        .card {
+    content: "";
 
-            position: relative;
+    position: absolute;
 
-            overflow: hidden;
+    width: 100px;
+    height: 100px;
 
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(255,255,255,0.10),
-                    rgba(255,255,255,0.04)
-                );
+    top: -50px;
+    right: -40px;
 
-            backdrop-filter: blur(15px);
+    background:
+        rgba(59,130,246,0.18);
 
-            padding: 26px;
+    border-radius: 50%;
 
-            min-height: 170px;
+    filter: blur(5px);
+}
 
-            border-radius: 18px;
+.card:hover {
 
-            border:
-                1px solid rgba(255,255,255,0.10);
+    transform:
+        translateY(-6px);
 
-            box-shadow:
-                0 15px 40px
-                rgba(0,0,0,0.20);
+    border-color:
+        rgba(96,165,250,0.30);
+}
 
-            transition: 0.3s;
+.card-icon {
 
-            cursor: pointer;
-        }
+    font-size: 30px;
 
+    margin-bottom: 18px;
+}
 
-        .card::before {
+.card h3 {
 
-            content: "";
+    font-size: 17px;
 
-            position: absolute;
+    margin-bottom: 8px;
 
-            width: 100px;
-            height: 100px;
+    color: #ffffff;
+}
 
-            top: -50px;
-            right: -40px;
+.card p {
 
-            background:
-                rgba(59,130,246,0.18);
+    color: #94a3b8;
 
-            border-radius: 50%;
+    font-size: 12px;
 
-            filter: blur(5px);
-        }
+    line-height: 1.6;
+}
 
 
-        .card:hover {
+/* =========================
+   TABLET
+========================= */
 
-            transform:
-                translateY(-6px);
+@media (max-width: 1000px) {
 
-            border-color:
-                rgba(96,165,250,0.30);
+    .cards {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+}
 
-            box-shadow:
-                0 20px 50px
-                rgba(0,0,0,0.30);
-        }
 
+/* =========================
+   SMALL LAPTOP / TABLET
+========================= */
 
-        .card-icon {
+@media (max-width: 800px) {
 
-            font-size: 30px;
+    .sidebar {
 
-            margin-bottom: 18px;
-        }
+        width: 70px;
 
+        padding: 18px 8px;
+    }
 
-        .card h3 {
+    .sidebar-brand {
 
-            font-size: 17px;
+        justify-content: center;
 
-            margin-bottom: 8px;
+        padding: 5px 0 25px;
+    }
 
-            color: #ffffff;
-        }
+    .sidebar-brand span {
 
+        display: none;
+    }
 
-        .card p {
+    .nav-item {
 
-            color: #94a3b8;
+        justify-content: center;
 
-            font-size: 12px;
+        padding: 12px 5px;
+    }
 
-            line-height: 1.6;
-        }
+    .nav-item span:not(.nav-icon) {
 
+        display: none;
+    }
 
-        /* =========================
-           TABLET
-        ========================= */
+    .nav-icon {
 
-        @media (max-width: 1000px) {
+        font-size: 19px;
+    }
 
-            .cards {
+    .main {
 
-                grid-template-columns:
-                    repeat(2, 1fr);
-            }
-        }
+        margin-left: 70px;
+    }
 
+    .topbar {
 
-        /* =========================
-           TABLET / SMALL LAPTOP
-        ========================= */
+        padding: 0 15px;
+    }
 
-        @media (max-width: 800px) {
+    .dashboard {
 
-            .sidebar {
+        padding: 28px 18px;
+    }
+}
 
-                width: 70px;
 
-                padding: 18px 8px;
-            }
+/* =================================================
+   MOBILE
+================================================= */
 
+@media (max-width: 500px) {
 
-            .sidebar-brand {
 
-                justify-content: center;
+    /* =========================
+       MOBILE SIDEBAR CONTAINER
+    ========================= */
 
-                padding: 5px 0 25px;
-            }
+    .sidebar {
 
+        position: fixed;
 
-            .sidebar-brand span {
+        left: 0;
+        top: auto;
+        bottom: 0;
 
-                display: none;
-            }
+        width: 100%;
 
+        height: 70px;
 
-            .nav-item {
+        padding: 0;
 
-                justify-content: center;
+        display: block;
 
-                padding: 12px 5px;
-            }
+        background:
+            rgba(5,13,26,0.97);
 
+        backdrop-filter: blur(20px);
 
-            .nav-item span:not(.nav-icon) {
+        border: none;
 
-                display: none;
-            }
+        border-top:
+            1px solid
+            rgba(255,255,255,0.12);
 
+        box-shadow:
+            0 -8px 30px
+            rgba(0,0,0,0.25);
 
-            .nav-icon {
+        z-index: 1000;
+    }
 
-                font-size: 19px;
-            }
 
+    /* =========================
+       HIDE SIDEBAR BRAND
+       ONLY FROM BOTTOM NAV
+    ========================= */
 
-            .main {
+    .sidebar-brand {
 
-                margin-left: 70px;
-            }
+        display: none;
+    }
 
 
-            .topbar {
+    /* =========================
+       BOTTOM NAVIGATION
+    ========================= */
 
-                padding: 0 15px;
-            }
+    .nav-menu {
 
+        width: 100%;
 
-            .dashboard {
+        height: 70px;
 
-                padding: 28px 18px;
-            }
+        display: flex;
 
-        }
+        flex-direction: row;
 
+        align-items: center;
 
-        /* =========================
-           MOBILE
-        ========================= */
+        justify-content: space-around;
 
-        @media (max-width: 500px) {
+        gap: 0;
 
-            body {
+        padding: 4px 3px;
+    }
 
-                min-width: 0;
 
-                overflow-x: hidden;
-            }
+    .nav-item {
 
+        flex: 1;
 
-            /* =====================
-               MOBILE TOP BRAND
-            ===================== */
+        height: 60px;
 
-            .sidebar {
+        width: auto;
 
-                position: fixed;
+        display: flex;
 
-                top: 0;
-                left: 0;
+        flex-direction: column;
 
-                bottom: auto;
+        align-items: center;
 
-                width: 100%;
+        justify-content: center;
 
-                height: 62px;
+        gap: 3px;
 
-                padding: 0 14px;
+        padding: 4px 1px;
 
-                display: flex;
+        border-radius: 9px;
 
-                align-items: center;
+        font-size: 8px;
 
-                background:
-                    rgba(7,17,31,0.96);
+        text-align: center;
+    }
 
-                backdrop-filter: blur(20px);
 
-                border-right: none;
+    .nav-item span:not(.nav-icon) {
 
-                border-bottom:
-                    1px solid
-                    rgba(255,255,255,0.10);
+        display: block;
 
-                box-shadow:
-                    0 5px 25px
-                    rgba(0,0,0,0.20);
+        white-space: nowrap;
+    }
 
-                z-index: 200;
-            }
 
+    .nav-icon {
 
-            .sidebar-brand {
+        width: auto;
 
-                display: flex;
+        font-size: 17px;
+    }
 
-                align-items: center;
 
-                justify-content: flex-start;
+    /* =========================
+       MAIN
+    ========================= */
 
-                gap: 9px;
+    .main {
 
-                width: auto;
+        width: 100%;
 
-                padding: 0;
+        margin-left: 0;
 
-                font-size: 17px;
-            }
+        min-height: 100vh;
 
+        padding-bottom: 70px;
+    }
 
-            .sidebar-brand img {
 
-                width: 38px;
-                height: 38px;
+    /* =========================
+       MOBILE TOPBAR
+    ========================= */
 
-                display: block;
-            }
+    .topbar {
 
+        position: relative;
 
-            .sidebar-brand span {
+        width: 100%;
 
-                display: block;
+        height: 64px;
 
-                color: #ffffff;
+        padding: 0 14px;
 
-                font-size: 17px;
+        display: flex;
 
-                font-weight: 800;
+        align-items: center;
 
-                letter-spacing: 0.5px;
+        justify-content: space-between;
 
-                white-space: nowrap;
-            }
+        background:
+            rgba(7,17,31,0.90);
 
+        backdrop-filter: blur(18px);
 
-            /* =====================
-               MOBILE NAV
-            ===================== */
+        border-bottom:
+            1px solid
+            rgba(255,255,255,0.10);
 
-            .nav-menu {
+        z-index: 20;
+    }
 
-                position: fixed;
 
-                left: 0;
-                bottom: 0;
+    /*
+       CREATE LOGO + TEXT
+       USING EXISTING IMAGE
+    */
 
-                width: 100%;
+    .topbar::before {
 
-                height: 68px;
+        content: "";
 
-                padding: 5px 4px;
+        width: 38px;
 
-                display: flex;
+        height: 38px;
 
-                flex-direction: row;
+        flex-shrink: 0;
 
-                justify-content: space-around;
+        background-image:
+            url("fast-track-logo.png");
 
-                align-items: center;
+        background-size: contain;
 
-                gap: 0;
+        background-repeat: no-repeat;
 
-                background:
-                    rgba(5,13,26,0.97);
+        background-position: center;
+    }
 
-                backdrop-filter: blur(20px);
 
-                border-top:
-                    1px solid
-                    rgba(255,255,255,0.10);
+    .topbar::after {
 
-                z-index: 300;
-            }
+        content: "FAST-TRACK";
 
+        position: absolute;
 
-            .nav-item {
+        left: 58px;
 
-                flex: 1;
+        top: 50%;
 
-                width: auto;
+        transform: translateY(-50%);
 
-                height: 58px;
+        font-size: 17px;
 
-                display: flex;
+        font-weight: 800;
 
-                flex-direction: column;
+        letter-spacing: 0.5px;
 
-                align-items: center;
+        color: #ffffff;
 
-                justify-content: center;
+        white-space: nowrap;
+    }
 
-                gap: 3px;
 
-                padding: 4px 2px;
+    /* =========================
+       USER AREA
+    ========================= */
 
-                border-radius: 9px;
+    .user-area {
 
-                font-size: 8px;
+        margin-left: auto;
 
-                text-align: center;
-            }
+        display: flex;
 
+        align-items: center;
 
-            .nav-item span:not(.nav-icon) {
+        gap: 0;
 
-                display: block;
+        z-index: 5;
+    }
 
-                white-space: nowrap;
-            }
 
+    #userName {
 
-            .nav-icon {
+        display: none;
+    }
 
-                width: auto;
 
-                font-size: 17px;
-            }
+    #logoutButton {
 
+        padding: 8px 13px;
 
-            /* =====================
-               MOBILE MAIN
-            ===================== */
+        font-size: 11px;
 
-            .main {
+        border-radius: 8px;
 
-                margin-left: 0;
+        white-space: nowrap;
+    }
 
-                width: 100%;
 
-                min-height: 100vh;
+    /* =========================
+       DASHBOARD CONTENT
+    ========================= */
 
-                padding-top: 62px;
+    .dashboard {
 
-                padding-bottom: 78px;
-            }
+        width: 100%;
 
+        padding: 24px 14px 30px;
+    }
 
-            /* =====================
-               MOBILE TOPBAR
-            ===================== */
 
-            .topbar {
+    .welcome {
 
-                height: 55px;
+        margin-bottom: 24px;
+    }
 
-                padding: 0 14px;
 
-                display: flex;
+    .welcome h1 {
 
-                justify-content: flex-end;
+        font-size: 24px;
 
-                align-items: center;
+        line-height: 1.3;
 
-                background:
-                    rgba(7,17,31,0.70);
+        margin-bottom: 7px;
+    }
 
-                backdrop-filter: blur(15px);
 
-                border-bottom:
-                    1px solid
-                    rgba(255,255,255,0.06);
-            }
+    .welcome p {
 
+        font-size: 12px;
 
-            .user-area {
+        line-height: 1.5;
+    }
 
-                gap: 0;
-            }
 
+    /* =========================
+       CARDS
+    ========================= */
 
-            #userName {
+    .cards {
 
-                display: none;
-            }
+        width: 100%;
 
+        display: grid;
 
-            #logoutButton {
+        grid-template-columns: 1fr;
 
-                padding: 8px 13px;
+        gap: 14px;
+    }
 
-                font-size: 11px;
 
-                border-radius: 8px;
-            }
+    .card {
 
+        width: 100%;
 
-            /* =====================
-               MOBILE DASHBOARD
-            ===================== */
+        min-height: 140px;
 
-            .dashboard {
+        padding: 20px;
 
-                width: 100%;
+        border-radius: 16px;
+    }
 
-                padding: 24px 14px 30px;
-            }
 
+    .card-icon {
 
-            .welcome {
+        font-size: 27px;
 
-                margin-bottom: 24px;
-            }
+        margin-bottom: 13px;
+    }
 
 
-            .welcome h1 {
+    .card h3 {
 
-                font-size: 24px;
+        font-size: 16px;
 
-                line-height: 1.3;
+        margin-bottom: 7px;
+    }
 
-                margin-bottom: 7px;
-            }
 
+    .card p {
 
-            .welcome p {
+        font-size: 11px;
 
-                font-size: 12px;
+        line-height: 1.6;
+    }
+}
 
-                line-height: 1.5;
-            }
 
+/* =========================
+   VERY SMALL PHONES
+========================= */
 
-            /* =====================
-               MOBILE CARDS
-            ===================== */
+@media (max-width: 360px) {
 
-            .cards {
+    .topbar {
 
-                width: 100%;
+        height: 60px;
 
-                grid-template-columns: 1fr;
+        padding: 0 11px;
+    }
 
-                gap: 14px;
-            }
 
+    .topbar::before {
 
-            .card {
+        width: 35px;
+        height: 35px;
+    }
 
-                width: 100%;
 
-                min-height: 140px;
+    .topbar::after {
 
-                padding: 20px;
+        left: 52px;
 
-                border-radius: 16px;
-            }
+        font-size: 15px;
+    }
 
 
-            .card-icon {
+    #logoutButton {
 
-                font-size: 27px;
+        padding: 7px 10px;
 
-                margin-bottom: 13px;
-            }
+        font-size: 10px;
+    }
 
 
-            .card h3 {
+    .dashboard {
 
-                font-size: 16px;
+        padding: 21px 12px 25px;
+    }
 
-                margin-bottom: 7px;
-            }
 
+    .welcome h1 {
 
-            .card p {
+        font-size: 21px;
+    }
 
-                font-size: 11px;
 
-                line-height: 1.6;
-            }
+    .welcome p {
 
-        }
+        font-size: 11px;
+    }
 
 
-        /* =========================
-           VERY SMALL PHONES
-        ========================= */
+    .sidebar,
+    .nav-menu {
 
-        @media (max-width: 360px) {
+        height: 66px;
+    }
 
-            .sidebar {
 
-                height: 59px;
+    .nav-item {
 
-                padding: 0 11px;
-            }
+        height: 56px;
 
+        font-size: 7px;
+    }
 
-            .sidebar-brand img {
 
-                width: 35px;
-                height: 35px;
-            }
+    .nav-icon {
 
+        font-size: 16px;
+    }
 
-            .sidebar-brand span {
 
-                font-size: 15px;
-            }
+    .card {
 
+        min-height: 135px;
 
-            .main {
+        padding: 18px;
+    }
+}
 
-                padding-top: 59px;
-
-                padding-bottom: 76px;
-            }
-
-
-            .topbar {
-
-                height: 52px;
-
-                padding: 0 11px;
-            }
-
-
-            #logoutButton {
-
-                padding: 7px 11px;
-
-                font-size: 10px;
-            }
-
-
-            .dashboard {
-
-                padding: 21px 12px 25px;
-            }
-
-
-            .welcome h1 {
-
-                font-size: 21px;
-            }
-
-
-            .welcome p {
-
-                font-size: 11px;
-            }
-
-
-            .nav-menu {
-
-                height: 66px;
-            }
-
-
-            .nav-item {
-
-                height: 56px;
-
-                font-size: 7px;
-            }
-
-
-            .nav-icon {
-
-                font-size: 16px;
-            }
-
-
-            .card {
-
-                min-height: 135px;
-
-                padding: 18px;
-            }
-
-        }
-
-    </style>
+</style>
 
 </head>
 
@@ -975,248 +949,424 @@
 <body>
 
 
-    <!-- =========================
-         SIDEBAR
-    ========================= -->
+<!-- =========================
+     SIDEBAR
+========================= -->
 
-    <aside class="sidebar">
+<aside class="sidebar">
 
-        <div class="sidebar-brand">
+    <div class="sidebar-brand">
 
-            <img
-                src="fast-track-logo.png"
-                alt="FAST-TRACK">
+        <img
+            src="fast-track-logo.png"
+            alt="FAST-TRACK">
+
+        <span>
+            FAST-TRACK
+        </span>
+
+    </div>
+
+
+    <nav class="nav-menu">
+
+
+        <button class="nav-item active">
+
+            <span class="nav-icon">
+                🏠
+            </span>
 
             <span>
-                FAST-TRACK
+                Dashboard
             </span>
+
+        </button>
+
+
+        <button class="nav-item">
+
+            <span class="nav-icon">
+                💼
+            </span>
+
+            <span>
+                Jobs
+            </span>
+
+        </button>
+
+
+        <button class="nav-item">
+
+            <span class="nav-icon">
+                🧠
+            </span>
+
+            <span>
+                Skills
+            </span>
+
+        </button>
+
+
+        <button class="nav-item">
+
+            <span class="nav-icon">
+                📚
+            </span>
+
+            <span>
+                Courses
+            </span>
+
+        </button>
+
+
+        <button class="nav-item">
+
+            <span class="nav-icon">
+                📄
+            </span>
+
+            <span>
+                Resume
+            </span>
+
+        </button>
+
+
+        <button class="nav-item">
+
+            <span class="nav-icon">
+                📈
+            </span>
+
+            <span>
+                Progress
+            </span>
+
+        </button>
+
+
+        <button class="nav-item">
+
+            <span class="nav-icon">
+                👤
+            </span>
+
+            <span>
+                Profile
+            </span>
+
+        </button>
+
+
+    </nav>
+
+</aside>
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main class="main">
+
+
+    <header class="topbar">
+
+        <div class="user-area">
+
+            <span id="userName">
+                Loading...
+            </span>
+
+            <button id="logoutButton">
+                Logout
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <section class="dashboard">
+
+
+        <div class="welcome">
+
+            <h1>
+
+                Welcome,
+
+                <span id="welcomeName">
+                    User
+                </span>
+
+                👋
+
+            </h1>
+
+
+            <p>
+                Your career journey starts here.
+            </p>
 
         </div>
 
 
-        <nav class="nav-menu">
+        <div class="cards">
 
 
-            <button
-                class="nav-item active">
+            <div class="card">
 
-                <span class="nav-icon">
-                    🏠
-                </span>
-
-                <span>
-                    Dashboard
-                </span>
-
-            </button>
-
-
-            <button
-                class="nav-item">
-
-                <span class="nav-icon">
+                <div class="card-icon">
                     💼
-                </span>
+                </div>
 
-                <span>
+                <h3>
                     Jobs
-                </span>
-
-            </button>
-
-
-            <button
-                class="nav-item">
-
-                <span class="nav-icon">
-                    🧠
-                </span>
-
-                <span>
-                    Skills
-                </span>
-
-            </button>
-
-
-            <button
-                class="nav-item">
-
-                <span class="nav-icon">
-                    📚
-                </span>
-
-                <span>
-                    Courses
-                </span>
-
-            </button>
-
-
-            <button
-                class="nav-item">
-
-                <span class="nav-icon">
-                    📄
-                </span>
-
-                <span>
-                    Resume
-                </span>
-
-            </button>
-
-
-            <button
-                class="nav-item">
-
-                <span class="nav-icon">
-                    📈
-                </span>
-
-                <span>
-                    Progress
-                </span>
-
-            </button>
-
-
-            <button
-                class="nav-item">
-
-                <span class="nav-icon">
-                    👤
-                </span>
-
-                <span>
-                    Profile
-                </span>
-
-            </button>
-
-
-        </nav>
-
-    </aside>
-
-
-    <!-- =========================
-         MAIN
-    ========================= -->
-
-    <main class="main">
-
-
-        <!-- TOPBAR -->
-
-        <header class="topbar">
-
-            <div class="user-area">
-
-                <span id="userName">
-                    Loading...
-                </span>
-
-                <button id="logoutButton">
-                    Logout
-                </button>
-
-            </div>
-
-        </header>
-
-
-        <!-- DASHBOARD -->
-
-        <section class="dashboard">
-
-
-            <div class="welcome">
-
-                <h1>
-
-                    Welcome,
-
-                    <span id="welcomeName">
-                        User
-                    </span>
-
-                    👋
-
-                </h1>
-
+                </h3>
 
                 <p>
-                    Your career journey starts here.
+                    Discover career
+                    opportunities and
+                    find your next role.
                 </p>
 
             </div>
 
 
-            <div class="cards">
+            <div class="card">
 
-
-                <!-- JOBS -->
-
-                <div class="card">
-
-                    <div class="card-icon">
-                        💼
-                    </div>
-
-                    <h3>
-                        Jobs
-                    </h3>
-
-                    <p>
-                        Discover career
-                        opportunities and
-                        find your next role.
-                    </p>
-
+                <div class="card-icon">
+                    🧠
                 </div>
 
+                <h3>
+                    Skills
+                </h3>
 
-                <!-- SKILLS -->
+                <p>
+                    Track your skills
+                    and identify areas
+                    to improve.
+                </p>
 
-                <div class="card">
+            </div>
 
-                    <div class="card-icon">
-                        🧠
-                    </div>
 
-                    <h3>
-                        Skills
-                    </h3>
+            <div class="card">
 
-                    <p>
-                        Track your skills
-                        and identify areas
-                        to improve.
-                    </p>
-
+                <div class="card-icon">
+                    📄
                 </div>
 
+                <h3>
+                    Resume Builder
+                </h3>
 
-                <!-- RESUME -->
+                <p>
+                    Create a professional
+                    resume for your
+                    career.
+                </p>
 
-                <div class="card">
+            </div>
 
-                    <div class="card-icon">
-                        📄
-                    </div>
 
-                    <h3>
-                        Resume Builder
-                    </h3>
+            <div class="card">
 
-                    <p>
-                        Create a professional
-                        resume for your
-                        career.
-                    </p>
-
+                <div class="card-icon">
+                    📈
                 </div>
 
+                <h3>
+                    Career Progress
+                </h3>
 
-                <!-- PROGRESS -
+                <p>
+                    Monitor your career
+                    growth and achievements.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =========================
+     FIREBASE
+========================= -->
+
+<script type="module">
+
+import {
+    initializeApp
+} from
+"https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+
+
+import {
+    getAuth,
+    onAuthStateChanged,
+    signOut
+} from
+"https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyDJ84_tSgau334V60r17bqHHubaf5Lecto",
+
+    authDomain:
+        "fast-track-6d262.firebaseapp.com",
+
+    projectId:
+        "fast-track-6d262",
+
+    storageBucket:
+        "fast-track-6d262.firebasestorage.app",
+
+    messagingSenderId:
+        "338934873510",
+
+    appId:
+        "1:338934873510:web:1ad3791207107af183a367",
+
+    measurementId:
+        "G-M6FSRH2Y9H"
+};
+
+
+const app =
+    initializeApp(
+        firebaseConfig
+    );
+
+
+const auth =
+    getAuth(app);
+
+
+const userName =
+    document.getElementById(
+        "userName"
+    );
+
+
+const welcomeName =
+    document.getElementById(
+        "welcomeName"
+    );
+
+
+onAuthStateChanged(
+    auth,
+    (user) => {
+
+        if (user) {
+
+            const name =
+                user.displayName ||
+                user.email.split("@")[0];
+
+
+            userName.textContent =
+                name;
+
+
+            welcomeName.textContent =
+                name;
+
+        } else {
+
+            window.location.href =
+                "index.html";
+        }
+
+    }
+);
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+document
+    .getElementById(
+        "logoutButton"
+    )
+    .addEventListener(
+        "click",
+        async () => {
+
+            try {
+
+                await signOut(auth);
+
+                window.location.href =
+                    "index.html";
+
+            } catch (error) {
+
+                console.error(
+                    "Logout Error:",
+                    error
+                );
+
+            }
+
+        }
+    );
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+const navItems =
+    document.querySelectorAll(
+        ".nav-item"
+    );
+
+
+navItems.forEach(
+    (item) => {
+
+        item.addEventListener(
+            "click",
+            () => {
+
+                navItems.forEach(
+                    (nav) => {
+
+                        nav.classList.remove(
+                            "active"
+                        );
+
+                    }
+                );
+
+
+                item.classList.add(
+                    "active"
+                );
+
+            }
+        );
+
+    }
+);
+
+</script>
+
+</body>
+</html>
