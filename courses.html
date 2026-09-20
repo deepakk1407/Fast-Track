@@ -73,7 +73,6 @@
         .brand-text h2 {
             font-size: 18px;
             font-weight: 800;
-            letter-spacing: 0.4px;
         }
 
         .brand-text span {
@@ -126,7 +125,6 @@
                 rgba(37, 99, 235, 0.9),
                 rgba(124, 58, 237, 0.9)
             );
-            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.16);
         }
 
         .nav-icon {
@@ -154,7 +152,6 @@
         .topbar-left h1 {
             font-size: 28px;
             font-weight: 800;
-            letter-spacing: -0.6px;
         }
 
         .topbar-left p {
@@ -172,12 +169,6 @@
             font-size: 12px;
             font-weight: 700;
             text-decoration: none;
-            transition: 0.2s;
-        }
-
-        .dashboard-btn:hover {
-            background: #141d31;
-            border-color: rgba(124, 58, 237, 0.4);
         }
 
         /* ================= HERO ================= */
@@ -271,10 +262,6 @@
             font-size: 13px;
         }
 
-        .search-box input:focus {
-            border-color: rgba(124, 58, 237, 0.6);
-        }
-
         .category-filter {
             background: #0b1120;
             border: 1px solid rgba(255, 255, 255, 0.08);
@@ -283,10 +270,6 @@
             padding: 12px 14px;
             min-width: 180px;
             outline: none;
-        }
-
-        .category-filter option {
-            background: #0b1120;
         }
 
         /* ================= COURSE GRID ================= */
@@ -303,20 +286,17 @@
             border-radius: 17px;
             padding: 20px;
             transition: 0.25s ease;
-            overflow: hidden;
         }
 
         .course-card:hover {
             transform: translateY(-4px);
             border-color: rgba(124, 58, 237, 0.35);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.22);
         }
 
         .course-top {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            gap: 12px;
             margin-bottom: 15px;
         }
 
@@ -340,15 +320,12 @@
             border-radius: 8px;
             font-size: 9px;
             font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.7px;
             background: rgba(255, 255, 255, 0.06);
             color: #bfc9d9;
         }
 
         .course-card h3 {
             font-size: 17px;
-            line-height: 1.4;
             margin-bottom: 9px;
         }
 
@@ -383,7 +360,6 @@
             border-radius: 7px;
             padding: 5px 8px;
             font-size: 9px;
-            font-weight: 600;
         }
 
         .progress-info {
@@ -424,29 +400,23 @@
         }
 
         .primary-btn,
-        .secondary-btn,
-        .certificate-btn {
-            border: none;
+        .certificate-btn,
+        .certificate-locked {
             border-radius: 9px;
             padding: 10px 12px;
             font-size: 11px;
             font-weight: 700;
-            transition: 0.2s;
         }
 
         .primary-btn {
             flex: 1;
+            border: none;
             background: linear-gradient(
                 135deg,
                 #2563eb,
                 #7c3aed
             );
-            color: #ffffff;
-        }
-
-        .primary-btn:hover {
-            opacity: 0.9;
-            transform: translateY(-1px);
+            color: white;
         }
 
         .certificate-btn {
@@ -456,42 +426,12 @@
             color: #70e1b3;
         }
 
-        .certificate-btn:hover {
-            background: rgba(16, 185, 129, 0.2);
-        }
-
         .certificate-locked {
             flex: 1;
             background: rgba(255, 255, 255, 0.04);
             color: #657187;
             border: 1px solid rgba(255, 255, 255, 0.06);
             cursor: not-allowed;
-        }
-
-        /* ================= EMPTY ================= */
-
-        .empty-state {
-            display: none;
-            text-align: center;
-            padding: 55px 20px;
-            background: #0b1120;
-            border: 1px solid rgba(255, 255, 255, 0.07);
-            border-radius: 17px;
-        }
-
-        .empty-state .emoji {
-            font-size: 38px;
-            margin-bottom: 12px;
-        }
-
-        .empty-state h3 {
-            font-size: 17px;
-            margin-bottom: 7px;
-        }
-
-        .empty-state p {
-            color: #7e899e;
-            font-size: 12px;
         }
 
         /* ================= MODAL ================= */
@@ -519,7 +459,6 @@
             background: #0b1120;
             border: 1px solid rgba(255, 255, 255, 0.09);
             border-radius: 19px;
-            box-shadow: 0 30px 100px rgba(0, 0, 0, 0.55);
         }
 
         .modal-header {
@@ -566,7 +505,6 @@
             background: #05080f;
             border-radius: 13px;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.06);
         }
 
         .video-wrapper iframe {
@@ -614,6 +552,39 @@
             padding-left: 17px;
         }
 
+        .watch-box {
+            margin-top: 17px;
+            padding: 15px;
+            border-radius: 12px;
+            background: rgba(37, 99, 235, 0.07);
+            border: 1px solid rgba(37, 99, 235, 0.15);
+        }
+
+        .watch-top {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 11px;
+        }
+
+        .watch-top span {
+            color: #8d99ad;
+        }
+
+        .watch-progress {
+            height: 7px;
+            background: #171e2d;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .watch-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #2563eb, #7c3aed);
+            transition: width 0.3s;
+        }
+
         .lesson-complete-area {
             margin-top: 17px;
             display: flex;
@@ -621,13 +592,17 @@
             flex-wrap: wrap;
         }
 
-        .complete-btn {
-            border: none;
+        .complete-btn,
+        .quiz-open-btn {
             border-radius: 9px;
             padding: 11px 15px;
-            color: #fff;
             font-size: 11px;
             font-weight: 700;
+        }
+
+        .complete-btn {
+            border: none;
+            color: #fff;
             background: linear-gradient(
                 135deg,
                 #2563eb,
@@ -637,7 +612,6 @@
 
         .complete-btn.completed {
             background: rgba(16, 185, 129, 0.13);
-            border: 1px solid rgba(16, 185, 129, 0.25);
             color: #67e0ac;
         }
 
@@ -645,10 +619,11 @@
             border: 1px solid rgba(255, 255, 255, 0.09);
             background: rgba(255, 255, 255, 0.04);
             color: #d8dfeb;
-            border-radius: 9px;
-            padding: 11px 15px;
-            font-size: 11px;
-            font-weight: 700;
+        }
+
+        .quiz-open-btn:disabled {
+            opacity: 0.35;
+            cursor: not-allowed;
         }
 
         .learning-sidebar {
@@ -689,11 +664,6 @@
             color: #aab4c5;
             border-radius: 10px;
             padding: 11px;
-            transition: 0.2s;
-        }
-
-        .lesson-item:hover {
-            background: rgba(255, 255, 255, 0.05);
         }
 
         .lesson-item.active {
@@ -777,13 +747,8 @@
             gap: 7px;
         }
 
-        .option {
-            position: relative;
-        }
-
         .option input {
-            position: absolute;
-            opacity: 0;
+            display: none;
         }
 
         .option label {
@@ -794,7 +759,6 @@
             color: #9ba6b9;
             font-size: 11px;
             cursor: pointer;
-            transition: 0.2s;
         }
 
         .option label:hover {
@@ -817,195 +781,9 @@
 
         .submit-quiz {
             border: none;
-            border-radius: 10px;
-            padding: 11px 18px;
-            background: linear-gradient(
-                135deg,
-                #2563eb,
-                #7c3aed
-            );
-            color: white;
-            font-size: 11px;
-            font-weight: 700;
-        }
-
-        .quiz-result {
-            display: none;
-            padding: 17px;
-            border-radius: 12px;
-            margin-bottom: 18px;
-            text-align: center;
-        }
-
-        .quiz-result.success {
-            display: block;
-            background: rgba(16, 185, 129, 0.09);
-            border: 1px solid rgba(16, 185, 129, 0.2);
-        }
-
-        .quiz-result.fail {
-            display: block;
-            background: rgba(239, 68, 68, 0.08);
-            border: 1px solid rgba(239, 68, 68, 0.18);
-        }
-
-        .quiz-result h3 {
-            font-size: 18px;
-            margin-bottom: 6px;
-        }
-
-        .quiz-result p {
-            color: #9aa6ba;
-            font-size: 11px;
-        }
-
-        /* ================= CERTIFICATE ================= */
-
-        .certificate-modal-content {
-            width: min(900px, 100%);
-            max-height: 94vh;
-            overflow-y: auto;
-            background: #0b1120;
-            border: 1px solid rgba(255, 255, 255, 0.09);
-            border-radius: 19px;
-        }
-
-        .certificate-area {
-            padding: 25px;
-        }
-
-        .certificate-paper {
-            position: relative;
-            min-height: 570px;
-            padding: 45px 50px;
-            background: #ffffff;
-            color: #111827;
-            border-radius: 5px;
-            text-align: center;
-            overflow: hidden;
-        }
-
-        .certificate-paper::before {
-            content: "";
-            position: absolute;
-            inset: 14px;
-            border: 2px solid #c7d2fe;
-            pointer-events: none;
-        }
-
-        .certificate-paper::after {
-            content: "";
-            position: absolute;
-            inset: 21px;
-            border: 1px solid #e0e7ff;
-            pointer-events: none;
-        }
-
-        .certificate-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .certificate-logo {
-            width: 70px;
-            height: 70px;
-            object-fit: contain;
-            margin-bottom: 13px;
-        }
-
-        .certificate-brand {
-            font-size: 13px;
-            font-weight: 800;
-            letter-spacing: 3px;
-            color: #2563eb;
-        }
-
-        .certificate-title {
-            margin-top: 30px;
-            font-size: 31px;
-            font-weight: 800;
-            letter-spacing: 1px;
-        }
-
-        .certificate-subtitle {
-            margin-top: 11px;
-            color: #6b7280;
-            font-size: 12px;
-        }
-
-        .certificate-name {
-            margin-top: 25px;
-            font-size: 31px;
-            font-weight: 800;
-            color: #111827;
-            border-bottom: 2px solid #c7d2fe;
-            display: inline-block;
-            padding: 0 30px 8px;
-        }
-
-        .certificate-text {
-            max-width: 620px;
-            margin: 20px auto 0;
-            color: #4b5563;
-            line-height: 1.8;
-            font-size: 12px;
-        }
-
-        .certificate-course {
-            margin-top: 14px;
-            font-size: 21px;
-            font-weight: 800;
-            color: #4338ca;
-        }
-
-        .certificate-bottom {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            gap: 20px;
-            margin-top: 48px;
-            padding: 0 40px;
-        }
-
-        .certificate-detail {
-            text-align: center;
-        }
-
-        .certificate-detail .line {
-            width: 160px;
-            border-top: 1px solid #9ca3af;
-            margin-bottom: 6px;
-        }
-
-        .certificate-detail strong {
-            display: block;
-            font-size: 10px;
-            color: #374151;
-        }
-
-        .certificate-detail span {
-            display: block;
-            margin-top: 3px;
-            color: #6b7280;
-            font-size: 8px;
-        }
-
-        .certificate-actions {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            padding: 0 25px 25px;
-        }
-
-        .print-certificate {
-            border: none;
-            border-radius: 10px;
-            padding: 12px 20px;
-            background: linear-gradient(
-                135deg,
-                #2563eb,
-                #7c3aed
-            );
+            border-radius: 9px;
+            padding: 11px 17px;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
             color: white;
             font-size: 11px;
             font-weight: 700;
@@ -1017,82 +795,29 @@
             position: fixed;
             right: 25px;
             bottom: 25px;
-            min-width: 260px;
-            max-width: 360px;
-            padding: 13px 16px;
-            border-radius: 11px;
-            background: #111827;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #ffffff;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
-            font-size: 11px;
-            font-weight: 600;
-            transform: translateY(20px);
-            opacity: 0;
-            pointer-events: none;
-            transition: 0.25s;
+            padding: 14px 18px;
+            background: #111a2c;
+            border: 1px solid rgba(255,255,255,.1);
+            border-radius: 12px;
+            color: white;
+            font-size: 12px;
             z-index: 5000;
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
+            transition: .3s;
         }
 
         .toast.show {
-            transform: translateY(0);
             opacity: 1;
-        }
-
-        .toast.success {
-            border-color: rgba(16, 185, 129, 0.35);
-        }
-
-        .toast.error {
-            border-color: rgba(239, 68, 68, 0.35);
-        }
-
-        /* ================= MOBILE NAV ================= */
-
-        .mobile-nav {
-            display: none;
+            transform: translateY(0);
         }
 
         /* ================= RESPONSIVE ================= */
 
-        @media (max-width: 1100px) {
+        @media(max-width: 1050px) {
             .course-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-        }
-
-        @media (max-width: 900px) {
-            .sidebar {
-                width: 70px;
-                padding: 20px 9px;
-            }
-
-            .brand {
-                justify-content: center;
-                padding: 0 0 25px;
-            }
-
-            .brand img {
-                width: 42px;
-                height: 42px;
-            }
-
-            .brand-text,
-            .nav-title {
-                display: none;
-            }
-
-            .nav a {
-                justify-content: center;
-                padding: 13px 8px;
-            }
-
-            .nav a span:not(.nav-icon) {
-                display: none;
-            }
-
-            .main {
-                margin-left: 70px;
+                grid-template-columns: repeat(2, 1fr);
             }
 
             .learning-layout {
@@ -1101,179 +826,29 @@
 
             .learning-sidebar {
                 border-left: none;
-                border-top: 1px solid rgba(255, 255, 255, 0.07);
+                border-top: 1px solid rgba(255,255,255,.07);
             }
         }
 
-        @media (max-width: 650px) {
+        @media(max-width: 700px) {
             .sidebar {
-                display: none;
+                position: relative;
+                width: 100%;
+                height: auto;
             }
 
             .main {
                 margin-left: 0;
-                padding: 20px 14px 90px;
-            }
-
-            .topbar {
-                margin-bottom: 22px;
-            }
-
-            .topbar-left h1 {
-                font-size: 23px;
-            }
-
-            .topbar-left p {
-                font-size: 11px;
-            }
-
-            .dashboard-btn {
-                padding: 9px 11px;
-                font-size: 10px;
-            }
-
-            .course-hero {
                 padding: 20px;
-            }
-
-            .course-hero h2 {
-                font-size: 20px;
             }
 
             .course-grid {
                 grid-template-columns: 1fr;
             }
 
-            .controls {
+            .topbar {
                 flex-direction: column;
-            }
-
-            .category-filter {
-                width: 100%;
-            }
-
-            .mobile-nav {
-                position: fixed;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                height: 65px;
-                display: grid;
-                grid-template-columns: repeat(7, 1fr);
-                background: rgba(11, 16, 32, 0.97);
-                backdrop-filter: blur(15px);
-                border-top: 1px solid rgba(255, 255, 255, 0.08);
-                z-index: 1500;
-            }
-
-            .mobile-nav a {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                gap: 3px;
-                text-decoration: none;
-                color: #78849a;
-                font-size: 8px;
-                font-weight: 600;
-            }
-
-            .mobile-nav a.active {
-                color: #ffffff;
-                background: linear-gradient(
-                    135deg,
-                    rgba(37, 99, 235, 0.9),
-                    rgba(124, 58, 237, 0.9)
-                );
-            }
-
-            .mobile-nav .mobile-icon {
-                font-size: 16px;
-            }
-
-            .certificate-paper {
-                min-height: 520px;
-                padding: 38px 25px;
-            }
-
-            .certificate-title {
-                font-size: 24px;
-            }
-
-            .certificate-name {
-                font-size: 24px;
-                padding: 0 15px 7px;
-            }
-
-            .certificate-course {
-                font-size: 17px;
-            }
-
-            .certificate-bottom {
-                padding: 0 15px;
-                margin-top: 35px;
-            }
-
-            .certificate-detail .line {
-                width: 105px;
-            }
-
-            .toast {
-                right: 14px;
-                left: 14px;
-                bottom: 80px;
-                min-width: auto;
-            }
-        }
-
-        /* ================= PRINT CERTIFICATE ================= */
-
-        @media print {
-
-            body {
-                background: #ffffff !important;
-            }
-
-            body * {
-                visibility: hidden !important;
-            }
-
-            .certificate-modal-content,
-            .certificate-modal-content * {
-                visibility: visible !important;
-            }
-
-            .certificate-modal {
-                position: absolute !important;
-                inset: 0 !important;
-                display: block !important;
-                background: #ffffff !important;
-                padding: 0 !important;
-            }
-
-            .certificate-modal-content {
-                width: 100% !important;
-                max-height: none !important;
-                border: none !important;
-                box-shadow: none !important;
-                border-radius: 0 !important;
-                background: #ffffff !important;
-            }
-
-            .certificate-area {
-                padding: 0 !important;
-            }
-
-            .certificate-paper {
-                width: 100%;
-                min-height: 100vh !important;
-                border-radius: 0 !important;
-                padding-top: 70px !important;
-            }
-
-            .certificate-actions,
-            .modal-header {
-                display: none !important;
+                align-items: flex-start;
             }
         }
     </style>
@@ -1299,38 +874,38 @@
         <nav class="nav">
 
             <a href="dashboard.html">
-                <span class="nav-icon">⌂</span>
-                <span>Dashboard</span>
+                <span class="nav-icon">🏠</span>
+                Dashboard
             </a>
 
             <a href="jobs.html">
                 <span class="nav-icon">💼</span>
-                <span>Jobs</span>
+                Jobs
             </a>
 
             <a href="skills.html">
                 <span class="nav-icon">🧠</span>
-                <span>Skills</span>
+                Skills
             </a>
 
-            <a href="courses.html" class="active">
-                <span class="nav-icon">🎓</span>
-                <span>Courses</span>
+            <a href="course.html" class="active">
+                <span class="nav-icon">📚</span>
+                Courses
             </a>
 
             <a href="resume.html">
                 <span class="nav-icon">📄</span>
-                <span>Resume</span>
+                Resume Builder
             </a>
 
             <a href="progress.html">
-                <span class="nav-icon">📊</span>
-                <span>Progress</span>
+                <span class="nav-icon">📈</span>
+                Career Progress
             </a>
 
             <a href="profile.html">
                 <span class="nav-icon">👤</span>
-                <span>My Profile</span>
+                My Profile
             </a>
 
         </nav>
@@ -1344,8 +919,8 @@
         <div class="topbar">
 
             <div class="topbar-left">
-                <h1>Courses 🎓</h1>
-                <p>Learn new skills, complete courses and earn certificates.</p>
+                <h1>Courses</h1>
+                <p>Learn new skills and move your career forward.</p>
             </div>
 
             <a href="dashboard.html" class="dashboard-btn">
@@ -1358,34 +933,29 @@
 
         <section class="course-hero">
 
-            <h2>Build Skills. Earn Certificates. 🚀</h2>
+            <h2>Learn. Practice. Get Certified.</h2>
 
             <p>
-                Explore career-focused courses designed to improve your technical,
-                analytical and professional skills. Complete every lesson and pass
-                the final quiz to unlock your FAST-TRACK certificate.
+                Complete structured learning modules, watch the required
+                lessons, pass the quizzes and unlock your course certificate.
             </p>
 
             <div class="hero-stats">
 
                 <div class="hero-stat">
-                    <strong id="totalCourses">6</strong>
-                    Courses
+                    <strong>8</strong> Courses
                 </div>
 
                 <div class="hero-stat">
-                    <strong id="completedCourses">0</strong>
-                    Completed
+                    <strong>5</strong> Modules / Course
                 </div>
 
                 <div class="hero-stat">
-                    <strong id="earnedCertificates">0</strong>
-                    Certificates
+                    <strong>10</strong> Questions / Quiz
                 </div>
 
                 <div class="hero-stat">
-                    <strong id="learningProgress">0%</strong>
-                    Overall Progress
+                    <strong>60%</strong> Pass Mark
                 </div>
 
             </div>
@@ -1397,23 +967,21 @@
         <div class="controls">
 
             <div class="search-box">
-                <span>🔎</span>
+                <span>🔍</span>
                 <input
                     type="text"
-                    id="courseSearch"
+                    id="searchInput"
                     placeholder="Search courses..."
-                    autocomplete="off"
                 >
             </div>
 
-            <select id="categoryFilter" class="category-filter">
+            <select class="category-filter" id="categoryFilter">
 
-                <option value="all">All Categories</option>
+                <option value="all">All Courses</option>
                 <option value="programming">Programming</option>
-                <option value="ai">AI & Machine Learning</option>
-                <option value="data">Data Analytics</option>
                 <option value="web">Web Development</option>
-                <option value="career">Career Skills</option>
+                <option value="database">Database</option>
+                <option value="career">Career</option>
 
             </select>
 
@@ -1421,62 +989,9 @@
 
         <!-- ================= COURSE GRID ================= -->
 
-        <section class="course-grid" id="courseGrid"></section>
-
-        <div class="empty-state" id="emptyState">
-
-            <div class="emoji">🔍</div>
-
-            <h3>No courses found</h3>
-
-            <p>
-                Try another search term or select a different category.
-            </p>
-
-        </div>
+        <div class="course-grid" id="courseGrid"></div>
 
     </main>
-
-    <!-- ================= MOBILE NAV ================= -->
-
-    <nav class="mobile-nav">
-
-        <a href="dashboard.html">
-            <span class="mobile-icon">⌂</span>
-            Home
-        </a>
-
-        <a href="jobs.html">
-            <span class="mobile-icon">💼</span>
-            Jobs
-        </a>
-
-        <a href="skills.html">
-            <span class="mobile-icon">🧠</span>
-            Skills
-        </a>
-
-        <a href="courses.html" class="active">
-            <span class="mobile-icon">🎓</span>
-            Courses
-        </a>
-
-        <a href="resume.html">
-            <span class="mobile-icon">📄</span>
-            Resume
-        </a>
-
-        <a href="progress.html">
-            <span class="mobile-icon">📊</span>
-            Progress
-        </a>
-
-        <a href="profile.html">
-            <span class="mobile-icon">👤</span>
-            Profile
-        </a>
-
-    </nav>
 
     <!-- ================= LEARNING MODAL ================= -->
 
@@ -1487,13 +1002,11 @@
             <div class="modal-header">
 
                 <div>
-                    <h2 id="learningCourseTitle">Course</h2>
-                    <p id="learningCourseSubtitle">
-                        Continue your learning journey.
-                    </p>
+                    <h2 id="modalTitle">Python</h2>
+                    <p id="modalSubtitle">Module 1</p>
                 </div>
 
-                <button class="close-btn" onclick="closeLearningModal()">
+                <button class="close-btn" onclick="closeLearning()">
                     ×
                 </button>
 
@@ -1504,34 +1017,55 @@
                 <div class="learning-main">
 
                     <div class="video-wrapper">
-
                         <iframe
-                            id="lessonVideo"
+                            id="youtubeFrame"
                             src=""
-                            title="Course Video"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             allowfullscreen>
                         </iframe>
-
                     </div>
 
                     <div class="lesson-heading">
 
                         <h3 id="lessonTitle">
-                            Lesson
+                            Python Basics
                         </h3>
 
                         <p id="lessonDescription">
-                            Lesson description.
+                            Learn the basic concepts of Python programming.
                         </p>
 
                     </div>
 
                     <div class="notes-box">
 
-                        <h4>📝 Lesson Notes</h4>
+                        <h4>📘 Module Notes</h4>
 
-                        <div id="lessonNotes"></div>
+                        <div id="notesContent"></div>
+
+                    </div>
+
+                    <div class="watch-box">
+
+                        <div class="watch-top">
+
+                            <span>
+                                ⏱ Required Watch Time
+                            </span>
+
+                            <strong id="watchTimer">
+                                00:00 / 10:00
+                            </strong>
+
+                        </div>
+
+                        <div class="watch-progress">
+
+                            <div
+                                class="watch-fill"
+                                id="watchFill">
+                            </div>
+
+                        </div>
 
                     </div>
 
@@ -1539,42 +1073,56 @@
 
                         <button
                             class="complete-btn"
-                            id="completeLessonBtn"
-                            onclick="completeCurrentLesson()">
-                            ✓ Mark Lesson Complete
+                            id="completeBtn"
+                            onclick="completeModule()">
+
+                            Complete Module
+
                         </button>
 
                         <button
                             class="quiz-open-btn"
-                            id="openQuizFromLearning"
-                            onclick="openQuizFromLearning()">
-                            📝 Final Quiz
+                            id="quizBtn"
+                            onclick="openQuiz()"
+                            disabled>
+
+                            🔒 Take Quiz
+
                         </button>
 
                     </div>
 
                 </div>
 
+                <!-- ================= MODULE LIST ================= -->
+
                 <aside class="learning-sidebar">
 
                     <div class="side-progress">
 
                         <div class="side-progress-title">
-                            <span>Course Progress</span>
-                            <strong id="modalProgressText">0%</strong>
+
+                            <strong>Course Progress</strong>
+
+                            <span id="sideProgressText">
+                                0%
+                            </span>
+
                         </div>
 
                         <div class="progress-bar">
+
                             <div
                                 class="progress-fill"
-                                id="modalProgressBar"
+                                id="sideProgressFill"
                                 style="width:0%">
                             </div>
+
                         </div>
 
                     </div>
 
-                    <div class="lesson-list" id="lessonList"></div>
+                    <div class="lesson-list" id="moduleList"></div>
 
                 </aside>
 
@@ -1593,13 +1141,18 @@
             <div class="modal-header">
 
                 <div>
-                    <h2>Final Course Quiz 📝</h2>
-                    <p id="quizCourseName">
-                        Complete the quiz to unlock your certificate.
+
+                    <h2 id="quizTitle">
+                        Python Quiz
+                    </h2>
+
+                    <p>
+                        Answer all 10 questions. You need 6/10 to pass.
                     </p>
+
                 </div>
 
-                <button class="close-btn" onclick="closeQuizModal()">
+                <button class="close-btn" onclick="closeQuiz()">
                     ×
                 </button>
 
@@ -1610,159 +1163,25 @@
                 <div class="quiz-intro">
 
                     <p>
-                        Answer all 10 questions. You need at least
-                        <strong style="color:white;">7 / 10</strong>
-                        correct answers to pass the quiz and unlock your
-                        certificate after completing all lessons.
+                        Complete all questions and submit the quiz.
+                        Your score will be calculated automatically.
                     </p>
 
                 </div>
 
-                <div class="quiz-result" id="quizResult"></div>
+                <form id="quizForm"></form>
 
-                <form id="quizForm">
+                <div class="quiz-footer">
 
-                    <div id="quizQuestions"></div>
+                    <button
+                        class="submit-quiz"
+                        onclick="submitQuiz()">
 
-                    <div class="quiz-footer">
+                        Submit Quiz
 
-                        <button
-                            type="button"
-                            class="quiz-open-btn"
-                            onclick="closeQuizModal()">
-                            Cancel
-                        </button>
-
-                        <button
-                            type="submit"
-                            class="submit-quiz">
-                            Submit Quiz
-                        </button>
-
-                    </div>
-
-                </form>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- ================= CERTIFICATE MODAL ================= -->
-
-    <div class="modal certificate-modal" id="certificateModal">
-
-        <div class="certificate-modal-content">
-
-            <div class="modal-header">
-
-                <div>
-                    <h2>🏆 Certificate of Completion</h2>
-                    <p>
-                        Congratulations on completing your course.
-                    </p>
-                </div>
-
-                <button class="close-btn" onclick="closeCertificateModal()">
-                    ×
-                </button>
-
-            </div>
-
-            <div class="certificate-area">
-
-                <div class="certificate-paper" id="certificatePaper">
-
-                    <div class="certificate-content">
-
-                        <img
-                            src="fast-track-logo.png"
-                            class="certificate-logo"
-                            alt="FAST-TRACK">
-
-                        <div class="certificate-brand">
-                            FAST-TRACK
-                        </div>
-
-                        <div class="certificate-title">
-                            CERTIFICATE
-                        </div>
-
-                        <div class="certificate-subtitle">
-                            OF COURSE COMPLETION
-                        </div>
-
-                        <div
-                            class="certificate-name"
-                            id="certificateName">
-                            Learner
-                        </div>
-
-                        <div class="certificate-text">
-
-                            This certificate is proudly presented to
-                            <strong id="certificateNameText">
-                                Learner
-                            </strong>
-                            for successfully completing the course
-
-                        </div>
-
-                        <div
-                            class="certificate-course"
-                            id="certificateCourse">
-                            Course Name
-                        </div>
-
-                        <div class="certificate-text">
-
-                            The learner has successfully completed all
-                            lessons and passed the final assessment.
-
-                        </div>
-
-                        <div class="certificate-bottom">
-
-                            <div class="certificate-detail">
-
-                                <div class="line"></div>
-
-                                <strong id="certificateDate">
-                                    Date
-                                </strong>
-
-                                <span>Completion Date</span>
-
-                            </div>
-
-                            <div class="certificate-detail">
-
-                                <div class="line"></div>
-
-                                <strong id="certificateId">
-                                    FT-CERT
-                                </strong>
-
-                                <span>Certificate ID</span>
-
-                            </div>
-
-                        </div>
-
-                    </div>
+                    </button>
 
                 </div>
-
-            </div>
-
-            <div class="certificate-actions">
-
-                <button
-                    class="print-certificate"
-                    onclick="downloadCertificate()">
-                    🏆 Download Certificate
-                </button>
 
             </div>
 
@@ -1774,1700 +1193,814 @@
 
     <div class="toast" id="toast"></div>
 
+
     <script>
 
-        /* =========================================================
-           FAST-TRACK COURSE DATA
-        ========================================================= */
+        /* =====================================================
+           COURSE DATA
+        ===================================================== */
 
         const courses = [
 
             {
-                id: "python-data-science",
-                title: "Python for Data Science",
+                id: "python",
+                name: "Python",
+                icon: "🐍",
                 category: "programming",
                 level: "Beginner",
-                duration: "5 Hours",
-                icon: "🐍",
                 description:
-                    "Learn Python fundamentals and build the programming foundation required for Data Science.",
-                tags: ["Python", "Programming", "Data Science"],
-
-                lessons: [
+                    "Learn Python programming from basics to practical concepts.",
+                modules: [
 
                     {
-                        title: "Introduction to Python",
-                        video: "https://www.youtube.com/embed/kqtD5dpn9C8",
+                        title: "Python Basics",
                         description:
-                            "Understand Python, its applications and why it is widely used in Data Science.",
-                        notes: [
-                            "Python is a high-level programming language.",
-                            "It is widely used for Data Science, AI and automation.",
-                            "Python uses simple and readable syntax."
+                            "Learn Python introduction, variables, data types, input and output.",
+                        video:
+                            "https://www.youtube.com/embed/rfscVS0vtbw",
+                        notes: `
+                            <ul>
+                                <li>Python is a high-level programming language.</li>
+                                <li>Variables are used to store values.</li>
+                                <li>Common data types include int, float, string and boolean.</li>
+                                <li>input() is used to receive user input.</li>
+                                <li>print() is used to display output.</li>
+                            </ul>
+                        `,
+                        questions: [
+                            {
+                                q: "Which keyword is used to define a function in Python?",
+                                options: ["function", "def", "fun", "define"],
+                                answer: 1
+                            },
+                            {
+                                q: "Which data type stores whole numbers?",
+                                options: ["float", "str", "int", "bool"],
+                                answer: 2
+                            },
+                            {
+                                q: "Which function displays output?",
+                                options: ["show()", "display()", "print()", "output()"],
+                                answer: 2
+                            },
+                            {
+                                q: "Which symbol is used for a comment in Python?",
+                                options: ["//", "#", "/*", "--"],
+                                answer: 1
+                            },
+                            {
+                                q: "Which function gets input from the user?",
+                                options: ["get()", "input()", "read()", "scan()"],
+                                answer: 1
+                            },
+                            {
+                                q: "Which is a valid Python variable?",
+                                options: ["2name", "user-name", "user_name", "class"],
+                                answer: 2
+                            },
+                            {
+                                q: "Which value represents True?",
+                                options: ["true", "TRUE", "True", "yes"],
+                                answer: 2
+                            },
+                            {
+                                q: "What is the extension of a Python file?",
+                                options: [".java", ".py", ".python", ".pt"],
+                                answer: 1
+                            },
+                            {
+                                q: "Which operator is used for addition?",
+                                options: ["+", "-", "*", "/"],
+                                answer: 0
+                            },
+                            {
+                                q: "Python is mainly a ______ language.",
+                                options: ["low-level", "machine", "high-level", "assembly"],
+                                answer: 2
+                            }
                         ]
                     },
 
                     {
-                        title: "Variables & Data Types",
-                        video: "https://www.youtube.com/embed/khKv-8q7YmY",
+                        title: "Control Statements",
                         description:
-                            "Learn variables, strings, numbers, lists, tuples and dictionaries.",
-                        notes: [
-                            "Variables store values.",
-                            "Common types include int, float, string and boolean.",
-                            "Lists can store multiple values."
-                        ]
-                    },
-
-                    {
-                        title: "Conditions & Loops",
-                        video: "https://www.youtube.com/embed/94UHCEmprCY",
-                        description:
-                            "Learn if-else conditions and loops to control program flow.",
-                        notes: [
-                            "if statements are used for decision making.",
-                            "for and while loops repeat instructions.",
-                            "Indentation is important in Python."
+                            "Learn conditions, loops, break and continue.",
+                        video:
+                            "https://www.youtube.com/embed/PqFKRqpHrjw",
+                        notes: `
+                            <ul>
+                                <li>if statements are used for conditions.</li>
+                                <li>elif checks another condition.</li>
+                                <li>else executes when previous conditions are false.</li>
+                                <li>for and while are loop statements.</li>
+                                <li>break stops a loop.</li>
+                            </ul>
+                        `,
+                        questions: [
+                            {
+                                q: "Which keyword checks a condition?",
+                                options: ["if", "check", "condition", "when"],
+                                answer: 0
+                            },
+                            {
+                                q: "Which loop is commonly used to iterate over a list?",
+                                options: ["for", "if", "switch", "case"],
+                                answer: 0
+                            },
+                            {
+                                q: "Which keyword stops a loop?",
+                                options: ["stop", "exit", "break", "end"],
+                                answer: 2
+                            },
+                            {
+                                q: "Which keyword skips the current iteration?",
+                                options: ["skip", "continue", "pass", "next"],
+                                answer: 1
+                            },
+                            {
+                                q: "Which loop continues while a condition is true?",
+                                options: ["for", "while", "if", "repeat"],
+                                answer: 1
+                            },
+                            {
+                                q: "Which keyword handles another condition?",
+                                options: ["elseif", "elif", "else-if", "then"],
+                                answer: 1
+                            },
+                            {
+                                q: "What does else execute?",
+                                options: [
+                                    "Always",
+                                    "When previous conditions are false",
+                                    "Only in loops",
+                                    "Never"
+                                ],
+                                answer: 1
+                            },
+                            {
+                                q: "Which statement can create an infinite loop?",
+                                options: [
+                                    "while True",
+                                    "if True",
+                                    "for False",
+                                    "break True"
+                                ],
+                                answer: 0
+                            },
+                            {
+                                q: "Which keyword does nothing and acts as a placeholder?",
+                                options: ["empty", "null", "pass", "skip"],
+                                answer: 2
+                            },
+                            {
+                                q: "Loops are mainly used to ______.",
+                                options: [
+                                    "repeat code",
+                                    "delete code",
+                                    "rename variables",
+                                    "create comments"
+                                ],
+                                answer: 0
+                            }
                         ]
                     },
 
                     {
                         title: "Functions",
-                        video: "https://www.youtube.com/embed/u-OmVr_fT4s",
                         description:
-                            "Understand functions, parameters, arguments and return values.",
-                        notes: [
-                            "Functions help organize reusable code.",
-                            "Parameters receive input values.",
-                            "return sends a value back."
+                            "Learn functions, parameters, arguments and return values.",
+                        video:
+                            "https://www.youtube.com/embed/9Os0o3wzS_I",
+                        notes: `
+                            <ul>
+                                <li>Functions help organize reusable code.</li>
+                                <li>def is used to create a function.</li>
+                                <li>Parameters receive values.</li>
+                                <li>return sends a value back.</li>
+                                <li>Functions can be called multiple times.</li>
+                            </ul>
+                        `,
+                        questions: [
+                            {
+                                q: "Which keyword creates a function?",
+                                options: ["function", "def", "create", "fun"],
+                                answer: 1
+                            },
+                            {
+                                q: "What is a parameter?",
+                                options: [
+                                    "A comment",
+                                    "A value received by a function",
+                                    "A loop",
+                                    "A class"
+                                ],
+                                answer: 1
+                            },
+                            {
+                                q: "Which keyword sends a value from a function?",
+                                options: ["send", "return", "give", "output"],
+                                answer: 1
+                            },
+                            {
+                                q: "What is a function call?",
+                                options: [
+                                    "Creating a variable",
+                                    "Executing a function",
+                                    "Deleting a function",
+                                    "Writing a comment"
+                                ],
+                                answer: 1
+                            },
+                            {
+                                q: "Can a function be called multiple times?",
+                                options: ["Yes", "No", "Only once", "Never"],
+                                answer: 0
+                            },
+                            {
+                                q: "Which symbol is used when calling a function?",
+                                options: ["{}", "()", "[]", "<>"],
+                                answer: 1
+                            },
+                            {
+                                q: "A function helps in code ______.",
+                                options: [
+                                    "reuse",
+                                    "deletion",
+                                    "compression",
+                                    "hiding"
+                                ],
+                                answer: 0
+                            },
+                            {
+                                q: "Which value can a function return?",
+                                options: [
+                                    "Only numbers",
+                                    "Only strings",
+                                    "Different types of values",
+                                    "Nothing"
+                                ],
+                                answer: 2
+                            },
+                            {
+                                q: "Arguments are values passed to a ______.",
+                                options: [
+                                    "loop",
+                                    "function",
+                                    "comment",
+                                    "operator"
+                                ],
+                                answer: 1
+                            },
+                            {
+                                q: "Functions improve program ______.",
+                                options: [
+                                    "organization",
+                                    "errors",
+                                    "size only",
+                                    "complexity only"
+                                ],
+                                answer: 0
+                            }
                         ]
                     },
 
                     {
-                        title: "Python for Data Science",
-                        video: "https://www.youtube.com/embed/r-uOLxNrNk8",
+                        title: "Data Structures",
                         description:
-                            "Understand how Python is used in Data Science workflows.",
-                        notes: [
-                            "NumPy is used for numerical computing.",
-                            "Pandas is used for data manipulation.",
-                            "Matplotlib can be used for visualization."
-                        ]
-                    }
-
-                ],
-
-                quiz: [
-
-                    {
-                        q: "Which language is widely used for Data Science?",
-                        options: ["Python", "HTML", "CSS", "XML"],
-                        answer: 0
-                    },
-
-                    {
-                        q: "Which symbol is commonly used to assign a value to a variable?",
-                        options: ["=", "==", "!=", "=>"],
-                        answer: 0
-                    },
-
-                    {
-                        q: "Which type stores True or False?",
-                        options: ["String", "Boolean", "Float", "List"],
-                        answer: 1
-                    },
-
-                    {
-                        q: "Which keyword is used for a condition?",
-                        options: ["if", "loop", "check", "when"],
-                        answer: 0
-                    },
-
-                    {
-                        q: "Which loop is commonly used to iterate over a sequence?",
-                        options: ["for", "switch", "select", "repeat-only"],
-                        answer: 0
-                    },
-
-                    {
-                        q: "Which keyword defines a function in Python?",
-                        options: ["function", "def", "fun", "define"],
-                        answer: 1
-                    },
-
-                    {
-                        q: "Which library is commonly used for tabular data?",
-                        options: ["Pandas", "React", "Express", "Bootstrap"],
-                        answer: 0
-                    },
-
-                    {
-                        q: "Which library is mainly used for numerical arrays?",
-                        options: ["NumPy", "Flask", "Django", "jQuery"],
-                        answer: 0
-                    },
-
-                    {
-                        q: "Which symbol starts a comment in Python?",
-                        options: ["//", "#", "<!--", "/*"],
-                        answer: 1
-                    },
-
-                    {
-                        q: "Python indentation is used to define:",
-                        options: [
-                            "Code blocks",
-                            "File names",
-                            "Images",
-                            "URLs"
-                        ],
-                        answer: 0
-                    }
-
-                ]
-            },
-
-            {
-                id: "machine-learning",
-                title: "Machine Learning Fundamentals",
-                category: "ai",
-                level: "Intermediate",
-                duration: "6 Hours",
-                icon: "🤖",
-                description:
-                    "Learn the fundamentals of Machine Learning, including supervised and unsupervised learning.",
-                tags: ["ML", "AI", "Algorithms"],
-
-                lessons: [
-
-                    {
-                        title: "Introduction to Machine Learning",
-                        video: "https://www.youtube.com/embed/ukzFI9rgwfU",
-                        description:
-                            "Understand Machine Learning and how systems learn patterns from data.",
-                        notes: [
-                            "Machine Learning allows computers to learn from data.",
-                            "Models identify patterns and make predictions.",
-                            "Data quality strongly affects model performance."
+                            "Learn lists, tuples, sets and dictionaries.",
+                        video:
+                            "https://www.youtube.com/embed/R-HLU9Fl5ug",
+                        notes: `
+                            <ul>
+                                <li>Lists are ordered and mutable.</li>
+                                <li>Tuples are ordered and immutable.</li>
+                                <li>Sets store unique values.</li>
+                                <li>Dictionaries store key-value pairs.</li>
+                                <li>Python provides many built-in data structures.</li>
+                            </ul>
+                        `,
+                        questions: [
+                            {
+                                q: "Which data structure is mutable?",
+                                options: ["Tuple", "List", "String", "None"],
+                                answer: 1
+                            },
+                            {
+                                q: "Which structure stores key-value pairs?",
+                                options: ["List", "Tuple", "Set", "Dictionary"],
+                                answer: 3
+                            },
+                            {
+                                q: "Which structure stores unique values?",
+                                options: ["List", "Set", "Tuple", "String"],
+                                answer: 1
+                            },
+                            {
+                                q: "Which brackets create a list?",
+                                options: ["()", "{}", "[]", "<>"],
+                                answer: 2
+                            },
+                            {
+                                q: "Which brackets commonly represent a tuple?",
+                                options: ["()", "[]", "{}", "<>"],
+                                answer: 0
+                            },
+                            {
+                                q: "Can a list contain duplicate values?",
+                                options: ["Yes", "No", "Only two", "Only strings"],
+                                answer: 0
+                            },
+                            {
+                                q: "Dictionary values are accessed using ______.",
+                                options: [
+                                    "keys",
+                                    "loops",
+                                    "comments",
+                                    "operators"
+                                ],
+                                answer: 0
+                            },
+                            {
+                                q: "Which data structure is immutable?",
+                                options: ["List", "Dictionary", "Tuple", "Set"],
+                                answer: 2
+                            },
+                            {
+                                q: "Which structure is unordered in its basic concept?",
+                                options: ["Set", "List", "Tuple", "String"],
+                                answer: 0
+                            },
+                            {
+                                q: "A dictionary contains ______ pairs.",
+                                options: [
+                                    "key-value",
+                                    "index-value only",
+                                    "loop-value",
+                                    "class-value"
+                                ],
+                                answer: 0
+                            }
                         ]
                     },
 
                     {
-                        title: "Supervised Learning",
-                        video: "https://www.youtube.com/embed/4qVRBYAdLAo",
+                        title: "Advanced Basics",
                         description:
-                            "Learn classification and regression using labelled data.",
-                        notes: [
-                            "Supervised learning uses labelled datasets.",
-                            "Classification predicts categories.",
-                            "Regression predicts continuous values."
+                            "Learn strings, exceptions, files, modules and packages.",
+                        video:
+                            "https://www.youtube.com/embed/rfscVS0vtbw",
+                        notes: `
+                            <ul>
+                                <li>Strings are sequences of characters.</li>
+                                <li>try and except handle exceptions.</li>
+                                <li>Files can be opened using open().</li>
+                                <li>Modules help organize reusable code.</li>
+                                <li>Packages contain related modules.</li>
+                            </ul>
+                        `,
+                        questions: [
+                            {
+                                q: "Which type stores text?",
+                                options: ["int", "str", "float", "bool"],
+                                answer: 1
+                            },
+                            {
+                                q: "Which keyword starts exception handling?",
+                                options: ["try", "error", "catch", "handle"],
+                                answer: 0
+                            },
+                            {
+                                q: "Which keyword handles an exception?",
+                                options: ["catch", "except", "error", "handle"],
+                                answer: 1
+                            },
+                            {
+                                q: "Which function opens a file?",
+                                options: ["file()", "open()", "read()", "load()"],
+                                answer: 1
+                            },
+                            {
+                                q: "What is a module?",
+                                options: [
+                                    "A Python file containing reusable code",
+                                    "A loop",
+                                    "An operator",
+                                    "A data type"
+                                ],
+                                answer: 0
+                            },
+                            {
+                                q: "Which keyword imports a module?",
+                                options: ["include", "using", "import", "module"],
+                                answer: 2
+                            },
+                            {
+                                q: "Exception handling helps manage ______.",
+                                options: [
+                                    "runtime errors",
+                                    "comments",
+                                    "variables only",
+                                    "loops only"
+                                ],
+                                answer: 0
+                            },
+                            {
+                                q: "Which method reads file content?",
+                                options: ["read()", "get()", "scan()", "take()"],
+                                answer: 0
+                            },
+                            {
+                                q: "Strings can be enclosed using ______.",
+                                options: [
+                                    "quotes",
+                                    "brackets only",
+                                    "braces only",
+                                    "operators only"
+                                ],
+                                answer: 0
+                            },
+                            {
+                                q: "Packages are used to organize ______.",
+                                options: [
+                                    "modules",
+                                    "operators",
+                                    "numbers only",
+                                    "comments"
+                                ],
+                                answer: 0
+                            }
                         ]
-                    },
-
-                    {
-                        title: "Unsupervised Learning",
-                        video: "https://www.youtube.com/embed/4b5d3muPQmA",
-                        description:
-                            "Learn clustering and pattern discovery without labelled outputs.",
-                        notes: [
-                            "Unsupervised learning works with unlabelled data.",
-                            "Clustering groups similar data points.",
-                            "K-Means is a popular clustering algorithm."
-                        ]
-                    },
-
-                    {
-                        title: "Model Evaluation",
-                        video: "https://www.youtube.com/embed/8d3f7GZ0lYk",
-                        description:
-                            "Understand accuracy, precision, recall and other evaluation concepts.",
-                        notes: [
-                            "Accuracy measures overall correct predictions.",
-                            "Precision focuses on predicted positives.",
-                            "Recall focuses on actual positives."
-                        ]
-                    },
-
-                    {
-                        title: "Overfitting & Underfitting",
-                        video: "https://www.youtube.com/embed/SZKRkf0J5K4",
-                        description:
-                            "Learn why models fail to generalize and how to improve them.",
-                        notes: [
-                            "Overfitting means a model learns training data too closely.",
-                            "Underfitting means the model is too simple.",
-                            "Validation data helps evaluate generalization."
-                        ]
-                    }
-
-                ],
-
-                quiz: [
-
-                    {
-                        q: "Machine Learning primarily allows computers to:",
-                        options: [
-                            "Learn patterns from data",
-                            "Only store files",
-                            "Create hardware",
-                            "Replace operating systems"
-                        ],
-                        answer: 0
-                    },
-
-                    {
-                        q: "Supervised learning uses:",
-                        options: [
-                            "Labelled data",
-                            "Only images",
-                            "No data",
-                            "Random data"
-                        ],
-                        answer: 0
-                    },
-
-                    {
-                        q: "Which is a classification problem?",
-                        options: [
-                            "Predicting house price",
-                            "Predicting spam or not spam",
-                            "Calculating average",
-                            "Sorting numbers"
-                        ],
-                        answer: 1
-                    },
-
-                    {
-                        q: "Regression usually predicts:",
-                        options: [
-                            "Continuous values",
-                            "Only categories",
-                            "Images",
-                            "Text formatting"
-                        ],
-                        answer: 0
-                    },
-
-                    {
-                        q: "Which is an unsupervised algorithm?",
-                        options: [
-                            "K-Means",
-                            "Linear Regression",
-                            "Logistic Regression",
-                            "Decision Tree classifier"
-                        ],
-                        answer: 0
-                    },
-
-                    {
-                        q: "Overfitting occurs when a model:",
-                        options: [
-                            "Learns training data too closely",
-                            "Has no data",
-                            "Cannot run",
-                            "Has no variables"
-                        ],
-                        answer: 0
-                    },
-
-                    {
-                        q: "Accuracy measures:",
-                        options: [
-                            "Correct predictions overall",
-                            "Only false positives",
-                            "Only false negatives",
-                            "Training time"
-                        ],
-                        answer: 0
-                    },
-
-                    {
-                        q: "Recall focuses on:",
-                        options: [
-                            "Actual positive cases",
-                            "File size",
-                            "CPU usage",
-                            "Number of features only"
-                        ],
-                        answer: 0
-                    },
-
-                    {
-                        q: "Training data is mainly used to:",
-                        options: [
-                            "Train the model",
-                            "Print certificates",
-                            "Design websites",
-                            "Store passwords"
-                        ],
-                        answer: 0
-                    },
-
-                    {
-                        q: "A model that is too simple may suffer from:",
-                        options: [
-                            "Underfitting",
-                            "Overfitting",
-                            "Encryption",
-                            "Clustering"
-                        ],
-                        answer: 0
                     }
 
                 ]
             },
 
             {
-                id: "sql-data-analytics",
-                title: "SQL for Data Analytics",
-                category: "data",
-                level: "Beginner",
-                duration: "5 Hours",
+                id: "sql",
+                name: "SQL",
                 icon: "🗄️",
-                description:
-                    "Learn SQL queries, filtering, grouping, joins and analytical operations.",
-                tags: ["SQL", "Analytics", "Database"],
-
-                lessons: [
-
-                    {
-                        title: "SQL Introduction",
-                        video: "https://www.youtube.com/embed/HXV3zeQKqGY",
-                        description:
-                            "Understand databases, tables and the role of SQL.",
-                        notes: [
-                            "SQL stands for Structured Query Language.",
-                            "SQL is used to interact with relational databases.",
-                            "Data is commonly stored in tables."
-                        ]
-                    },
-
-                    {
-                        title: "SELECT & WHERE",
-                        video: "https://www.youtube.com/embed/7S_tz1z_5bA",
-                        description:
-                            "Learn how to retrieve and filter records.",
-                        notes: [
-                            "SELECT retrieves columns.",
-                            "WHERE filters rows.",
-                            "Use conditions to find relevant records."
-                        ]
-                    },
-
-                    {
-                        title: "GROUP BY & Aggregate Functions",
-                        video: "https://www.youtube.com/embed/qzt7qj0bY2A",
-                        description:
-                            "Learn COUNT, SUM, AVG, MIN, MAX and GROUP BY.",
-                        notes: [
-                            "COUNT counts rows.",
-                            "SUM calculates totals.",
-                            "GROUP BY creates groups for aggregation."
-                        ]
-                    },
-
-                    {
-                        title: "SQL JOINs",
-                        video: "https://www.youtube.com/embed/9yeOJ0ZMUYw",
-                        description:
-                            "Understand INNER JOIN, LEFT JOIN and relationships between tables.",
-                        notes: [
-                            "JOIN combines related tables.",
-                            "INNER JOIN returns matching records.",
-                            "LEFT JOIN keeps all rows from the left table."
-                        ]
-                    },
-
-                    {
-                        title: "SQL for Data Analysis",
-                        video: "https://www.youtube.com/embed/7mz73uXD9DA",
-                        description:
-                            "Apply SQL concepts to real-world data analysis tasks.",
-                        notes: [
-                            "SQL is widely used by Data Analysts.",
-                            "Filtering and aggregation are common analytical tasks.",
-                            "Good SQL skills improve data querying efficiency."
-                        ]
-                    }
-
-                ],
-
-                quiz: [
-
-                    {
-                        q: "What does SQL stand for?",
-                        options: [
-                            "Structured Query Language",
-                            "Simple Question Language",
-                            "System Query Logic",
-                            "Structured Quick List"
-                        ],
-                        answer: 0
-                    },
-
-                    {
-                        q: "Which command retrieves data?",
-                        options: ["SELECT", "DELETE", "DROP", "REMOVE"],
-                        answer: 0
-                    },
-
-                    {
-                        q: "Which clause filters rows?",
-                        options: ["WHERE", "GROUP BY", "ORDER", "TABLE"],
-                        answer: 0
-                    },
-
-                    {
-                        q: "Which function counts rows?",
-                        options: ["COUNT()", "TOTAL()", "ROWS()", "NUMBER()"],
-                        answer: 0
-                    },
-
-                    {
-                        q: "Which function calculates average?",
-                        options: ["AVG()", "MEAN()", "MID()", "AVERAGE_VALUE()"],
-                        answer: 0
-                    },
-
-                    {
-                        q: "Which clause is used for grouping?",
-                        options: ["GROUP BY", "GROUP", "COLLECT", "JOIN BY"],
-                        answer: 0
-                    },
-
-                    {
-                        q: "Which JOIN returns matching records from both tables?",
-                        options: [
-                            "INNER JOIN",
-                            "LEFT JOIN",
-                            "OUTER ONLY",
-                            "MATCH JOIN"
-                        ],
-                        answer: 0
-                    },
-
-                    {
-                        q: "Which command removes rows from a table?",
-                        options: ["DELETE", "REMOVE", "CLEAR", "ERASE"],
-                        answer: 0
-                    },
-
-                    {
-                        q: "Which function calculates total?",
-                        options: ["SUM()", "TOTAL()", "ADD()", "PLUS()"],
-                        answer: 0
-                    },
-
-                    {
-                        q: "SQL is commonly used to work with:",
-                        options: [
-                            "Relational databases",
-                            "Only images",
-                            "Only videos",
-                            "Computer hardware"
-                        ],
-                        answer: 0
-                    }
-
-                ]
+                category: "database",
+                level: "Beginner",
+                description: "Learn databases and SQL queries.",
+                modules: createGenericModules("SQL")
             },
 
             {
-                id: "web-development",
-                title: "Web Development Basics",
+                id: "java",
+                name: "Java",
+                icon: "☕",
+                category: "programming",
+                level: "Beginner",
+                description: "Learn Java programming fundamentals.",
+                modules: createGenericModules("Java")
+            },
+
+            {
+                id: "git",
+                name: "Git",
+                icon: "🔧",
+                category: "programming",
+                level: "Beginner",
+                description: "Learn Git and version control.",
+                modules: createGenericModules("Git")
+            },
+
+            {
+                id: "html",
+                name: "HTML & CSS",
+                icon: "🌐",
                 category: "web",
                 level: "Beginner",
-                duration: "6 Hours",
-                icon: "🌐",
-                description:
-                    "Build a strong foundation in HTML, CSS and JavaScript for modern websites.",
-                tags: ["HTML", "CSS", "JavaScript"],
-
-                lessons: [
-
-                    {
-                        title: "HTML Fundamentals",
-                        video: "https://www.youtube.com/embed/pQN-pnXPaVg",
-                        description:
-                            "Learn the structure of web pages using HTML.",
-                        notes: [
-                            "HTML defines the structure of a webpage.",
-                            "Elements are written using tags.",
-                            "Headings, paragraphs and links are common HTML elements."
-                        ]
-                    },
-
-                    {
-                        title: "CSS Styling",
-                        video: "https://www.youtube.com/embed/1Rs2ND1ryYc",
-                        description:
-                            "Learn how to style and design websites using CSS.",
-                        notes: [
-                            "CSS controls presentation and layout.",
-                            "Selectors target HTML elements.",
-                            "Flexbox and Grid are useful layout systems."
-                        ]
-                    },
-
-                    {
-                        title: "JavaScript Basics",
-                        video: "https://www.youtube.com/embed/W6NZfCO5SIk",
-                        description:
-                            "Understand JavaScript variables, functions and events.",
-                        notes: [
-                            "JavaScript adds interactivity.",
-                            "Variables store values.",
-                            "Functions contain reusable logic."
-                        ]
-                    },
-
-                    {
-                        title: "Responsive Design",
-                        video: "https://www.youtube.com/embed/srvUrASNj0s",
-                        description:
-                            "Learn how websites adapt to different screen sizes.",
-                        notes: [
-                            "Responsive websites work on mobile and desktop.",
-                            "Media queries help change layouts.",
-                            "Flexible grids improve usability."
-                        ]
-                    },
-
-                    {
-                        title: "Building a Complete Website",
-                        video: "https://www.youtube.com/embed/nu_pCVPKzTk",
-                        description:
-                            "Combine HTML, CSS and JavaScript to create a functional website.",
-                        notes: [
-                            "HTML creates structure.",
-                            "CSS creates design.",
-                            "JavaScript provides functionality."
-                        ]
-                    }
-
-                ],
-
-                quiz: [
-
-                    {
-                        q: "Which language defines webpage structure?",
-                        options: ["HTML", "CSS", "JavaScript", "SQL"],
-                        answer: 0
-                    },
-
-                    {
-                        q: "Which language is used for styling?",
-                        options: ["CSS", "HTML", "Python", "SQL"],
-                        answer: 0
-                    },
-
-                    {
-                        q: "Which language adds webpage interactivity?",
-                        options: [
-                            "JavaScript",
-                            "HTML only",
-                            "CSS only",
-                            "SQL"
-                        ],
-                        answer: 0
-                    },
-
-                    {
-                        q: "Which HTML tag creates a hyperlink?",
-                        options: ["<a>", "<linker>", "<url>", "<href>"],
-                        answer: 0
-                    },
-
-                    {
-                        q: "Which CSS property changes text color?",
-                        options: ["color", "text-color", "font-color", "paint"],
-                        answer: 0
-                    },
-
-                    {
-                        q: "Which CSS system is useful for one-dimensional layouts?",
-                        options: ["Flexbox", "SQL", "DOM", "JSON"],
-                        answer: 0
-                    },
-
-                    {
-                        q: "Responsive design helps websites work on:",
-                        options: [
-                            "Different screen sizes",
-                            "Only laptops",
-                            "Only servers",
-                            "Only printers"
-                        ],
-                        answer: 0
-                    },
-
-                    {
-                        q: "Which tag creates the largest standard heading?",
-                        options: ["<h1>", "<h6>", "<head>", "<title>"],
-                        answer: 0
-                    },
-
-                    {
-                        q: "JavaScript can respond to:",
-                        options: [
-                            "User events",
-                            "Only CSS files",
-                            "Only databases",
-                            "Only images"
-                        ],
-                        answer: 0
-                    },
-
-                    {
-                        q: "CSS stands for:",
-                        options: [
-                            "Cascading Style Sheets",
-                            "Computer Style System",
-                            "Creative Styling Syntax",
-                            "Code Style Sheet"
-                        ],
-                        answer: 0
-                    }
-
-                ]
+                description: "Build websites using HTML and CSS.",
+                modules: createGenericModules("HTML & CSS")
             },
 
             {
-                id: "data-structures-python",
-                title: "Data Structures with Python",
-                category: "programming",
-                level: "Intermediate",
-                duration: "6 Hours",
-                icon: "🧩",
-                description:
-                    "Understand arrays, lists, stacks, queues, dictionaries and algorithmic thinking.",
-                tags: ["Python", "DSA", "Algorithms"],
-
-                lessons: [
-
-                    {
-                        title: "Introduction to Data Structures",
-                        video: "https://www.youtube.com/embed/RBSGKlAvoiM",
-                        description:
-                            "Understand why data structures are important in programming.",
-                        notes: [
-                            "Data structures organize information.",
-                            "Choosing the right structure improves efficiency.",
-                            "Common structures include arrays, stacks and queues."
-                        ]
-                    },
-
-                    {
-                        title: "Lists & Tuples",
-                        video: "https://www.youtube.com/embed/ohCDWZgNIU0",
-                        description:
-                            "Learn Python lists and tuples and their common operations.",
-                        notes: [
-                            "Lists are mutable.",
-                            "Tuples are immutable.",
-                            "Both can store multiple values."
-                        ]
-                    },
-
-                    {
-                        title: "Stacks & Queues",
-                        video: "https://www.youtube.com/embed/A3ZUpyrnCbM",
-                        description:
-                            "Understand LIFO and FIFO data structures.",
-                        notes: [
-                            "Stack follows LIFO.",
-                            "Queue follows FIFO.",
-                            "Stacks are useful for undo operations."
-                        ]
-                    },
-
-                    {
-                        title: "Dictionaries & Sets",
-                        video: "https://www.youtube.com/embed/daefaLgNkw0",
-                        description:
-                            "Learn key-value storage and unique collections.",
-                        notes: [
-                            "Dictionaries store key-value pairs.",
-                            "Sets store unique values.",
-                            "Dictionaries are useful for fast lookups."
-                        ]
-                    },
-
-                    {
-                        title: "Algorithmic Thinking",
-                        video: "https://www.youtube.com/embed/8hly31xKli0",
-                        description:
-                            "Learn how to approach programming problems systematically.",
-                        notes: [
-                            "Break large problems into smaller steps.",
-                            "Consider time and space complexity.",
-                            "Practice improves problem-solving ability."
-                        ]
-                    }
-
-                ],
-
-                quiz: [
-
-                    {
-                        q: "Which data structure follows LIFO?",
-                        options: ["Stack", "Queue", "Set", "Tree only"],
-                        answer: 0
-                    },
-
-                    {
-                        q: "Which data structure follows FIFO?",
-                        options: ["Queue", "Stack", "Dictionary", "Tuple"],
-                        answer: 0
-                    },
-
-                    {
-                        q: "Python lists are:",
-                        options: ["Mutable", "Always immutable", "Only numeric", "Only strings"],
-                        answer: 0
-                    },
-
-                    {
-                        q: "Python tuples are generally:",
-                        options: ["Immutable", "Mutable", "Functions", "Classes"],
-                        answer: 0
-                    },
-
-                    {
-                        q: "A dictionary stores:",
-                        options: [
-                            "Key-value pairs",
-                            "Only numbers",
-                            "Only characters",
-                            "Only duplicate values"
-                        ],
-                        answer: 0
-                    },
-
-                    {
-                        q: "A set mainly stores:",
-                        options: [
-                            "Unique values",
-                            "Only ordered values",
-                            "Only key-value pairs",
-                            "Functions"
-                        ],
-                        answer: 0
-                    },
-
-                    {
-                        q: "Which structure is useful for undo operations?",
-                        options: ["Stack", "Queue", "Set", "Dictionary only"],
-                        answer: 0
-                    },
-
-                    {
-                        q: "Time complexity helps measure:",
-                        options: [
-                            "Algorithm efficiency",
-                            "Screen size",
-                            "Font size",
-                            "File color"
-                        ],
-                        answer: 0
-                    },
-
-                    {
-                        q: "Breaking a large problem into smaller parts is:",
-                        options: [
-                            "Problem decomposition",
-                            "Compilation",
-                            "Rendering",
-                            "Styling"
-                        ],
-                        answer: 0
-                    },
-
-                    {
-                        q: "Which Python structure uses key-value pairs?",
-                        options: [
-                            "Dictionary",
-                            "Tuple",
-                            "String",
-                            "Float"
-                        ],
-                        answer: 0
-                    }
-
-                ]
+                id: "javascript",
+                name: "JavaScript",
+                icon: "⚡",
+                category: "web",
+                level: "Beginner",
+                description: "Learn JavaScript for interactive websites.",
+                modules: createGenericModules("JavaScript")
             },
 
             {
-                id: "communication-interview",
-                title: "Communication & Interview Skills",
+                id: "communication",
+                name: "Communication",
+                icon: "💬",
                 category: "career",
                 level: "Beginner",
-                duration: "4 Hours",
-                icon: "🗣️",
-                description:
-                    "Improve communication, self-introduction, interviews, group discussions and workplace confidence.",
-                tags: ["Communication", "Interview", "Career"],
+                description: "Improve communication and professional skills.",
+                modules: createGenericModules("Communication")
+            },
 
-                lessons: [
-
-                    {
-                        title: "Effective Communication",
-                        video: "https://www.youtube.com/embed/2L9qT4WJp9E",
-                        description:
-                            "Learn the basics of clear and professional communication.",
-                        notes: [
-                            "Listen actively before responding.",
-                            "Use simple and clear language.",
-                            "Body language is also important."
-                        ]
-                    },
-
-                    {
-                        title: "Self Introduction",
-                        video: "https://www.youtube.com/embed/TqfG2KjZ8N8",
-                        description:
-                            "Learn how to confidently introduce yourself in interviews.",
-                        notes: [
-                            "Start with your name and education.",
-                            "Mention relevant skills.",
-                            "Connect your strengths to the role."
-                        ]
-                    },
-
-                    {
-                        title: "Resume & Interview Preparation",
-                        video: "https://www.youtube.com/embed/5u0jaA3qJ0E",
-                        description:
-                            "Understand basic resume and interview preparation strategies.",
-                        notes: [
-                            "Keep your resume clear and relevant.",
-                            "Prepare common interview questions.",
-                            "Know your projects and skills well."
-                        ]
-                    },
-
-                    {
-                        title: "Group Discussion",
-                        video: "https://www.youtube.com/embed/F6pJQZ1GQ5Y",
-                        description:
-                            "Learn how to participate effectively in group discussions.",
-                        notes: [
-                            "Speak clearly and respectfully.",
-                            "Listen to other participants.",
-                            "Support your points with examples."
-                        ]
-                    },
-
-                    {
-                        title: "Professional Confidence",
-                        video: "https://www.youtube.com/embed/9mY5f7cF8vA",
-                        description:
-                            "Develop confidence and professional behaviour for career opportunities.",
-                        notes: [
-                            "Confidence improves with preparation.",
-                            "Maintain professional body language.",
-                            "Treat mistakes as learning opportunities."
-                        ]
-                    }
-
-                ],
-
-                quiz: [
-
-                    {
-                        q: "Good communication requires:",
-                        options: [
-                            "Active listening",
-                            "Only speaking",
-                            "Ignoring others",
-                            "Using complicated words"
-                        ],
-                        answer: 0
-                    },
-
-                    {
-                        q: "A self-introduction should be:",
-                        options: [
-                            "Clear and relevant",
-                            "Very long",
-                            "Unrelated to the role",
-                            "Only one word"
-                        ],
-                        answer: 0
-                    },
-
-                    {
-                        q: "During an interview, you should:",
-                        options: [
-                            "Answer honestly and confidently",
-                            "Avoid eye contact completely",
-                            "Interrupt continuously",
-                            "Ignore questions"
-                        ],
-                        answer: 0
-                    },
-
-                    {
-                        q: "A good resume should be:",
-                        options: [
-                            "Clear and relevant",
-                            "Full of unrelated details",
-                            "Extremely confusing",
-                            "Without contact information"
-                        ],
-                        answer: 0
-                    },
-
-                    {
-                        q: "In a group discussion, you should:",
-                        options: [
-                            "Listen and contribute respectfully",
-                            "Shout",
-                            "Never speak",
-                            "Interrupt everyone"
-                        ],
-                        answer: 0
-                    },
-
-                    {
-                        q: "Professional body language includes:",
-                        options: [
-                            "Good posture",
-                            "Looking at the floor always",
-                            "Ignoring people",
-                            "Constantly checking your phone"
-                        ],
-                        answer: 0
-                    },
-
-                    {
-                        q: "Before an interview, it is useful to:",
-                        options: [
-                            "Research the company",
-                            "Avoid preparation",
-                            "Arrive very late",
-                            "Forget your resume"
-                        ],
-                        answer: 0
-                    },
-
-                    {
-                        q: "Confidence can improve through:",
-                        options: [
-                            "Practice and preparation",
-                            "Avoiding all communication",
-                            "Ignoring feedback",
-                            "Never trying"
-                        ],
-                        answer: 0
-                    },
-
-                    {
-                        q: "When you don't know an interview answer, you should:",
-                        options: [
-                            "Be honest and explain what you know",
-                            "Invent information",
-                            "Argue with the interviewer",
-                            "Leave immediately"
-                        ],
-                        answer: 0
-                    },
-
-                    {
-                        q: "The main purpose of communication is to:",
-                        options: [
-                            "Share information clearly",
-                            "Confuse people",
-                            "Use difficult words",
-                            "Avoid listening"
-                        ],
-                        answer: 0
-                    }
-
-                ]
+            {
+                id: "dsa",
+                name: "Data Structures",
+                icon: "🧠",
+                category: "programming",
+                level: "Intermediate",
+                description: "Learn important data structures and algorithms.",
+                modules: createGenericModules("Data Structures")
             }
 
         ];
 
 
-        /* =========================================================
-           USER / ACCOUNT HANDLING
-        ========================================================= */
+        /* =====================================================
+           GENERIC MODULES
+        ===================================================== */
 
-        let currentUser = null;
+        function createGenericModules(subject) {
 
-        let currentCourseId = null;
-        let currentLessonIndex = 0;
+            const topics = {
 
+                "SQL": [
+                    "SQL Basics",
+                    "SELECT Queries",
+                    "Filtering & Sorting",
+                    "Joins",
+                    "Advanced SQL"
+                ],
 
-        /*
-         * IMPORTANT:
-         *
-         * Progress is stored using the current user's UID.
-         *
-         * Example:
-         *
-         * fastTrackCourseLessons_UID_ABC123
-         * fastTrackCourseLessons_UID_XYZ987
-         *
-         * Therefore one account cannot automatically read another
-         * account's course progress.
-         */
+                "Java": [
+                    "Java Basics",
+                    "Control Statements",
+                    "Methods & Classes",
+                    "OOP Concepts",
+                    "Exception Handling"
+                ],
 
-        function getFirebaseUser() {
+                "Git": [
+                    "Git Basics",
+                    "Repositories",
+                    "Branches",
+                    "Merge & Collaboration",
+                    "GitHub"
+                ],
 
-            try {
+                "HTML & CSS": [
+                    "HTML Basics",
+                    "HTML Forms",
+                    "CSS Basics",
+                    "Layouts",
+                    "Responsive Design"
+                ],
 
-                if (
-                    window.firebase &&
-                    typeof window.firebase.auth === "function"
-                ) {
+                "JavaScript": [
+                    "JavaScript Basics",
+                    "Variables & Functions",
+                    "Arrays & Objects",
+                    "DOM",
+                    "Events"
+                ],
 
-                    const authUser = window.firebase.auth().currentUser;
+                "Communication": [
+                    "Communication Basics",
+                    "Self Introduction",
+                    "Speaking Skills",
+                    "Group Discussion",
+                    "Interview Communication"
+                ],
 
-                    if (authUser) {
-                        return authUser;
-                    }
-
-                }
-
-            } catch (error) {
-                console.log("Firebase user check:", error);
-            }
-
-            return null;
-        }
-
-
-        function getStoredUser() {
-
-            const possibleKeys = [
-                "fastTrackUser",
-                "currentUser",
-                "user",
-                "loggedInUser",
-                "authUser"
-            ];
-
-            for (const key of possibleKeys) {
-
-                try {
-
-                    const value = localStorage.getItem(key);
-
-                    if (!value) continue;
-
-                    const parsed = JSON.parse(value);
-
-                    if (parsed && typeof parsed === "object") {
-                        return parsed;
-                    }
-
-                } catch (error) {
-                    continue;
-                }
-
-            }
-
-            return null;
-        }
-
-
-        function detectCurrentUser() {
-
-            const firebaseUser = getFirebaseUser();
-
-            if (firebaseUser) {
-
-                currentUser = {
-                    uid:
-                        firebaseUser.uid ||
-                        firebaseUser.userId ||
-                        firebaseUser.id,
-
-                    displayName:
-                        firebaseUser.displayName ||
-                        "",
-
-                    email:
-                        firebaseUser.email ||
-                        ""
-                };
-
-                return currentUser;
-            }
-
-
-            const storedUser = getStoredUser();
-
-            if (storedUser) {
-
-                currentUser = {
-
-                    uid:
-                        storedUser.uid ||
-                        storedUser.userId ||
-                        storedUser.id ||
-                        storedUser.email ||
-                        "guest",
-
-                    displayName:
-                        storedUser.displayName ||
-                        storedUser.fullName ||
-                        storedUser.name ||
-                        "",
-
-                    email:
-                        storedUser.email ||
-                        ""
-
-                };
-
-                return currentUser;
-            }
-
-
-            /*
-             * Profile / Resume data can still identify the learner
-             * if the project doesn't expose a user object.
-             */
-
-            let profile = null;
-            let resume = null;
-
-            try {
-                profile =
-                    JSON.parse(
-                        localStorage.getItem("fastTrackProfile") || "null"
-                    );
-            } catch (e) {}
-
-            try {
-                resume =
-                    JSON.parse(
-                        localStorage.getItem("fastTrackResume") || "null"
-                    );
-            } catch (e) {}
-
-
-            const email =
-                profile?.email ||
-                resume?.email ||
-                "";
-
-            currentUser = {
-
-                /*
-                 * If there is no authentication UID, use email
-                 * as the account key instead of using a common
-                 * global progress key.
-                 */
-
-                uid:
-                    email ||
-                    "guest",
-
-                displayName:
-                    profile?.fullName ||
-                    resume?.fullName ||
-                    "",
-
-                email: email
+                "Data Structures": [
+                    "DSA Basics",
+                    "Arrays",
+                    "Linked Lists",
+                    "Stacks & Queues",
+                    "Searching & Sorting"
+                ]
 
             };
 
-            return currentUser;
+            return topics[subject].map((topic, index) => {
+
+                return {
+                    title: topic,
+                    description:
+                        `Learn ${topic} concepts and practical examples in ${subject}.`,
+                    video:
+                        "https://www.youtube.com/embed/rfscVS0vtbw",
+                    notes: `
+                        <ul>
+                            <li>Introduction to ${topic}.</li>
+                            <li>Important concepts of ${topic}.</li>
+                            <li>Practical examples.</li>
+                            <li>Common interview points.</li>
+                            <li>Practice and revision.</li>
+                        </ul>
+                    `,
+                    questions: [
+                        {
+                            q: `What is an important part of ${topic}?`,
+                            options: [
+                                "Understanding the concept",
+                                "Ignoring practice",
+                                "Avoiding examples",
+                                "Deleting notes"
+                            ],
+                            answer: 0
+                        },
+                        {
+                            q: `${subject} is mainly used for ______.`,
+                            options: [
+                                "Programming and technology tasks",
+                                "Only drawing",
+                                "Only gaming",
+                                "Only typing"
+                            ],
+                            answer: 0
+                        },
+                        {
+                            q: "Practice helps improve ______.",
+                            options: [
+                                "Understanding",
+                                "Confusion",
+                                "Errors",
+                                "Nothing"
+                            ],
+                            answer: 0
+                        },
+                        {
+                            q: "Which is useful while learning a technical subject?",
+                            options: [
+                                "Examples",
+                                "Avoiding practice",
+                                "Skipping concepts",
+                                "Ignoring errors"
+                            ],
+                            answer: 0
+                        },
+                        {
+                            q: "What should a learner do after learning a concept?",
+                            options: [
+                                "Practice it",
+                                "Forget it",
+                                "Skip it",
+                                "Delete it"
+                            ],
+                            answer: 0
+                        },
+                        {
+                            q: "Revision helps learners ______.",
+                            options: [
+                                "Remember concepts",
+                                "Remove knowledge",
+                                "Avoid learning",
+                                "Create errors"
+                            ],
+                            answer: 0
+                        },
+                        {
+                            q: "Which is important for technical learning?",
+                            options: [
+                                "Consistency",
+                                "Skipping lessons",
+                                "Avoiding practice",
+                                "Ignoring feedback"
+                            ],
+                            answer: 0
+                        },
+                        {
+                            q: "Examples are useful because they show ______.",
+                            options: [
+                                "Practical application",
+                                "Only theory",
+                                "Nothing",
+                                "Errors only"
+                            ],
+                            answer: 0
+                        },
+                        {
+                            q: "Learning should include both theory and ______.",
+                            options: [
+                                "Practice",
+                                "Skipping",
+                                "Guessing",
+                                "Ignoring"
+                            ],
+                            answer: 0
+                        },
+                        {
+                            q: "Completing modules helps track course ______.",
+                            options: [
+                                "Progress",
+                                "Errors",
+                                "Password",
+                                "Browser"
+                            ],
+                            answer: 0
+                        }
+                    ]
+                };
+
+            });
+
         }
 
 
-        function getCurrentUserId() {
+        /* =====================================================
+           STATE
+        ===================================================== */
 
-            detectCurrentUser();
+        let currentCourse = null;
+        let currentModuleIndex = 0;
 
-            let uid =
-                currentUser?.uid ||
-                currentUser?.email ||
-                "guest";
+        let watchSeconds = 0;
+        let watchInterval = null;
 
-            return String(uid);
-        }
-
-
-        function getStorageKey() {
-
-            const uid = getCurrentUserId();
-
-            const safeUid =
-                uid
-                    .replace(/[^a-zA-Z0-9_-]/g, "_")
-                    .slice(0, 100);
-
-            return `fastTrackCourseLessons_${safeUid}`;
-        }
+        const REQUIRED_SECONDS = 10 * 60;
+        const PASS_MARK = 6;
 
 
-        /* =========================================================
-           USER NAME
-        ========================================================= */
+        /* =====================================================
+           STORAGE
+        ===================================================== */
 
-        function getLearnerName() {
+        function getCourseProgress(courseId) {
 
-            const firebaseUser = getFirebaseUser();
+            const saved = localStorage.getItem(
+                "fasttrack_course_" + courseId
+            );
 
-            if (
-                firebaseUser &&
-                firebaseUser.displayName &&
-                firebaseUser.displayName.trim()
-            ) {
-
-                return firebaseUser.displayName.trim();
-
+            if (saved) {
+                return JSON.parse(saved);
             }
-
-
-            const storedUser = getStoredUser();
-
-            if (storedUser) {
-
-                const storedName =
-                    storedUser.displayName ||
-                    storedUser.fullName ||
-                    storedUser.name ||
-                    storedUser.username;
-
-                if (
-                    storedName &&
-                    String(storedName).trim()
-                ) {
-
-                    return String(storedName).trim();
-
-                }
-
-            }
-
-
-            try {
-
-                const profile =
-                    JSON.parse(
-                        localStorage.getItem("fastTrackProfile") || "null"
-                    );
-
-                if (
-                    profile &&
-                    profile.fullName &&
-                    profile.fullName.trim()
-                ) {
-
-                    return profile.fullName.trim();
-
-                }
-
-            } catch (e) {}
-
-
-            try {
-
-                const resume =
-                    JSON.parse(
-                        localStorage.getItem("fastTrackResume") || "null"
-                    );
-
-                if (
-                    resume &&
-                    resume.fullName &&
-                    resume.fullName.trim()
-                ) {
-
-                    return resume.fullName.trim();
-
-                }
-
-            } catch (e) {}
-
-
-            const user = currentUser || detectCurrentUser();
-
-            if (
-                user &&
-                user.email &&
-                user.email.includes("@")
-            ) {
-
-                const emailName =
-                    user.email
-                        .split("@")[0]
-                        .replace(/[._-]+/g, " ")
-                        .replace(/\b\w/g, char =>
-                            char.toUpperCase()
-                        );
-
-                if (emailName.trim()) {
-                    return emailName.trim();
-                }
-
-            }
-
-
-            return "FAST-TRACK Learner";
-        }
-
-
-        /* =========================================================
-           PROGRESS STORAGE
-        ========================================================= */
-
-        function createEmptyState() {
 
             return {
-                completedLessons: [],
-                quizPassed: false,
-                quizScore: 0,
-                certificateUnlocked: false,
-                certificateId: ""
+                modules: [false, false, false, false, false],
+                quizzes: [false, false, false, false, false],
+                watch: [0, 0, 0, 0, 0]
             };
-
         }
 
 
-        function loadAllProgress() {
-
-            const key = getStorageKey();
-
-            try {
-
-                const saved =
-                    JSON.parse(
-                        localStorage.getItem(key) || "{}"
-                    );
-
-                return saved && typeof saved === "object"
-                    ? saved
-                    : {};
-
-            } catch (error) {
-
-                return {};
-
-            }
-
-        }
-
-
-        function saveAllProgress(allProgress) {
-
-            const key = getStorageKey();
+        function saveCourseProgress(courseId, data) {
 
             localStorage.setItem(
-                key,
-                JSON.stringify(allProgress)
+                "fasttrack_course_" + courseId,
+                JSON.stringify(data)
             );
 
         }
 
 
-        function getCourseState(courseId) {
-
-            const allProgress = loadAllProgress();
-
-            if (
-                !allProgress[courseId] ||
-                typeof allProgress[courseId] !== "object"
-            ) {
-
-                allProgress[courseId] =
-                    createEmptyState();
-
-                saveAllProgress(allProgress);
-
-            }
-
-
-            const state = allProgress[courseId];
-
-            if (!Array.isArray(state.completedLessons)) {
-                state.completedLessons = [];
-            }
-
-            if (typeof state.quizPassed !== "boolean") {
-                state.quizPassed = false;
-            }
-
-            if (typeof state.quizScore !== "number") {
-                state.quizScore = 0;
-            }
-
-            if (typeof state.certificateUnlocked !== "boolean") {
-                state.certificateUnlocked = false;
-            }
-
-            if (typeof state.certificateId !== "string") {
-                state.certificateId = "";
-            }
-
-            return state;
-        }
-
-
-        function saveCourseState(courseId, state) {
-
-            const allProgress = loadAllProgress();
-
-            allProgress[courseId] = state;
-
-            saveAllProgress(allProgress);
-
-        }
-
-
-        /* =========================================================
-           UNIQUE CERTIFICATE ID
-        ========================================================= */
-
-        function generateCertificateId(courseId) {
-
-            const uid =
-                getCurrentUserId();
-
-            const userPart =
-                String(uid)
-                    .replace(/[^a-zA-Z0-9]/g, "")
-                    .slice(-8)
-                    .toUpperCase() || "GUEST";
-
-
-            const coursePart =
-                String(courseId)
-                    .replace(/[^a-zA-Z0-9]/g, "")
-                    .slice(0, 10)
-                    .toUpperCase();
-
-
-            /*
-             * Date + random value makes the ID unique.
-             */
-
-            const timePart =
-                Date.now()
-                    .toString(36)
-                    .toUpperCase();
-
-
-            const randomPart =
-                Math.random()
-                    .toString(36)
-                    .substring(2, 7)
-                    .toUpperCase();
-
-
-            return `FT-${coursePart}-${userPart}-${timePart}${randomPart}`;
-        }
-
-
-        /* =========================================================
-           CERTIFICATE UNLOCK
-        ========================================================= */
-
-        function checkCertificateUnlock(course) {
-
-            const state =
-                getCourseState(course.id);
-
-            const allLessonsCompleted =
-                state.completedLessons.length ===
-                course.lessons.length;
-
-
-            if (
-                allLessonsCompleted &&
-                state.quizPassed
-            ) {
-
-                state.certificateUnlocked = true;
-
-
-                /*
-                 * Generate ID ONLY if there isn't one already.
-                 *
-                 * This means the ID doesn't change every refresh.
-                 */
-
-                if (!state.certificateId) {
-
-                    state.certificateId =
-                        generateCertificateId(course.id);
-
-                }
-
-                saveCourseState(
-                    course.id,
-                    state
-                );
-
-                return true;
-            }
-
-
-            state.certificateUnlocked = false;
-
-            saveCourseState(
-                course.id,
-                state
-            );
-
-            return false;
-        }
-
-
-        /* =========================================================
-           COURSE PROGRESS
-        ========================================================= */
-
-        function getCourseProgress(course) {
-
-            const state =
-                getCourseState(course.id);
-
-            const total =
-                course.lessons.length;
-
-            const completed =
-                state.completedLessons.length;
-
-            if (!total) return 0;
-
-            return Math.round(
-                (completed / total) * 100
-            );
-
-        }
-
-
-        function isCourseCompleted(course) {
-
-            const state =
-                getCourseState(course.id);
-
-            return (
-                state.completedLessons.length ===
-                course.lessons.length &&
-                state.quizPassed
-            );
-
-        }
-
-
-        /* =========================================================
-           RENDER COURSES
-        ========================================================= */
+        /* =====================================================
+           COURSE CARDS
+        ===================================================== */
 
         function renderCourses() {
 
-            const grid =
-                document.getElementById("courseGrid");
-
-            const empty =
-                document.getElementById("emptyState");
+            const grid = document.getElementById("courseGrid");
 
             const search =
                 document
-                    .getElementById("courseSearch")
+                    .getElementById("searchInput")
                     .value
-                    .toLowerCase()
-                    .trim();
+                    .toLowerCase();
 
             const category =
                 document.getElementById("categoryFilter").value;
 
-
-            const filtered =
-                courses.filter(course => {
-
-                    const matchesSearch =
-                        !search ||
-                        course.title
-                            .toLowerCase()
-                            .includes(search) ||
-                        course.description
-                            .toLowerCase()
-                            .includes(search) ||
-                        course.tags.some(tag =>
-                            tag.toLowerCase().includes(search)
-                        );
-
-                    const matchesCategory =
-                        category === "all" ||
-                        course.category === category;
-
-                    return (
-                        matchesSearch &&
-                        matchesCategory
-                    );
-
-                });
-
-
             grid.innerHTML = "";
 
+            courses.forEach(course => {
 
-            if (!filtered.length) {
+                if (
+                    !course.name
+                        .toLowerCase()
+                        .includes(search)
+                ) {
+                    return;
+                }
 
-                empty.style.display = "block";
+                if (
+                    category !== "all" &&
+                    course.category !== category
+                ) {
+                    return;
+                }
 
-                updateHeroStats();
+                const progress = getCourseProgress(course.id);
 
-                return;
+                const completedModules =
+                    progress.modules.filter(Boolean).length;
 
-            }
+                const percentage =
+                    Math.round(
+                        completedModules /
+                        course.modules.length *
+                        100
+                    );
 
+                const certificateUnlocked =
+                    completedModules === course.modules.length &&
+                    progress.quizzes.every(Boolean);
 
-            empty.style.display = "none";
-
-
-            filtered.forEach(course => {
-
-                checkCertificateUnlock(course);
-
-                const state =
-                    getCourseState(course.id);
-
-                const progress =
-                    getCourseProgress(course);
-
-                const completed =
-                    isCourseCompleted(course);
-
-
-                const card =
-                    document.createElement("article");
+                const card = document.createElement("div");
 
                 card.className = "course-card";
-
-
-                const certificateButton =
-                    completed
-
-                    ?
-
-                    `
-                    <button
-                        class="certificate-btn"
-                        onclick="openCertificate('${course.id}')">
-                        🏆 Certificate
-                    </button>
-                    `
-
-                    :
-
-                    `
-                    <button
-                        class="certificate-btn certificate-locked"
-                        disabled>
-                        🔒 Locked
-                    </button>
-                    `;
-
 
                 card.innerHTML = `
 
@@ -3478,70 +2011,47 @@
                         </div>
 
                         <div class="level">
-                            ${escapeHTML(course.level)}
+                            ${course.level}
                         </div>
 
                     </div>
 
-
-                    <h3>
-                        ${escapeHTML(course.title)}
-                    </h3>
-
+                    <h3>${course.name}</h3>
 
                     <p class="course-description">
-                        ${escapeHTML(course.description)}
+                        ${course.description}
                     </p>
 
-
                     <div class="course-meta">
-
-                        <span>
-                            ⏱ ${escapeHTML(course.duration)}
-                        </span>
-
-                        <span>
-                            📚 ${course.lessons.length} Lessons
-                        </span>
-
-                        <span>
-                            📝 ${course.quiz.length} Questions
-                        </span>
-
+                        <span>📚 5 Modules</span>
+                        <span>📝 50 Questions</span>
+                        <span>🎓 Certificate</span>
                     </div>
-
 
                     <div class="tags">
-
-                        ${course.tags.map(tag => `
-                            <span class="tag">
-                                ${escapeHTML(tag)}
-                            </span>
-                        `).join("")}
-
+                        <span class="tag">${course.name}</span>
+                        <span class="tag">Learning</span>
+                        <span class="tag">Certification</span>
                     </div>
-
 
                     <div class="progress-info">
 
                         <span>Progress</span>
 
                         <strong>
-                            ${progress}%
+                            ${percentage}%
                         </strong>
 
                     </div>
-
 
                     <div class="progress-bar">
 
                         <div
                             class="progress-fill"
-                            style="width:${progress}%">
+                            style="width:${percentage}%">
                         </div>
 
                     </div>
-
 
                     <div class="course-actions">
 
@@ -3549,916 +2059,688 @@
                             class="primary-btn"
                             onclick="openCourse('${course.id}')">
 
-                            ${
-                                progress > 0 && progress < 100
-                                ? "Continue"
-                                : progress === 100
-                                ? "Review Course"
-                                : "Start Course"
-                            }
+                            ${percentage > 0
+                                ? "Continue Learning"
+                                : "Start Learning"}
 
                         </button>
 
-                        ${certificateButton}
+                        ${
+                            certificateUnlocked
+                            ?
+                            `<button
+                                class="certificate-btn"
+                                onclick="openCertificate('${course.name}')">
+                                🎓 Certificate
+                            </button>`
+                            :
+                            `<button
+                                class="certificate-locked"
+                                disabled>
+                                🔒 Locked
+                            </button>`
+                        }
 
                     </div>
-
                 `;
-
 
                 grid.appendChild(card);
 
             });
 
-
-            updateHeroStats();
-
         }
 
 
-        /* =========================================================
-           HERO STATS
-        ========================================================= */
-
-        function updateHeroStats() {
-
-            let completedCount = 0;
-            let certificateCount = 0;
-            let totalProgress = 0;
-
-
-            courses.forEach(course => {
-
-                const progress =
-                    getCourseProgress(course);
-
-                totalProgress += progress;
-
-                if (isCourseCompleted(course)) {
-                    completedCount++;
-                }
-
-                const state =
-                    getCourseState(course.id);
-
-                if (
-                    state.certificateUnlocked &&
-                    state.certificateId
-                ) {
-
-                    certificateCount++;
-
-                }
-
-            });
-
-
-            const average =
-                courses.length
-                    ? Math.round(
-                        totalProgress /
-                        courses.length
-                    )
-                    : 0;
-
-
-            document.getElementById(
-                "totalCourses"
-            ).textContent = courses.length;
-
-
-            document.getElementById(
-                "completedCourses"
-            ).textContent = completedCount;
-
-
-            document.getElementById(
-                "earnedCertificates"
-            ).textContent = certificateCount;
-
-
-            document.getElementById(
-                "learningProgress"
-            ).textContent = average + "%";
-
-        }
-
-
-        /* =========================================================
+        /* =====================================================
            OPEN COURSE
-        ========================================================= */
+        ===================================================== */
 
         function openCourse(courseId) {
 
-            const course =
+            currentCourse =
                 courses.find(
-                    item => item.id === courseId
+                    course => course.id === courseId
                 );
 
-            if (!course) return;
+            currentModuleIndex = 0;
 
-
-            currentCourseId = courseId;
-
-
-            const state =
-                getCourseState(courseId);
-
-
-            /*
-             * Open first incomplete lesson.
-             */
+            const progress =
+                getCourseProgress(courseId);
 
             const firstIncomplete =
-                course.lessons.findIndex(
-                    (_, index) =>
-                        !state.completedLessons.includes(index)
+                progress.modules.findIndex(
+                    value => !value
                 );
 
+            if (firstIncomplete !== -1) {
+                currentModuleIndex = firstIncomplete;
+            }
 
-            currentLessonIndex =
-                firstIncomplete >= 0
-                    ? firstIncomplete
-                    : 0;
+            document
+                .getElementById("learningModal")
+                .classList.add("show");
 
+            renderModuleList();
 
-            document.getElementById(
-                "learningCourseTitle"
-            ).textContent = course.title;
-
-
-            document.getElementById(
-                "learningCourseSubtitle"
-            ).textContent =
-                `${course.lessons.length} lessons • ${course.duration}`;
-
-
-            renderLessonList();
-
-            loadLesson();
-
-            updateModalProgress();
-
-
-            document.getElementById(
-                "learningModal"
-            ).classList.add("show");
+            loadModule();
 
         }
 
 
-        /* =========================================================
-           LOAD LESSON
-        ========================================================= */
+        /* =====================================================
+           MODULE LIST
+        ===================================================== */
 
-        function loadLesson() {
+        function renderModuleList() {
 
-            const course =
-                courses.find(
-                    item => item.id === currentCourseId
+            const list =
+                document.getElementById("moduleList");
+
+            const progress =
+                getCourseProgress(
+                    currentCourse.id
                 );
 
-            if (!course) return;
+            list.innerHTML = "";
+
+            currentCourse.modules.forEach(
+                (module, index) => {
+
+                    const item =
+                        document.createElement("button");
+
+                    item.className =
+                        "lesson-item";
+
+                    if (
+                        index ===
+                        currentModuleIndex
+                    ) {
+                        item.classList.add("active");
+                    }
+
+                    if (
+                        progress.modules[index] &&
+                        progress.quizzes[index]
+                    ) {
+                        item.classList.add("completed");
+                    }
+
+                    item.innerHTML = `
+
+                        <span class="lesson-number">
+                            ${progress.modules[index] &&
+                            progress.quizzes[index]
+                                ? "✓"
+                                : index + 1}
+                        </span>
+
+                        <span class="lesson-name">
+                            ${module.title}
+                        </span>
+                    `;
+
+                    item.onclick = () => {
+
+                        currentModuleIndex = index;
+
+                        loadModule();
+
+                        renderModuleList();
+
+                    };
+
+                    list.appendChild(item);
+
+                }
+            );
+
+            updateCourseProgress();
+
+        }
 
 
-            const lesson =
-                course.lessons[currentLessonIndex];
+        /* =====================================================
+           LOAD MODULE
+        ===================================================== */
 
-            if (!lesson) return;
+        function loadModule() {
 
+            const module =
+                currentCourse.modules[
+                    currentModuleIndex
+                ];
+
+            const progress =
+                getCourseProgress(
+                    currentCourse.id
+                );
 
             document.getElementById(
-                "lessonVideo"
-            ).src = lesson.video;
+                "modalTitle"
+            ).textContent =
+                currentCourse.name;
 
+            document.getElementById(
+                "modalSubtitle"
+            ).textContent =
+                `Module ${currentModuleIndex + 1} of 5`;
 
             document.getElementById(
                 "lessonTitle"
-            ).textContent = lesson.title;
-
+            ).textContent =
+                module.title;
 
             document.getElementById(
                 "lessonDescription"
             ).textContent =
-                lesson.description;
+                module.description;
 
+            document.getElementById(
+                "notesContent"
+            ).innerHTML =
+                module.notes;
 
-            const notes =
+            document.getElementById(
+                "youtubeFrame"
+            ).src =
+                module.video;
+
+            watchSeconds =
+                progress.watch[
+                    currentModuleIndex
+                ] || 0;
+
+            updateWatchUI();
+
+            startWatchTimer();
+
+            const moduleCompleted =
+                progress.modules[
+                    currentModuleIndex
+                ];
+
+            const quizCompleted =
+                progress.quizzes[
+                    currentModuleIndex
+                ];
+
+            const completeBtn =
                 document.getElementById(
-                    "lessonNotes"
+                    "completeBtn"
                 );
 
-
-            notes.innerHTML = `
-                <ul>
-                    ${lesson.notes.map(note => `
-                        <li>
-                            ${escapeHTML(note)}
-                        </li>
-                    `).join("")}
-                </ul>
-            `;
-
-
-            const state =
-                getCourseState(currentCourseId);
-
-
-            const completeButton =
+            const quizBtn =
                 document.getElementById(
-                    "completeLessonBtn"
+                    "quizBtn"
                 );
 
+            if (moduleCompleted) {
 
-            if (
-                state.completedLessons
-                    .includes(currentLessonIndex)
-            ) {
+                completeBtn.textContent =
+                    "✓ Module Completed";
 
-                completeButton.textContent =
-                    "✓ Lesson Completed";
-
-                completeButton.classList.add(
+                completeBtn.classList.add(
                     "completed"
                 );
 
             } else {
 
-                completeButton.textContent =
-                    "✓ Mark Lesson Complete";
+                completeBtn.textContent =
+                    "Complete Module";
 
-                completeButton.classList.remove(
+                completeBtn.classList.remove(
                     "completed"
                 );
 
             }
 
+            quizBtn.disabled =
+                !moduleCompleted;
 
-            renderLessonList();
+            if (quizCompleted) {
 
-            updateModalProgress();
-
-        }
-
-
-        /* =========================================================
-           LESSON LIST
-        ========================================================= */
-
-        function renderLessonList() {
-
-            const course =
-                courses.find(
-                    item => item.id === currentCourseId
-                );
-
-            if (!course) return;
-
-
-            const state =
-                getCourseState(currentCourseId);
-
-
-            const list =
-                document.getElementById(
-                    "lessonList"
-                );
-
-
-            list.innerHTML = "";
-
-
-            course.lessons.forEach(
-                (lesson, index) => {
-
-                    const button =
-                        document.createElement("button");
-
-                    button.className =
-                        "lesson-item";
-
-
-                    if (
-                        index ===
-                        currentLessonIndex
-                    ) {
-
-                        button.classList.add(
-                            "active"
-                        );
-
-                    }
-
-
-                    if (
-                        state.completedLessons
-                            .includes(index)
-                    ) {
-
-                        button.classList.add(
-                            "completed"
-                        );
-
-                    }
-
-
-                    button.innerHTML = `
-
-                        <span class="lesson-number">
-
-                            ${
-                                state.completedLessons
-                                    .includes(index)
-                                    ? "✓"
-                                    : index + 1
-                            }
-
-                        </span>
-
-                        <span class="lesson-name">
-                            ${escapeHTML(lesson.title)}
-                        </span>
-
-                    `;
-
-
-                    button.onclick = () => {
-
-                        currentLessonIndex =
-                            index;
-
-                        loadLesson();
-
-                    };
-
-
-                    list.appendChild(button);
-
-                }
-            );
-
-        }
-
-
-        /* =========================================================
-           COMPLETE LESSON
-        ========================================================= */
-
-        function completeCurrentLesson() {
-
-            const course =
-                courses.find(
-                    item => item.id === currentCourseId
-                );
-
-            if (!course) return;
-
-
-            const state =
-                getCourseState(currentCourseId);
-
-
-            if (
-                !state.completedLessons
-                    .includes(currentLessonIndex)
-            ) {
-
-                state.completedLessons.push(
-                    currentLessonIndex
-                );
-
-                state.completedLessons.sort(
-                    (a, b) => a - b
-                );
-
-                saveCourseState(
-                    currentCourseId,
-                    state
-                );
-
-                showToast(
-                    "Lesson completed successfully! 🎉",
-                    "success"
-                );
-
-            }
-
-
-            /*
-             * Check whether all lessons + quiz
-             * have been completed.
-             */
-
-            checkCertificateUnlock(course);
-
-
-            loadLesson();
-
-            renderCourses();
-
-
-            /*
-             * Automatically move to next lesson.
-             */
-
-            if (
-                currentLessonIndex <
-                course.lessons.length - 1
-            ) {
-
-                setTimeout(() => {
-
-                    currentLessonIndex++;
-
-                    loadLesson();
-
-                }, 500);
+                quizBtn.textContent =
+                    "✓ Quiz Passed";
 
             } else {
 
-                showToast(
-                    "All lessons completed! Now complete the final quiz. 📝",
-                    "success"
-                );
+                quizBtn.textContent =
+                    "📝 Take Quiz";
 
             }
+
+            updateCourseProgress();
 
         }
 
 
-        /* =========================================================
-           MODAL PROGRESS
-        ========================================================= */
+        /* =====================================================
+           WATCH TIMER
+        ===================================================== */
 
-        function updateModalProgress() {
+        function startWatchTimer() {
 
-            const course =
-                courses.find(
-                    item => item.id === currentCourseId
-                );
+            clearInterval(watchInterval);
 
-            if (!course) return;
+            watchInterval =
+                setInterval(() => {
 
+                    if (
+                        watchSeconds <
+                        REQUIRED_SECONDS
+                    ) {
+
+                        watchSeconds++;
+
+                        saveWatchProgress();
+
+                        updateWatchUI();
+
+                    }
+
+                }, 1000);
+
+        }
+
+
+        function saveWatchProgress() {
 
             const progress =
-                getCourseProgress(course);
-
-
-            document.getElementById(
-                "modalProgressText"
-            ).textContent =
-                progress + "%";
-
-
-            document.getElementById(
-                "modalProgressBar"
-            ).style.width =
-                progress + "%";
-
-        }
-
-
-        /* =========================================================
-           QUIZ
-        ========================================================= */
-
-        function openQuizFromLearning() {
-
-            if (!currentCourseId) return;
-
-            openQuiz(currentCourseId);
-
-        }
-
-
-        function openQuiz(courseId) {
-
-            const course =
-                courses.find(
-                    item => item.id === courseId
+                getCourseProgress(
+                    currentCourse.id
                 );
 
-            if (!course) return;
+            progress.watch[
+                currentModuleIndex
+            ] = watchSeconds;
 
-
-            currentCourseId = courseId;
-
-
-            const state =
-                getCourseState(courseId);
-
-
-            document.getElementById(
-                "quizCourseName"
-            ).textContent =
-                `${course.title} • Pass mark: 7 / 10`;
-
-
-            const result =
-                document.getElementById(
-                    "quizResult"
-                );
-
-            result.className =
-                "quiz-result";
-
-            result.innerHTML = "";
-
-
-            const questionsContainer =
-                document.getElementById(
-                    "quizQuestions"
-                );
-
-
-            questionsContainer.innerHTML = "";
-
-
-            course.quiz.forEach(
-                (question, index) => {
-
-                    const questionDiv =
-                        document.createElement("div");
-
-                    questionDiv.className =
-                        "question";
-
-
-                    questionDiv.innerHTML = `
-
-                        <h4>
-                            ${index + 1}.
-                            ${escapeHTML(question.q)}
-                        </h4>
-
-                        <div class="options">
-
-                            ${question.options.map(
-                                (option, optionIndex) => `
-
-                                <div class="option">
-
-                                    <input
-                                        type="radio"
-                                        id="q${index}_${optionIndex}"
-                                        name="question${index}"
-                                        value="${optionIndex}">
-
-                                    <label
-                                        for="q${index}_${optionIndex}">
-                                        ${escapeHTML(option)}
-                                    </label>
-
-                                </div>
-
-                            `).join("")}
-
-                        </div>
-
-                    `;
-
-
-                    questionsContainer.appendChild(
-                        questionDiv
-                    );
-
-                }
+            saveCourseProgress(
+                currentCourse.id,
+                progress
             );
 
+        }
 
-            /*
-             * If already passed, show previous score
-             * but still allow retry.
-             */
 
-            if (state.quizPassed) {
+        function updateWatchUI() {
 
-                result.className =
-                    "quiz-result success";
+            const minutes =
+                Math.floor(
+                    watchSeconds / 60
+                );
 
-                result.innerHTML = `
-
-                    <h3>✅ Quiz Already Passed</h3>
-
-                    <p>
-                        Previous score:
-                        <strong>
-                            ${state.quizScore}/10
-                        </strong>
-                    </p>
-
-                `;
-
-            }
-
+            const seconds =
+                watchSeconds % 60;
 
             document.getElementById(
-                "quizModal"
-            ).classList.add("show");
+                "watchTimer"
+            ).textContent =
+                `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")} / 10:00`;
+
+            const percentage =
+                Math.min(
+                    watchSeconds /
+                    REQUIRED_SECONDS *
+                    100,
+                    100
+                );
+
+            document.getElementById(
+                "watchFill"
+            ).style.width =
+                percentage + "%";
+
+            const completeBtn =
+                document.getElementById(
+                    "completeBtn"
+                );
+
+            if (
+                watchSeconds >=
+                REQUIRED_SECONDS
+            ) {
+
+                completeBtn.disabled = false;
+
+            } else {
+
+                completeBtn.disabled = true;
+
+            }
 
         }
 
 
-        document.getElementById(
-            "quizForm"
-        ).addEventListener(
-            "submit",
-            function(event) {
-
-                event.preventDefault();
-
-
-                const course =
-                    courses.find(
-                        item => item.id === currentCourseId
-                    );
-
-                if (!course) return;
-
-
-                let score = 0;
-
-
-                course.quiz.forEach(
-                    (question, index) => {
-
-                        const selected =
-                            document.querySelector(
-                                `input[name="question${index}"]:checked`
-                            );
-
-
-                        if (
-                            selected &&
-                            Number(selected.value) ===
-                            question.answer
-                        ) {
-
-                            score++;
-
-                        }
-
-                    }
-                );
-
-
-                const state =
-                    getCourseState(currentCourseId);
-
-
-                state.quizScore = score;
-
-                state.quizPassed =
-                    score >= 7;
-
-
-                saveCourseState(
-                    currentCourseId,
-                    state
-                );
-
-
-                const allLessonsCompleted =
-                    state.completedLessons.length ===
-                    course.lessons.length;
-
-
-                const result =
-                    document.getElementById(
-                        "quizResult"
-                    );
-
-
-                if (state.quizPassed) {
-
-                    result.className =
-                        "quiz-result success";
-
-
-                    if (allLessonsCompleted) {
-
-                        checkCertificateUnlock(
-                            course
-                        );
-
-
-                        result.innerHTML = `
-
-                            <h3>
-                                🎉 Quiz Passed!
-                            </h3>
-
-                            <p>
-                                Your score is
-                                <strong>
-                                    ${score}/10
-                                </strong>.
-                                All lessons are complete,
-                                so your certificate is now unlocked! 🏆
-                            </p>
-
-                        `;
-
-                    } else {
-
-                        result.innerHTML = `
-
-                            <h3>
-                                🎉 Quiz Passed!
-                            </h3>
-
-                            <p>
-                                Your score is
-                                <strong>
-                                    ${score}/10
-                                </strong>.
-                                Complete all lessons to unlock your certificate.
-                            </p>
-
-                        `;
-
-                    }
-
-
-                    renderCourses();
-
-
-                    setTimeout(() => {
-
-                        closeQuizModal();
-
-                    }, 1500);
-
-
-                } else {
-
-                    result.className =
-                        "quiz-result fail";
-
-
-                    result.innerHTML = `
-
-                        <h3>
-                            ❌ Quiz Not Passed
-                        </h3>
-
-                        <p>
-                            Your score is
-                            <strong>
-                                ${score}/10
-                            </strong>.
-                            You need at least 7 correct answers.
-                            Please try again.
-                        </p>
-
-                    `;
-
-
-                    renderCourses();
-
-                }
-
-            }
-        );
-
-
-        /* =========================================================
-           CERTIFICATE
-        ========================================================= */
-
-        function openCertificate(courseId) {
-
-            const course =
-                courses.find(
-                    item => item.id === courseId
-                );
-
-            if (!course) return;
-
-
-            const state =
-                getCourseState(courseId);
-
-
-            /*
-             * Never show certificate unless
-             * ALL lessons + quiz are complete.
-             */
-
-            const unlocked =
-                checkCertificateUnlock(course);
-
+        /* =====================================================
+           COMPLETE MODULE
+        ===================================================== */
+
+        function completeModule() {
 
             if (
-                !unlocked ||
-                !state.certificateUnlocked ||
-                !state.certificateId
+                watchSeconds <
+                REQUIRED_SECONDS
             ) {
 
                 showToast(
-                    "Certificate is locked. Complete all lessons and pass the quiz first.",
-                    "error"
+                    "Please complete the 10-minute watch requirement."
                 );
 
                 return;
 
             }
 
-
-            const learnerName =
-                getLearnerName();
-
-
-            document.getElementById(
-                "certificateName"
-            ).textContent =
-                learnerName;
-
-
-            document.getElementById(
-                "certificateNameText"
-            ).textContent =
-                learnerName;
-
-
-            document.getElementById(
-                "certificateCourse"
-            ).textContent =
-                course.title;
-
-
-            const date =
-                new Date().toLocaleDateString(
-                    "en-IN",
-                    {
-                        day: "2-digit",
-                        month: "long",
-                        year: "numeric"
-                    }
+            const progress =
+                getCourseProgress(
+                    currentCourse.id
                 );
 
+            progress.modules[
+                currentModuleIndex
+            ] = true;
+
+            saveCourseProgress(
+                currentCourse.id,
+                progress
+            );
 
             document.getElementById(
-                "certificateDate"
+                "quizBtn"
+            ).disabled = false;
+
+            document.getElementById(
+                "completeBtn"
             ).textContent =
-                date;
-
-
-            /*
-             * IMPORTANT:
-             *
-             * This is NOT hardcoded.
-             *
-             * Each user's saved course state
-             * has its own certificateId.
-             */
+                "✓ Module Completed";
 
             document.getElementById(
-                "certificateId"
+                "completeBtn"
+            ).classList.add(
+                "completed"
+            );
+
+            renderModuleList();
+
+            showToast(
+                "Module completed! Quiz unlocked."
+            );
+
+        }
+
+
+        /* =====================================================
+           QUIZ
+        ===================================================== */
+
+        function openQuiz() {
+
+            const progress =
+                getCourseProgress(
+                    currentCourse.id
+                );
+
+            if (
+                !progress.modules[
+                    currentModuleIndex
+                ]
+            ) {
+
+                showToast(
+                    "Complete the module first."
+                );
+
+                return;
+
+            }
+
+            const module =
+                currentCourse.modules[
+                    currentModuleIndex
+                ];
+
+            document.getElementById(
+                "quizTitle"
             ).textContent =
-                state.certificateId;
+                `${currentCourse.name} - ${module.title} Quiz`;
 
+            const form =
+                document.getElementById(
+                    "quizForm"
+                );
+
+            form.innerHTML = "";
+
+            module.questions.forEach(
+                (question, index) => {
+
+                    const questionBox =
+                        document.createElement(
+                            "div"
+                        );
+
+                    questionBox.className =
+                        "question";
+
+                    let optionsHTML = "";
+
+                    question.options.forEach(
+                        (option, optionIndex) => {
+
+                            optionsHTML += `
+
+                                <div class="option">
+
+                                    <input
+                                        type="radio"
+                                        name="q${index}"
+                                        id="q${index}_${optionIndex}"
+                                        value="${optionIndex}">
+
+                                    <label
+                                        for="q${index}_${optionIndex}">
+                                        ${option}
+                                    </label>
+
+                                </div>
+
+                            `;
+
+                        }
+                    );
+
+                    questionBox.innerHTML = `
+
+                        <h4>
+                            ${index + 1}. ${question.q}
+                        </h4>
+
+                        <div class="options">
+                            ${optionsHTML}
+                        </div>
+                    `;
+
+                    form.appendChild(
+                        questionBox
+                    );
+
+                }
+            );
 
             document.getElementById(
-                "certificateModal"
+                "quizModal"
             ).classList.add("show");
 
         }
 
 
-        function downloadCertificate() {
+        /* =====================================================
+           SUBMIT QUIZ
+        ===================================================== */
 
-            window.print();
+        function submitQuiz() {
+
+            const module =
+                currentCourse.modules[
+                    currentModuleIndex
+                ];
+
+            let score = 0;
+
+            for (
+                let i = 0;
+                i < module.questions.length;
+                i++
+            ) {
+
+                const selected =
+                    document.querySelector(
+                        `input[name="q${i}"]:checked`
+                    );
+
+                if (!selected) {
+
+                    showToast(
+                        `Please answer Question ${i + 1}.`
+                    );
+
+                    return;
+
+                }
+
+                if (
+                    Number(selected.value) ===
+                    module.questions[i].answer
+                ) {
+
+                    score++;
+
+                }
+
+            }
+
+            const progress =
+                getCourseProgress(
+                    currentCourse.id
+                );
+
+            if (score >= PASS_MARK) {
+
+                progress.quizzes[
+                    currentModuleIndex
+                ] = true;
+
+                saveCourseProgress(
+                    currentCourse.id,
+                    progress
+                );
+
+                closeQuiz();
+
+                renderModuleList();
+
+                showToast(
+                    `Quiz passed! Score: ${score}/10`
+                );
+
+                if (
+                    progress.modules.every(Boolean) &&
+                    progress.quizzes.every(Boolean)
+                ) {
+
+                    setTimeout(() => {
+
+                        showToast(
+                            "🎓 Course completed! Certificate unlocked."
+                        );
+
+                    }, 1000);
+
+                }
+
+            } else {
+
+                showToast(
+                    `Quiz failed: ${score}/10. You need at least 6/10.`
+                );
+
+            }
 
         }
 
 
-        /* =========================================================
-           CLOSE MODALS
-        ========================================================= */
+        /* =====================================================
+           COURSE PROGRESS
+        ===================================================== */
 
-        function closeLearningModal() {
+        function updateCourseProgress() {
 
-            const modal =
-                document.getElementById(
-                    "learningModal"
+            if (!currentCourse) return;
+
+            const progress =
+                getCourseProgress(
+                    currentCourse.id
                 );
 
+            let completed = 0;
 
-            const iframe =
-                document.getElementById(
-                    "lessonVideo"
+            for (
+                let i = 0;
+                i < 5;
+                i++
+            ) {
+
+                if (
+                    progress.modules[i] &&
+                    progress.quizzes[i]
+                ) {
+
+                    completed++;
+
+                }
+
+            }
+
+            const percentage =
+                Math.round(
+                    completed / 5 * 100
                 );
 
+            document.getElementById(
+                "sideProgressText"
+            ).textContent =
+                percentage + "%";
 
-            iframe.src = "";
-
-            modal.classList.remove("show");
+            document.getElementById(
+                "sideProgressFill"
+            ).style.width =
+                percentage + "%";
 
         }
 
 
-        function closeQuizModal() {
+        /* =====================================================
+           CLOSE WINDOWS
+        ===================================================== */
+
+        function closeLearning() {
+
+            clearInterval(watchInterval);
+
+            document.getElementById(
+                "learningModal"
+            ).classList.remove("show");
+
+            document.getElementById(
+                "youtubeFrame"
+            ).src = "";
+
+            renderCourses();
+
+        }
+
+
+        function closeQuiz() {
 
             document.getElementById(
                 "quizModal"
@@ -4467,287 +2749,73 @@
         }
 
 
-        function closeCertificateModal() {
+        /* =====================================================
+           CERTIFICATE
+        ===================================================== */
 
-            document.getElementById(
-                "certificateModal"
-            ).classList.remove("show");
+        function openCertificate(courseName) {
+
+            localStorage.setItem(
+                "fasttrack_certificate_course",
+                courseName
+            );
+
+            window.location.href =
+                "certificate.html";
 
         }
 
 
-        /* =========================================================
-           OUTSIDE CLICK
-        ========================================================= */
-
-        document
-            .getElementById("learningModal")
-            .addEventListener(
-                "click",
-                function(event) {
-
-                    if (
-                        event.target === this
-                    ) {
-
-                        closeLearningModal();
-
-                    }
-
-                }
-            );
-
-
-        document
-            .getElementById("quizModal")
-            .addEventListener(
-                "click",
-                function(event) {
-
-                    if (
-                        event.target === this
-                    ) {
-
-                        closeQuizModal();
-
-                    }
-
-                }
-            );
-
-
-        document
-            .getElementById("certificateModal")
-            .addEventListener(
-                "click",
-                function(event) {
-
-                    if (
-                        event.target === this
-                    ) {
-
-                        closeCertificateModal();
-
-                    }
-
-                }
-            );
-
-
-        /* =========================================================
-           ESCAPE KEY
-        ========================================================= */
-
-        document.addEventListener(
-            "keydown",
-            function(event) {
-
-                if (event.key !== "Escape") {
-                    return;
-                }
-
-
-                closeLearningModal();
-                closeQuizModal();
-                closeCertificateModal();
-
-            }
-        );
-
-
-        /* =========================================================
-           SEARCH
-        ========================================================= */
-
-        document
-            .getElementById("courseSearch")
-            .addEventListener(
-                "input",
-                renderCourses
-            );
-
-
-        document
-            .getElementById("categoryFilter")
-            .addEventListener(
-                "change",
-                renderCourses
-            );
-
-
-        /* =========================================================
-           HTML ESCAPE
-        ========================================================= */
-
-        function escapeHTML(value) {
-
-            return String(value)
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;")
-                .replace(/'/g, "&#039;");
-
-        }
-
-
-        /* =========================================================
+        /* =====================================================
            TOAST
-        ========================================================= */
+        ===================================================== */
 
-        let toastTimer = null;
-
-
-        function showToast(message, type = "success") {
+        function showToast(message) {
 
             const toast =
-                document.getElementById("toast");
-
+                document.getElementById(
+                    "toast"
+                );
 
             toast.textContent = message;
 
-            toast.className =
-                `toast show ${type}`;
+            toast.classList.add("show");
 
+            setTimeout(() => {
 
-            clearTimeout(toastTimer);
-
-
-            toastTimer =
-                setTimeout(() => {
-
-                    toast.classList.remove(
-                        "show"
-                    );
-
-                }, 3000);
-
-        }
-
-
-        /* =========================================================
-           FIREBASE AUTH STATE SUPPORT
-        ========================================================= */
-
-        function attachFirebaseAuthListener() {
-
-            try {
-
-                if (
-                    window.firebase &&
-                    typeof window.firebase.auth === "function"
-                ) {
-
-                    window.firebase
-                        .auth()
-                        .onAuthStateChanged(
-                            function(user) {
-
-                                if (user) {
-
-                                    currentUser = {
-
-                                        uid: user.uid,
-
-                                        displayName:
-                                            user.displayName ||
-                                            "",
-
-                                        email:
-                                            user.email ||
-                                            ""
-
-                                    };
-
-                                } else {
-
-                                    currentUser = null;
-
-                                }
-
-
-                                /*
-                                 * Re-render after login/logout.
-                                 *
-                                 * This is important because
-                                 * the storage key changes with UID.
-                                 */
-
-                                renderCourses();
-
-                            }
-                        );
-
-                }
-
-            } catch (error) {
-
-                console.log(
-                    "Firebase Auth listener:",
-                    error
+                toast.classList.remove(
+                    "show"
                 );
 
-            }
+            }, 3000);
 
         }
 
 
-        /* =========================================================
-           PAGE VISIBILITY
-        ========================================================= */
+        /* =====================================================
+           SEARCH + FILTER
+        ===================================================== */
 
-        window.addEventListener(
-            "pageshow",
-            function() {
+        document.getElementById(
+            "searchInput"
+        ).addEventListener(
+            "input",
+            renderCourses
+        );
 
-                detectCurrentUser();
-
-                renderCourses();
-
-            }
+        document.getElementById(
+            "categoryFilter"
+        ).addEventListener(
+            "change",
+            renderCourses
         );
 
 
-        window.addEventListener(
-            "storage",
-            function() {
-
-                detectCurrentUser();
-
-                renderCourses();
-
-            }
-        );
-
-
-        document.addEventListener(
-            "visibilitychange",
-            function() {
-
-                if (
-                    document.visibilityState ===
-                    "visible"
-                ) {
-
-                    detectCurrentUser();
-
-                    renderCourses();
-
-                }
-
-            }
-        );
-
-
-        /* =========================================================
-           INITIALIZE
-        ========================================================= */
-
-        detectCurrentUser();
+        /* =====================================================
+           INITIAL LOAD
+        ===================================================== */
 
         renderCourses();
-
-        attachFirebaseAuthListener();
 
     </script>
 
