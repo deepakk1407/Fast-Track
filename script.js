@@ -1,4 +1,3 @@
-javascript
 import { initializeApp } from
 "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
 
@@ -8,8 +7,7 @@ import {
     updateProfile,
     signInWithEmailAndPassword,
     GoogleAuthProvider,
-    signInWithPopup,
-    sendPasswordResetEmail
+    signInWithPopup
 } from
 "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
@@ -29,12 +27,7 @@ const firebaseConfig = {
 };
 
 
-/* =========================
-   INITIALIZE FIREBASE
-========================= */
-
 const app = initializeApp(firebaseConfig);
-
 const auth = getAuth(app);
 
 
@@ -50,34 +43,21 @@ const googleProvider =
    ELEMENTS
 ========================= */
 
-const loginTab =
-    document.getElementById("loginTab");
+const loginTab = document.getElementById("loginTab");
+const registerTab = document.getElementById("registerTab");
 
-const registerTab =
-    document.getElementById("registerTab");
+const loginBox = document.getElementById("loginBox");
+const registerBox = document.getElementById("registerBox");
 
-const loginBox =
-    document.getElementById("loginBox");
+const goRegister = document.getElementById("goRegister");
+const goLogin = document.getElementById("goLogin");
 
-const registerBox =
-    document.getElementById("registerBox");
-
-const goRegister =
-    document.getElementById("goRegister");
-
-const goLogin =
-    document.getElementById("goLogin");
-
-const toast =
-    document.getElementById("toast");
+const toast = document.getElementById("toast");
 
 
-/* =========================
-   LOGIN ELEMENTS
-========================= */
+/* LOGIN */
 
-const loginForm =
-    document.getElementById("loginForm");
+const loginForm = document.getElementById("loginForm");
 
 const loginEmail =
     document.getElementById("loginEmail");
@@ -88,13 +68,14 @@ const loginPassword =
 const loginEye =
     document.getElementById("loginEye");
 
+
+/* GOOGLE LOGIN */
+
 const loginGoogle =
     document.getElementById("loginGoogle");
 
 
-/* =========================
-   REGISTER ELEMENTS
-========================= */
+/* REGISTER */
 
 const registerForm =
     document.getElementById("registerForm");
@@ -125,84 +106,30 @@ const confirmEye =
 
 
 /* =========================
-   ROLE ELEMENTS
-========================= */
-
-const jobSeeker =
-    document.getElementById("jobSeeker");
-
-const recruiter =
-    document.getElementById("recruiter");
-
-
-/* =========================
-   GOOGLE REGISTER
-========================= */
-
-const registerGoogle =
-    document.getElementById("registerGoogle");
-
-
-/* =========================
-   FORGOT PASSWORD
-========================= */
-
-const forgotButton =
-    document.getElementById("forgotButton");
-
-const forgotModal =
-    document.getElementById("forgotModal");
-
-const cancelForgot =
-    document.getElementById("cancelForgot");
-
-const resetForm =
-    document.getElementById("resetForm");
-
-const resetEmail =
-    document.getElementById("resetEmail");
-
-
-/* =========================
-   TOAST FUNCTION
+   TOAST
 ========================= */
 
 function showToast(message, type = "success") {
 
     if (!toast) {
-
         alert(message);
-
         return;
     }
 
-
-    toast.textContent =
-        message;
-
+    toast.textContent = message;
 
     toast.style.background =
         type === "error"
             ? "#dc2626"
             : "#111827";
 
-
     toast.classList.add("show");
 
+    clearTimeout(window.toastTimer);
 
-    clearTimeout(
-        window.toastTimer
-    );
-
-
-    window.toastTimer =
-        setTimeout(() => {
-
-            toast.classList.remove(
-                "show"
-            );
-
-        }, 5000);
+    window.toastTimer = setTimeout(() => {
+        toast.classList.remove("show");
+    }, 5000);
 }
 
 
@@ -212,43 +139,21 @@ function showToast(message, type = "success") {
 
 function showLogin() {
 
-    loginTab.classList.add(
-        "active"
-    );
+    loginTab.classList.add("active");
+    registerTab.classList.remove("active");
 
-    registerTab.classList.remove(
-        "active"
-    );
-
-
-    loginBox.classList.add(
-        "active"
-    );
-
-    registerBox.classList.remove(
-        "active"
-    );
+    loginBox.classList.add("active");
+    registerBox.classList.remove("active");
 }
 
 
 function showRegister() {
 
-    registerTab.classList.add(
-        "active"
-    );
+    registerTab.classList.add("active");
+    loginTab.classList.remove("active");
 
-    loginTab.classList.remove(
-        "active"
-    );
-
-
-    registerBox.classList.add(
-        "active"
-    );
-
-    loginBox.classList.remove(
-        "active"
-    );
+    registerBox.classList.add("active");
+    loginBox.classList.remove("active");
 }
 
 
@@ -257,18 +162,15 @@ loginTab.addEventListener(
     showLogin
 );
 
-
 registerTab.addEventListener(
     "click",
     showRegister
 );
 
-
 goRegister.addEventListener(
     "click",
     showRegister
 );
-
 
 goLogin.addEventListener(
     "click",
@@ -282,334 +184,61 @@ goLogin.addEventListener(
 
 if (loginEye) {
 
-    loginEye.addEventListener(
-        "click",
-        () => {
+    loginEye.addEventListener("click", () => {
 
-            if (
-                loginPassword.type ===
-                "password"
-            ) {
+        if (loginPassword.type === "password") {
 
-                loginPassword.type =
-                    "text";
+            loginPassword.type = "text";
+            loginEye.textContent = "🙈";
 
-                loginEye.textContent =
-                    "🙈";
+        } else {
 
-            } else {
-
-                loginPassword.type =
-                    "password";
-
-                loginEye.textContent =
-                    "👁";
-            }
+            loginPassword.type = "password";
+            loginEye.textContent = "👁";
 
         }
-    );
+
+    });
 }
 
 
 if (registerEye) {
 
-    registerEye.addEventListener(
-        "click",
-        () => {
+    registerEye.addEventListener("click", () => {
 
-            if (
-                registerPassword.type ===
-                "password"
-            ) {
+        if (registerPassword.type === "password") {
 
-                registerPassword.type =
-                    "text";
+            registerPassword.type = "text";
+            registerEye.textContent = "🙈";
 
-                registerEye.textContent =
-                    "🙈";
+        } else {
 
-            } else {
-
-                registerPassword.type =
-                    "password";
-
-                registerEye.textContent =
-                    "👁";
-            }
+            registerPassword.type = "password";
+            registerEye.textContent = "👁";
 
         }
-    );
+
+    });
 }
 
 
 if (confirmEye) {
 
-    confirmEye.addEventListener(
-        "click",
-        () => {
+    confirmEye.addEventListener("click", () => {
 
-            if (
-                confirmPassword.type ===
-                "password"
-            ) {
+        if (confirmPassword.type === "password") {
 
-                confirmPassword.type =
-                    "text";
+            confirmPassword.type = "text";
+            confirmEye.textContent = "🙈";
 
-                confirmEye.textContent =
-                    "🙈";
+        } else {
 
-            } else {
-
-                confirmPassword.type =
-                    "password";
-
-                confirmEye.textContent =
-                    "👁";
-            }
+            confirmPassword.type = "password";
+            confirmEye.textContent = "👁";
 
         }
-    );
-}
 
-
-/* =========================
-   FORGOT PASSWORD
-   OPEN MODAL
-========================= */
-
-if (forgotButton) {
-
-    forgotButton.addEventListener(
-        "click",
-        () => {
-
-            forgotModal.classList.add(
-                "active"
-            );
-
-
-            forgotModal.setAttribute(
-                "aria-hidden",
-                "false"
-            );
-
-
-            /*
-             * Automatically copy login
-             * email into reset email.
-             */
-
-            resetEmail.value =
-                loginEmail.value.trim();
-
-
-            setTimeout(() => {
-
-                resetEmail.focus();
-
-            }, 100);
-
-        }
-    );
-}
-
-
-/* =========================
-   CLOSE FORGOT MODAL
-========================= */
-
-if (cancelForgot) {
-
-    cancelForgot.addEventListener(
-        "click",
-        () => {
-
-            forgotModal.classList.remove(
-                "active"
-            );
-
-
-            forgotModal.setAttribute(
-                "aria-hidden",
-                "true"
-            );
-
-        }
-    );
-}
-
-
-/* =========================
-   CLOSE MODAL
-   OUTSIDE CLICK
-========================= */
-
-if (forgotModal) {
-
-    forgotModal.addEventListener(
-        "click",
-        (event) => {
-
-            if (
-                event.target ===
-                forgotModal
-            ) {
-
-                forgotModal.classList.remove(
-                    "active"
-                );
-
-
-                forgotModal.setAttribute(
-                    "aria-hidden",
-                    "true"
-                );
-            }
-
-        }
-    );
-}
-
-
-/* =========================
-   FORGOT PASSWORD
-   RESET EMAIL
-========================= */
-
-if (resetForm) {
-
-    resetForm.addEventListener(
-        "submit",
-        async function (event) {
-
-            event.preventDefault();
-
-
-            const email =
-                resetEmail.value.trim();
-
-
-            /* EMAIL VALIDATION */
-
-            if (!email) {
-
-                showToast(
-                    "Please enter your email address.",
-                    "error"
-                );
-
-                return;
-            }
-
-
-            const resetButton =
-                resetForm.querySelector(
-                    ".primary-btn"
-                );
-
-
-            resetButton.disabled =
-                true;
-
-
-            resetButton.textContent =
-                "Sending...";
-
-
-            try {
-
-                /*
-                 * Firebase sends reset
-                 * password email.
-                 */
-
-                await sendPasswordResetEmail(
-                    auth,
-                    email
-                );
-
-
-                showToast(
-                    "📧 Password reset link sent! Check your email."
-                );
-
-
-                resetForm.reset();
-
-
-                forgotModal.classList.remove(
-                    "active"
-                );
-
-
-                forgotModal.setAttribute(
-                    "aria-hidden",
-                    "true"
-                );
-
-
-            } catch (error) {
-
-                console.error(
-                    "PASSWORD RESET ERROR:",
-                    error
-                );
-
-
-                if (
-                    error.code ===
-                    "auth/invalid-email"
-                ) {
-
-                    showToast(
-                        "Please enter a valid email.",
-                        "error"
-                    );
-
-
-                } else if (
-                    error.code ===
-                    "auth/user-not-found"
-                ) {
-
-                    showToast(
-                        "No account found with this email.",
-                        "error"
-                    );
-
-
-                } else if (
-                    error.code ===
-                    "auth/too-many-requests"
-                ) {
-
-                    showToast(
-                        "Too many requests. Please try again later.",
-                        "error"
-                    );
-
-
-                } else {
-
-                    showToast(
-                        "Unable to send reset email. Please try again.",
-                        "error"
-                    );
-                }
-
-            } finally {
-
-                resetButton.disabled =
-                    false;
-
-
-                resetButton.textContent =
-                    "Send Reset Link";
-            }
-
-        }
-    );
+    });
 }
 
 
@@ -623,13 +252,10 @@ if (loginGoogle) {
         "click",
         async function () {
 
-            loginGoogle.disabled =
-                true;
-
+            loginGoogle.disabled = true;
 
             const originalText =
                 loginGoogle.innerHTML;
-
 
             loginGoogle.innerHTML =
                 "Signing in with Google...";
@@ -681,7 +307,6 @@ if (loginGoogle) {
                         "error"
                     );
 
-
                 } else if (
                     error.code ===
                     "auth/popup-blocked"
@@ -691,7 +316,6 @@ if (loginGoogle) {
                         "Google popup was blocked. Please allow popups.",
                         "error"
                     );
-
 
                 } else if (
                     error.code ===
@@ -703,12 +327,10 @@ if (loginGoogle) {
                         "error"
                     );
 
-
                 } else {
 
                     showToast(
-                        error.code +
-                        " | " +
+                        error.code + " | " +
                         error.message,
                         "error"
                     );
@@ -716,9 +338,7 @@ if (loginGoogle) {
 
             } finally {
 
-                loginGoogle.disabled =
-                    false;
-
+                loginGoogle.disabled = false;
 
                 loginGoogle.innerHTML =
                     originalText;
@@ -733,382 +353,330 @@ if (loginGoogle) {
    LOGIN
 ========================= */
 
-if (loginForm) {
+loginForm.addEventListener(
+    "submit",
+    async function (event) {
 
-    loginForm.addEventListener(
-        "submit",
-        async function (event) {
-
-            event.preventDefault();
+        event.preventDefault();
 
 
-            const email =
-                loginEmail.value.trim();
+        const email =
+            loginEmail.value.trim();
+
+        const password =
+            loginPassword.value;
 
 
-            const password =
-                loginPassword.value;
+        if (!email) {
+
+            showToast(
+                "Please enter your email.",
+                "error"
+            );
+
+            return;
+        }
 
 
-            /* EMAIL */
+        if (!password) {
 
-            if (!email) {
+            showToast(
+                "Please enter your password.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        const loginButton =
+            loginForm.querySelector(
+                ".primary-btn"
+            );
+
+
+        loginButton.disabled = true;
+
+        loginButton.textContent =
+            "Logging in...";
+
+
+        try {
+
+            const result =
+                await signInWithEmailAndPassword(
+                    auth,
+                    email,
+                    password
+                );
+
+
+            console.log(
+                "LOGIN SUCCESS:",
+                result.user
+            );
+
+
+            showToast(
+                "🎉 Login successful!"
+            );
+
+
+            setTimeout(() => {
+
+                window.location.href =
+                    "./dashboard.html";
+
+            }, 1500);
+
+
+        } catch (error) {
+
+            console.error(
+                "LOGIN ERROR:",
+                error
+            );
+
+
+            if (
+                error.code ===
+                "auth/invalid-credential"
+            ) {
 
                 showToast(
-                    "Please enter your email.",
+                    "Invalid email or password.",
                     "error"
                 );
 
-                return;
-            }
-
-
-            /* PASSWORD */
-
-            if (!password) {
+            } else if (
+                error.code ===
+                "auth/user-not-found"
+            ) {
 
                 showToast(
-                    "Please enter your password.",
+                    "No account found with this email.",
                     "error"
                 );
 
-                return;
-            }
+            } else if (
+                error.code ===
+                "auth/wrong-password"
+            ) {
 
-
-            const loginButton =
-                loginForm.querySelector(
-                    ".primary-btn"
+                showToast(
+                    "Incorrect password.",
+                    "error"
                 );
 
+            } else if (
+                error.code ===
+                "auth/invalid-email"
+            ) {
 
-            loginButton.disabled =
-                true;
+                showToast(
+                    "Please enter a valid email.",
+                    "error"
+                );
 
+            } else {
+
+                showToast(
+                    error.code + " | " +
+                    error.message,
+                    "error"
+                );
+            }
+
+        } finally {
+
+            loginButton.disabled = false;
 
             loginButton.textContent =
-                "Logging in...";
-
-
-            try {
-
-                const result =
-                    await signInWithEmailAndPassword(
-                        auth,
-                        email,
-                        password
-                    );
-
-
-                console.log(
-                    "LOGIN SUCCESS:",
-                    result.user
-                );
-
-
-                showToast(
-                    "🎉 Login successful!"
-                );
-
-
-                /*
-                 * Current dashboard.
-                 * Role-based redirect can be
-                 * added later.
-                 */
-
-                setTimeout(() => {
-
-                    window.location.href =
-                        "./dashboard.html";
-
-                }, 1500);
-
-
-            } catch (error) {
-
-                console.error(
-                    "LOGIN ERROR:",
-                    error
-                );
-
-
-                if (
-                    error.code ===
-                    "auth/invalid-credential"
-                ) {
-
-                    showToast(
-                        "Invalid email or password.",
-                        "error"
-                    );
-
-
-                } else if (
-                    error.code ===
-                    "auth/user-not-found"
-                ) {
-
-                    showToast(
-                        "No account found with this email.",
-                        "error"
-                    );
-
-
-                } else if (
-                    error.code ===
-                    "auth/wrong-password"
-                ) {
-
-                    showToast(
-                        "Incorrect password.",
-                        "error"
-                    );
-
-
-                } else if (
-                    error.code ===
-                    "auth/invalid-email"
-                ) {
-
-                    showToast(
-                        "Please enter a valid email.",
-                        "error"
-                    );
-
-
-                } else {
-
-                    showToast(
-                        error.code +
-                        " | " +
-                        error.message,
-                        "error"
-                    );
-                }
-
-            } finally {
-
-                loginButton.disabled =
-                    false;
-
-
-                loginButton.textContent =
-                    "Login";
-            }
-
+                "Login";
         }
-    );
-}
+
+    }
+);
 
 
 /* =========================
    REGISTER
 ========================= */
 
-if (registerForm) {
+registerForm.addEventListener(
+    "submit",
+    async function (event) {
 
-    registerForm.addEventListener(
-        "submit",
-        async function (event) {
-
-            event.preventDefault();
+        event.preventDefault();
 
 
-            const name =
-                registerName.value.trim();
+        const name =
+            registerName.value.trim();
+
+        const email =
+            registerEmail.value.trim();
+
+        const password =
+            registerPassword.value;
+
+        const confirm =
+            confirmPassword.value;
 
 
-            const email =
-                registerEmail.value.trim();
+        if (!name) {
+
+            showToast(
+                "Please enter your full name.",
+                "error"
+            );
+
+            return;
+        }
 
 
-            const password =
-                registerPassword.value;
+        if (!email) {
+
+            showToast(
+                "Please enter your email.",
+                "error"
+            );
+
+            return;
+        }
 
 
-            const confirm =
-                confirmPassword.value;
+        if (password.length < 6) {
+
+            showToast(
+                "Password must be at least 6 characters.",
+                "error"
+            );
+
+            return;
+        }
 
 
-            /* NAME */
+        if (password !== confirm) {
 
-            if (!name) {
+            showToast(
+                "Passwords do not match.",
+                "error"
+            );
 
-                showToast(
-                    "Please enter your full name.",
-                    "error"
+            return;
+        }
+
+
+        if (!terms.checked) {
+
+            showToast(
+                "Please accept Terms & Conditions.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        registerButton.disabled = true;
+
+        registerButton.textContent =
+            "Creating Account...";
+
+
+        try {
+
+            const result =
+                await createUserWithEmailAndPassword(
+                    auth,
+                    email,
+                    password
                 );
 
-                return;
-            }
+
+            await updateProfile(
+                result.user,
+                {
+                    displayName: name
+                }
+            );
 
 
-            /* EMAIL */
-
-            if (!email) {
-
-                showToast(
-                    "Please enter your email.",
-                    "error"
-                );
-
-                return;
-            }
+            console.log(
+                "REGISTER SUCCESS:",
+                result.user
+            );
 
 
-            /* PASSWORD */
+            showToast(
+                "🎉 Account created successfully!"
+            );
+
+
+            registerForm.reset();
+
+
+            setTimeout(() => {
+
+                showLogin();
+
+            }, 1500);
+
+
+        } catch (error) {
+
+            console.error(
+                "REGISTER ERROR:",
+                error
+            );
+
 
             if (
-                password.length < 6
+                error.code ===
+                "auth/email-already-in-use"
             ) {
 
                 showToast(
-                    "Password must be at least 6 characters.",
+                    "This email is already registered.",
                     "error"
                 );
 
-                return;
-            }
-
-
-            /* CONFIRM PASSWORD */
-
-            if (
-                password !== confirm
+            } else if (
+                error.code ===
+                "auth/invalid-email"
             ) {
 
                 showToast(
-                    "Passwords do not match.",
+                    "Please enter a valid email.",
                     "error"
                 );
 
-                return;
-            }
-
-
-            /* TERMS */
-
-            if (!terms.checked) {
+            } else if (
+                error.code ===
+                "auth/weak-password"
+            ) {
 
                 showToast(
-                    "Please accept Terms & Conditions.",
+                    "Password is too weak.",
                     "error"
                 );
 
-                return;
+            } else {
+
+                showToast(
+                    error.code + " | " +
+                    error.message,
+                    "error"
+                );
             }
 
+        } finally {
 
-            registerButton.disabled =
-                true;
-
+            registerButton.disabled = false;
 
             registerButton.textContent =
-                "Creating Account...";
-
-
-            try {
-
-                const result =
-                    await createUserWithEmailAndPassword(
-                        auth,
-                        email,
-                        password
-                    );
-
-
-                await updateProfile(
-                    result.user,
-                    {
-                        displayName: name
-                    }
-                );
-
-
-                console.log(
-                    "REGISTER SUCCESS:",
-                    result.user
-                );
-
-
-                showToast(
-                    "🎉 Account created successfully!"
-                );
-
-
-                registerForm.reset();
-
-
-                setTimeout(() => {
-
-                    showLogin();
-
-                }, 1500);
-
-
-            } catch (error) {
-
-                console.error(
-                    "REGISTER ERROR:",
-                    error
-                );
-
-
-                if (
-                    error.code ===
-                    "auth/email-already-in-use"
-                ) {
-
-                    showToast(
-                        "This email is already registered.",
-                        "error"
-                    );
-
-
-                } else if (
-                    error.code ===
-                    "auth/invalid-email"
-                ) {
-
-                    showToast(
-                        "Please enter a valid email.",
-                        "error"
-                    );
-
-
-                } else if (
-                    error.code ===
-                    "auth/weak-password"
-                ) {
-
-                    showToast(
-                        "Password is too weak.",
-                        "error"
-                    );
-
-
-                } else {
-
-                    showToast(
-                        error.code +
-                        " | " +
-                        error.message,
-                        "error"
-                    );
-                }
-
-            } finally {
-
-                registerButton.disabled =
-                    false;
-
-
-                registerButton.textContent =
-                    "Create Account";
-            }
-
+                "Create Account";
         }
-    );
-}
-```
+
+    }
+);
