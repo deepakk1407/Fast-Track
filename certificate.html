@@ -1,0 +1,589 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FAST-TRACK | Certificate</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: "Inter", sans-serif;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(37,99,235,.14), transparent 30%),
+                radial-gradient(circle at 80% 80%, rgba(124,58,237,.15), transparent 30%),
+                #070b14;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 25px;
+        }
+
+        .page {
+            width: min(1100px, 100%);
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 15px;
+        }
+
+        .brand {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: .5px;
+        }
+
+        .brand span {
+            color: #7c3aed;
+        }
+
+        .back-btn {
+            text-decoration: none;
+            color: #dbe3f2;
+            background: #0d1424;
+            border: 1px solid rgba(255,255,255,.09);
+            padding: 10px 15px;
+            border-radius: 9px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .certificate {
+            position: relative;
+            overflow: hidden;
+            background:
+                linear-gradient(135deg, rgba(255,255,255,.98), rgba(244,247,255,.98));
+            color: #101827;
+            border-radius: 18px;
+            padding: 55px;
+            min-height: 700px;
+            box-shadow: 0 30px 100px rgba(0,0,0,.45);
+            border: 8px solid #c9a227;
+            outline: 1px solid #e3c45d;
+        }
+
+        .certificate::before {
+            content: "";
+            position: absolute;
+            inset: 18px;
+            border: 2px solid #c9a227;
+            pointer-events: none;
+        }
+
+        .certificate::after {
+            content: "FAST-TRACK";
+            position: absolute;
+            right: -80px;
+            bottom: 120px;
+            font-size: 90px;
+            font-weight: 800;
+            color: rgba(37,99,235,.035);
+            transform: rotate(-25deg);
+            pointer-events: none;
+        }
+
+        .certificate-inner {
+            position: relative;
+            z-index: 2;
+            min-height: 580px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .seal {
+            width: 78px;
+            height: 78px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            color: white;
+            font-size: 34px;
+            box-shadow: 0 12px 30px rgba(37,99,235,.25);
+            margin-bottom: 18px;
+        }
+
+        .certificate-title {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(36px, 6vw, 62px);
+            color: #172033;
+            letter-spacing: 1px;
+            margin-bottom: 7px;
+        }
+
+        .subtitle {
+            color: #68738a;
+            font-size: 13px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .presented {
+            margin-top: 35px;
+            color: #69758a;
+            font-size: 12px;
+        }
+
+        .student-name {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(30px, 5vw, 48px);
+            color: #2563eb;
+            margin: 10px 0;
+            border-bottom: 2px solid #c9a227;
+            padding: 0 25px 7px;
+        }
+
+        .completion-text {
+            max-width: 700px;
+            color: #596579;
+            font-size: 13px;
+            line-height: 1.8;
+            margin-top: 10px;
+        }
+
+        .course-name {
+            color: #172033;
+            font-size: 22px;
+            font-weight: 800;
+            margin: 8px 0;
+        }
+
+        .details {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 35px;
+            flex-wrap: wrap;
+        }
+
+        .detail {
+            min-width: 140px;
+        }
+
+        .detail-label {
+            color: #8993a5;
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        .detail-value {
+            color: #172033;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .certificate-id {
+            margin-top: 28px;
+            color: #8993a5;
+            font-size: 9px;
+            letter-spacing: 1px;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 22px;
+        }
+
+        .action-btn {
+            border: none;
+            border-radius: 9px;
+            padding: 12px 18px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            color: white;
+        }
+
+        .print-btn {
+            background: #111827;
+            color: white;
+        }
+
+        .locked {
+            display: none;
+            max-width: 650px;
+            margin: 30px auto 0;
+            padding: 25px;
+            text-align: center;
+            background: #0b1120;
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 15px;
+        }
+
+        .locked-icon {
+            font-size: 40px;
+            margin-bottom: 12px;
+        }
+
+        .locked h2 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .locked p {
+            color: #8995aa;
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        @media (max-width: 700px) {
+            body {
+                padding: 12px;
+            }
+
+            .certificate {
+                padding: 30px 20px;
+                border-width: 5px;
+            }
+
+            .certificate::before {
+                inset: 10px;
+            }
+
+            .details {
+                gap: 20px;
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+
+            .action-btn {
+                width: 100%;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .topbar,
+            .actions {
+                display: none !important;
+            }
+
+            .page {
+                width: 100%;
+            }
+
+            .certificate {
+                box-shadow: none;
+                border-radius: 0;
+                min-height: 100vh;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="page">
+
+    <div class="topbar">
+        <div class="brand">FAST<span>-TRACK</span></div>
+
+        <a href="course.html" class="back-btn">
+            ← Back to Courses
+        </a>
+    </div>
+
+    <!-- LOCKED MESSAGE -->
+    <div class="locked" id="lockedMessage">
+        <div class="locked-icon">🔒</div>
+
+        <h2>Certificate Locked</h2>
+
+        <p>
+            Complete all 5 Python modules and successfully complete
+            the required quizzes to unlock your certificate.
+        </p>
+    </div>
+
+    <!-- CERTIFICATE -->
+    <div class="certificate" id="certificate">
+
+        <div class="certificate-inner">
+
+            <div class="seal">✓</div>
+
+            <div class="subtitle">
+                FAST-TRACK Learning Platform
+            </div>
+
+            <h1 class="certificate-title">
+                Certificate
+            </h1>
+
+            <div class="presented">
+                This certificate is proudly presented to
+            </div>
+
+            <div class="student-name" id="studentName">
+                Student Name
+            </div>
+
+            <div class="completion-text">
+                For successfully completing the
+            </div>
+
+            <div class="course-name">
+                Python Programming Course
+            </div>
+
+            <div class="completion-text">
+                consisting of 5 learning modules, practical learning
+                activities and module assessments.
+            </div>
+
+            <div class="details">
+
+                <div class="detail">
+                    <div class="detail-label">
+                        Course
+                    </div>
+
+                    <div class="detail-value">
+                        Python Programming
+                    </div>
+                </div>
+
+                <div class="detail">
+                    <div class="detail-label">
+                        Modules
+                    </div>
+
+                    <div class="detail-value">
+                        5 / 5 Completed
+                    </div>
+                </div>
+
+                <div class="detail">
+                    <div class="detail-label">
+                        Issue Date
+                    </div>
+
+                    <div class="detail-value" id="issueDate">
+                        --
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="certificate-id">
+                Certificate ID:
+                <strong id="certificateId">FT-PYTHON-000000</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="actions" id="actions">
+
+        <button class="action-btn download-btn" onclick="downloadCertificate()">
+            ⬇ Download Certificate
+        </button>
+
+        <button class="action-btn print-btn" onclick="window.print()">
+            🖨 Print
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    /*
+       ==========================================
+       FAST-TRACK CERTIFICATE SYSTEM
+       ==========================================
+
+       course.html-la quiz complete aana udane:
+
+       localStorage.setItem("pythonModule1Quiz", "passed");
+       localStorage.setItem("pythonModule2Quiz", "passed");
+       localStorage.setItem("pythonModule3Quiz", "passed");
+       localStorage.setItem("pythonModule4Quiz", "passed");
+       localStorage.setItem("pythonModule5Quiz", "passed");
+
+       nu save pannunga.
+
+       5 modules-um "passed" aana certificate unlock aagum.
+    */
+
+
+    const modules = [
+        "pythonModule1Quiz",
+        "pythonModule2Quiz",
+        "pythonModule3Quiz",
+        "pythonModule4Quiz",
+        "pythonModule5Quiz"
+    ];
+
+
+    function isCourseCompleted() {
+
+        return modules.every(function(module) {
+
+            return localStorage.getItem(module) === "passed";
+
+        });
+
+    }
+
+
+    function generateCertificateId() {
+
+        let existingId =
+            localStorage.getItem("pythonCertificateId");
+
+        if (!existingId) {
+
+            const randomNumber =
+                Math.floor(100000 + Math.random() * 900000);
+
+            existingId =
+                "FT-PYTHON-" + randomNumber;
+
+            localStorage.setItem(
+                "pythonCertificateId",
+                existingId
+            );
+
+        }
+
+        return existingId;
+
+    }
+
+
+    function loadStudentName() {
+
+        const possibleNames = [
+
+            localStorage.getItem("studentName"),
+            localStorage.getItem("userName"),
+            localStorage.getItem("username")
+
+        ];
+
+        const name =
+            possibleNames.find(function(value) {
+
+                return value &&
+                       value.trim() !== "";
+
+            }) || "Student Name";
+
+
+        document.getElementById("studentName").textContent = name;
+
+    }
+
+
+    function setDate() {
+
+        const today = new Date();
+
+        const options = {
+            day: "2-digit",
+            month: "long",
+            year: "numeric"
+        };
+
+        document.getElementById("issueDate").textContent =
+            today.toLocaleDateString("en-IN", options);
+
+    }
+
+
+    function showCertificate() {
+
+        const certificate =
+            document.getElementById("certificate");
+
+        const actions =
+            document.getElementById("actions");
+
+        const locked =
+            document.getElementById("lockedMessage");
+
+
+        if (isCourseCompleted()) {
+
+            certificate.style.display = "block";
+            actions.style.display = "flex";
+            locked.style.display = "none";
+
+            document.getElementById("certificateId")
+                .textContent = generateCertificateId();
+
+            loadStudentName();
+            setDate();
+
+        } else {
+
+            certificate.style.display = "none";
+            actions.style.display = "none";
+            locked.style.display = "block";
+
+        }
+
+    }
+
+
+    function downloadCertificate() {
+
+        /*
+           Browser print dialog-la
+           "Save as PDF" select pannina
+           certificate PDF-aa save pannalaam.
+        */
+
+        window.print();
+
+    }
+
+
+    showCertificate();
+
+</script>
+
+</body>
+</html>
+```
