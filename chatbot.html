@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#070b14"><title>FAST-TRACK | AI Career Assistant</title>
+  <link rel="stylesheet" href="chatbot.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="dashboard.html"><img src="fast-track-logo.png" alt="FAST-TRACK"><span>FAST-TRACK</span></a>
+      <div class="nav-label">WORKSPACE</div>
+      <a class="nav-link" href="dashboard.html"><span>⌂</span> Dashboard</a>
+      <a class="nav-link" href="jobs.html"><span>▤</span> Find Jobs</a>
+      <a class="nav-link" href="skills.html"><span>✦</span> My Skills</a>
+      <a class="nav-link" href="resume.html"><span>▧</span> Resume Builder</a>
+      <a class="nav-link" href="progress.html"><span>↗</span> Career Progress</a>
+      <a class="nav-link active" href="chatbot.html"><span>✧</span> AI Career Assistant</a>
+      <div class="sidebar-bottom"><div class="online-dot"></div><div><strong>Career Assistant</strong><small>Here to help you grow</small></div></div>
+    </aside>
+    <main class="main">
+      <header class="topbar"><div><div class="eyebrow">YOUR PERSONAL CAREER GUIDE</div><h1>AI Career Assistant <span class="spark">✦</span></h1><p>Plan your next step, improve your skills, and prepare for opportunities.</p></div><a class="back-btn" href="dashboard.html">← Dashboard</a></header>
+      <section class="workspace">
+        <div class="chat-panel">
+          <div class="chat-head"><div class="bot-avatar">✦</div><div class="bot-title"><strong>FAST-TRACK AI</strong><span><i></i> Career assistant</span></div><button id="clearChat" class="icon-btn" title="Start a new chat" aria-label="Start a new chat">↻</button></div>
+          <div id="chatMessages" class="messages" aria-live="polite">
+            <div class="message-row bot-row"><div class="mini-avatar">✦</div><div class="bubble-wrap"><div class="sender">FAST-TRACK AI <span>· just now</span></div><div class="bubble">Hey! 👋 I’m your career assistant. I can help you explore roles, identify skills to learn, improve your resume, and practise interviews. What would you like to work on today?</div></div></div>
+          </div>
+          <div class="suggestions" id="suggestions"><button data-prompt="I am a fresher. Suggest job roles I can explore.">💼 Find suitable jobs</button><button data-prompt="Help me identify the skills I should learn for a Data Analyst role.">🎯 Skill gap help</button><button data-prompt="Give me practical suggestions to improve my resume.">📄 Improve my resume</button><button data-prompt="Start a beginner-friendly mock interview with me.">🎤 Practise interview</button></div>
+          <form id="chatForm" class="composer"><label class="sr-only" for="messageInput">Your message</label><textarea id="messageInput" rows="1" maxlength="2000" placeholder="Ask about jobs, skills, resumes or interviews…" required></textarea><button id="sendButton" class="send-btn" type="submit" aria-label="Send message">➤</button><div class="composer-foot"><span>Career guidance can be imperfect—verify important details.</span><span id="charCount">0 / 2000</span></div></form>
+        </div>
+        <aside class="right-rail"><div class="rail-card welcome-card"><div class="orb">✦</div><div class="eyebrow">MAKE YOUR NEXT MOVE</div><h2>Small steps.<br>Big career goals.</h2><p>Use the assistant to turn your questions into a practical action plan.</p></div><div class="rail-card"><h3>✨ I can help with</h3><div class="help-item"><span>01</span><div><strong>Career exploration</strong><small>Roles and job-search ideas</small></div></div><div class="help-item"><span>02</span><div><strong>Skills planning</strong><small>Learning priorities and projects</small></div></div><div class="help-item"><span>03</span><div><strong>Resume guidance</strong><small>Clearer, stronger descriptions</small></div></div><div class="help-item"><span>04</span><div><strong>Interview practice</strong><small>Questions and feedback</small></div></div></div><div class="privacy-note"><span>🔒</span><p>Don’t share passwords, payment details, or sensitive personal information in chat.</p></div></aside>
+      </section>
+      <footer>FAST-TRACK · AI Career Assistant <span id="connectionStatus">Checking assistant…</span></footer>
+    </main>
+  </div>
+  <script src="chatbot.js"></script>
+</body>
+</html>
