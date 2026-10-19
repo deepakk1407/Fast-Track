@@ -3,6 +3,9 @@ import { initializeApp } from
 
 import {
     getAuth,
+    setPersistence,
+    browserLocalPersistence,
+    browserSessionPersistence,
     createUserWithEmailAndPassword,
     updateProfile,
     signInWithEmailAndPassword,
@@ -35,6 +38,27 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 const auth = getAuth(app);
+
+// Front-end role routing for this prototype. Production authorization must use
+// verified Firebase custom claims / Firestore rules, never localStorage alone.
+const ROLE_KEY = "fastTrackRoleByUid";
+function getSavedRole(user) {
+    try {
+        const roles = JSON.parse(localStorage.getItem(ROLE_KEY) || "{}");
+        return roles[user.uid] || "Job Seeker";
+    } catch { return "Job Seeker"; }
+}
+function saveUserRole(user, role) {
+    try {
+        const roles = JSON.parse(localStorage.getItem(ROLE_KEY) || "{}");
+        roles[user.uid] = role;
+        localStorage.setItem(ROLE_KEY, JSON.stringify(roles));
+    } catch (error) { console.warn("Could not save local role preference", error); }
+}
+function routeForUser(user) {
+    const role = getSavedRole(user);
+    return role === "Recruiter" ? "./recruiter.html" : role === "Admin" ? "./admin.html" : "./dashboard.html";
+}
 
 
 /* =========================
@@ -792,6 +816,12 @@ if (loginGoogle) {
 
             try {
 
+                const rememberMe = document.getElementById("rememberMe")?.checked === true;
+                await setPersistence(
+                    auth,
+                    rememberMe ? browserLocalPersistence : browserSessionPersistence
+                );
+
                 const result =
                     await signInWithPopup(
                         auth,
@@ -812,8 +842,7 @@ if (loginGoogle) {
 
                 setTimeout(() => {
 
-                    window.location.href =
-                        "./dashboard.html";
+                    window.location.href = routeForUser(result.user);
 
                 }, 1500);
 
@@ -912,6 +941,8 @@ if (registerGoogle) {
                         googleProvider
                     );
 
+                const selectedRole = document.getElementById("recruiter")?.checked ? "Recruiter" : "Job Seeker";
+                saveUserRole(result.user, selectedRole);
 
                 console.log(
                     "GOOGLE REGISTER SUCCESS:",
@@ -926,8 +957,7 @@ if (registerGoogle) {
 
                 setTimeout(() => {
 
-                    window.location.href =
-                        "./dashboard.html";
+                    window.location.href = routeForUser(result.user);
 
                 }, 1500);
 
@@ -1050,6 +1080,14 @@ if (loginForm) {
 
             try {
 
+                // Remember Me keeps the Firebase session across browser restarts.
+                // Without it, use session persistence for this browser session only.
+                const rememberMe = document.getElementById("rememberMe")?.checked === true;
+                await setPersistence(
+                    auth,
+                    rememberMe ? browserLocalPersistence : browserSessionPersistence
+                );
+
                 const result =
                     await signInWithEmailAndPassword(
                         auth,
@@ -1071,8 +1109,7 @@ if (loginForm) {
 
                 setTimeout(() => {
 
-                    window.location.href =
-                        "./dashboard.html";
+                    window.location.href = routeForUser(result.user);
 
                 }, 1500);
 
@@ -1312,6 +1349,8 @@ if (registerForm) {
                         ? "Recruiter"
                         : "Job Seeker";
 
+
+                saveUserRole(result.user, selectedRole);
 
                 console.log(
                     "SELECTED ROLE:",

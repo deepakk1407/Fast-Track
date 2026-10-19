@@ -889,6 +889,11 @@
         onAuthStateChanged(auth, (user) => {
 
             if (user) {
+                // Restore the correct workspace for this signed-in account.
+                let role = "Job Seeker";
+                try { role = (JSON.parse(localStorage.getItem("fastTrackRoleByUid") || "{}")[user.uid]) || "Job Seeker"; } catch {}
+                if (role === "Recruiter") { window.location.replace("recruiter.html"); return; }
+                if (role === "Admin") { window.location.replace("admin.html"); return; }
 
                 const name =
                     user.displayName ||
@@ -906,6 +911,18 @@
 
         });
 
+
+
+        // Role-specific navigation is a usability guard only; secure server rules are still required.
+        onAuthStateChanged(auth, (user) => {
+            if (!user) return;
+            let role = "Job Seeker";
+            try { role = (JSON.parse(localStorage.getItem("fastTrackRoleByUid") || "{}")[user.uid]) || "Job Seeker"; } catch {}
+            document.querySelectorAll(".nav-item").forEach((item) => {
+                const label = item.innerText || "";
+                if ((label.includes("Recruiter Portal") && role !== "Recruiter") || (label.includes("Admin Console") && role !== "Admin")) item.hidden = true;
+            });
+        });
 
         /* ================= LOGOUT ================= */
 
